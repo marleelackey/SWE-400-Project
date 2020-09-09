@@ -1,36 +1,32 @@
 # Project1SWE400 - Team Huo No
 
+PLAN & HW2 BY FRIDAY
+
 Merlin's Notes:
 - more detail, the better
 - ** know our plan for exceptions
 - make a list of requirements for code (method A that does x)
 - a strategy for how to test everything (no user interface, JUNIT test only way to test)
 
-First Meeting
-- 1:30-2pm Tuesday 8th
-
 **Responsibilities**
 
+*Single Table Classes and Who*
+*  Connections/Runner 
+*  ChemicalRowDataGateway & test class
+*  ChemicalTableDataGateway & test class
+*  DTO
 
- -- First Database  (GOAL: Done by Friday 11th)
- - Code for Connecting to the data base [Josh B and Ace; work on Tuesday morning] 
- - Functinality
- - Code to Create, Insert  [ Marlee and Taryn; Tuesday 4pm start]
- - Code for Update and Delete  [Josh K and Dan; Tuesday/Wed]
- - Select [Madeline and Adam]
- - JUNIT tests (one/more for each table and exceptions, for Create, for Insert, for Delete, ) [done by everyone]
- - Gateways (will wrap the five methods below)
-    - Create table
-    - Insert
-    - Delete
-    - Update
-    - Select
 
- -- Second Database (TBA Goal: Tuesday 15th)
+ -- First Database  (GOAL: )
+ - Class Diagram (figure out the methods)
+ - 
+ 
+
+ -- Second Database (TBA Goal: )
     - TBA after working with first Database 
     
 
- --Third Database (TBA Goal: Friday 18th)
+ --Third Database (TBA Goal: h)
     - TBA after working with first Database
 
 **Game Plan**
