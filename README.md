@@ -15,7 +15,7 @@ Merlin's Notes:
 *  ChemicalRowDataGateway & test class
 *  ChemicalTableDataGateway & test class
 *  ChemicalDTO
-*  
+  
 *Concrete Table Classes*
 *  Connections/Runner 
 *  ElementRowDataGateway & test class
@@ -33,7 +33,7 @@ Merlin's Notes:
 *  AcidRowDataGateway & test class
 *  AcidTableDataGateway & test class
 *  AcidDTO
-*  
+  
 *Class Table Classes*
 * TODO
 
