@@ -14,7 +14,29 @@ Merlin's Notes:
 *  Connections/Runner 
 *  ChemicalRowDataGateway & test class
 *  ChemicalTableDataGateway & test class
-*  DTO
+*  ChemicalDTO
+*  
+*Concrete Table Classes*
+*  Connections/Runner 
+*  ElementRowDataGateway & test class
+*  ElementTableDataGateway & test class
+*  ElementDTO
+*  MetalRowDataGateway & test class
+*  MetalTableDataGateway & test class
+*  MetalDTO
+*  CompoundRowDataGateway & test class
+*  CompoundTableDataGateway & test class
+*  CompoundDTO
+*  BaseRowDataGateway & test class
+*  BaseTableDataGateway & test class
+*  BaseDTO
+*  AcidRowDataGateway & test class
+*  AcidTableDataGateway & test class
+*  AcidDTO
+*  
+*Class Table Classes*
+* TODO
+
 
 
  -- First Database  (GOAL: )
