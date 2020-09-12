@@ -27,15 +27,34 @@ Merlin's Notes:
 *  CompoundRowDataGateway & test class
 *  CompoundTableDataGateway & test class
 *  CompoundDTO
+*  CompoundMadeOfElement
 *  BaseRowDataGateway & test class
 *  BaseTableDataGateway & test class
 *  BaseDTO
 *  AcidRowDataGateway & test class
 *  AcidTableDataGateway & test class
 *  AcidDTO
+*  AcidDissolvesChemical
   
 *Class Table Classes*
-* TODO
+*  Connections/Runner 
+*  ElementRowDataGateway & test class
+*  ElementTableDataGateway & test class
+*  ElementDTO
+*  MetalRowDataGateway & test class
+*  MetalTableDataGateway & test class
+*  MetalDTO
+*  CompoundRowDataGateway & test class
+*  CompoundTableDataGateway & test class
+*  CompoundDTO
+*  CompoundMadeOfElement
+*  BaseRowDataGateway & test class
+*  BaseTableDataGateway & test class
+*  BaseDTO
+*  AcidRowDataGateway & test class
+*  AcidTableDataGateway & test class
+*  AcidDTO
+*  AcidDissolvesChemical
 
 
 
