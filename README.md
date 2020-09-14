@@ -1,6 +1,6 @@
 # Project1SWE400 - Team Huo No
 
-PLAN & HW2 BY FRIDAY
+PLAN & HW2 BY FRIDAY  [check!]
 
 Merlin's Notes:
 - more detail, the better
@@ -10,13 +10,14 @@ Merlin's Notes:
 
 **Responsibilities**
 
-*Single Table Classes and Who* (done by 9/16)
-*  Connections/Runner (Josh B and Ace)
+*Single Table Classes and Who* (test classes by 9/16, 4 classes coded by 9/18, debugged by 9/21)
+*  Connections/Runner (Josh B and Ace) - 9/15
 *  ChemicalRowDataGateway & test class(Taryn and Marlee)
 *  ChemicalTableDataGateway & test class(Josh K and Dan)
 *  ChemicalDTO(Adam and Madeline)
+*  CompoundMadeOfElement(Josh B and Ace)
   
-*Concrete Table Classes*(done by 9/20)
+*Concrete Table Classes* (done by 9/20)
 *  Connections/Runner(Josh B and Ace) 
 *  ElementRowDataGateway & test class (Dan and Josh K)
 *  ElementTableDataGateway & test class(Dan and Josh K)
@@ -67,7 +68,7 @@ Merlin's Notes:
     - TBA after working with first Database 
     
 
- --Third Database (TBA Goal: h)
+ --Third Database (TBA Goal: 9/28)
     - TBA after working with first Database
 
 **Game Plan**
@@ -79,4 +80,3 @@ Merlin's Notes:
 6.  Table Data Gateway Class
 7.  Main method to instantiate gateways where we want them in the DB
 8.  Rinse and Repeat for other two databases (with fun twists for each pattern)
-
