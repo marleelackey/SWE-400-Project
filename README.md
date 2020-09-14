@@ -10,51 +10,51 @@ Merlin's Notes:
 
 **Responsibilities**
 
-*Single Table Classes and Who*
-*  Connections/Runner 
-*  ChemicalRowDataGateway & test class
-*  ChemicalTableDataGateway & test class
-*  ChemicalDTO
+*Single Table Classes and Who* (done by 9/16)
+*  Connections/Runner (Josh B and Ace)
+*  ChemicalRowDataGateway & test class(Taryn and Marlee)
+*  ChemicalTableDataGateway & test class(Josh K and Dan)
+*  ChemicalDTO(Adam and Madeline)
   
-*Concrete Table Classes*
-*  Connections/Runner 
-*  ElementRowDataGateway & test class
-*  ElementTableDataGateway & test class
-*  ElementDTO
-*  MetalRowDataGateway & test class
-*  MetalTableDataGateway & test class
-*  MetalDTO
-*  CompoundRowDataGateway & test class
-*  CompoundTableDataGateway & test class
-*  CompoundDTO
-*  CompoundMadeOfElement
-*  BaseRowDataGateway & test class
-*  BaseTableDataGateway & test class
-*  BaseDTO
-*  AcidRowDataGateway & test class
-*  AcidTableDataGateway & test class
-*  AcidDTO
-*  AcidDissolvesChemical
+*Concrete Table Classes*(done by 9/20)
+*  Connections/Runner(Josh B and Ace) 
+*  ElementRowDataGateway & test class (Dan and Josh K)
+*  ElementTableDataGateway & test class(Dan and Josh K)
+*  ElementDTO(Dan and Josh K)
+*  MetalRowDataGateway & test class (Dan and Josh K)
+*  MetalTableDataGateway & test class (Dan and Josh K)
+*  MetalDTO(Dan and Josh K)
+*  CompoundRowDataGateway & test class(Marlee and Taryn)
+*  CompoundTableDataGateway & test class(Marlee and Taryn)
+*  CompoundDTO(Marlee and Taryn)
+*  CompoundMadeOfElement (Marlee and Taryn)
+*  BaseRowDataGateway & test class (Josh B and Ace)
+*  BaseTableDataGateway & test class(Josh B and Ace)
+*  BaseDTO(Josh B and Ace)
+*  AcidRowDataGateway & test class (Adam and Madeline)
+*  AcidTableDataGateway & test class (Adam and Madeline)
+*  AcidDTO (Adam and Madeline)
+*  AcidDissolvesChemical (Adam and Madeline)
   
-*Class Table Classes*
-*  Connections/Runner 
-*  ElementRowDataGateway & test class
-*  ElementTableDataGateway & test class
-*  ElementDTO
-*  MetalRowDataGateway & test class
-*  MetalTableDataGateway & test class
-*  MetalDTO
-*  CompoundRowDataGateway & test class
-*  CompoundTableDataGateway & test class
-*  CompoundDTO
-*  CompoundMadeOfElement
-*  BaseRowDataGateway & test class
-*  BaseTableDataGateway & test class
-*  BaseDTO
-*  AcidRowDataGateway & test class
-*  AcidTableDataGateway & test class
-*  AcidDTO
-*  AcidDissolvesChemical
+*Class Table Classes*(done by 9/23)
+*  Connections/Runner (Josh B and Ace)
+*  ElementRowDataGateway & test class (Josh K and Dan)
+*  ElementTableDataGateway & test class (Josh K and Dan)
+*  ElementDTO(Josh K and Dan)
+*  MetalRowDataGateway & test class (Josh K and Dan)
+*  MetalTableDataGateway & test class(Josh K and Dan)
+*  MetalDTO(Josh K and Dan)
+*  CompoundRowDataGateway & test class (Marlee and Taryn)
+*  CompoundTableDataGateway & test class (Marlee and Taryn)
+*  CompoundDTO (Marlee and Taryn)
+*  CompoundMadeOfElement (Marlee and Taryn)
+*  BaseRowDataGateway & test class (Josh B and Ace)
+*  BaseTableDataGateway & test class(Josh B and Ace)
+*  BaseDTO(Josh B and Ace)
+*  AcidRowDataGateway & test class(Adam and Madeline)
+*  AcidTableDataGateway & test class(Adam and Madeline)
+*  AcidDTO(Adam and Madeline)
+*  AcidDissolvesChemical (Adam and Madeline)
 
 
 
