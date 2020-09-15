@@ -2,6 +2,7 @@ package Datasource;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -10,6 +11,8 @@ import Datasource.OptionsManager;
 
 /**
  * @author Merlin
+ * @author Joshua
+ * @author Ace
  *
  */
 public class DatabaseManager
@@ -30,6 +33,12 @@ public class DatabaseManager
 		}
 		return singleton;
 	}
+	
+	public ResultSet executeStatement(String sqlString) throws SQLException {
+		Statement stmt = getConnection().createStatement();
+		stmt.execute(sqlString);
+		return stmt.getResultSet();
+	}
 
 	private boolean testing;
 
@@ -38,20 +47,20 @@ public class DatabaseManager
 		connections = new HashMap<Long, Connection>();
 	}
 
-	private Connection openConnection() throws DatabaseException
+	Connection openConnection() throws DatabaseException
 	{
 		
-			String dbIdentifier = OptionsManager.getSingleton().getDbIdentifier();
-			if (dbIdentifier == null)
-			{
-				dbIdentifier = System.getProperty("dbIdentifier");
-			}
-			System.err.println("Db#" + dbIdentifier);
-			if (dbIdentifier == null)
-			{
-				System.err.println("Need a config file that specifies a db number");
-				throw new DatabaseException("No config file found");
-			}
+//			String dbIdentifier = OptionsManager.getSingleton().getDbIdentifier();
+//			if (dbIdentifier == null)
+//			{
+//				dbIdentifier = System.getProperty("dbIdentifier");
+//			}
+//			System.err.println("Db#" + dbIdentifier);
+//			if (dbIdentifier == null)
+//			{
+//				System.err.println("Need a config file that specifies a db number");
+//				throw new DatabaseException("No config file found");
+//			}
 			return openConnectionTo("jdbc:mysql://db.cs.ship.edu:3306/swe400_1"+ patternNumber + "?autoReconnect=true",
 					"swe400_1", "pwd4swe400_1F20");
 		
@@ -120,19 +129,21 @@ public class DatabaseManager
 
 	private Connection openConnectionTo(String url, String username, String passwd) throws DatabaseException
 	{
+//		try
+//		{
+//			Class.forName("com.mysql.jdbc.Driver");
+//		} catch (ClassNotFoundException e)
+//		{
+//			e.printStackTrace();
+//		}
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		try
-		{
+
 			return DriverManager.getConnection(url, username, passwd);
 																		
 		} catch (SQLException e)
 		{
+
 			throw new DatabaseException("Unable to connect to database ", e);
 		}
 	}
