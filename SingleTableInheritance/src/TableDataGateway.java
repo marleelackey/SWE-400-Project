@@ -39,6 +39,13 @@ public class TableDataGateway {
 		return instance;
 	}
 	
+	/**
+	 * 
+	 * @author Dan Holmgren
+	 * @return a list of all bases in the Chemical database
+	 * @throws DatabaseException
+	 * @throws SQLException
+	 */
 	private ArrayList<String> getAllBases() throws DatabaseException, SQLException{
 		ArrayList<String> data = new ArrayList<String>();
 		ResultSet rs;
@@ -55,6 +62,12 @@ public class TableDataGateway {
 		return data;
 	}
 	
+	/**
+	 * @author Dan Holmgren
+	 * @param lower
+	 * @param upper
+	 * @return a list of names of the elements with atomic mass in the given range
+	 */
 	private ArrayList<String> getElementsInRange(double lower, double upper) {
 		ArrayList<String> data = new ArrayList<String>();
 		ResultSet rs;
@@ -74,6 +87,11 @@ public class TableDataGateway {
 		return data;
 	}
 	
+	/**
+	 * @author Dan Holmgren
+	 * @param ID the ID of the element that all compounds are searched for
+	 * @return a list of the names of compounds with the element
+	 */
 	private ArrayList<String> getCompoundsByElement(int ID) {
 		ArrayList<String> data = new ArrayList<String>();
 		ResultSet rs;
