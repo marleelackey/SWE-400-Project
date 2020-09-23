@@ -17,7 +17,7 @@ public class DatabaseManager
 {
 	private static DatabaseManager singleton;
 	private HashMap<Long, Connection> connections;
-	private static int patternNumber = 1;
+	private static int patternNumber;
 
 	/**
 	 * @return the only one
@@ -45,21 +45,18 @@ public class DatabaseManager
 		connections = new HashMap<Long, Connection>();
 	}
 
-	Connection openConnection() throws DatabaseException
+	public Connection openConnection() throws DatabaseException
 	{
 		
-//			String dbIdentifier = OptionsManager.getSingleton().getDbIdentifier();
-//			if (dbIdentifier == null)
-//			{
-//				dbIdentifier = System.getProperty("dbIdentifier");
-//			}
-//			System.err.println("Db#" + dbIdentifier);
-//			if (dbIdentifier == null)
-//			{
-//				System.err.println("Need a config file that specifies a db number");
-//				throw new DatabaseException("No config file found");
-//			}
-			return openConnectionTo("jdbc:mysql://db.cs.ship.edu:3306/swe400_1"+ patternNumber + "?autoReconnect=true",
+//        try {
+//			TableCreator.createTables(getConnection());//connections.get(Thread.currentThread().getId())
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+
+		
+
+		return openConnectionTo("jdbc:mysql://db.cs.ship.edu:3306/swe400_1"+ patternNumber + "?autoReconnect=true",
 					"swe400_1", "pwd4swe400_1F20");
 		
 	}
@@ -233,6 +230,14 @@ public class DatabaseManager
 	public void closeConnection() throws SQLException
 	{
 		closeConnection(Thread.currentThread().getId());
+	}
+
+	public static void setPatternNumber(int num) {
+		patternNumber = num;
+	}
+
+	public static int getPatternNumber() {
+		return patternNumber;
 	}
 
 }
