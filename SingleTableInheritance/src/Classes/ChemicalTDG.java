@@ -13,20 +13,21 @@ import java.sql.*;
  * @author Joshua Kellogg
  *
  */
-public class TableDataGateway {
+public class ChemicalTDG {
 	
-	private static TableDataGateway instance;
-	private TableDataGateway() {
-		
+	private static ChemicalTDG instance;
+	private ChemicalTDG() {
+		//Doesn't need any instance variables, but needs to make sure there's only
+		//one instance of the TDG per table
 	}
 	
 	/**
 	 * @author Dan Holmgren
 	 * @return an instance of the TDG
 	 */
-	public static TableDataGateway getSingleton() {
+	public static ChemicalTDG getSingleton() {
 		if(instance == null) {
-			instance = new TableDataGateway();
+			instance = new ChemicalTDG();
 		} 
 		return instance;
 	}
@@ -59,7 +60,7 @@ public class TableDataGateway {
 	 * @author Dan Holmgren
 	 * @param lower
 	 * @param upper
-	 * @return a list of names of the elements with atomic mass in the given range
+	 * @return a list of the elements with atomic mass in the given range
 	 */
 	private ArrayList<ChemicalDTO> getElementsInRange(double lower, double upper) {
 		ArrayList<ChemicalDTO> data = new ArrayList<ChemicalDTO>();
