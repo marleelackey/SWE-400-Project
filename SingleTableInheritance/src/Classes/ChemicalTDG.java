@@ -39,7 +39,7 @@ public class ChemicalTDG {
 	 * @throws DatabaseException
 	 * @throws SQLException
 	 */
-	private ArrayList<ChemicalDTO> getAllBases() {
+	public ArrayList<ChemicalDTO> getAllBases() {
 		ArrayList<ChemicalDTO> data = new ArrayList<ChemicalDTO>();
 		ResultSet rs;
 		
@@ -63,7 +63,7 @@ public class ChemicalTDG {
 	 * @param upper
 	 * @return a list of the elements with atomic mass in the given range
 	 */
-	private ArrayList<ChemicalDTO> getElementsInRange(double lower, double upper) {
+	public ArrayList<ChemicalDTO> getElementsInRange(double lower, double upper) {
 		ArrayList<ChemicalDTO> data = new ArrayList<ChemicalDTO>();
 		ResultSet rs;
 		
@@ -88,15 +88,15 @@ public class ChemicalTDG {
 	 * @param ID the ID of the element that all compounds are searched for
 	 * @return a list of the names of compounds with the element
 	 */
-	private ArrayList<CompoundMadeOfDTO> getCompoundsByElement(int ID) {
-		ArrayList<CompoundMadeOfDTO> data = new ArrayList<CompoundMadeOfDTO>();
+	public ArrayList<CompoundMadeOfElementDTO> getCompoundsByElement(int ID) {
+		ArrayList<CompoundMadeOfElementDTO> data = new ArrayList<CompoundMadeOfElementDTO>();
 		ResultSet rs;
 		
 		try {
 			Connection cn = DatabaseManager.getSingleton().getConnection();
 			rs = cn.createStatement().executeQuery("SELECT * FROM CompoundMadeOfElement WHERE elementID = " + ID);
 			while(rs.next()) {
-				data.add(new CompoundMadeOfDTO(rs.getInt("compoundID"), ID));
+				data.add(new CompoundMadeOfElementDTO(rs.getInt("compoundID"), ID));
 			}
 
 		} catch(Exception e) {

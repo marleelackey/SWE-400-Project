@@ -5,7 +5,7 @@ package Classes;
  * @author Dan Holmgren
  *
  */
-public class CompoundMadeOfDTO {
+public class CompoundMadeOfElementDTO {
 	private int compoundID,
 				elementID;
 	/**
@@ -13,7 +13,7 @@ public class CompoundMadeOfDTO {
 	 * @param cID The compound ID
 	 * @param eID The element ID
 	 */
-	public CompoundMadeOfDTO(int cID, int eID) {
+	public CompoundMadeOfElementDTO(int cID, int eID) {
 		this.compoundID = cID;
 		this.elementID = eID;
 	}
