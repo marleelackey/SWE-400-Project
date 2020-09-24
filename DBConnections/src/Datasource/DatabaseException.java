@@ -57,7 +57,7 @@ public class DatabaseException extends Exception
 	 */
 	public String toString()
 	{
-		return simpleDescription + ":" + rootCause;
+		return simpleDescription + ": " + rootCause;
 	}
 	
 	/**
@@ -66,17 +66,8 @@ public class DatabaseException extends Exception
 	 */
 	public static void detectError(Exception e)
 	{	
-		DatabaseException d = new DatabaseException(e.getCause().toString(), e);
+		DatabaseException d = new DatabaseException("yeet", e);
 		System.out.println(d.toString());
-		
-		String desc = "";
-		if(e instanceof SQLException) {
-			desc = e.getCause().toString();
-		} else if(e instanceof DatabaseException) {
-			desc = "somethingElse";
-		}
-		
-		System.out.println(desc + ": " + e.toString());
 	}
 
 }
