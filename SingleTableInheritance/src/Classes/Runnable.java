@@ -4,16 +4,18 @@ import java.sql.SQLException;
 
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
-import Datasource.TableCreator;
+import Datasource.SingleTableCreator;
 
 public class Runnable {
 
 	public static void main(String[] args) throws DatabaseException, SQLException {
 		DatabaseManager.setPatternNumber(1);
         DatabaseManager.getSingleton().openConnection();
-        TableCreator.dropAllTables();
+//        SingleTableCreator.dropAllTables();
 
-        TableCreator.createTables();
+        SingleTableCreator.createTables();
+//        SingleTableCreator.addTestRows();
+
         
         
         DatabaseManager.getSingleton().closeConnection();
