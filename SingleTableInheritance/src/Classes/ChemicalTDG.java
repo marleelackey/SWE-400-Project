@@ -50,11 +50,12 @@ public class ChemicalTDG {
 				data.add(new ChemicalDTO(rs.getInt("ID"), rs.getInt("Type"), rs.getString("Name"), rs.getInt("atomicNumber"),
 						rs.getDouble("atomicMass"), rs.getInt("dissolvedBy"), rs.getInt("soluteA"), rs.getInt("soluteB")));
 			}
-		} catch (SQLException | DatabaseException e){
-			
+		} catch (Exception e){
+			DatabaseException.detectError(e);
 		}
 		return data;
 	}
+
 	
 	/**
 	 * @author Dan Holmgren
@@ -104,4 +105,5 @@ public class ChemicalTDG {
 		
 		return data;
 	}
+	
 }

@@ -1,5 +1,7 @@
 package Datasource;
 
+import java.sql.SQLException;
+
 /**
  * @author Merlin
  */
@@ -56,6 +58,25 @@ public class DatabaseException extends Exception
 	public String toString()
 	{
 		return simpleDescription + ":" + rootCause;
+	}
+	
+	/**
+	 * @author mad
+	 * @param e
+	 */
+	public static void detectError(Exception e)
+	{	
+		DatabaseException d = new DatabaseException(e.getCause().toString(), e);
+		System.out.println(d.toString());
+		
+		String desc = "";
+		if(e instanceof SQLException) {
+			desc = e.getCause().toString();
+		} else if(e instanceof DatabaseException) {
+			desc = "somethingElse";
+		}
+		
+		System.out.println(desc + ": " + e.toString());
 	}
 
 }
