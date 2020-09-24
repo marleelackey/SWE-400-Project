@@ -39,7 +39,7 @@ public class ChemicalTDG {
 	 * @throws DatabaseException
 	 * @throws SQLException
 	 */
-	private ArrayList<ChemicalDTO> getAllBases() throws DatabaseException, SQLException{
+	private ArrayList<ChemicalDTO> getAllBases() {
 		ArrayList<ChemicalDTO> data = new ArrayList<ChemicalDTO>();
 		ResultSet rs;
 		
@@ -76,8 +76,8 @@ public class ChemicalTDG {
 						rs.getDouble("atomicMass"), rs.getInt("dissolvedBy"), rs.getInt("acidSolute"), rs.getInt("baseSolute")));
 			}
 			
-		} catch(SQLException | DatabaseException e) {
-			
+		} catch(Exception e) {
+			DatabaseException.detectError(e);
 		}
 		
 		return data;
@@ -88,21 +88,20 @@ public class ChemicalTDG {
 	 * @param ID the ID of the element that all compounds are searched for
 	 * @return a list of the names of compounds with the element
 	 */
-	private ArrayList<Integer> getCompoundsByElement(int ID) {
-		ArrayList<Integer> data = new ArrayList<Integer>();
+	private ArrayList<CompoundMadeOfDTO> getCompoundsByElement(int ID) {
+		ArrayList<CompoundMadeOfDTO> data = new ArrayList<CompoundMadeOfDTO>();
 		ResultSet rs;
 		
 		try {
 			Connection cn = DatabaseManager.getSingleton().getConnection();
 			rs = cn.createStatement().executeQuery("SELECT * FROM CompoundMadeOfElement WHERE elementID = " + ID);
 			while(rs.next()) {
-				data.add(rs.getInt("compoundID"));
+				data.add(new CompoundMadeOfDTO(rs.getInt("compoundID"), ID));
 			}
-			
-		} catch(SQLException | DatabaseException e) {
-			
+
+		} catch(Exception e) {
+			DatabaseException.detectError(e);
 		}
-		
 		return data;
 	}
 	
