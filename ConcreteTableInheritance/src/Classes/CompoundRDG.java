@@ -21,4 +21,15 @@ public class CompoundRDG {
 		compoundName = name;
 	}
 
+	// getters 
+	public int getCompoundID() {
+		return compoundID;
+	}
+
+	public String getCompoundName() {
+		return compoundName;
+	}
+	
+	
+
 }
