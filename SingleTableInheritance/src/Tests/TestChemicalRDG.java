@@ -36,6 +36,10 @@ public class TestChemicalRDG {
 		assertEquals(chem.getDissolves(), null);
 	}
 	
+	// comment
+	//comment
+	//comment
+	
 	@Test
 	public void findersTest() throws DatabaseException{
 		Array made = null; //fix
