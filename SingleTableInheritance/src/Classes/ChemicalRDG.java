@@ -22,24 +22,52 @@ public class ChemicalRDG {
 	Connection connection;
 	
 	/* constructor */
-	public ChemicalRDG(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy, int soluteA, 
-			int soluteB) throws DatabaseException {
+	public ChemicalRDG(int ID) throws DatabaseException {
 		this.ID = ID;
-		this.type = type;
-		this.name = name;
-		this.atomicNumber = atomicNumber;
-		this.atomicMass = atomicMass;
-		this.dissolvedBy = dissolvedBy;
-		this.soluteA = soluteA;
-		this.soluteB = soluteB;
-		
+		ResultSet rs = null;
+		String query = "SELECT * FROM Chemical WHERE Chemical.chemicalID = ?";
+
 		// connection to the DB
-		connection = DatabaseManager.getSingleton().getConnection();		
+		connection = DatabaseManager.getSingleton().getConnection();	
+		
+		try {
+			Statement statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			if(rs.next()) {
+				chem = new ChemicalDTO(ID, type, name, atomicNumber, atomicMass, dissolvedBy, soluteA, soluteB);
+			 }
+		}
+		catch (SQLException e) {
+			/* ask merlin about whether we should close rs, statement, and/or connection */
+			DatabaseException.detectError(e);
+			
+		}
 
 	}
 	// setters
 	public void setID(int id) {
 		ID = id;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setAtomicNumber(int atomicNumber) {
+		this.atomicNumber = atomicNumber;
+	}
+	public void setAtomicMass(double atomicMass) {
+		this.atomicMass = atomicMass;
+	}
+	public void setDissolvedBy(int dissolvedBy) {
+		this.dissolvedBy = dissolvedBy;
+	}
+	public void setSoluteA(int soluteA) {
+		this.soluteA = soluteA;
+	}
+	public void setSoluteB(int soluteB) {
+		this.soluteB = soluteB;
 	}
 	
 	
@@ -82,7 +110,7 @@ public class ChemicalRDG {
 	// finders
 	public ChemicalDTO findByIDSingle(int ID) {
 		
-		String query = "SELECT * FROM CHEMICAL WHERE CHEMICAL.id = ?";
+		String query = "SELECT * FROM Chemical WHERE Chemical.chemicalID = ?";
 		ResultSet rs = null;
 		ChemicalDTO chem = null;
 		try {
@@ -102,7 +130,7 @@ public class ChemicalRDG {
 	}
 	
 	public ChemicalDTO findByName(String name) {
-		String query = "SELECT * FROM CHEMICAL WHERE CHEMICAL.name = ? ";
+		String query = "SELECT * FROM Chemical WHERE Chemical.chemicalName = ? ";
 		ResultSet rs = null;
 		ChemicalDTO chem = null;							
 		try {
@@ -122,7 +150,7 @@ public class ChemicalRDG {
 	}
 	
 	public ChemicalDTO findByAtomicNumber(int atomicNumber) {
-		String query = "SELECT * FROM CHEMICAL WHERE CHEMICAL.atomicNumber = ? ";
+		String query = "SELECT * FROM Chemical WHERE Chemical.chemcialAtomicNumber = ? ";
 		ResultSet rs = null;
 		ChemicalDTO chem = null;
 		try {
@@ -141,7 +169,7 @@ public class ChemicalRDG {
 	}
 	
 	public ChemicalDTO findByAtomicMass(double atomicMass) {
-		String query = "SELECT * FROM CHEMICAL WHERE CHEMICAL.atomicMass = ? ";
+		String query = "SELECT * FROM Chemical WHERE Chemical.chemicalAtomicMass = ? ";
 		ResultSet rs = null;
 		ChemicalDTO chem = null;
 		try {
@@ -161,8 +189,8 @@ public class ChemicalRDG {
 	public void update() {
 		PreparedStatement stmt;
 		try {
-			stmt = connection.prepareStatement("UPDATE CHEMICAL SET name = ?, type = ?, atomicNumber = ?,"
-					+ "atomicMass = ?, dissolvedBy = ?, baseSolute = ?, acidSolute = ? WHERE CHEMICAL.id = ?");
+			stmt = connection.prepareStatement("UPDATE Chemical SET chemicalName = ?, chemicalType = ?, chemicalAtomicNumber = ?,"
+					+ "chemicalAtomicMass = ?, chemicalDissolvedBy = ?, chemicalBaseSolute = ?, chemicalAcidSolute = ? WHERE Chemical.chemicalID = ?");
 			stmt.setString(1, name);
 			stmt.setInt(2,  type);
 			stmt.setInt(3, atomicNumber);
@@ -170,6 +198,7 @@ public class ChemicalRDG {
 			stmt.setInt(5, dissolvedBy);
 			stmt.setInt(6, soluteB);
 			stmt.setInt(7,  soluteA);
+			stmt.setInt(8, ID);
 			stmt.executeUpdate();
 			
 		} catch (SQLException e) {

@@ -19,7 +19,7 @@ public class TestChemicalRDG {
 	 */
 	@Test
 	public void constructorTest() throws DatabaseException {
-		ChemicalRDG chem = new ChemicalRDG(2, 2, "bobrogyn", 2, 2.999, 1, 0, 1  );
+		ChemicalRDG chem = new ChemicalRDG(20, 2, "bobrogyn", 2, 2.999, 1, 0, 1  );
 		assertEquals(chem.getID(), 2);
 		assertEquals(chem.getType(), 2);
 		assertEquals(chem.getName(), "bobrogyn");
@@ -33,7 +33,7 @@ public class TestChemicalRDG {
 	
 	@Test
 	public void findersTest() throws DatabaseException{
-		ChemicalRDG chem = new ChemicalRDG(3, 2, "bobrogyn", 2, 2.999, 1, 0, 1 );
+		ChemicalRDG chem = new ChemicalRDG(31, 2, "bobrogyn", 2, 2.999, 1, 0, 1 );
 		ChemicalDTO d = new ChemicalDTO(3, 2, "bobrogyn", 2, 2.999, 1, 0, 1);
 		assertEquals(chem.findByIDSingle(3), d);
 		assertEquals(chem.findByName("bobrogyn"), d);
@@ -44,7 +44,7 @@ public class TestChemicalRDG {
 	
 	@Test
 	public void updateTest() throws DatabaseException {
-		ChemicalRDG chem = new ChemicalRDG(3, 2, "bobrogyn", 2, 2.999, 1, 0, 1 );
+		ChemicalRDG chem = new ChemicalRDG(30, 2, "bobrogyn", 2, 2.999, 1, 0, 1 );
 		chem.update();
 		assertEquals(chem.getID(), 2);
 		assertEquals(chem.getType(), 2);
@@ -56,7 +56,7 @@ public class TestChemicalRDG {
 		assertEquals(chem.getSoluteB(), 1);
 		
 		// make a change and make sure its changed
-		chem = new ChemicalRDG(3, 2, "bobrogyn", 3, 3.999, 1, 0, 1 );
+		chem = new ChemicalRDG(30, 2, "bobrogyn", 3, 3.999, 1, 0, 1 );
 		chem.update();
 		assertEquals(chem.getID(), 2);
 		assertEquals(chem.getType(), 2);

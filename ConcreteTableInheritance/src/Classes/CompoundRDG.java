@@ -10,7 +10,7 @@ public class CompoundRDG {
 	
 	private int compoundID;
 	private String compoundName;
-	
+
 	/**
 	 * Constructor for CompoundRDG
 	 * @param id Passes in the ID for CompoundRDG
@@ -30,6 +30,14 @@ public class CompoundRDG {
 		return compoundName;
 	}
 	
+	// setters
+	public void setCompoundID(int compoundID) {
+		this.compoundID = compoundID;
+	}
+
+	public void setCompoundName(String compoundName) {
+		this.compoundName = compoundName;
+	}
 	
 
 }
