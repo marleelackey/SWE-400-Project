@@ -13,7 +13,7 @@ public class SingleTableCreator {
 		stmt = DatabaseManager.getSingleton().getConnection().createStatement();
 
 	    String[] table_statements =
-            {"CREATE TABLE IF NOT EXISTS Chemical (chemicalID int NOT NULL, chemicalType int NOT NULL, chemicalName VARCHAR(32) NOT NULL, chemicalAtomicNumber int, chemicalAtomicMass double, chemicalDissolvedBy int, chemicalAcidSolute int, chemicalBaseSolute int, PRIMARY KEY (id))",
+            {"CREATE TABLE IF NOT EXISTS Chemical (chemicalID int NOT NULL, chemicalType int NOT NULL, chemicalName VARCHAR(32) NOT NULL, chemicalAtomicNumber int, chemicalAtomicMass double, chemicalDissolvedBy int, chemicalAcidSolute int, chemicalBaseSolute int, PRIMARY KEY (chemicalID))",
              "CREATE TABLE IF NOT EXISTS CompoundMadeOfElement (compoundID int, elementID int)"
             };
 
