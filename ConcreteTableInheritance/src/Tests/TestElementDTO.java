@@ -4,11 +4,17 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Classes.ElementDTO;
+
 public class TestElementDTO {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testConstructor() {
+		ElementDTO e = new ElementDTO(1, 2, 3.0, "Test");
+		assertEquals(1, e.getID());
+		assertEquals(2, e.getAtomicNumber());
+		assertEquals(3.0, e.getAtomicMass(), 0.01);
+		assertEquals("Test", e.getName());
 	}
 
 }
