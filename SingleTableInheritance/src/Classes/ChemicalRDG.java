@@ -17,25 +17,21 @@ public class ChemicalRDG {
 	int atomicNumber;
 	double atomicMass;
 	int dissolvedBy; // is the ID of the Acid it is dissolved by -- should it be int[]?????
-	Array madeOf; // list of IDs
 	int soluteA;
 	int soluteB;
-	Array dissolves; 
 	Connection connection;
 	
 	/* constructor */
 	public ChemicalRDG(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy, 
-			Array madeOf, int soluteA, int soluteB, Array dissolves) throws DatabaseException {
+			int soluteA, int soluteB) throws DatabaseException {
 		this.ID = ID;
 		this.type = type;
 		this.name = name;
 		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
 		this.dissolvedBy = dissolvedBy;
-		this.madeOf = madeOf;
 		this.soluteA = soluteA;
 		this.soluteB = soluteB;
-		this.dissolves = dissolves;
 		
 		// connection to the DB
 		connection = DatabaseManager.getSingleton().getConnection();		
@@ -73,10 +69,6 @@ public class ChemicalRDG {
 		return dissolvedBy;
 	} 
 	
-	public Array getMadeOf() {
-		return madeOf;
-	}
-	
 	public int getSoluteA() {
 		return soluteA;
 	}
@@ -85,9 +77,7 @@ public class ChemicalRDG {
 		return soluteB;
 	}
 	
-	public Array getDissolves() {
-		return dissolves;
-	}
+
 	
 	
 
@@ -106,8 +96,8 @@ public class ChemicalRDG {
 		}
 		catch (SQLException e) {
 			/* ask merlin about whether we should close rs, statement, and/or connection */
-			throw new DatabaseException("Couldn't find ID of " + ID + " in the CHEMICAL table.");
-			
+			//throw new DatabaseException("Couldn't find ID of " + ID + " in the CHEMICAL table.");
+			DatabaseException.detectError(e);
 		}
 		
 		return chem;
@@ -125,8 +115,9 @@ public class ChemicalRDG {
 			}							
 		} 
 		catch (SQLException e) {
-			throw new DatabaseException("Couldn't find ID to match the name of " + name + " in the CHEMICAL table.");
-								
+			//throw new DatabaseException("Couldn't find ID to match the name of " + name + " in the CHEMICAL table.");
+			DatabaseException.detectError(e);
+					
 		}
 										
 		return chem;	
@@ -145,7 +136,8 @@ public class ChemicalRDG {
 			}							
 		}
 		catch (SQLException e) {
-			throw new DatabaseException("Couldn't find ID to match the atomic number of " + atomicNumber + " in the CHEMICAL table.");
+			//throw new DatabaseException("Couldn't find ID to match the atomic number of " + atomicNumber + " in the CHEMICAL table.");
+			DatabaseException.detectError(e);
 
 		}
 		
@@ -164,7 +156,9 @@ public class ChemicalRDG {
 			}							
 		}
 		catch (SQLException e) {
-			throw new DatabaseException("Couldn't find ID to match the atomic mass of " + atomicMass + " in the CHEMICAL table.");
+			//throw new DatabaseException("Couldn't find ID to match the atomic mass of " + atomicMass + " in the CHEMICAL table.");
+			DatabaseException.detectError(e);
+
 		}
 		
 		return chem;
@@ -174,21 +168,20 @@ public class ChemicalRDG {
 		PreparedStatement stmt;
 		try {
 			stmt = connection.prepareStatement("UPDATE CHEMICAL SET name = ?, type = ?, atomicNumber = ?,"
-					+ "atomicMass = ?, dissolvedBy = ?, madeOf = ?, baseSolute = ?, acidSolute = ?, dissolves = ? WHERE CHEMICAL.id = ?");
+					+ "atomicMass = ?, dissolvedBy = ?, baseSolute = ?, acidSolute = ?,  WHERE CHEMICAL.id = ?");
 			stmt.setString(1, name);
 			stmt.setInt(2,  type);
 			stmt.setInt(3, atomicNumber);
 			stmt.setDouble(4,  atomicMass);
 			stmt.setInt(5, dissolvedBy);
-			stmt.setArray(6, madeOf); //uh oh we got a problem. should it be an array? or arraylist?
 			stmt.setInt(6, soluteB);
 			stmt.setInt(7,  soluteA);
-			stmt.setArray(8, dissolves); //uh oh we got a problem. should it be an array? or arraylist?
 			stmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			throw new DatabaseException("Couldn't update the CHEMICAL table for ID " + ID);
-			
+			//throw new DatabaseException("Couldn't update the CHEMICAL table for ID " + ID);
+			DatabaseException.detectError(e);
+
 		}
 		
 	}
