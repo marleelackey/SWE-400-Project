@@ -34,7 +34,7 @@ public class TestChemicalTDG {
 		assertEquals(3, result.size());
 		//Test to make sure all dtos are for bases
 		for(int i = 0; i < result.size(); i++) {
-			assertEquals(1, result.get(i).getType());
+			assertEquals(1, result.get(i).getChemicalType());
 		}
 	}
 	
@@ -46,7 +46,7 @@ public class TestChemicalTDG {
 		assertEquals(11, result.size());
 		//Test to make sure all dto atomic masses are in range
 		for(int i = 0; i < result.size(); i++) {
-			if((result.get(i).getAtomicMass() < 1) || result.get(i).getAtomicMass() > 100) {
+			if((result.get(i).getChemicalAtomicMass() < 1) || result.get(i).getChemicalAtomicMass() > 100) {
 				fail("Atomic mass not in range");
 			}
 		}

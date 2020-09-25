@@ -31,6 +31,7 @@ public class AcidTDG {
 	 * @return an ArrayList of AcidDTOs
 	 */
 	public ArrayList<AcidDTO> getAllAcids() {
+		return null;
 		// can be done if we feel like it l8r
 	}
 }
