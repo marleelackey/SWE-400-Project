@@ -14,7 +14,7 @@ public class ConcreteTableCreator {
 
 	    String[] table_statements =
             {"CREATE TABLE IF NOT EXISTS Element (elementOrMetalID int NOT NULL, elementName VARCHAR(32) NOT NULL, elementAtomicNumber int, elementAtomicMass double, PRIMARY KEY (elementOrMetalID))",
-             "CREATE TABLE IF NOT EXISTS Compound (compoundID int NOT NULL, compoundName VARCHAR(32) NOT NULL, PRIMARY KEY (CompoundID))",
+             "CREATE TABLE IF NOT EXISTS Compound (compoundID int NOT NULL, compoundName VARCHAR(32) NOT NULL, PRIMARY KEY (compoundID))",
              "CREATE TABLE IF NOT EXISTS Base (baseID int NOT NULL, baseName VARCHAR(32) NOT NULL, baseSolute int NOT NULL, PRIMARY KEY (baseID))",
              "CREATE TABLE IF NOT EXISTS Acid (acidID int NOT NULL, acidName VARCHAR(32) NOT NULL, acidSolute int NOT NULL, PRIMARY KEY (acidID))",
              "CREATE TABLE IF NOT EXISTS Metal (elementOrMetalID int NOT NULL, metalName VARCHAR(32) NOT NULL, metalAtomicNumber int NOT NULL, metalAtomicMass double NOT NULL, metalDissolvedBy int NOT NULL, PRIMARY KEY (elementOrMetalID))",
