@@ -2,24 +2,21 @@ package Classes;
 
 import java.sql.SQLException;
 
+import Datasource.ConcreteTableCreator;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
-import Datasource.SingleTableCreator;
 
 public class Runnable {
 
 	public static void main(String[] args) throws DatabaseException, SQLException {
-		DatabaseManager.setPatternNumber(1);
+		DatabaseManager.setPatternNumber(2);
         DatabaseManager.getSingleton().openConnection();
-        SingleTableCreator.dropAllTables();
+        ConcreteTableCreator.dropAllTables();
 
-        SingleTableCreator.createTables();
-        SingleTableCreator.addTestRows();
-
-        
+        ConcreteTableCreator.createTables();
+        ConcreteTableCreator.addTestRows();
         
         DatabaseManager.getSingleton().closeConnection();
-
 
 	}
 
