@@ -19,13 +19,13 @@ public class ElementTDG {
 	private double atomicMass;
 	private String name;
 	
-	private ElementTDG instance;
+	private static ElementTDG instance;
 	
 	/**
 	 * @author Dan Holmgren
 	 * @return an instance of the ElementTDG
 	 */
-	public ElementTDG getInstance() {
+	public static ElementTDG getInstance() {
 		if(instance != null) {
 			instance = new ElementTDG();
 		}
@@ -38,7 +38,7 @@ public class ElementTDG {
 		
 		try {
 			Connection cn = DatabaseManager.getSingleton().getConnection();
-			rs = cn.createStatement().executeQuery("SELECT * FROM CHEMICAL WHERE atomicMass > " + lower + " AND atomicMass < " + upper);
+			rs = cn.createStatement().executeQuery("SELECT * FROM ELEMENT WHERE atomicMass > " + lower + " AND atomicMass < " + upper);
 			while(rs.next()) {
 				data.add(new ElementDTO(rs.getInt("ID"), rs.getInt("atomicNumber"), rs.getDouble("atomicMass"), rs.getString("Name")));
 			}
