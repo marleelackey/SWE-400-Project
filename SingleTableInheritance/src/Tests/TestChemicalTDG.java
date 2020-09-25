@@ -31,38 +31,38 @@ public class TestChemicalTDG {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
 		ArrayList<ChemicalDTO> result = c.getAllBases();
 		//Test to make sure it gets the correct number of dtos
-		//assertEquals(result.size(), ?);
+		assertEquals(3, result.size());
 		//Test to make sure all dtos are for bases
-//		for(int i = 0; i < result.size(); i++) {
-//			assertEquals(result.get(i).getType(), 1);
-//		}
+		for(int i = 0; i < result.size(); i++) {
+			assertEquals(1, result.get(i).getType());
+		}
 	}
 	
 	@Test
 	public void testGetElementsInRange() {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
-		ArrayList<ChemicalDTO> result = c.getElementsInRange(4,9);
+		ArrayList<ChemicalDTO> result = c.getElementsInRange(0, 100);
 		//Test to make sure it gets the correct number of dtos
-		//assertEquals(result.size(), ?);
+		assertEquals(11, result.size());
 		//Test to make sure all dto atomic masses are in range
-//		for(int i = 0; i < result.size(); i++) {
-//			if((result.get(i).getAtomicMass() < 4) || result.get(i).getAtomicMass() > 9) {
-//				fail("Atomic mass not in range");
-//			}
-//		}
-//		System.out.println("All atomic masses in range");
+		for(int i = 0; i < result.size(); i++) {
+			if((result.get(i).getAtomicMass() < 1) || result.get(i).getAtomicMass() > 100) {
+				fail("Atomic mass not in range");
+			}
+		}
+		System.out.println("All atomic masses in range");
 	}
 	
 	@Test
 	public void testGetCompoundsByElement() {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
-		ArrayList<CompoundMadeOfElementDTO> result = c.getCompoundsByElement(3);
+		ArrayList<CompoundMadeOfElementDTO> result = c.getCompoundsByElement(1);
 		//Test to make sure it gets the correct number of dtos
-		//assertEquals(result.size(), ?);
+		assertEquals(1, result.size());
 		//Test to make sure all compounds have the correct elements
-//		for(int i = 0; i < result.size(); i++) {
-//			assertEquals(result.get(i).getElementID(), 3);
-//		}
+		for(int i = 0; i < result.size(); i++) {
+			assertEquals(result.get(i).getElementID(), 1);
+		}
 	}
 
 }

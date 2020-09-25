@@ -69,8 +69,7 @@ public class ChemicalTDG {
 		
 		try {
 			Connection cn = DatabaseManager.getSingleton().getConnection();
-			rs = cn.createStatement().executeQuery("SELECT * FROM CHEMICAL WHERE atomicMass > " + lower
-					+ "AND WHERE atomicMass < " + upper);
+			rs = cn.createStatement().executeQuery("SELECT * FROM CHEMICAL WHERE atomicMass > " + lower + " AND atomicMass < " + upper);
 			while(rs.next()) {
 				data.add(new ChemicalDTO(rs.getInt("id"), rs.getInt("type"), rs.getString("name"), rs.getInt("atomicNumber"),
 						rs.getDouble("atomicMass"), rs.getInt("dissolvedBy"), rs.getInt("acidSolute"), rs.getInt("baseSolute")));
