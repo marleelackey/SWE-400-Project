@@ -3,6 +3,11 @@ package Datasource;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Table Creator for Class Table Inheritance
+ * @author Joshua & Madeline
+ *
+ */
 public class ClassTableCreator {
 	
 	static Statement stmt;
@@ -12,21 +17,21 @@ public class ClassTableCreator {
 	public static void createTables() throws SQLException, DatabaseException {
 		stmt = DatabaseManager.getSingleton().getConnection().createStatement();
 
-//	    String[] table_statements =
-//            {"CREATE TABLE IF NOT EXISTS Chemical (name VARCHAR(32) NOT NULL, id long NOT NULL, inhabits VARCHAR(32) NOT NULL, PRIMARY KEY (id))",
-//             "CREATE TABLE IF NOT EXISTS Element (id long NOT NULL, atomicNumber int NOT NULL, atomicMass double NOT NULL, PRIMARY KEY (id))",
-//             "CREATE TABLE IF NOT EXISTS Compound (id long NOT NULL, PRIMARY KEY (id))",
-//             "CREATE TABLE IF NOT EXISTS CompoundMadeOfElement (compoundID long, elementID long)",
-//             "CREATE TABLE IF NOT EXISTS Base (id long NOT NULL, solute long NOT NULL, PRIMARY KEY (id))",
-//             "CREATE TABLE IF NOT EXISTS Acid (id long NOT NULL, solute long NOT NULL, PRIMARY KEY (id))",
-//             "CREATE TABLE IF NOT EXISTS Metal (id long NOT NULL, dissolvedBy long NOT NULL, PRIMARY KEY (id))",
-//            };
-//
-//	    for (int i = 0; i < table_statements.length; i++) {
-//	      insertData = new String(table_statements[i]);
-//	      stmt.executeUpdate(insertData);
-//	      System.out.println("created table " + i);
-//	    }
+	    String[] table_statements =
+            {"CREATE TABLE IF NOT EXISTS Chemical (chemicalID int NOT NULL, chemicalName VARCHAR(32) NOT NULL, PRIMARY KEY (chemicalID))",
+             "CREATE TABLE IF NOT EXISTS Element (elementID int NOT NULL, elementAtomicNumber int NOT NULL, elementAtomicMass double NOT NULL, PRIMARY KEY (elementID))",
+             "CREATE TABLE IF NOT EXISTS Compound (compoundID int NOT NULL, PRIMARY KEY (compoundID))",
+             "CREATE TABLE IF NOT EXISTS CompoundMadeOfElement (compoundID int, elementID int)",
+             "CREATE TABLE IF NOT EXISTS Base (baseID int NOT NULL, baseSolute int NOT NULL, PRIMARY KEY (baseID))",
+             "CREATE TABLE IF NOT EXISTS Acid (acidID int NOT NULL, acidSolute int NOT NULL, PRIMARY KEY (acidID))",
+             "CREATE TABLE IF NOT EXISTS Metal (metalID int NOT NULL, metalDissolvedBy int NOT NULL, PRIMARY KEY (metalID))",
+            };
+
+	    for (int i = 0; i < table_statements.length; i++) {
+	      insertData = new String(table_statements[i]);
+	      stmt.executeUpdate(insertData);
+	      System.out.println("created table " + i);
+	    }
 	    
 	}
 
@@ -52,6 +57,24 @@ public class ClassTableCreator {
 		      stmt.executeUpdate(insertData);
 		    }
 		    
+	}
+	
+	public static void addTestRows() throws SQLException, DatabaseException {
+		stmt = DatabaseManager.getSingleton().getConnection().createStatement();
+
+		String[] table_statements = { "INSERT INTO Acid VALUES (1, 'acid1', 4)",
+				"INSERT INTO Acid VALUES (2, 'acid2', 5)", "INSERT INTO Acid VALUES (3, 'acid3', 5)",
+				"INSERT INTO Element VALUES (4, 'element1', 12, 50.01)",
+				"INSERT INTO Element VALUES (5, 'element2', 40, 20.0)",
+				"INSERT INTO Element VALUES (6, 'element3', 55, 20.2)",
+				"INSERT INTO Element VALUES (7, 'element4', 30, 40.0)",
+				"INSERT INTO Element VALUES (8, 'element5', 44, 100.1)" };
+
+		for (int i = 0; i < table_statements.length; i++) {
+			insertData = new String(table_statements[i]);
+			stmt.executeUpdate(insertData);
+		}
+
 	}
 
 }
