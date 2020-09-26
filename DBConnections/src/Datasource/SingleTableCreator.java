@@ -50,7 +50,7 @@ public class SingleTableCreator {
 				"INSERT INTO Chemical VALUES (6, 1, 'name5', null, 25.0, null, null, null)",
 				"INSERT INTO Chemical VALUES (7, 2, 'name6', null, 26.2, null, null, null)",
 				"INSERT INTO Chemical VALUES (8, 2, 'name7', null, 21.6, null, null, null)",
-				"INSERT INTO Chemical VALUES (9, 2, 'name8', null, 20.7, null, null, null)",
+				"INSERT INTO Chemical VALUES (9, 2, 'name8', 51, 20.7, 52, 53, null)",
 				"INSERT INTO Chemical VALUES (10, 3, 'name9', null, 20.7, null, null, null)",
 				"INSERT INTO Chemical VALUES (11, 3, 'name10', null, 29.5, null, null, null)",
 				"INSERT INTO Chemical VALUES (12, 4, 'name11', null, 26.7, null, null, null)",
