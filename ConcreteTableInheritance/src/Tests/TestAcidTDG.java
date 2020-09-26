@@ -18,10 +18,14 @@ public class TestAcidTDG {
 	 * Test method to make sure we can get the AcidTDG singleton
 	 */
 	@Test
-	public void testInitialization() {
+	public static void testInitialization() {
 		AcidTDG tdg = AcidTDG.getSingleton();
 
 		assertNotEquals(tdg, null);
+	}
+
+	public static void runAllTheTests() {
+		testInitialization();
 	}
 
 }

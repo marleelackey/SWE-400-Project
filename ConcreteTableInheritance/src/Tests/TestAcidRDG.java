@@ -71,7 +71,7 @@ public class TestAcidRDG {
 		assertEquals(6, result.getAcidSolute());
 	}
 
-	public static void runAll() {
+	public static void runAllTheTests() {
 		testConstructorGettersSetters();
 		testFindByID();
 		testFindByName();
