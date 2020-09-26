@@ -2,38 +2,29 @@ package Classes;
 
 /**
  * A Data Transfer Object for the Acid table.
- * 
  * @author Madeline and Adam
  *
  */
 public class AcidDTO {
-
-	private int acidID;
-	private String acidName;
-	private int acidSolute;
-
+	
+	private int solute;
+	private String name;
+	
 	/**
-	 * Constructor for an AcidDTO
-	 * @param ID the ID of the acid
-	 * @param name the name of the acid
-	 * @param solute the ID of the acid's solute
+	 * Constructor for AcidDTO
+	 * @param solute the ID of the solute
+	 * @param name the name of the Acid
 	 */
-	public AcidDTO(int ID, String name, int solute) {
-		acidID = ID;
-		acidName = name;
-		acidSolute = solute;
+	public AcidDTO(int solute, String name) {
+		this.solute = solute;
+		this.name = name;
 	}
 
-	public int getAcidID() {
-		return acidID;
+	public int getSolute() {
+		return solute;
 	}
 
-	public String getAcidName() {
-		return acidName;
+	public String getName() {
+		return name;
 	}
-
-	public int getAcidSolute() {
-		return acidSolute;
-	}
-
 }
