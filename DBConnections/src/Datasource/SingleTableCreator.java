@@ -4,75 +4,66 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SingleTableCreator {
-	
+
 	static Statement stmt;
-    static String insertData; 
-    
-    
+	static String insertData;
+
 	public static void createTables() throws SQLException, DatabaseException {
 		stmt = DatabaseManager.getSingleton().getConnection().createStatement();
 
-	    String[] table_statements =
-            {"CREATE TABLE IF NOT EXISTS Chemical (chemicalID int NOT NULL, chemicalType int NOT NULL, chemicalName VARCHAR(32) NOT NULL, chemicalAtomicNumber int, chemicalAtomicMass double, chemicalDissolvedBy int, chemicalAcidSolute int, chemicalBaseSolute int, PRIMARY KEY (chemicalID))",
-             "CREATE TABLE IF NOT EXISTS CompoundMadeOfElement (compoundID int, elementID int)"
-            };
+		String[] table_statements = {
+				"CREATE TABLE IF NOT EXISTS Chemical (chemicalID int NOT NULL, chemicalType int NOT NULL, chemicalName VARCHAR(32) NOT NULL, chemicalAtomicNumber int, chemicalAtomicMass double, chemicalDissolvedBy int, chemicalAcidSolute int, chemicalBaseSolute int, PRIMARY KEY (chemicalID))",
+				"CREATE TABLE IF NOT EXISTS CompoundMadeOfElement (compoundID int, elementID int)" };
 
-	    for (int i = 0; i < table_statements.length; i++) {
-	      insertData = new String(table_statements[i]);
-	      stmt.executeUpdate(insertData);
-	      System.out.println("created table " + i);
-	    }
-	    
+		for (int i = 0; i < table_statements.length; i++) {
+			insertData = new String(table_statements[i]);
+			stmt.executeUpdate(insertData);
+			System.out.println("created table " + i);
+		}
+
 	}
 
 	public static void dropAllTables() throws SQLException, DatabaseException {
 
-		    Statement stmt;
-		    String insertData;
+		Statement stmt;
+		String insertData;
 
-		    stmt = DatabaseManager.getSingleton().getConnection().createStatement();
+		stmt = DatabaseManager.getSingleton().getConnection().createStatement();
 
-		    String[] table_statements =
-		            {"DROP TABLE IF EXISTS Chemical",
-		             "DROP TABLE IF EXISTS CompoundMadeOfElement"
-		            };
+		String[] table_statements = { "DROP TABLE IF EXISTS Chemical", "DROP TABLE IF EXISTS CompoundMadeOfElement" };
 
-		    for (int i = table_statements.length - 1; i >= 0; i--) {
-		      insertData = new String(table_statements[i]);
-		      stmt.executeUpdate(insertData);
-		    }
-		    
+		for (int i = table_statements.length - 1; i >= 0; i--) {
+			insertData = new String(table_statements[i]);
+			stmt.executeUpdate(insertData);
+		}
+
 	}
 
 	public static void addTestRows() throws SQLException, DatabaseException {
 		stmt = DatabaseManager.getSingleton().getConnection().createStatement();
 
-	    String[] table_statements =
-            {"INSERT INTO Chemical VALUES ('name1', 1, 0, null, 100, null, null, null)",
-             "INSERT INTO Chemical VALUES ('name2', 2, 0, null, 20.11, null, null, null)",  
-             "INSERT INTO Chemical VALUES ('name3', 3, 0, null, 30, null, null, null)",  
-             "INSERT INTO Chemical VALUES ('name4', 4, 1, null, 55.9, null, null, null)",            		
-             "INSERT INTO Chemical VALUES ('name5', 5, 1, null, 300, null, null, null)",            		
-             "INSERT INTO Chemical VALUES ('name6', 6, 1, null, 98.7, null, null, null)",            		
-             "INSERT INTO Chemical VALUES ('name7', 7, 2, null, 5, null, null, null)",            		
-             "INSERT INTO Chemical VALUES ('name8', 8, 2, null, 9, null, null, null)",            		
-             "INSERT INTO Chemical VALUES ('name9', 9, 2, null, 13.3, null, null, null)",            		
-             "INSERT INTO Chemical VALUES ('name10', 10, 3, null, 44, null, null, null)",  
-             "INSERT INTO Chemical VALUES ('name11', 11, 3, null, 130, null, null, null)",            		
-             "INSERT INTO Chemical VALUES ('name12', 12, 3, null, 30.8, null, null, null)",   
-             "INSERT INTO Chemical VALUES ('name13', 13, 4, null, 320, null, null, null)",  
-             "INSERT INTO Chemical VALUES ('name14', 14, 4, null, 55.23, null, null, null)",            		
-             "INSERT INTO Chemical VALUES ('name15', 15, 4, null, 8, null, null, null)",   
+		String[] table_statements = { "INSERT INTO Chemical VALUES (1, 0, 'name1', null, 20.7, null, null, null)",
+				"INSERT INTO Chemical VALUES (2, 0, 'name1', null, 20.8, null, null, null)",
+				"INSERT INTO Chemical VALUES (3, 0, 'name2', null, 20.9, null, null, null)",
+				"INSERT INTO Chemical VALUES (4, 1, 'name3', null, 21.7, null, null, null)",
+				"INSERT INTO Chemical VALUES (5, 1, 'name4', null, 23.7, null, null, null)",
+				"INSERT INTO Chemical VALUES (6, 1, 'name5', null, 25.0, null, null, null)",
+				"INSERT INTO Chemical VALUES (7, 2, 'name6', null, 26.2, null, null, null)",
+				"INSERT INTO Chemical VALUES (8, 2, 'name7', null, 21.6, null, null, null)",
+				"INSERT INTO Chemical VALUES (9, 2, 'name8', null, 20.7, null, null, null)",
+				"INSERT INTO Chemical VALUES (10, 3, 'name9', null, 20.7, null, null, null)",
+				"INSERT INTO Chemical VALUES (11 3, 'name10', null, 29.5, null, null, null)",
+				"INSERT INTO Chemical VALUES (12, 4, 'name11', null, 26.7, null, null, null)",
+				"INSERT INTO Chemical VALUES (13, 4, 'name12', null, 27.7, null, null, null)",
+				"INSERT INTO Chemical VALUES (14, 4, 'name13', null, 26.7, null, null, null)",
+				"INSERT INTO Chemical VALUES (15, 5, 'name14', null, 27.7, null, null, null)",
+				"INSERT INTO Chemical VALUES (16, 5, 'name15', null, 1230.7, null, null, null)" };
 
+		for (int i = 0; i < table_statements.length; i++) {
+			insertData = new String(table_statements[i]);
+			stmt.executeUpdate(insertData);
+		}
 
-            };
-
-	    for (int i = 0; i < table_statements.length; i++) {
-	      insertData = new String(table_statements[i]);
-	      stmt.executeUpdate(insertData);
-	    }
-		
-			
 	}
 
 }
