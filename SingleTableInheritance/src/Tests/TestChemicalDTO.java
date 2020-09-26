@@ -16,7 +16,7 @@ public class TestChemicalDTO {
 	 * A JUnit to test manual insertion of data into a ChemicalDTO
 	 */
 	@Test
-	public void testConstructorAndGetters() {
+	public static void testConstructorAndGetters() {
 		ChemicalDTO dto = new ChemicalDTO(1, 2, "Boron", 5, 21.3, 7, 9, 12);
 
 		assertEquals(dto.getChemicalID(), 1);
@@ -27,6 +27,10 @@ public class TestChemicalDTO {
 		assertEquals(dto.getChemicalDissolvedBy(), 7);
 		assertEquals(dto.getChemicalSoluteA(), 9);
 		assertEquals(dto.getChemicalSoluteB(), 12);
+	}
+
+	public static void testAll() {
+		testConstructorAndGetters();
 	}
 
 }

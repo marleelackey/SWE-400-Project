@@ -20,14 +20,14 @@ public class TestChemicalTDG {
 	}
 	
 	@Test
-	public void testSingleton() {
+	public static void testSingleton() {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
 		ChemicalTDG d = ChemicalTDG.getSingleton();
 		assertEquals(c, d);
 	}
 	
 	@Test
-	public void testGetAllBases() {
+	public static void testGetAllBases() {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
 		ArrayList<ChemicalDTO> result = c.getAllBases();
 		//Test to make sure it gets the correct number of dtos
@@ -39,7 +39,7 @@ public class TestChemicalTDG {
 	}
 	
 	@Test
-	public void testGetElementsInRange() {
+	public static void testGetElementsInRange() {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
 		ArrayList<ChemicalDTO> result = c.getElementsInRange(0, 100);
 		//Test to make sure it gets the correct number of dtos
@@ -54,7 +54,7 @@ public class TestChemicalTDG {
 	}
 	
 	@Test
-	public void testGetCompoundsByElement() {
+	public static void testGetCompoundsByElement() {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
 		ArrayList<CompoundMadeOfElementDTO> result = c.getCompoundsByElement(1);
 		//Test to make sure it gets the correct number of dtos
@@ -63,6 +63,13 @@ public class TestChemicalTDG {
 		for(int i = 0; i < result.size(); i++) {
 			assertEquals(result.get(i).getElementID(), 1);
 		}
+	}
+
+	public static void testAll() {
+		testSingleton();
+		testGetAllBases();
+		testGetElementsInRange();
+		testGetCompoundsByElement();
 	}
 
 }
