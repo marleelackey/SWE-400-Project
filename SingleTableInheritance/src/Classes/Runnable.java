@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 import Datasource.SingleTableCreator;
+import Tests.TestChemicalDTO;
 import Tests.TestEVERYTHING;
 
 /**
@@ -27,6 +28,8 @@ public class Runnable {
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
+
+		System.out.println("ya done diddly did it");
 
 		DatabaseManager.getSingleton().closeConnection();
 	}
