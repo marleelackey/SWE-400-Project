@@ -18,7 +18,7 @@ public class TestChemicalRDG {
 	 * test that the constructor works and that the getters work
 	 */
 	@Test
-	public void constructorTest() throws DatabaseException {
+	public static void constructorTest() throws DatabaseException {
 		ChemicalRDG chem = new ChemicalRDG(20, 2, "bobrogyn", 2, 2.999, 1, 0, 1  );
 		assertEquals(chem.getID(), 2);
 		assertEquals(chem.getType(), 2);
@@ -32,7 +32,7 @@ public class TestChemicalRDG {
 	}
 	
 	@Test
-	public void findersTest() throws DatabaseException{
+	public static void findersTest() throws DatabaseException{
 		ChemicalRDG chem = new ChemicalRDG(31, 2, "bobrogyn", 2, 2.999, 1, 0, 1 );
 		ChemicalDTO d = new ChemicalDTO(3, 2, "bobrogyn", 2, 2.999, 1, 0, 1);
 		assertEquals(chem.findByIDSingle(3), d);
@@ -43,7 +43,7 @@ public class TestChemicalRDG {
 	}
 	
 	@Test
-	public void updateTest() throws DatabaseException {
+	public static void updateTest() throws DatabaseException {
 		ChemicalRDG chem = new ChemicalRDG(30, 2, "bobrogyn", 2, 2.999, 1, 0, 1 );
 		chem.update();
 		assertEquals(chem.getID(), 2);
@@ -66,6 +66,12 @@ public class TestChemicalRDG {
 		assertEquals(chem.getDissolvedBy(), 1);
 		assertEquals(chem.getSoluteA(), 0);
 		assertEquals(chem.getSoluteB(), 1);
+	}
+
+	public static void testAll() throws Exception {
+		constructorTest();
+		findersTest();
+		updateTest();
 	}
 
 }
