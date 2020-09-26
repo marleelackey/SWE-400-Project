@@ -2,12 +2,6 @@ package Tests;
 
 import org.junit.Test;
 
-/**
- * Class to run all the tests for Single Table Inheritance
- * 
- * @author Madeline & Adam
- *
- */
 public class TestEVERYTHING {
 
 	@Test

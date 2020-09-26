@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestEVERYTHING {
+public class TestBaseTDG {
 
 	@Test
-	public static void testRunAllTheTests() {
+	public void test() {
 		fail("Not yet implemented");
 	}
 

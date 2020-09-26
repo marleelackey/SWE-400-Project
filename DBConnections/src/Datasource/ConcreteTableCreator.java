@@ -48,12 +48,17 @@ public class ConcreteTableCreator {
 		stmt = DatabaseManager.getSingleton().getConnection().createStatement();
 
 		String[] table_statements = { "INSERT INTO Acid VALUES (1, 'acid1', 4)",
-				"INSERT INTO Acid VALUES (2, 'acid2', 5)", "INSERT INTO Acid VALUES (3, 'acid3', 5)",
-				"INSERT INTO Element VALUES (4, 'element1', 12, 50.01)",
-				"INSERT INTO Element VALUES (5, 'element2', 40, 20.0)",
-				"INSERT INTO Element VALUES (6, 'element3', 55, 20.2)",
-				"INSERT INTO Element VALUES (7, 'element4', 30, 40.0)",
-				"INSERT INTO Element VALUES (8, 'element5', 44, 100.1)" };
+									"INSERT INTO Acid VALUES (2, 'acid2', 5)", 
+									"INSERT INTO Acid VALUES (3, 'acid3', 5)",
+									"INSERT INTO Base VALUES (9, 'base1', 5)",
+									"INSERT INTO Base VALUES (10, 'base2', 6)",
+									"INSERT INTO Base VALUES (11, 'base3', 7)",
+									"INSERT INTO Base VALUES (12, 'base4', 810)",
+									"INSERT INTO Element VALUES (4, 'element1', 12, 50.01)",
+									"INSERT INTO Element VALUES (5, 'element2', 40, 20.0)",
+									"INSERT INTO Element VALUES (6, 'element3', 55, 20.2)",
+									"INSERT INTO Element VALUES (7, 'element4', 30, 40.0)",
+									"INSERT INTO Element VALUES (8, 'element5', 44, 100.1)" };
 
 		for (int i = 0; i < table_statements.length; i++) {
 			insertData = new String(table_statements[i]);
