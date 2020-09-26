@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 import Datasource.SingleTableCreator;
-import Tests.TestChemicalDTO;
 import Tests.TestEVERYTHING;
 
 /**
