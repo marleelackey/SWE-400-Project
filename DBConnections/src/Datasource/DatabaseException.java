@@ -69,11 +69,5 @@ public class DatabaseException extends Exception
 		DatabaseException d = new DatabaseException("yeet", e);
 		System.out.println(d.toString());
 	}
-	
-	public static void detectError(String place, Exception e)
-	{	
-		DatabaseException d = new DatabaseException("yeet" + place, e);
-		System.out.println(d.toString());
-	}
 
 }
