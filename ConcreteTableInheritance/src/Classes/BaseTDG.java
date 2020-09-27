@@ -3,7 +3,6 @@ package Classes;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 
