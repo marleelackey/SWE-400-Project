@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import Datasource.ConcreteTableCreator;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
+import Tests.TestAcidRDG;
 import Tests.TestEVERYTHING;
 
 /**
@@ -21,7 +22,9 @@ public class Runnable {
         ConcreteTableCreator.createTables();
         ConcreteTableCreator.addTestRows();
         
-       // TestEVERYTHING.testRunAllTheTests();
+        TestEVERYTHING.testRunAllTheTests();
+                
+        System.out.println("yee yee brethren");
         
         DatabaseManager.getSingleton().closeConnection();
 	}
