@@ -28,8 +28,6 @@ public class Runnable {
 			DatabaseException.detectError(e);
 		}
 
-		System.out.println("ya done diddly did it");
-
 		DatabaseManager.getSingleton().closeConnection();
 	}
 
