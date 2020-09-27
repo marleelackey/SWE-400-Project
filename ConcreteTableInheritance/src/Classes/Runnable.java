@@ -22,7 +22,7 @@ public class Runnable {
         ConcreteTableCreator.createTables();
         ConcreteTableCreator.addTestRows();
         
-       // TestEVERYTHING.testRunAllTheTests();
+        TestEVERYTHING.testRunAllTheTests();
                 
         System.out.println("yee yee brethren");
         

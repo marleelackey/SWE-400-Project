@@ -9,11 +9,15 @@ import Classes.CompoundDTO;
 public class TestCompoundDTO {
 
 	@Test
-	public void testConstructor() {
+	public static void testConstructor() {
 		CompoundDTO chem = new CompoundDTO(7, "Carodine");
 		assertEquals(chem.getCompoundID(), 7);
 		assertEquals(chem.getCompoundName(), "Carodine");
 		
+	}
+	
+	public static void runAllTheTests() {
+		testConstructor();
 	}
 
 }
