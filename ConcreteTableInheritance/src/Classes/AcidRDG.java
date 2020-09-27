@@ -1,6 +1,7 @@
 package Classes;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
@@ -36,13 +37,14 @@ public class AcidRDG {
 	 * @param ID the ID of the Acid we want to select
 	 * @return an AcidRDG for the Acid we select
 	 */
-	public AcidRDG findByID(int ID) {
+	public static AcidRDG findByID(int ID) {
 		Connection c;
 		AcidRDG result = null;
 		try {
 			c = DatabaseManager.getSingleton().getConnection();
-			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM ACID WHERE ID = " + ID);
-			result = new AcidRDG(rs.getInt(0), rs.getString(1), rs.getInt(2));
+			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Acid WHERE acidID = " + ID);
+			rs.next();
+			result = new AcidRDG(rs.getInt(1), rs.getString(2), rs.getInt(3));
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
@@ -55,37 +57,51 @@ public class AcidRDG {
 	 * @param name the name of the Acid we want to select
 	 * @return an AcidRDG for the Acid we select
 	 */
-	public AcidRDG findByName(String name) {
+	public static AcidRDG findByName(String name) {
 		Connection c;
 		AcidRDG result = null;
 		try {
 			c = DatabaseManager.getSingleton().getConnection();
-			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM ACID WHERE NAME = " + name);
-			result = new AcidRDG(rs.getInt(0), rs.getString(1), rs.getInt(2));
+			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Acid WHERE acidName = '" + name + "'");
+			rs.next();
+			result = new AcidRDG(rs.getInt(1), rs.getString(2), rs.getInt(3));
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
 		return result;
 	}
 
-	public int getAcidID() {
-		return acidID;
+	/**
+	 * Method to persist an AcidRDG to the database
+	 */
+	public void update() {
+		Connection c;
+		try {
+			c = DatabaseManager.getSingleton().getConnection();
+			PreparedStatement s = c.prepareStatement("UPDATE Acid SET acidName = ?, acidSolute = ? WHERE acidID = ?");
+			s.setString(1, acidName);
+			s.setInt(2, acidSolute);
+			s.setInt(3, acidID);
+			s.execute();
+		} catch (Exception e) {
+			DatabaseException.detectError(e);
+		}
 	}
 
-	public void setAcidID(int acidID) {
-		this.acidID = acidID;
+	public int getAcidID() {
+		return acidID;
 	}
 
 	public String getAcidName() {
 		return acidName;
 	}
 
-	public void setAcidName(String acidName) {
-		this.acidName = acidName;
-	}
-
 	public int getAcidSolute() {
 		return acidSolute;
+	}
+
+	public void setAcidName(String acidName) {
+		this.acidName = acidName;
 	}
 
 	public void setAcidSolute(int acidSolute) {

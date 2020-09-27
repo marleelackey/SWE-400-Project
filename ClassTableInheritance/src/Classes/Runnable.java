@@ -2,29 +2,28 @@ package Classes;
 
 import java.sql.SQLException;
 
-import Datasource.ConcreteTableCreator;
+import Datasource.ClassTableCreator;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
-import Tests.TestAcidRDG;
 import Tests.TestEVERYTHING;
 
 /**
- * Concrete Table Inheritance Runner
- * @author Joshua
+ * Class Table Inheritance Runner
+ * @author Joshua & Madeline
  *
  */
 public class Runnable {
 
 	public static void main(String[] args) throws DatabaseException, SQLException {
-		DatabaseManager.setPatternNumber(2);
+		DatabaseManager.setPatternNumber(3);
         DatabaseManager.getSingleton().openConnection();
-        ConcreteTableCreator.dropAllTables();
-        ConcreteTableCreator.createTables();
-        ConcreteTableCreator.addTestRows();
+        ClassTableCreator.dropAllTables();
+        ClassTableCreator.createTables();
+        ClassTableCreator.addTestRows();
         
-       // TestEVERYTHING.testRunAllTheTests();
+        TestEVERYTHING.testRunAllTheTests();
                 
-        System.out.println("yee yee brethren");
+        System.out.println("tis a fine day, my good sir");
         
         DatabaseManager.getSingleton().closeConnection();
 	}
