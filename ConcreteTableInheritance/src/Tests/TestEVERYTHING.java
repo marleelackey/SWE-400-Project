@@ -4,11 +4,22 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Class to run all the tests for Concrete Table Inheritance
+ * @author Madeline & Adam
+ *
+ */
 public class TestEVERYTHING {
 
 	@Test
 	public static void testRunAllTheTests() {
-		fail("Not yet implemented");
+		TestAcidDTO.runAllTheTests();
+		TestAcidRDG.runAllTheTests();
+		TestAcidTDG.runAllTheTests();
+		TestCompoundDTO.runAllTheTests();
+		TestElementDTO.runAllTheTests();
+		TestElementRDG.runAllTheTests();
+		TestElementTDG.runAllTheTests();
 	}
 
 }

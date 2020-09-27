@@ -30,7 +30,7 @@ public class BaseRDG {
 			result = new BaseRDG(rs.getInt(1), rs.getString(2), rs.getInt(3));
 		} catch (Exception e) {
 			e.printStackTrace();
-			DatabaseException.detectError(" BaseRDG, method: FindByID " , e);
+			DatabaseException.detectError( e);
 		}
 		return result;
 	}

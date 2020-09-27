@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import Classes.BaseDTO;
 
+
+
 public class TestBaseDTO {
 
 	@Test
