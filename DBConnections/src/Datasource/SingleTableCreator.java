@@ -44,7 +44,7 @@ public class SingleTableCreator {
 
 		String[] table_statements = { "INSERT INTO Chemical VALUES (1, 0, 'name1', null, 20.7, null, null, null)",
 				"INSERT INTO Chemical VALUES (2, 0, 'name1', null, 20.8, null, null, null)",
-				"INSERT INTO Chemical VALUES (3, 0, 'name2', null, 20.9, null, null, null)",
+				"INSERT INTO Chemical VALUES (3, 0, 'name2', 5, 20.9, 5, 5,6)",
 				"INSERT INTO Chemical VALUES (4, 1, 'name3', null, 21.7, null, null, null)",
 				"INSERT INTO Chemical VALUES (5, 1, 'name4', null, 23.7, null, null, null)",
 				"INSERT INTO Chemical VALUES (6, 1, 'name5', null, 25.0, null, null, null)",

@@ -1,9 +1,6 @@
 package Classes;
 
-
 import java.sql.*;
-
-
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 /**
@@ -19,31 +16,27 @@ public class ChemicalRDG {
 	int dissolvedBy; // is the ID of the Acid it is dissolved by 
 	int soluteA;
 	int soluteB;
-	Connection connection;
+	static Connection connection;
 	
-	/* constructor */
-	public ChemicalRDG(int ID) throws DatabaseException {
+	/** Constructor used to make an instance of an object already created in the database
+	 * @param ID 
+	 * @throws DatabaseException
+	 */
+	public ChemicalRDG(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy, int soluteA, int soluteB) throws DatabaseException {
 		this.ID = ID;
-		ResultSet rs = null;
-		String query = "SELECT * FROM Chemical WHERE Chemical.chemicalID = ?";
-
-		// connection to the DB
-		connection = DatabaseManager.getSingleton().getConnection();	
+		this.type = type;
+		this.name = name;
+		this.atomicNumber = atomicNumber;
+		this.atomicMass = atomicMass;
+		this.dissolvedBy = dissolvedBy;
+		this.soluteA = soluteA;
+		this.soluteB = soluteB;
 		
-		try {
-			Statement statement = connection.createStatement();
-			rs = statement.executeQuery(query);
-			if(rs.next()) {
-				chem = new ChemicalDTO(ID, type, name, atomicNumber, atomicMass, dissolvedBy, soluteA, soluteB);
-			 }
-		}
-		catch (SQLException e) {
-			/* ask merlin about whether we should close rs, statement, and/or connection */
-			DatabaseException.detectError(e);
-			
-		}
+		// connection to the DB
+		connection = DatabaseManager.getSingleton().getConnection();
 
 	}
+	
 	// setters
 	public void setID(int id) {
 		ID = id;
@@ -104,86 +97,62 @@ public class ChemicalRDG {
 		return soluteB;
 	}
 	
-	
-	
-
 	// finders
-	public ChemicalDTO findByIDSingle(int ID) {
-		
-		String query = "SELECT * FROM Chemical WHERE Chemical.chemicalID = ?";
-		ResultSet rs = null;
-		ChemicalDTO chem = null;
+	public static ChemicalRDG findByIDSingle(int ID) {
+		ChemicalRDG chem = null;							
 		try {
-			Statement statement = connection.createStatement();
-			rs = statement.executeQuery(query);
-			if(rs.next()) {
-				chem = new ChemicalDTO(ID, type, name, atomicNumber, atomicMass, dissolvedBy, soluteA, soluteB);
-			 }
+			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalID = "+ ID);
+			r.next();
+			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6), r.getInt(7), r.getInt(8));						
+		} catch (SQLException | DatabaseException e) {
+			DatabaseException.detectError(e);					
 		}
-		catch (SQLException e) {
-			/* ask merlin about whether we should close rs, statement, and/or connection */
-			DatabaseException.detectError(e);
-			
-		}
-		
-		return chem;
+										
+		return chem;	
 	}
 	
-	public ChemicalDTO findByName(String name) {
-		String query = "SELECT * FROM Chemical WHERE Chemical.chemicalName = ? ";
-		ResultSet rs = null;
-		ChemicalDTO chem = null;							
+	public static ChemicalRDG findByName(String name) {
+		ChemicalRDG chem = null;							
 		try {
-			Statement statement = connection.createStatement();
-			rs = statement.executeQuery(query);
-			if(rs.next()) {
-				chem = new ChemicalDTO(ID, type, name, atomicNumber, atomicMass, dissolvedBy, soluteA, soluteB);
-			}							
-		} 
-		catch (SQLException e) {
-			DatabaseException.detectError(e);
-								
+			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalName = "+ name);
+			r.next();
+			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6), r.getInt(7), r.getInt(8));	
+			} 
+		catch (SQLException | DatabaseException e) {
+			DatabaseException.detectError(e);					
 		}
 										
 		return chem;	
 		
 	}
 	
-	public ChemicalDTO findByAtomicNumber(int atomicNumber) {
-		String query = "SELECT * FROM Chemical WHERE Chemical.chemcialAtomicNumber = ? ";
-		ResultSet rs = null;
-		ChemicalDTO chem = null;
+	public static ChemicalRDG findByAtomicNumber(int atomicNumber) {
+		ChemicalRDG chem = null;							
 		try {
-			Statement statement = connection.createStatement();
-			rs = statement.executeQuery(query);
-			if(rs.next()) {
-				chem = new ChemicalDTO(ID, type, name, atomicNumber, atomicMass, dissolvedBy, soluteA, soluteB);
-			}							
+			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Chemical WHERE Chemical.chemcialAtomicNumber = "+ atomicNumber);
+			r.next();
+			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6), r.getInt(7), r.getInt(8));	
+			} 
+		catch (SQLException | DatabaseException e) {
+			DatabaseException.detectError(e);					
 		}
-		catch (SQLException e) {
-			DatabaseException.detectError(e);
-
-		}
-		
-		return chem;
+										
+		return chem;	
 	}
 	
-	public ChemicalDTO findByAtomicMass(double atomicMass) {
-		String query = "SELECT * FROM Chemical WHERE Chemical.chemicalAtomicMass = ? ";
-		ResultSet rs = null;
-		ChemicalDTO chem = null;
+	public static ChemicalRDG findByAtomicMass(double atomicMass) {
+		ChemicalRDG chem = null;							
 		try {
-			Statement statement = connection.createStatement();
-			rs = statement.executeQuery(query);
-			if(rs.next()) {
-				chem = new ChemicalDTO(ID, type, name, atomicNumber, atomicMass, dissolvedBy, soluteA, soluteB);
-			}							
+			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalAtomicMass = "+ atomicMass);
+			r.next();
+			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6), r.getInt(7), r.getInt(8));	
+			} 
+		catch (SQLException | DatabaseException e) {
+			DatabaseException.detectError(e);					
 		}
-		catch (SQLException e) {
-			DatabaseException.detectError(e);
-		}
-		
+										
 		return chem;
+
 	}
 	
 	public void update() {
