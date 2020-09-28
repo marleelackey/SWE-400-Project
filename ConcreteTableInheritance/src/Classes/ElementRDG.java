@@ -36,13 +36,16 @@ public class ElementRDG {
 	 * @param ID The ID to search the Element table for
 	 * @return An ElementRDG with the element with the ID passed in
 	 */
-	public ElementRDG findByID(int ID) {
+	public static ElementRDG findByID(int ID) {
 		Connection cn;
 		ElementRDG data = null;
 		try {
-			cn = DatabaseManager.getSingleton().getConnection();
-			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM ELEMENT WHERE ID = " + ID);
-			data = new ElementRDG(rs.getInt("ID"), rs.getInt("atomicNumber"), rs.getDouble("atomicMass"), rs.getString("name"));
+			DatabaseManager db = DatabaseManager.getSingleton();
+			db.setPatternNumber(2);
+			cn = db.getConnection();
+			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementOrMetalID = " + ID);
+			rs.next();
+			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"));
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
@@ -55,13 +58,16 @@ public class ElementRDG {
 	 * @param atomicNum The atomic number to search the Element table for
 	 * @return an Element RDG with the element with the atomic number passed in
 	 */
-	public ElementRDG findByAtomicNumber(int atomicNum) {
+	public static ElementRDG findByAtomicNumber(int atomicNum) {
 		Connection cn;
 		ElementRDG data = null;
 		try {
-			cn = DatabaseManager.getSingleton().getConnection();
-			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM ELEMENT WHERE atomicNumber = " + atomicNum);
-			data = new ElementRDG(rs.getInt("ID"), rs.getInt("atomicNumber"), rs.getDouble("atomicMass"), rs.getString("name"));
+			DatabaseManager db = DatabaseManager.getSingleton();
+			db.setPatternNumber(2);
+			cn = db.getConnection();
+			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementAtomicNumber = " + atomicNum);
+			rs.next();
+			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"));
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
@@ -75,14 +81,16 @@ public class ElementRDG {
 	 * @param atomMass The atomic mass to search the Element table for
 	 * @return An element RDG with the element with the atomic mass that was passed in
 	 */
-	public ElementRDG findByAtomicMass(double atomMass) {
+	public static ElementRDG findByAtomicMass(double atomMass) {
 		Connection cn;
 		ElementRDG data = null;
 		try {
-			cn = DatabaseManager.getSingleton().getConnection();
-			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM ELEMENT WHERE atomicMass = " + atomMass);
-			data = new ElementRDG(rs.getInt("ID"), rs.getInt("atomicNumber"), rs.getDouble("atomicMass"), rs.getString("name"));
-		} catch (Exception e ){
+			DatabaseManager db = DatabaseManager.getSingleton();
+			db.setPatternNumber(2);
+			cn = db.getConnection();
+			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementAtomicMass = " + atomMass);
+			rs.next();
+			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"));		} catch (Exception e ){
 			DatabaseException.detectError(e);
 		}
 		return data;
@@ -94,14 +102,16 @@ public class ElementRDG {
 	 * @param eName The name of the element to search the element table for
 	 * @return An element RDG with the element with the name that was passed in
 	 */
-	public ElementRDG findByName(String eName) {
+	public static ElementRDG findByName(String eName) {
 		Connection cn;
 		ElementRDG data = null;
 		try {
-			cn = DatabaseManager.getSingleton().getConnection();
-			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM ELEMENT WHERE name = " + eName);
-			data = new ElementRDG(rs.getInt("ID"), rs.getInt("atomicNumber"), rs.getDouble("atomicMass"), rs.getString("name"));
-		} catch (Exception e ){
+			DatabaseManager db = DatabaseManager.getSingleton();
+			db.setPatternNumber(2);
+			cn = db.getConnection();
+			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementName = '" + eName + "'");
+			rs.next();
+			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"));		} catch (Exception e ){
 			DatabaseException.detectError(e);
 		}
 		return data;
@@ -152,7 +162,9 @@ public class ElementRDG {
 		PreparedStatement stmt;
 		Connection cn;
 		try {
-			cn = DatabaseManager.getSingleton().getConnection();
+			DatabaseManager db = DatabaseManager.getSingleton();
+			db.setPatternNumber(2);
+			cn = db.getConnection();
 			//May need a WHERE clause at end
 			stmt = cn.prepareStatement("UPDATE ELEMENT SET ID = ?, atomicNumber = ?, atomicMass = ?, name = ?");
 			stmt.setInt(1, ID);
