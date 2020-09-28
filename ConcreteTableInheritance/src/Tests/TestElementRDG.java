@@ -21,7 +21,15 @@ public class TestElementRDG {
 	
 	@Test
 	public void testGettersAndSetters() {
-		
+		ElementRDG e = new ElementRDG(1, 2, 3.0, "Tester");
+		e.setAtomicMass(50.0);
+		e.setAtomicNumber(651);
+		e.setID(987);
+		e.setName("New Name");
+		assertEquals(e.getAtomicMass(), 50.0, 0.01);
+		assertEquals(e.getAtomicNumber(), 651);
+		assertEquals(e.getID(), 987);
+		assertEquals(e.getName(), "New Name");
 	}
 	
 	@Test
@@ -58,6 +66,11 @@ public class TestElementRDG {
 		assertEquals(e.getName(), "element4");
 		assertEquals(e.getAtomicNumber(), 30);
 		assertEquals(e.getAtomicMass(), 40.0, 0.01);
+	}
+	
+	@Test
+	public void testUpdate() {
+		//Write after figuring out rollback
 	}
 
 }
