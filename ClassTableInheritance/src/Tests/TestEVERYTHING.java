@@ -8,7 +8,12 @@ package Tests;
 public class TestEVERYTHING {
 
 	public static void testRunAllTheTests() {
+		TestElementDTO.runAllTheTests();
+		TestElementTDG.runAllTheTests();
 		TestElementRDG.runAllTheTests();
+		TestMetalDTO.runAllTheTests();
+		TestMetalTDG.runAllTheTests();
+//		TestMetalRDG.runAllTheTests();
 	}
 
 }

@@ -69,7 +69,10 @@ public class ClassTableCreator {
 				"INSERT INTO Element VALUES (5, 40, 20.0)",
 				"INSERT INTO Element VALUES (6, 55, 20.2)",
 				"INSERT INTO Element VALUES (7, 30, 40.0)",
-				"INSERT INTO Element VALUES (8, 44, 100.1)" };
+				"INSERT INTO Element VALUES (8, 44, 100.1)",
+				"INSERT INTO Metal VALUES (9, 55)",
+				"INSERT INTO Metal VALUES (10, 66)",
+				"INSERT INTO Metal VALUES (11, 77)",};
 
 		for (int i = 0; i < table_statements.length; i++) {
 			insertData = new String(table_statements[i]);

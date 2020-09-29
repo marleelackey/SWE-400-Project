@@ -12,13 +12,13 @@ import Classes.ElementTDG;
 public class TestElementTDG {
 
 	@Test
-	public void testConstructor() {
+	public static void testConstructor() {
 		ElementTDG e = ElementTDG.getInstance();
 		assertNotEquals(e, null);
 	}
 	
 	@Test
-	public void testGetElementsInRange() {
+	public static void testGetElementsInRange() {
 		ElementTDG c = ElementTDG.getInstance();
 		ArrayList<ElementDTO> result = new ArrayList<ElementDTO>();
 		result = c.getElementInRange(0, 100);
@@ -30,6 +30,11 @@ public class TestElementTDG {
 				fail("Atomic mass not in range");
 			}
 		}
+	}
+
+	public static void runAllTheTests() {
+		testConstructor();
+		testGetElementsInRange();
 	}
 
 }
