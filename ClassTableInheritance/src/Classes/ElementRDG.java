@@ -1,6 +1,7 @@
 package Classes;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import Datasource.DatabaseException;
@@ -63,7 +64,16 @@ public class ElementRDG {
 	}
 	
 	public void update() {
-		
+		PreparedStatement stmt;
+		try {
+			stmt = cn.prepareStatement("UPDATE Element SET elementAtomicNumber = ?, elementAtomicMass = ? WHERE elementID = ?");
+			stmt.setInt(1, atomicNumber);
+			stmt.setDouble(2, atomicMass);
+			stmt.setInt(3, ID);
+			stmt.execute();
+		} catch (Exception e) {
+			DatabaseException.detectError(e);
+		}
 	}
 	
 	public int getID() {

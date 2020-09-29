@@ -43,7 +43,7 @@ public class TestMetalRDG {
 		m.setAtomicMass(450.0);
 		m.update();
 		MetalRDG f = MetalRDG.findByID(20);
-		assertEquals(m.getAtomicMass(), 450.0, 0.01);
+		assertEquals(f.getAtomicMass(), 450.0, 0.01);
 	}
 	
 	public static void runAllTheTests() {

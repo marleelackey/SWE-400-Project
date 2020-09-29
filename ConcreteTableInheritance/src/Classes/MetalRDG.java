@@ -65,12 +65,13 @@ public class MetalRDG {
 	public void update() {
 		PreparedStatement stmt;
 		try {
-			stmt = cn.prepareStatement("UPDATE Metal SET metalName = ?, metalAtomicNumber = ?, metalAtomicMass = ?, metalDissolvedBy = ?, WHERE elementOrMetalID = ?");
+			stmt = cn.prepareStatement("UPDATE Metal SET metalName = ?, metalAtomicNumber = ?, metalAtomicMass = ?, metalDissolvedBy = ? WHERE elementOrMetalID = ?");
 			stmt.setString(1, name);
 			stmt.setInt(2, atomicNumber);
 			stmt.setDouble(3, atomicMass);
 			stmt.setDouble(4, dissolvedBy);
 			stmt.setInt(5, ID);
+			stmt.execute();
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}

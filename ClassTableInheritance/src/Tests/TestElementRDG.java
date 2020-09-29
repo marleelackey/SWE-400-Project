@@ -40,13 +40,22 @@ public class TestElementRDG {
 		assertEquals(e.getAtomicMass(), 40.0, 0.01);
 	}
 	
+	@Test
+	public static void testUpdate() {
+		ElementRDG e = ElementRDG.findByAtomicNumber(12);
+		assertEquals(e.getID(), 4);
+		e.setAtomicNumber(321);
+		e.update();
+		ElementRDG d = ElementRDG.findByID(4);
+		assertEquals(d.getAtomicNumber(), 321);
+	}
+	
 	public static void runAllTheTests() {
 		testConstructorAndGetters();
 		testFindByID();
 		testFindByAtomicNumber();
 		testFindByAtomicMass();
-	}
-	
-	
+		testUpdate();
+	}	
 
 }
