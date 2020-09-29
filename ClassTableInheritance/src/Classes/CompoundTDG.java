@@ -1,19 +1,19 @@
 package Classes;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-import Datasource.DatabaseManager;
 import Datasource.DatabaseException;
+import Datasource.DatabaseManager;
 
 /**
- * 
  * @author Marlee Lackey
  * @author Taryn Whitman
  *
  */
 public class CompoundTDG {
-
 	private static CompoundTDG Singleton;
 
 	/** 
@@ -47,11 +47,12 @@ public class CompoundTDG {
 			while(r.next()) {
 				listOfCompounds.add(r.getInt(1));
 			}
+			
 			for (int i : listOfCompounds) {
 				CompoundDTO dto;
 				s = connection.createStatement().executeQuery("SELECT * FROM Compound WHERE Compound.compoundID = " + i);
 				s.next();
-				dto = new CompoundDTO(s.getInt(1), s.getString(2));
+				dto = new CompoundDTO(s.getInt(1));
 				list.add(dto);
 			}
 			
@@ -62,6 +63,5 @@ public class CompoundTDG {
 		return list;
 		
 	}
-	
-	
+
 }
