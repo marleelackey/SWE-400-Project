@@ -14,10 +14,6 @@ import Datasource.DatabaseManager;
  *
  */
 public class ElementTDG {
-	private int ID,
-				atomicNumber;
-	private double atomicMass;
-	private String name;
 	
 	private static ElementTDG instance;
 	
