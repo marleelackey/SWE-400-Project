@@ -53,7 +53,7 @@ public class MetalRDG {
 	public static MetalRDG findByName(String name) {
 		MetalRDG results = null;
 		try {
-			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Metal WHERE metalAtomicNumber = '" + name + "'");
+			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Metal WHERE metalName = '" + name + "'");
 			rs.next();
 			results = new MetalRDG(rs.getInt("elementOrMetalID"), rs.getInt("metalAtomicNumber"), rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"));						
 		} catch (SQLException e) {

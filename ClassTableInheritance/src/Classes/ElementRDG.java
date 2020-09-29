@@ -62,6 +62,10 @@ public class ElementRDG {
 		return data;
 	}
 	
+	public void update() {
+		
+	}
+	
 	public int getID() {
 		return ID;
 	}
