@@ -2,9 +2,12 @@ package Tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import Classes.AcidTDG;
+import Classes.CompoundDTO;
 import Classes.CompoundTDG;
 
 public class TestCompoundTDG {
@@ -24,7 +27,14 @@ public class TestCompoundTDG {
 	@Test
 	public static void testGetCompoundsByElement() {
 		CompoundTDG comp = CompoundTDG.getSingleton();
-		//ArrayList<CompoundDTO> list = comp.???????
+		ArrayList<CompoundDTO> list = comp.getCompoundsByElement(4);
+		assertEquals(list.size(), 2); // amount of tuples
+		assertEquals(list.get(0).getCompoundID(), 0); 
+		assertEquals(list.get(0).getCompoundName(), "Sugar Water"); 
+		assertEquals(list.get(1).getCompoundID(), 2); 
+		assertEquals(list.get(1).getCompoundName(), "Spicy Water");  
+
+
 	}
 	
 	/**

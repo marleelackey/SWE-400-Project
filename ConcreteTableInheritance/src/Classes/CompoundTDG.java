@@ -53,18 +53,13 @@ public class CompoundTDG {
 				//list.add(new CompoundDTO(r.getInt("compoundID"), r.getString("elementName")));
 				//list.add(new CompoundDTO(r.getInt("compoundID"), r.getInt("elementID")));
 			}
-			s = connection.createStatement().executeQuery("SELECT elementName FROM Compound WHERE Compound.elementID = " + e_ID);
-
-			while (s.next()) {
-				listOfElements.add(s.getInt(1));
-				if (listOfElements.contains(e_ID) && listOfCompounds.contains(e_ID)) {
-					list.add(new CompoundDTO(r.getInt(1), s.getString(2)));
-				}
-				r.next();
+			for (int i : listOfCompounds) {
+				CompoundDTO dto;
+				s = connection.createStatement().executeQuery("SELECT * FROM Compound WHERE Compound.compoundID = " + i);
+				s.next();
+				dto = new CompoundDTO(s.getInt(1), s.getString(2));
+				list.add(dto);
 			}
-					
-			
-			
 			
 		} catch (DatabaseException | SQLException e) {
 			DatabaseException.detectError(e);
@@ -73,5 +68,6 @@ public class CompoundTDG {
 		return list;
 		
 	}
+	
 	
 }
