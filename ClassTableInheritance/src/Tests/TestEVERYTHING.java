@@ -16,6 +16,7 @@ public class TestEVERYTHING {
 		TestMetalRDG.runAllTheTests();
 		TestCompoundRDG.runAllTheTests();
 		TestCompoundDTO.runAllTheTests();
+		TestCompoundMadeOfElement.runAllTheTests();
 	}
 
 }

@@ -9,7 +9,7 @@ import Classes.CompoundMadeOfElement;
 public class TestCompoundMadeOfElement {
 
 	@Test
-	public static void testConstructor() {
+	public static void testConstructorAndGetters() {
 		CompoundMadeOfElement comp = new CompoundMadeOfElement(1,2);
 		assertEquals(comp.getCompoundID(), 1);
 		assertEquals(comp.getElementID(), 2);
@@ -18,6 +18,6 @@ public class TestCompoundMadeOfElement {
 	
 	@Test
 	public static void runAllTheTests() {
-		testConstructor();
+		testConstructorAndGetters();
 	}
 }
