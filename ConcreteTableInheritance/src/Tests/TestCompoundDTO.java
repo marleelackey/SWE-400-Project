@@ -8,6 +8,9 @@ import Classes.CompoundDTO;
 
 public class TestCompoundDTO {
 
+	/**
+	 * Tests that the constructor works properly and that the getters work
+	 */
 	@Test
 	public static void testConstructor() {
 		CompoundDTO chem = new CompoundDTO(7, "Carodine");
@@ -16,6 +19,9 @@ public class TestCompoundDTO {
 		
 	}
 	
+	/**
+	 * runner used by entire Concrete project to run all tests at once
+	 */
 	public static void runAllTheTests() {
 		testConstructor();
 	}

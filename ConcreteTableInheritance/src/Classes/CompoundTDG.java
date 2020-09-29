@@ -27,19 +27,38 @@ public class CompoundTDG {
 	}
 	
 	/** 
-	 * @param name -- name of the compound 
-	 * @return the list of compounds by elements
+	 * Return all the compounds that a given element is in
+	 * @param e_ID -- ID of the element 
+	 * @return the list of compounds that the passed element is in
 	 */
-	public ArrayList<CompoundDTO> getCompoundsByElement(String name) {
+	public ArrayList<CompoundDTO> getCompoundsByElement(int e_ID) {
 		ArrayList<CompoundDTO> list = new ArrayList<CompoundDTO>();
-		ResultSet r;
+		ArrayList<Integer> listOfCompounds = new ArrayList<Integer>();
+		ArrayList<Integer> listOfElements = new ArrayList<Integer>();
+		ArrayList<CompoundDTO> result = new ArrayList<CompoundDTO>();
+
+		
+		ResultSet r, s;
 		
 		try {
 			Connection connection = DatabaseManager.getSingleton().getConnection();
-			r = connection.createStatement().executeQuery("SELECT * FROM Compound");
+			r = connection.createStatement().executeQuery("SELECT * FROM CompoundMadeOfElement WHERE CompoundMadeOfElement.elementID = " + e_ID);
+			// r contains CompoundMadeOfElement tuples -- [compoundID, elementID]
+			// for each thing in r, take its compoundID and store it in an ArrayList<int>
+			// for each thing in int ArrayList, do another query, this time of Compound, and make a DTO for that compound
+			// add each of those DTOs to the CompoundDTO ArrayList
 			
 			while(r.next()) {
-				list.add(new CompoundDTO(r.getInt("compoundID"), r.getString("compoundName")));
+				listOfCompounds.add(r.getInt(1));
+				//list.add(new CompoundDTO(r.getInt("compoundID"), r.getString("elementName")));
+				//list.add(new CompoundDTO(r.getInt("compoundID"), r.getInt("elementID")));
+			}
+			for (int i : listOfCompounds) {
+				CompoundDTO dto;
+				s = connection.createStatement().executeQuery("SELECT * FROM Compound WHERE Compound.compoundID = " + i);
+				s.next();
+				dto = new CompoundDTO(s.getInt(1), s.getString(2));
+				list.add(dto);
 			}
 			
 		} catch (DatabaseException | SQLException e) {
@@ -49,5 +68,6 @@ public class CompoundTDG {
 		return list;
 		
 	}
+	
 	
 }
