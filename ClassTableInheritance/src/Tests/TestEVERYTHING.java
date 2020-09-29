@@ -13,7 +13,7 @@ public class TestEVERYTHING {
 		TestElementRDG.runAllTheTests();
 		TestMetalDTO.runAllTheTests();
 		TestMetalTDG.runAllTheTests();
-//		TestMetalRDG.runAllTheTests();
+		TestMetalRDG.runAllTheTests();
 		TestCompoundDTO.runAllTheTests();
 	}
 
