@@ -15,9 +15,17 @@ public class TestCompoundRDG {
 		
 	}
 	
+	@Test 
+	public static void testFinders() {
+		CompoundRDG comp = CompoundRDG.findByIDClass(1);
+		assertEquals(comp.getCompoundID(), 1);
+		
+	}
+	
 	@Test
 	public static void runAllTheTests() {
 		testConstructor();
+		testFinders();
 	}
 
 }

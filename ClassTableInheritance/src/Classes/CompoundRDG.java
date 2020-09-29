@@ -42,7 +42,7 @@ public class CompoundRDG {
 	 * @param ID
 	 * @return
 	 */
-	public CompoundRDG findByIDClass(int ID) {
+	public static CompoundRDG findByIDClass(int ID) {
 		CompoundRDG comp = null;							
 		try {
 			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Compound WHERE Compound.compoundID = " + ID);
