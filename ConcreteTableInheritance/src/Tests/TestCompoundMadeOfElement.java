@@ -9,6 +9,9 @@ import Classes.CompoundRDG;
 
 public class TestCompoundMadeOfElement {
 
+	/**
+	 * Test that the the constructor is made properly and the getters work
+	 */
 	@Test
 	public static void testConstructorAndGetters() {
 		
@@ -17,7 +20,9 @@ public class TestCompoundMadeOfElement {
 		assertEquals(comp.getElementID(), 2);
 	}
 
-	
+	/**
+	 * runner used by entire Concrete project to run all tests at once
+	 */
 	public static void runAllTheTests() {
 		testConstructorAndGetters();
 	}
