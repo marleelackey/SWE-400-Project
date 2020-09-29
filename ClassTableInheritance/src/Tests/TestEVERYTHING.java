@@ -8,7 +8,7 @@ package Tests;
 public class TestEVERYTHING {
 
 	public static void testRunAllTheTests() {
-		// TODO
+		TestElementRDG.runAllTheTests();
 	}
 
 }
