@@ -59,7 +59,9 @@ public class ConcreteTableCreator {
 									"INSERT INTO Element VALUES (6, 'element3', 55, 20.2)",
 									"INSERT INTO Element VALUES (7, 'element4', 30, 40.0)",
 									"INSERT INTO Element VALUES (8, 'element5', 44, 100.1)",
-									"INSERT INTO Compound VALUES (1, 'Carodine')"};
+									"INSERT INTO Compound VALUES (1, 'Carodine')",
+									"INSERT INTO Compound VALUES (2, 'Neilium')",
+									"INSERT INTO Compound VALUES (3, 'Selenaium')"};
 
 		for (int i = 0; i < table_statements.length; i++) {
 			insertData = new String(table_statements[i]);

@@ -36,7 +36,7 @@ public class CompoundTDG {
 		
 		try {
 			Connection connection = DatabaseManager.getSingleton().getConnection();
-			r = connection.createStatement().executeQuery("SELECT * FROM Compound");
+			r = connection.createStatement().executeQuery("SELECT * FROM Compound WHERE elementName = '" + name +"'");
 			
 			while(r.next()) {
 				list.add(new CompoundDTO(r.getInt("compoundID"), r.getString("compoundName")));

@@ -18,7 +18,7 @@ public class TestEVERYTHING {
 		TestAcidTDG.runAllTheTests();
 		TestCompoundDTO.runAllTheTests();
 		TestCompoundRDG.runAllTheTests();
-		TestCompoundMadeOfElement.runAllTheTests();
+		TestCompoundTDG.runAllTheTests();
 //		TestElementDTO.runAllTheTests();
 //		TestElementRDG.runAllTheTests();
 //		TestElementTDG.runAllTheTests();
