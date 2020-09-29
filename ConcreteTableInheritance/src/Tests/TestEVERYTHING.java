@@ -20,9 +20,12 @@ public class TestEVERYTHING {
 		TestCompoundRDG.runAllTheTests();
 		TestCompoundTDG.runAllTheTests();
 		TestCompoundMadeOfElement.runAllTheTests();
-//		TestElementDTO.runAllTheTests();
-//		TestElementRDG.runAllTheTests();
-//		TestElementTDG.runAllTheTests();
+		TestElementDTO.runAllTheTests();
+		TestElementRDG.runAllTheTests();
+		TestElementTDG.runAllTheTests();
+		TestMetalDTO.runAllTheTests();
+		TestMetalTDG.runAllTheTests();
+		TestMetalRDG.runAllTheTests();
 	}
 
 }

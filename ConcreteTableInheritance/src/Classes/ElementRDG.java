@@ -90,7 +90,8 @@ public class ElementRDG {
 			cn = db.getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementAtomicMass = " + atomMass);
 			rs.next();
-			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"));		} catch (Exception e ){
+			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"));		
+		} catch (Exception e ){
 			DatabaseException.detectError(e);
 		}
 		return data;
@@ -123,10 +124,6 @@ public class ElementRDG {
 	
 	public int getID() {
 		return ID;
-	}
-
-	public void setID(int iD) {
-		ID = iD;
 	}
 
 	public int getAtomicNumber() {
@@ -166,11 +163,11 @@ public class ElementRDG {
 			db.setPatternNumber(2);
 			cn = db.getConnection();
 			//May need a WHERE clause at end
-			stmt = cn.prepareStatement("UPDATE ELEMENT SET ID = ?, atomicNumber = ?, atomicMass = ?, name = ?");
-			stmt.setInt(1, ID);
-			stmt.setInt(2, atomicNumber);
-			stmt.setDouble(3, atomicMass);
-			stmt.setString(4, name);
+			stmt = cn.prepareStatement("UPDATE Element SET elementAtomicNumber = ?, elementAtomicMass = ?, elementName = ?, WHERE elementOrMetalID = ?");
+			stmt.setInt(1, atomicNumber);
+			stmt.setDouble(2, atomicMass);
+			stmt.setString(3, name);
+			stmt.setInt(4, ID);
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}

@@ -62,13 +62,14 @@ public class ClassTableCreator {
 	public static void addTestRows() throws SQLException, DatabaseException {
 		stmt = DatabaseManager.getSingleton().getConnection().createStatement();
 
-		String[] table_statements = { "INSERT INTO Acid VALUES (1, 'acid1', 4)",
-				"INSERT INTO Acid VALUES (2, 'acid2', 5)", "INSERT INTO Acid VALUES (3, 'acid3', 5)",
-				"INSERT INTO Element VALUES (4, 'element1', 12, 50.01)",
-				"INSERT INTO Element VALUES (5, 'element2', 40, 20.0)",
-				"INSERT INTO Element VALUES (6, 'element3', 55, 20.2)",
-				"INSERT INTO Element VALUES (7, 'element4', 30, 40.0)",
-				"INSERT INTO Element VALUES (8, 'element5', 44, 100.1)" };
+		String[] table_statements = { "INSERT INTO Acid VALUES (1, 4)",
+				"INSERT INTO Acid VALUES (2, 5)", 
+				"INSERT INTO Acid VALUES (3, 5)",
+				"INSERT INTO Element VALUES (4, 12, 50.01)",
+				"INSERT INTO Element VALUES (5, 40, 20.0)",
+				"INSERT INTO Element VALUES (6, 55, 20.2)",
+				"INSERT INTO Element VALUES (7, 30, 40.0)",
+				"INSERT INTO Element VALUES (8, 44, 100.1)" };
 
 		for (int i = 0; i < table_statements.length; i++) {
 			insertData = new String(table_statements[i]);
