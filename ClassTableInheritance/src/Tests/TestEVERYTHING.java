@@ -17,6 +17,7 @@ public class TestEVERYTHING {
 		TestCompoundRDG.runAllTheTests();
 		TestCompoundDTO.runAllTheTests();
 		TestCompoundMadeOfElement.runAllTheTests();
+		TestCompoundTDG.runAllTheTests();
 	}
 
 }
