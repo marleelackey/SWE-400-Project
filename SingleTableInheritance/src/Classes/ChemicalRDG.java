@@ -114,7 +114,7 @@ public class ChemicalRDG {
 	public static ChemicalRDG findByName(String name) {
 		ChemicalRDG chem = null;							
 		try {
-			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalName = "+ name);
+			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalName = '" + name + "'");
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6), r.getInt(7), r.getInt(8));	
 			} 
@@ -129,7 +129,7 @@ public class ChemicalRDG {
 	public static ChemicalRDG findByAtomicNumber(int atomicNumber) {
 		ChemicalRDG chem = null;							
 		try {
-			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Chemical WHERE Chemical.chemcialAtomicNumber = "+ atomicNumber);
+			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalAtomicNumber = "+ atomicNumber);
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6), r.getInt(7), r.getInt(8));	
 			} 
