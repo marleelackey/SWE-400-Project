@@ -17,19 +17,24 @@ public class TestMetalTDG {
 	 * @author Josh Kellogg
 	 */
 	@Test
-	public void testConstructor() {
+	public static void testConstructor() {
 		MetalTDG m = MetalTDG.getInstance();
 		assertNotEquals(m, null);
 	}
 	
 	@Test
-	public void testGetAllMetals() {
+	public static void testGetAllMetals() {
 		MetalTDG m = MetalTDG.getInstance();
 		ArrayList<MetalDTO> results = m.getAllMetals();
 		assertEquals(results.size(), 4);
 		for(int i = 0; i < results.size(); i++) {
 			assertEquals(results.get(i).getDissolvedBy(), (i + 5));
 		}
+	}
+
+	public static void runAllTheTests() {
+		testConstructor();
+		testGetAllMetals();
 	}
 
 }

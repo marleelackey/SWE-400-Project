@@ -64,12 +64,7 @@ public class MetalRDG {
 	
 	public void update() {
 		PreparedStatement stmt;
-		Connection cn;
 		try {
-			DatabaseManager db = DatabaseManager.getSingleton();
-			db.setPatternNumber(2);
-			cn = db.getConnection();
-			//May need a WHERE clause at end
 			stmt = cn.prepareStatement("UPDATE Metal SET metalName = ?, metalAtomicNumber = ?, metalAtomicMass = ?, metalDissolvedBy = ?, WHERE elementOrMetalID = ?");
 			stmt.setString(1, name);
 			stmt.setInt(2, atomicNumber);

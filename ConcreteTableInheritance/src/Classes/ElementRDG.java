@@ -90,7 +90,8 @@ public class ElementRDG {
 			cn = db.getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementAtomicMass = " + atomMass);
 			rs.next();
-			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"));		} catch (Exception e ){
+			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"));		
+		} catch (Exception e ){
 			DatabaseException.detectError(e);
 		}
 		return data;
