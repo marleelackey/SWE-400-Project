@@ -1,6 +1,6 @@
 package Tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
@@ -13,10 +13,9 @@ import Datasource.DatabaseManager;
 
 public class TestBaseTDG {
 	
-	
 	@Before
 	public void runRunnable() {
-		DatabaseManager.setPatternNumber(3);
+		DatabaseManager.setPatternNumber(2);
 	}
 	
 	@Test
@@ -24,11 +23,10 @@ public class TestBaseTDG {
 		ArrayList<BaseDTO> list = new ArrayList<BaseDTO>();
 		
 		list = BaseTDG.getAllBases();
-		assertEquals(list.get(0).getID(), 12);
-		assertEquals(list.get(1).getID(), 13);
+		assertEquals(list.get(0).getID(), 9);
+		assertEquals(list.get(1).getID(), 10);
 
 		
 	}
-
 
 }

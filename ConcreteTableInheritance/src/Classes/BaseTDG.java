@@ -8,7 +8,7 @@ import Datasource.DatabaseManager;
 
 public class BaseTDG {
 
-	public ArrayList<BaseDTO> getAllBases() 
+	public static ArrayList<BaseDTO> getAllBases() 
 	{
 		ArrayList<BaseDTO> data = new ArrayList<BaseDTO>();
 		ResultSet rs;
@@ -16,9 +16,8 @@ public class BaseTDG {
 		try {
 			Connection cn = DatabaseManager.getSingleton().getConnection();
 			rs = cn.createStatement().executeQuery("SELECT * FROM Base");
-			//rs.next();
 			while(rs.next()) {
-				data.add(new BaseDTO(rs.getInt("baseID"), rs.getString("baseName"), rs.getInt("baseSolute")));
+				data.add(new BaseDTO(rs.getInt(1), rs.getString(2), rs.getInt(3)));
 				}	
 		} catch (Exception e) {
 				DatabaseException.detectError(e);	

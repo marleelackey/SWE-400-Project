@@ -65,6 +65,8 @@ public class ClassTableCreator {
 		String[] table_statements = { "INSERT INTO Acid VALUES (1, 4)",
 				"INSERT INTO Acid VALUES (2, 5)", 
 				"INSERT INTO Acid VALUES (3, 5)",
+				"INSERT INTO Base VALUES (12, 5)",
+				"INSERT INTO Base VALUES (13, 6)",		
 				"INSERT INTO Element VALUES (4, 12, 50.01)",
 				"INSERT INTO Element VALUES (5, 40, 20.0)",
 				"INSERT INTO Element VALUES (6, 55, 20.2)",
