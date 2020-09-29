@@ -9,7 +9,7 @@ import Classes.MetalRDG;
 public class TestMetalRDG {
 
 	@Test
-	public void testConstructorAndGetters() {
+	public static void testConstructorAndGetters() {
 		MetalRDG m = new MetalRDG(1, 2, 3, 4.0, "Test");
 		assertEquals(m.getID(), 1);
 		assertEquals(m.getAtomicNumber(), 2);
@@ -19,7 +19,7 @@ public class TestMetalRDG {
 	}
 	
 	@Test
-	public void testFindByID() {
+	public static void testFindByID() {
 		MetalRDG m = MetalRDG.findByID(20);
 		assertEquals(m.getAtomicMass(), 21.0, 0.01);
 		assertEquals(m.getAtomicNumber(), 21);
@@ -28,7 +28,7 @@ public class TestMetalRDG {
 	}
 	
 	@Test
-	public void testFindByAtomicNumber() {
+	public static void testFindByName() {
 		MetalRDG m = MetalRDG.findByName("metal2");
 		assertEquals(m.getAtomicMass(), 22.0, 0.01);
 		assertEquals(m.getAtomicNumber(), 22);
@@ -37,8 +37,20 @@ public class TestMetalRDG {
 	}
 	
 	@Test
-	public void testUpdate() {
-		
+	public static void testUpdate() {
+		MetalRDG m = MetalRDG.findByID(20);
+		assertEquals(m.getAtomicMass(), 21.0, 0.01); 
+		m.setAtomicMass(450.0);
+		m.update();
+		MetalRDG f = MetalRDG.findByID(20);
+		assertEquals(m.getAtomicMass(), 450.0, 0.01);
+	}
+	
+	public static void runAllTheTests() {
+		testConstructorAndGetters();
+		testFindByID();
+		testFindByName();
+		testUpdate();
 	}
 
 }

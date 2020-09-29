@@ -24,13 +24,12 @@ public class TestMetalDTO {
 		m.setAtomicMass(656.0);
 		m.setAtomicNumber(351);
 		m.setDissolvedBy(5);
-		m.setID(65);
 		m.setName("Yeetus");
 		
 		assertEquals(m.getAtomicMass(), 656.0, 0.01);
 		assertEquals(m.getAtomicNumber(), 351);
 		assertEquals(m.getDissolvedBy(), 5);
-		assertEquals(m.getID(), 65);
+		assertEquals(m.getID(), 1);
 		assertEquals(m.getName(), "Yeetus");
 	}
 

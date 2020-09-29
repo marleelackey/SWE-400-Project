@@ -22,6 +22,9 @@ public class TestEVERYTHING {
 		TestElementDTO.runAllTheTests();
 		TestElementRDG.runAllTheTests();
 		TestElementTDG.runAllTheTests();
+//		TestMetalDTO.runAllTheTests();
+//		TestMetalTDG.runAllTheTests();
+//		TestMetalRDG.runAllTheTests();
 	}
 
 }

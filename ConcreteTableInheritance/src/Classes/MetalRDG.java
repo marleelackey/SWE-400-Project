@@ -1,6 +1,7 @@
 package Classes;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -59,6 +60,25 @@ public class MetalRDG {
 			DatabaseException.detectError(e);					
 		}
 		return results;
+	}
+	
+	public void update() {
+		PreparedStatement stmt;
+		Connection cn;
+		try {
+			DatabaseManager db = DatabaseManager.getSingleton();
+			db.setPatternNumber(2);
+			cn = db.getConnection();
+			//May need a WHERE clause at end
+			stmt = cn.prepareStatement("UPDATE Metal SET metalName = ?, metalAtomicNumber = ?, metalAtomicMass = ?, metalDissolvedBy = ?, WHERE elementOrMetalID = ?");
+			stmt.setString(1, name);
+			stmt.setInt(2, atomicNumber);
+			stmt.setDouble(3, atomicMass);
+			stmt.setDouble(4, dissolvedBy);
+			stmt.setInt(5, ID);
+		} catch (Exception e) {
+			DatabaseException.detectError(e);
+		}
 	}
 	
 	//Getters and Setters

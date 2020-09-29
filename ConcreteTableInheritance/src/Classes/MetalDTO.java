@@ -25,10 +25,6 @@ public class MetalDTO {
 		return ID;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
-	}
-
 	public int getAtomicNumber() {
 		return atomicNumber;
 	}
