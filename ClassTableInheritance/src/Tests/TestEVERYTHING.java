@@ -11,9 +11,13 @@ public class TestEVERYTHING {
 		TestElementDTO.runAllTheTests();
 		TestElementTDG.runAllTheTests();
 		TestElementRDG.runAllTheTests();
+<<<<<<< HEAD
 		TestMetalDTO.runAllTheTests();
 		TestMetalTDG.runAllTheTests();
 //		TestMetalRDG.runAllTheTests();
+=======
+		TestCompoundDTO.runAllTheTests();
+>>>>>>> 39d8fb993749fb3d4898306b5462cbfaace6f478
 	}
 
 }
