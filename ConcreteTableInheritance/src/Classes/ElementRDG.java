@@ -125,10 +125,6 @@ public class ElementRDG {
 		return ID;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
-	}
-
 	public int getAtomicNumber() {
 		return atomicNumber;
 	}
@@ -166,11 +162,11 @@ public class ElementRDG {
 			db.setPatternNumber(2);
 			cn = db.getConnection();
 			//May need a WHERE clause at end
-			stmt = cn.prepareStatement("UPDATE ELEMENT SET ID = ?, atomicNumber = ?, atomicMass = ?, name = ?");
-			stmt.setInt(1, ID);
-			stmt.setInt(2, atomicNumber);
-			stmt.setDouble(3, atomicMass);
-			stmt.setString(4, name);
+			stmt = cn.prepareStatement("UPDATE Element SET elementAtomicNumber = ?, elementAtomicMass = ?, elementName = ?, WHERE elementOrMetalID = ?");
+			stmt.setInt(1, atomicNumber);
+			stmt.setDouble(2, atomicMass);
+			stmt.setString(3, name);
+			stmt.setInt(4, ID);
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}

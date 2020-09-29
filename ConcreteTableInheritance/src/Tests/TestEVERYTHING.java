@@ -19,9 +19,9 @@ public class TestEVERYTHING {
 		TestCompoundDTO.runAllTheTests();
 		TestCompoundRDG.runAllTheTests();
 		TestCompoundMadeOfElement.runAllTheTests();
-//		TestElementDTO.runAllTheTests();
-//		TestElementRDG.runAllTheTests();
-//		TestElementTDG.runAllTheTests();
+		TestElementDTO.runAllTheTests();
+		TestElementRDG.runAllTheTests();
+		TestElementTDG.runAllTheTests();
 	}
 
 }

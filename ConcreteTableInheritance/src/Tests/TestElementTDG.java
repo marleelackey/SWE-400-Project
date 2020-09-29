@@ -12,7 +12,7 @@ import Classes.ElementTDG;
 public class TestElementTDG {
 
 	@Test
-	public void testSingleton() {
+	public static void testSingleton() {
 		ElementTDG c = ElementTDG.getInstance();
 		ElementTDG d = ElementTDG.getInstance();
 		assertNotEquals(c, null);
@@ -21,7 +21,7 @@ public class TestElementTDG {
 	}
 	
 	@Test
-	public void testGetElementsInRange() {
+	public static void testGetElementsInRange() {
 		ElementTDG c = ElementTDG.getInstance();
 		ArrayList<ElementDTO> result = new ArrayList<ElementDTO>();
 		result = c.getElementsInRange(0, 100);
@@ -34,6 +34,11 @@ public class TestElementTDG {
 			}
 		}
 		System.out.println("All atomic masses in range");
+	}
+	
+	public static void runAllTheTests() {
+		testSingleton();
+		testGetElementsInRange();
 	}
 
 }
