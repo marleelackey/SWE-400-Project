@@ -36,4 +36,24 @@ public class CompoundRDG {
 	public void setCompoundID(int compoundID) {
 		this.compoundID = compoundID;
 	}
-}
+	
+	/**
+	 * Return a CompoundRDG given the ID of a compound
+	 * @param ID
+	 * @return
+	 */
+	public CompoundRDG findByIDClass(int ID) {
+		CompoundRDG comp = null;							
+		try {
+			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Compound WHERE Compound.compoundID = " + ID);
+			r.next();
+			comp = new CompoundRDG(r.getInt(1));						
+		} catch (SQLException e) {
+			DatabaseException.detectError(e);					
+		}
+										
+		return comp;	
+	
+		}
+	}
+
