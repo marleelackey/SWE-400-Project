@@ -1,6 +1,11 @@
 package Classes;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import Datasource.DatabaseException;
+import Datasource.DatabaseManager;
 
 /**
  * Table Data Gateway for the Acid table
@@ -31,7 +36,20 @@ public class AcidTDG {
 	 * @return an ArrayList of AcidDTOs
 	 */
 	public ArrayList<AcidDTO> getAllAcids() {
-		return null;
-		// can be done if we feel like it l8r
+		ArrayList<AcidDTO> list = new ArrayList<AcidDTO>();
+		Connection c;
+		
+		try {
+			c = DatabaseManager.getSingleton().getConnection();
+			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Acid");
+			while(rs.next()) {
+				AcidDTO dto = new AcidDTO(rs.getInt(1), rs.getString(2), rs.getInt(3));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			DatabaseException.detectError(e);
+		}
+		
+		return list;
 	}
 }
