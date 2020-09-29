@@ -20,5 +20,16 @@ public class CompoundMadeOfElement {
 		this.compoundID = compID;
 		this.elementID = elemID;
 	}
+
+	// getters
+	public int getCompoundID() {
+		return compoundID;
+	}
+
+	public int getElementID() {
+		return elementID;
+	}
+
+	
 	
 }
