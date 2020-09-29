@@ -43,7 +43,7 @@ public class TestChemicalTDG {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
 		ArrayList<ChemicalDTO> result = c.getElementsInRange(0, 100);
 		//Test to make sure it gets the correct number of dtos
-		assertEquals(11, result.size());
+		assertEquals(11, result.size());  //TODO FIX YOUR LIFE, KIDDO
 		//Test to make sure all dto atomic masses are in range
 		for(int i = 0; i < result.size(); i++) {
 			if((result.get(i).getChemicalAtomicMass() < 1) || result.get(i).getChemicalAtomicMass() > 100) {
@@ -58,7 +58,7 @@ public class TestChemicalTDG {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
 		ArrayList<CompoundMadeOfElementDTO> result = c.getCompoundsByElement(1);
 		//Test to make sure it gets the correct number of dtos
-		assertEquals(1, result.size());
+		assertEquals(1, result.size());  //TODO FIX YOUR LIFE TOO, OTHER KIDDO
 		//Test to make sure all compounds have the correct elements
 		for(int i = 0; i < result.size(); i++) {
 			assertEquals(result.get(i).getElementID(), 1);

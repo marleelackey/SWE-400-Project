@@ -83,7 +83,7 @@ public class TestChemicalRDG {
 	public static void updateTest() throws DatabaseException {
 		ChemicalRDG chem = new ChemicalRDG(30, 2, "bobrogyn", 2, 2.999, 1, 0, 1 );
 		chem.update();
-		assertEquals(chem.getID(), 2);
+		assertEquals(chem.getID(), 30);
 		assertEquals(chem.getType(), 2);
 		assertEquals(chem.getName(), "bobrogyn");
 		assertEquals(chem.getAtomicNumber(), 2);
@@ -95,7 +95,7 @@ public class TestChemicalRDG {
 		// make a change and make sure its changed
 		chem = new ChemicalRDG(30, 2, "bobrogyn", 3, 3.999, 1, 0, 1 );
 		chem.update();
-		assertEquals(chem.getID(), 2);
+		assertEquals(chem.getID(), 30);
 		assertEquals(chem.getType(), 2);
 		assertEquals(chem.getName(), "bobrogyn");
 		assertEquals(chem.getAtomicNumber(), 3);

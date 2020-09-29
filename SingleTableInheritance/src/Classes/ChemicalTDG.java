@@ -45,10 +45,10 @@ public class ChemicalTDG {
 		
 		try {
 			Connection cn = DatabaseManager.getSingleton().getConnection();
-			rs = cn.createStatement().executeQuery("SELECT * FROM CHEMICAL WHERE type = 1");
+			rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE chemicalType = 1");
 			while(rs.next()) {
-				data.add(new ChemicalDTO(rs.getInt("id"), rs.getInt("type"), rs.getString("name"), rs.getInt("atomicNumber"),
-						rs.getDouble("atomicMass"), rs.getInt("dissolvedBy"), rs.getInt("acidSolute"), rs.getInt("baseSolute")));
+				data.add(new ChemicalDTO(rs.getInt("chemicalID"), rs.getInt("chemicalType"), rs.getString("chemicalName"), rs.getInt("chemicalAtomicNumber"),
+						rs.getDouble("chemicalAtomicMass"), rs.getInt("chemicalDissolvedBy"), rs.getInt("chemicalAcidSolute"), rs.getInt("chemicalBaseSolute")));
 			}
 		} catch (Exception e){
 			DatabaseException.detectError(e);
@@ -69,10 +69,10 @@ public class ChemicalTDG {
 		
 		try {
 			Connection cn = DatabaseManager.getSingleton().getConnection();
-			rs = cn.createStatement().executeQuery("SELECT * FROM CHEMICAL WHERE atomicMass > " + lower + " AND atomicMass < " + upper);
+			rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE chemicalAtomicMass > " + lower + " AND chemicalAtomicMass < " + upper);
 			while(rs.next()) {
-				data.add(new ChemicalDTO(rs.getInt("id"), rs.getInt("type"), rs.getString("name"), rs.getInt("atomicNumber"),
-						rs.getDouble("atomicMass"), rs.getInt("dissolvedBy"), rs.getInt("acidSolute"), rs.getInt("baseSolute")));
+				data.add(new ChemicalDTO(rs.getInt("chemicalID"), rs.getInt("chemicalType"), rs.getString("chemicalName"), rs.getInt("chemicalAtomicNumber"),
+						rs.getDouble("chemicalAtomicMass"), rs.getInt("chemicalDissolvedBy"), rs.getInt("chemicalAcidSolute"), rs.getInt("chemicalBaseSolute")));
 			}
 			
 		} catch(Exception e) {
