@@ -9,6 +9,7 @@ public class TestEVERYTHING {
 
 	public static void testRunAllTheTests() {
 		TestElementRDG.runAllTheTests();
+		TestCompoundDTO.runAllTheTests();
 	}
 
 }
