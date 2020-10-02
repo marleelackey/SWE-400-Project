@@ -66,13 +66,13 @@ public class DatabaseException extends Exception
 	 */
 	public static void detectError(Exception e)
 	{	
-		DatabaseException d = new DatabaseException("yeet", e);
+		DatabaseException d = new DatabaseException("A problem ensued; please investigate the error in your ways", e);
 		System.out.println(d.toString());
 	}
 	
 	public static void detectError(Exception e, String location)
 	{	
-		DatabaseException d = new DatabaseException("yeet " + location, e);
+		DatabaseException d = new DatabaseException("A problem ensued; please investigate the error in your ways. It is likely located in " + location, e);
 		System.out.println(d.toString());
 	}
 
