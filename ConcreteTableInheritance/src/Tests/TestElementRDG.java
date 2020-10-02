@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Classes.AcidRDG;
+import Classes.BaseRDG;
 import Classes.ElementRDG;
 
 public class TestElementRDG {
@@ -49,6 +51,19 @@ public class TestElementRDG {
 		assertEquals(e.getAtomicMass(), 20.0, 0.01);
 	}
 	
+	/**
+	 * JUnit to test that we can get the type from a name (if it exists)
+	 * @author Madeline and Adam
+	 */
+	@Test
+	public static void testFindTypeByName() {
+		String type = ElementRDG.findTypeByName("element2");
+		assertEquals("Element", type);
+		
+		String typeFakeNews = ElementRDG.findTypeByName("notReallyAnElement");
+		assertNull(typeFakeNews);
+	}
+	
 	@Test
 	public static void testFindByAtomicNumber() {
 		ElementRDG e = ElementRDG.findByAtomicNumber(55);
@@ -72,8 +87,17 @@ public class TestElementRDG {
 		//Write after figuring out rollback
 	}
 	
+	/**
+	 * @author Madeline and Adam
+	 */
 	public static void runAllTheTests() {
 		testConstructor();
+		testGettersAndSetters();
+		testFindByID();
+		testFindByName();
+		testFindTypeByName();
+		testFindByAtomicNumber();
+		testFindByAtomicMass();
 	}
 
 }

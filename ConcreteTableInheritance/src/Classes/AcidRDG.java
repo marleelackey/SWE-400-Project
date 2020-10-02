@@ -3,6 +3,8 @@ package Classes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 
@@ -69,6 +71,25 @@ public class AcidRDG {
 			DatabaseException.detectError(e);
 		}
 		return result;
+	}
+	
+	/**
+	 * Method to see if a Chemical with a given name is an Acid
+	 * @param name the name of the Chemical
+	 * @return Acid if it is an Acid, null if it is not
+	 */
+	public static String findTypeByName(String name) {
+		Connection c;
+		try {
+			c = DatabaseManager.getSingleton().getConnection();
+			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Acid WHERE Acid.acidName = '" + name + "'");
+			if (rs.next()) {
+				return "Acid";
+			}
+		} catch (SQLException | DatabaseException e) {
+			DatabaseException.detectError(e);
+		}
+		return null;
 	}
 
 	/**

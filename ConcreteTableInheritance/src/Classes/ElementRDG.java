@@ -3,6 +3,7 @@ package Classes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
@@ -116,6 +117,26 @@ public class ElementRDG {
 			DatabaseException.detectError(e);
 		}
 		return data;
+	}
+	
+	/**
+	 * Method to see if a Chemical with a given name is an Element
+	 * @author Madeline and Adam
+	 * @param name the name of the Element
+	 * @return Element if it is an Element, null if it is not
+	 */
+	public static String findTypeByName(String name) {
+		Connection c;
+		try {
+			c = DatabaseManager.getSingleton().getConnection();
+			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Element WHERE Element.elementName = '" + name + "'");
+			if (rs.next()) {
+				return "Element";
+			}
+		} catch (SQLException | DatabaseException e) {
+			DatabaseException.detectError(e);
+		}
+		return null;
 	}
 
 	/**

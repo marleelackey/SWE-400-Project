@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import Classes.AcidRDG;
 import Classes.BaseRDG;
 import Datasource.DatabaseManager;
 
@@ -16,7 +17,7 @@ public class TestBaseRDG {
 	}
 
 	@Test
-	public void testBaseRDGConstructor() {
+	public static void testBaseRDGConstructor() {
 		BaseRDG dot = new BaseRDG(23, "Sodium Hydroxide" , 83);
 		assertEquals(23, dot.getID());
 		assertEquals("Sodium Hydroxide", dot.getName());
@@ -24,21 +25,34 @@ public class TestBaseRDG {
 	}
 	
 	@Test
-	public void testBaseRDG_findByID()
+	public static void testBaseRDG_findByID()
 	{
 		BaseRDG dot = BaseRDG.findByID(10);
 		assertEquals("base2", dot.getName());
 	}
 	
 	@Test
-	public void testBaseRDG_findByName()
+	public static void testBaseRDG_findByName()
 	{
 		BaseRDG dot = BaseRDG.findByName("base2");
 		assertEquals(10, dot.getID());
 	}
+	
+	/**
+	 * JUnit to test that we can get the type from a name (if it exists)
+	 * @author Madeline and Adam
+	 */
+	@Test
+	public static void testFindTypeByName() {
+		String type = BaseRDG.findTypeByName("base2");
+		assertEquals("Base", type);
+		
+		String typeFakeNews = BaseRDG.findTypeByName("notReallyABase");
+		assertNull(typeFakeNews);
+	}
 
 	@Test
-	public void testBaseRDG_Update() 
+	public static void testBaseRDG_Update() 
 	{
 		BaseRDG dot = BaseRDG.findByID(10);
 		assertEquals("base2", dot.getName());
@@ -46,6 +60,17 @@ public class TestBaseRDG {
 		dot.update();
 		BaseRDG doto = BaseRDG.findByID(10);
 		assertEquals("Sodium Hydroxide", doto.getName());
+	}
+	
+	/**
+	 * @author Madeline and Adam
+	 */
+	public static void runAllTheTests() {
+		testBaseRDGConstructor();
+		testBaseRDG_findByID();
+		testBaseRDG_findByName();
+		testFindTypeByName();
+		testBaseRDG_Update();
 	}
 
 }

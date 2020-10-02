@@ -69,7 +69,7 @@ public class CompoundRDG {
 	public static CompoundRDG findByNameConcrete(String name) {
 		CompoundRDG chem = null;							
 		try {
-			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Compound WHERE Compound.compoundName = " + name);
+			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Compound WHERE Compound.compoundName = '" + name + "'");
 			r.next();
 			chem = new CompoundRDG(r.getInt(1), r.getString(2));						
 		} catch (SQLException e) {
@@ -77,6 +77,26 @@ public class CompoundRDG {
 		}
 										
 		return chem;	
+	}
+	
+	/**
+	 * Method to see if a Chemical with a given name is a Compound
+	 * @author Madeline and Adam
+	 * @param name the name of the Chemical
+	 * @return Compound if it is a Compound, null if it is not
+	 */
+	public static String findTypeByName(String name) {
+		Connection c;
+		try {
+			c = DatabaseManager.getSingleton().getConnection();
+			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Compound WHERE Compound.compoundName = '" + name + "'");
+			if (rs.next()) {
+				return "Compound";
+			}
+		} catch (SQLException | DatabaseException e) {
+			DatabaseException.detectError(e);
+		}
+		return null;
 	}
 	
 	// update

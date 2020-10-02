@@ -62,6 +62,26 @@ public class MetalRDG {
 		return results;
 	}
 	
+	/**
+	 * Method to see if a Chemical with a given name is a Metal
+	 * @author Madeline and Adam
+	 * @param name the name of the Chemical
+	 * @return Metal if it is a Metal, null if it is not
+	 */
+	public static String findTypeByName(String name) {
+		Connection c;
+		try {
+			c = DatabaseManager.getSingleton().getConnection();
+			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Metal WHERE Metal.MetalName = '" + name + "'");
+			if (rs.next()) {
+				return "Metal";
+			}
+		} catch (SQLException | DatabaseException e) {
+			DatabaseException.detectError(e);
+		}
+		return null;
+	}
+	
 	public void update() {
 		PreparedStatement stmt;
 		try {

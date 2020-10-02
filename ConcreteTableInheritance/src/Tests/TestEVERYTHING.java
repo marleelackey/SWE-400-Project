@@ -16,16 +16,24 @@ public class TestEVERYTHING {
 		TestAcidDTO.runAllTheTests();
 		TestAcidRDG.runAllTheTests();
 		TestAcidTDG.runAllTheTests();
+		
+		TestBaseDTO.runAllTheTests();
+		TestBaseRDG.runAllTheTests();
+		TestBaseTDG.runAllTheTests();
+		
 		TestCompoundDTO.runAllTheTests();
 		TestCompoundRDG.runAllTheTests();
 		TestCompoundTDG.runAllTheTests();
+		
 		TestCompoundMadeOfElement.runAllTheTests();
+		
 		TestElementDTO.runAllTheTests();
 		TestElementRDG.runAllTheTests();
 		TestElementTDG.runAllTheTests();
+		
 		TestMetalDTO.runAllTheTests();
-		TestMetalTDG.runAllTheTests();
 		TestMetalRDG.runAllTheTests();
+		TestMetalTDG.runAllTheTests();
 	}
 
 }

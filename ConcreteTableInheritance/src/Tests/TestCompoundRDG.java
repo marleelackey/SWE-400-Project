@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Classes.AcidRDG;
+import Classes.BaseRDG;
 import Classes.CompoundRDG;
 
 public class TestCompoundRDG {
@@ -31,6 +33,18 @@ public class TestCompoundRDG {
 		
 	}
 	
+	/**
+	 * JUnit to test that we can get the type from a name (if it exists)
+	 * @author Madeline and Adam
+	 */
+	@Test
+	public static void testFindTypeByName() {
+		String type = CompoundRDG.findTypeByName("Carodine");
+		assertEquals("Compound", type);
+		
+		String typeFakeNews = CompoundRDG.findTypeByName("notReallyACompound");
+		assertNull(typeFakeNews);
+	}
 	
 	@Test
 	public static void testUpdate() {
@@ -44,7 +58,8 @@ public class TestCompoundRDG {
 	
 	public static void runAllTheTests() {
 		testConstructorAndGettersAndSetters();
-		//testFinders();
+		testFinders();
+		testFindTypeByName();
 		testUpdate();
 	}
 }

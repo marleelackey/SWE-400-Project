@@ -11,11 +11,15 @@ import Classes.BaseDTO;
 public class TestBaseDTO {
 
 	@Test
-	public void test() {
+	public static void test() {
 		BaseDTO dot = new BaseDTO(23, "Sodium Hydroxide" , 83);
 		assertEquals(23, dot.getID());
 		assertEquals("Sodium Hydroxide", dot.getName());
 		assertEquals(83, dot.getSolute());
+	}
+	
+	public static void runAllTheTests() {
+		test();
 	}
 
 }
