@@ -56,6 +56,9 @@ public class TestChemicalRDG {
 		assertEquals(chem1.getSoluteA(), 5);
 		assertEquals(chem1.getSoluteB(), 6);
 		
+		String chemmm = ChemicalRDG.findTypeByName("name2");
+		assertEquals("Chemical", chemmm);
+		
 		ChemicalRDG chem2 = ChemicalRDG.findByAtomicNumber(5);
 		assertEquals(chem2.getID(), 3);
 		assertEquals(chem2.getType(), 0);

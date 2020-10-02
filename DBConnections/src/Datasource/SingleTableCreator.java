@@ -42,7 +42,7 @@ public class SingleTableCreator {
 	public static void addTestRows() throws SQLException, DatabaseException {
 		stmt = DatabaseManager.getSingleton().getConnection().createStatement();
 
-		String[] table_statements = { "INSERT INTO Chemical VALUES (1, 0, 'name1', null, 20.7, null, null, null)",
+		String[] table_statements = { "INSERT INTO Chemical VALUES (1, 0, 'name0', null, 20.7, null, null, null)",
 				"INSERT INTO Chemical VALUES (2, 0, 'name1', null, 20.8, null, null, null)",
 				"INSERT INTO Chemical VALUES (3, 0, 'name2', 5, 20.9, 5, 5,6)",
 				"INSERT INTO Chemical VALUES (4, 1, 'name3', null, 21.7, null, null, null)",
@@ -57,7 +57,10 @@ public class SingleTableCreator {
 				"INSERT INTO Chemical VALUES (13, 4, 'name12', null, 27.7, null, null, null)",
 				"INSERT INTO Chemical VALUES (14, 4, 'name13', null, 26.7, null, null, null)",
 				"INSERT INTO Chemical VALUES (15, 5, 'name14', null, 27.7, null, null, null)",
-				"INSERT INTO Chemical VALUES (16, 5, 'name15', null, 1230.7, null, null, null)" };
+				"INSERT INTO Chemical VALUES (16, 5, 'name15', null, 1230.7, null, null, null)",
+				"INSERT INTO CompoundMadeOfElement VALUES (15, 10)",
+				"INSERT INTO CompoundMadeOfElement VALUES (15, 11)",
+				"INSERT INTO CompoundMadeOfElement VALUES (16, 10)" };
 
 		for (int i = 0; i < table_statements.length; i++) {
 			insertData = new String(table_statements[i]);
