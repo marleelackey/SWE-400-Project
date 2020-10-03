@@ -34,7 +34,7 @@ public class TestCompoundTDG {
 	}
 	
 	/**
-	 * runner used by entire Concrete project to run all tests at once
+	 * runner used by entire Class project to run all tests at once
 	 */
 	@Test
 	public static void runAllTheTests() {

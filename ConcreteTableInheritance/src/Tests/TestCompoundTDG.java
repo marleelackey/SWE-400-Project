@@ -9,6 +9,12 @@ import org.junit.Test;
 import Classes.CompoundDTO;
 import Classes.CompoundTDG;
 
+/**
+ * 
+ * @author Marlee Lackey
+ * @author Taryn Whitman
+ *
+ */
 public class TestCompoundTDG {
 
 	/**

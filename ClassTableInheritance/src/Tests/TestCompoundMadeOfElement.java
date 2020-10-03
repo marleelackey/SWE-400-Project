@@ -6,8 +6,17 @@ import org.junit.Test;
 
 import Classes.CompoundMadeOfElement;
 
+/**
+ * 
+ * @author Marlee Lackey
+ * @author Taryn Whitman
+ *
+ */
 public class TestCompoundMadeOfElement {
 
+	/**
+	 * Test that the constructor and getters work properly
+	 */
 	@Test
 	public static void testConstructorAndGetters() {
 		CompoundMadeOfElement comp = new CompoundMadeOfElement(1,2);
@@ -16,6 +25,9 @@ public class TestCompoundMadeOfElement {
 	}
 
 	
+	/**
+	 * runner used by entire Class project to run all tests at once
+	 */
 	@Test
 	public static void runAllTheTests() {
 		testConstructorAndGetters();

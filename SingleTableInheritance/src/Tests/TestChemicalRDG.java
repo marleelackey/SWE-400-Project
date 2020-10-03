@@ -14,28 +14,33 @@ import Datasource.DatabaseException;
 
 public class TestChemicalRDG {
 	
-	/* 
+	/**
 	 * test the constructor that makes an object from a tuple already stored in the database
 	 */
 	@Test
-	public static void constructor1Test() throws DatabaseException {
+	public static void constructor1Test() {
 		
-		ChemicalRDG chemical = new ChemicalRDG(9, 2, "bobrogyn", 51, 20.7, 52, 53, 2);
-		assertEquals(chemical.getID(), 9);
-		assertEquals(chemical.getType(), 2);
-		assertEquals(chemical.getName(), "bobrogyn");
-		assertEquals(chemical.getAtomicNumber(), 51);
-		assertEquals(chemical.getAtomicMass(), 20.7, 0.001);
-		assertEquals(chemical.getDissolvedBy(), 52);
-		assertEquals(chemical.getSoluteA(), 53);
-		assertEquals(chemical.getSoluteB(), 2);
+		ChemicalRDG chemical;
+		try {
+			chemical = new ChemicalRDG(9, 2, "bobrogyn", 51, 20.7, 52, 53, 2);
+			assertEquals(chemical.getID(), 9);
+			assertEquals(chemical.getType(), 2);
+			assertEquals(chemical.getName(), "bobrogyn");
+			assertEquals(chemical.getAtomicNumber(), 51);
+			assertEquals(chemical.getAtomicMass(), 20.7, 0.001);
+			assertEquals(chemical.getDissolvedBy(), 52);
+			assertEquals(chemical.getSoluteA(), 53);
+			assertEquals(chemical.getSoluteB(), 2);
+		} catch (DatabaseException e) {
+			DatabaseException.detectError(e);
+		}
 	}
 
+	/**
+	 * Test that the finders all work properly
+	 */
 	@Test
-	public static void findersTest() throws DatabaseException{
-		//ChemicalRDG chem = new ChemicalRDG(3, 2, "bobrogyn", 2, 2.999, 1, 0, 1 );
-		//ChemicalDTO d = nnewew ChemicalDTO(3, 2, "bobrogyn", 2, 2.999, 1, 0, 1);
-		//ChemicalRDG chem = new ChemicalRDG(3, 0, "name2", 5, 20.9, 5, 5,6);
+	public static void findersTest(){
 		ChemicalRDG chem = ChemicalRDG.findByIDSingle(3);
 		assertEquals(chem.getID(), 3);
 		assertEquals(chem.getType(), 0);
@@ -82,33 +87,53 @@ public class TestChemicalRDG {
 		
 	}
 	
+	/**
+	 * 
+	 * Test that update works properly
+	 */
 	@Test
-	public static void updateTest() throws DatabaseException {
-		ChemicalRDG chem = new ChemicalRDG(30, 2, "bobrogyn", 2, 2.999, 1, 0, 1 );
-		chem.update();
-		assertEquals(chem.getID(), 30);
-		assertEquals(chem.getType(), 2);
-		assertEquals(chem.getName(), "bobrogyn");
-		assertEquals(chem.getAtomicNumber(), 2);
-		assertEquals(chem.getAtomicMass(), 2.999, 0.001);
-		assertEquals(chem.getDissolvedBy(), 1);
-		assertEquals(chem.getSoluteA(), 0);
-		assertEquals(chem.getSoluteB(), 1);
+	public static void updateTest() {
+		ChemicalRDG chem;
+		try {
+			chem = new ChemicalRDG(30, 2, "bobrogyn", 2, 2.999, 1, 0, 1 );
+			chem.update();
+			assertEquals(chem.getID(), 30);
+			assertEquals(chem.getType(), 2);
+			assertEquals(chem.getName(), "bobrogyn");
+			assertEquals(chem.getAtomicNumber(), 2);
+			assertEquals(chem.getAtomicMass(), 2.999, 0.001);
+			assertEquals(chem.getDissolvedBy(), 1);
+			assertEquals(chem.getSoluteA(), 0);
+			assertEquals(chem.getSoluteB(), 1);
+			
+		} catch (DatabaseException e) {
+			DatabaseException.detectError(e);
+		}
+		
 		
 		// make a change and make sure its changed
-		chem = new ChemicalRDG(30, 2, "bobrogyn", 3, 3.999, 1, 0, 1 );
-		chem.update();
-		assertEquals(chem.getID(), 30);
-		assertEquals(chem.getType(), 2);
-		assertEquals(chem.getName(), "bobrogyn");
-		assertEquals(chem.getAtomicNumber(), 3);
-		assertEquals(chem.getAtomicMass(), 3.999, 0.001);
-		assertEquals(chem.getDissolvedBy(), 1);
-		assertEquals(chem.getSoluteA(), 0);
-		assertEquals(chem.getSoluteB(), 1);
+		try {
+			chem = new ChemicalRDG(30, 2, "bobrogyn", 3, 3.999, 1, 0, 1 );
+			chem.update();
+			assertEquals(chem.getID(), 30);
+			assertEquals(chem.getType(), 2);
+			assertEquals(chem.getName(), "bobrogyn");
+			assertEquals(chem.getAtomicNumber(), 3);
+			assertEquals(chem.getAtomicMass(), 3.999, 0.001);
+			assertEquals(chem.getDissolvedBy(), 1);
+			assertEquals(chem.getSoluteA(), 0);
+			assertEquals(chem.getSoluteB(), 1);
+			
+		} catch (DatabaseException e) {
+			DatabaseException.detectError(e);
+		}
+		
 	}
 
-	public static void runAllTheTests() throws Exception {
+	/**
+	 * Allows for our tests to be run in TestEverything()
+	 */
+	public static void runAllTheTests() {
 		constructor1Test();
 		findersTest();
 		updateTest();

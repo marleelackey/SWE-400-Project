@@ -7,6 +7,9 @@ import Classes.CompoundMadeOfElementDTO;
 
 public class TestCompoundMadeOfElement {
 
+	/**
+	 * Test that the getters all work
+	 */
 	@Test
 	public static void testGetters() {
 		CompoundMadeOfElementDTO idk = new CompoundMadeOfElementDTO(1, 3);
@@ -14,6 +17,9 @@ public class TestCompoundMadeOfElement {
 		assertEquals(3, idk.getElementID());
 	}
 	
+	/**
+	 * Allows for our tests to be run in TestEverything()
+	 */
 	@Test
 	public static void runAllTheTests() {
 		testGetters();

@@ -6,6 +6,12 @@ import org.junit.Test;
 
 import Classes.CompoundMadeOfElement;
 
+/**
+ * 
+ * @author Marlee Lackey
+ * @author Taryn Whitman
+ *
+ */
 public class TestCompoundMadeOfElement {
 
 	/**

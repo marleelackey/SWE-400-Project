@@ -26,7 +26,6 @@ public class CompoundRDG {
 		compoundID = id;
 		compoundName = name;
 		
-		//connection = DatabaseManager.getSingleton().getConnection();
 		try {
 			connection = DatabaseManager.getSingleton().getConnection();
 		} catch (DatabaseException e) {
@@ -35,23 +34,35 @@ public class CompoundRDG {
 
 	}
 
-	// getters 
+	/**
+	 * Getter for compoundID
+	 * @return compoundID
+	 */
 	public int getCompoundID() {
 		return compoundID;
 	}
 
+	/**
+	 * Getter for compoundName
+	 * @return compoundName
+	 */
 	public String getCompoundName() {
 		return compoundName;
 	}
 	
-	// setters
+	/**
+	 * Setter for compoundName
+	 * @param compoundName name of compound
+	 */
 	public void setCompoundName(String compoundName) {
 		this.compoundName = compoundName;
 	}
-	
-	// find bys
-	
-	// finders
+
+	/**
+	 * Find a chemical using the ID
+	 * @param ID the id of a chemical you are looking for
+	 * @return ChemicalRDG
+	 */
 	public static CompoundRDG findByIDConcrete(int ID) {
 		CompoundRDG chem = null;							
 		try {
@@ -66,6 +77,11 @@ public class CompoundRDG {
 	
 		}
 	
+	/**
+	 * Find a chemical using the name
+	 * @param name the name of a chemical you are looking for
+	 * @return ChemicalRDG
+	 */
 	public static CompoundRDG findByNameConcrete(String name) {
 		CompoundRDG chem = null;							
 		try {
@@ -99,7 +115,9 @@ public class CompoundRDG {
 		return null;
 	}
 	
-	// update
+	/**
+	 * Updates the database with new values to an existing chemical
+	 */
 	public void update() {
 		PreparedStatement stmt;
 		try {

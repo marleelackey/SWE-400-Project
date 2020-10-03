@@ -16,11 +16,19 @@ public class CompoundDTO {
 		setCompoundID(id);
 	}
 
+	/**
+	 * Setter for compoundID
+	 * @param id the new value of ID you want to set
+	 */
 	public void setCompoundID(int id) {
 		this.compoundID = id;
 		
 	}
 	
+	/**
+	 * Getter for compoundID
+	 * @return compoundID
+	 */
 	public int getCompoundID() {
 		return compoundID;
 	}

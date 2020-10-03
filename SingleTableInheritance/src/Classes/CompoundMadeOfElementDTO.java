@@ -9,7 +9,7 @@ public class CompoundMadeOfElementDTO {
 	private int compoundID,
 				elementID;
 	/**
-	 * @author Dan Holmgren
+	 * Constructor for CompoundMadeOfElement
 	 * @param cID The compound ID
 	 * @param eID The element ID
 	 */
@@ -19,7 +19,7 @@ public class CompoundMadeOfElementDTO {
 	}
 	
 	/**
-	 * 
+	 * Getter for compoundID
 	 * @return The compoundID
 	 */
 	public int getCompoundID() {
@@ -27,7 +27,7 @@ public class CompoundMadeOfElementDTO {
 	}
 	
 	/**
-	 * 
+	 * Getter for elementID
 	 * @return The elementID
 	 */
 	public int getElementID() {

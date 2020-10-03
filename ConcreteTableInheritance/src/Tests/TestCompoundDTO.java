@@ -6,6 +6,12 @@ import org.junit.Test;
 
 import Classes.CompoundDTO;
 
+/**
+ * 
+ * @author Marlee Lackey
+ * @author Taryn Whitman
+ *
+ */
 public class TestCompoundDTO {
 
 	/**

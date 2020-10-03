@@ -21,11 +21,18 @@ public class CompoundMadeOfElement {
 		this.elementID = elemID;
 	}
 
-	// getters
+	/**
+	 * Getter for compoundID
+	 * @return compoundID
+	 */
 	public int getCompoundID() {
 		return compoundID;
 	}
 
+	/**
+	 * Getter for elementID
+	 * @return elementID
+	 */
 	public int getElementID() {
 		return elementID;
 	}

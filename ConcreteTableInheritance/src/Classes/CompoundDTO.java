@@ -19,22 +19,35 @@ public class CompoundDTO {
 		setCompoundName(name);
 	}
 
-	// getters and setters
-
+	
+	/**
+	 * Getter for compoundName
+	 * @return compoundName name of the compound
+	 */
 	public String getCompoundName() {
 		return compoundName;
 	}
 
-
+	/**
+	 * Setter for compoundName
+	 * @param compoundName name of the compound
+	 */
 	public void setCompoundName(String compoundName) {
 		this.compoundName = compoundName;
 	}
 
+	/**
+	 * Getter for compoundID
+	 * @return compoundID ID of the compound
+	 */
 	public int getCompoundID() {
 		return compoundID;
 	}
 
-
+	/**
+	 * Setter for compoundID
+	 * @param compoundID ID of the compound
+	 */
 	public void setCompoundID(int compoundID) {
 		this.compoundID = compoundID;
 	}

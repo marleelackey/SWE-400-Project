@@ -29,18 +29,26 @@ public class CompoundRDG {
 		}
 	}
 
+	/**
+	 * Getter for compoundID
+	 * @return compoundID
+	 */
 	public int getCompoundID() {
 		return compoundID;
 	}
 
+	/**
+	 * Setter for compoundID
+	 * @param compoundID the ID of the compound you are setting
+	 */
 	public void setCompoundID(int compoundID) {
 		this.compoundID = compoundID;
 	}
 	
 	/**
 	 * Return a CompoundRDG given the ID of a compound
-	 * @param ID
-	 * @return
+	 * @param ID the id of a chemical you are looking for
+	 * @return CompoundRDG
 	 */
 	public static CompoundRDG findByIDClass(int ID) {
 		CompoundRDG comp = null;							

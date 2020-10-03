@@ -6,8 +6,17 @@ import org.junit.Test;
 
 import Classes.CompoundRDG;
 
+/**
+ * 
+ * @author Marlee Lackey
+ * @author Taryn Whitman
+ *
+ */
 public class TestCompoundRDG {
 
+	/**
+	 * Test that the constructor, getters, and setters all work
+	 */
 	@Test
 	public static void testConstructorAndGettersAndSetters() {
 		CompoundRDG comp = new CompoundRDG(2, "Iodine");
@@ -19,6 +28,9 @@ public class TestCompoundRDG {
 	
 	}
 
+	/**
+	 * Test that all the findBy's work
+	 */
 	@Test
 	public static void testFinders() {
 		CompoundRDG comp = CompoundRDG.findByIDConcrete(1);
@@ -44,6 +56,9 @@ public class TestCompoundRDG {
 		assertNull(typeFakeNews);
 	}
 	
+	/**
+	 * Test that the update method works correctly
+	 */
 	@Test
 	public static void testUpdate() {
 		CompoundRDG comp = CompoundRDG.findByIDConcrete(1);
@@ -54,6 +69,9 @@ public class TestCompoundRDG {
 		assertEquals(compare.getCompoundName(), "Sweet Carodine");
 	}
 	
+	/**
+	 *  runner used by entire Concrete project to run all tests at once
+	 */
 	public static void runAllTheTests() {
 		testConstructorAndGettersAndSetters();
 		testFinders();

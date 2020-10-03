@@ -42,73 +42,139 @@ public class ChemicalRDG {
 
 	}
 
-	// setters
+	/**
+	 * Setter for id
+	 * @param id the new value of ID you want to set
+	 */
 	public void setID(int id) {
 		ID = id;
 	}
 
+	/**
+	 * Setter for type
+	 * @param type the new value of type you want to set
+	 */
 	public void setType(int type) {
 		this.type = type;
 	}
 
+	/**
+	 * Setter for name
+	 * @param name the new value of name you want to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Setter for atomicNumber
+	 * @param atomicNumber the new value of atomicNumber you want to set
+	 */
 	public void setAtomicNumber(int atomicNumber) {
 		this.atomicNumber = atomicNumber;
 	}
 
+	/**
+	 * Setter for atomicMass
+	 * @param atomicMass the new value of atomicMass you want to set
+	 */
 	public void setAtomicMass(double atomicMass) {
 		this.atomicMass = atomicMass;
 	}
 
+	/**
+	 * Setter for dissolvedBY
+	 * @param dissolvedBy the new value of dissolvedBy you want to set
+	 */
 	public void setDissolvedBy(int dissolvedBy) {
 		this.dissolvedBy = dissolvedBy;
 	}
 
+	/**
+	 * Setter for soluteA
+	 * @param soluteA the new value of soluteA you want to set
+	 */
 	public void setSoluteA(int soluteA) {
 		this.soluteA = soluteA;
 	}
 
+	/** 
+	 * Setter for soluteB
+	 * @param soluteB the new value of soluteB you want to set
+	 */
 	public void setSoluteB(int soluteB) {
 		this.soluteB = soluteB;
 	}
 
-	// getters
+	/**
+	 * Getter for ID 
+	 * @return ID
+	 */
 	public int getID() {
 		return ID;
 	}
 
+	/**
+	 * Getter for type
+	 * @return type
+	 */
 	public int getType() {
 		return type;
 	}
 
+	/**
+	 * Getter for name
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Getter for atomicNumber
+	 * @return atomicNumber
+	 */
 	public int getAtomicNumber() {
 		return atomicNumber;
 	}
 
+	/**
+	 * Getter for atomicMass
+	 * @return atomicMass
+	 */
 	public double getAtomicMass() {
 		return atomicMass;
 	}
 
+	/**
+	 * Getter for dissolvedBy
+	 * @return dissolvedBy
+	 */
 	public int getDissolvedBy() {
 		return dissolvedBy;
 	}
 
+	/**
+	 * Getter for soluteA
+	 * @return soluteA
+	 */
 	public int getSoluteA() {
 		return soluteA;
 	}
 
+	/**
+	 * Getter for soluteB
+	 * @return soluteB
+	 */
 	public int getSoluteB() {
 		return soluteB;
 	}
 
-	// finders
+	/**
+	 * Find a chemical using the ID
+	 * @param ID the id of a chemical you are looking for
+	 * @return ChemicalRDG
+	 */
 	public static ChemicalRDG findByIDSingle(int ID) {
 		ChemicalRDG chem = null;
 		try {
@@ -124,6 +190,11 @@ public class ChemicalRDG {
 		return chem;
 	}
 
+	/**
+	 * Find a chemical using the name
+	 * @param name the name of a chemical you are looking for
+	 * @return ChemicalRDG
+	 */
 	public static ChemicalRDG findByName(String name) {
 		ChemicalRDG chem = null;
 		try {
@@ -140,6 +211,11 @@ public class ChemicalRDG {
 
 	}
 
+	/**
+	 * Find the type of a chemical using the name
+	 * @param name the name of a chemical you are looking for
+	 * @return typeString
+	 */
 	public static String findTypeByName(String name) {
 		ChemicalRDG chem = null;
 		try {
@@ -177,6 +253,11 @@ public class ChemicalRDG {
 		return typeString;
 	}
 
+	/**
+	 * Find a chemical using the atomicNumber
+	 * @param atomicNumber the atomicNumber of a chemical you are looking for
+	 * @return ChemicalRDG
+	 */
 	public static ChemicalRDG findByAtomicNumber(int atomicNumber) {
 		ChemicalRDG chem = null;
 		try {
@@ -192,6 +273,11 @@ public class ChemicalRDG {
 		return chem;
 	}
 
+	/**
+	 * Find a chemical using the atomicMass
+	 * @param atomicMass the atomicMass of a chemical you are looking for
+	 * @return ChemicalRDG
+	 */
 	public static ChemicalRDG findByAtomicMass(double atomicMass) {
 		ChemicalRDG chem = null;
 		try {
@@ -208,6 +294,9 @@ public class ChemicalRDG {
 
 	}
 
+	/**
+	 * Updates the database with new values to an existing chemical
+	 */
 	public void update() {
 		PreparedStatement stmt;
 		try {
