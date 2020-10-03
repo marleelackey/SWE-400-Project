@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import Classes.AcidTDG;
 import Classes.CompoundDTO;
 import Classes.CompoundTDG;
 

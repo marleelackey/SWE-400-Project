@@ -27,7 +27,6 @@ public class MetalTDG {
 		ResultSet rs;
 		try {
 			DatabaseManager db = DatabaseManager.getSingleton();
-			db.setPatternNumber(2);
 			Connection cn = db.getConnection();
 			rs = cn.createStatement().executeQuery("SELECT * FROM Metal");
 			while(rs.next()) {

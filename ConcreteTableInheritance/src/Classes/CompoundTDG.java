@@ -34,9 +34,6 @@ public class CompoundTDG {
 	public ArrayList<CompoundDTO> getCompoundsByElement(int e_ID) {
 		ArrayList<CompoundDTO> list = new ArrayList<CompoundDTO>();
 		ArrayList<Integer> listOfCompounds = new ArrayList<Integer>();
-		ArrayList<Integer> listOfElements = new ArrayList<Integer>();
-		ArrayList<CompoundDTO> result = new ArrayList<CompoundDTO>();
-
 		
 		ResultSet r, s;
 		

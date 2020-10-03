@@ -57,7 +57,7 @@ public class TestAcidRDG {
 	/**
 	 * Run all the tests
 	 */
-	public static void runAll() {
+	public static void runAllTheTests() {
 		testConstructorGettersSetters();
 		testFindByID();
 		testUpdate();

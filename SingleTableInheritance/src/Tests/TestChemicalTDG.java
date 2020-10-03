@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import Classes.ChemicalDTO;
@@ -13,11 +11,6 @@ import Classes.ChemicalTDG;
 import Classes.CompoundMadeOfElementDTO;
 
 public class TestChemicalTDG {
-	
-	@Before
-	public void testSetUp() {
-		//create chemical tdg
-	}
 	
 	@Test
 	public static void testSingleton() {
@@ -65,7 +58,7 @@ public class TestChemicalTDG {
 		}
 	}
 
-	public static void testAll() {
+	public static void runAllTheTests() {
 		testSingleton();
 		testGetAllBases();
 		testGetElementsInRange();

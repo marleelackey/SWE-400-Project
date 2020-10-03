@@ -9,11 +9,16 @@ import Classes.BaseDTO;
 public class TestBaseDTO {
 	
 	@Test
-	public void testBaseDTO() {
+	public static void testBaseDTO() {
 		BaseDTO dto = new BaseDTO(1, 2);
 		assertEquals(1, dto.getID());
 		assertEquals(2, dto.getSolute());
 
+	}
+	
+	@Test
+	public static void runAllTheTests() {
+		testBaseDTO();
 	}
 	
 

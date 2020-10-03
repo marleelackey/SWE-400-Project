@@ -24,8 +24,4 @@ public class CompoundMadeOfElement {
 	public int getCompoundID() {
 		return compoundID;
 	}
-	
-	
-	
-	
 }

@@ -17,9 +17,8 @@ public class TestCompoundRDG {
 	
 	@Test 
 	public static void testFinders() {
-		CompoundRDG comp = CompoundRDG.findByIDClass(1);
-		assertEquals(comp.getCompoundID(), 1);
-		
+		CompoundRDG comp = CompoundRDG.findByIDClass(14);
+		assertEquals(comp.getCompoundID(), 14);
 	}
 	
 	@Test

@@ -12,9 +12,10 @@ public class TestEVERYTHING {
 
 	@Test
 	public static void testRunAllTheTests() throws Exception {
-		TestChemicalDTO.testAll();
-		TestChemicalRDG.testAll();
-		TestChemicalTDG.testAll();
+		TestChemicalDTO.runAllTheTests();
+		TestChemicalRDG.runAllTheTests();
+		TestChemicalTDG.runAllTheTests();
+		TestCompoundMadeOfElement.runAllTheTests();
 	}
 
 }

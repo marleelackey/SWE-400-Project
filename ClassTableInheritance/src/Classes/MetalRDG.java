@@ -19,7 +19,6 @@ public class MetalRDG {
 		DatabaseManager db;
 		try {
 			db = DatabaseManager.getSingleton();
-			db.setPatternNumber(3);
 			cn = db.getConnection();
 		} catch (Exception e) {
 			DatabaseException.detectError(e);

@@ -1,6 +1,7 @@
 package Tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.ArrayList;
 
@@ -8,7 +9,6 @@ import org.junit.Test;
 
 import Classes.MetalDTO;
 import Classes.MetalTDG;
-import Datasource.DatabaseException;
 
 public class TestMetalTDG {
 

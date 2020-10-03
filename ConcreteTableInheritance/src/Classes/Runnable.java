@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import Datasource.ConcreteTableCreator;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
-import Tests.TestAcidRDG;
 import Tests.TestEVERYTHING;
 
 /**

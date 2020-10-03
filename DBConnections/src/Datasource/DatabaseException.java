@@ -1,7 +1,5 @@
 package Datasource;
 
-import java.sql.SQLException;
-
 /**
  * @author Merlin
  */

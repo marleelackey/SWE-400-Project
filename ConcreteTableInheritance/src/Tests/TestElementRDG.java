@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Classes.AcidRDG;
-import Classes.BaseRDG;
 import Classes.ElementRDG;
 
 public class TestElementRDG {

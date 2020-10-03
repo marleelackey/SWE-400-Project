@@ -28,8 +28,8 @@ public class TestCompoundTDG {
 		CompoundTDG comp = CompoundTDG.getSingleton();
 		ArrayList<CompoundDTO> list = comp.getCompoundsByElement(4);
 		assertEquals(list.size(), 2); 
-		assertEquals(list.get(0).getCompoundID(), 0); 
-		assertEquals(list.get(1).getCompoundID(), 1); 
+		assertEquals(list.get(0).getCompoundID(), 14); 
+		assertEquals(list.get(1).getCompoundID(), 15); 
 
 	}
 	

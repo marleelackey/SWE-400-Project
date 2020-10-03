@@ -1,11 +1,10 @@
 package Tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import Classes.CompoundMadeOfElement;
-import Classes.CompoundRDG;
 
 public class TestCompoundMadeOfElement {
 

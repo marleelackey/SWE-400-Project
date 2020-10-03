@@ -42,7 +42,6 @@ public class ElementRDG {
 		ElementRDG data = null;
 		try {
 			DatabaseManager db = DatabaseManager.getSingleton();
-			db.setPatternNumber(2);
 			cn = db.getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementOrMetalID = " + ID);
 			rs.next();
@@ -64,7 +63,6 @@ public class ElementRDG {
 		ElementRDG data = null;
 		try {
 			DatabaseManager db = DatabaseManager.getSingleton();
-			db.setPatternNumber(2);
 			cn = db.getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementAtomicNumber = " + atomicNum);
 			rs.next();
@@ -87,7 +85,6 @@ public class ElementRDG {
 		ElementRDG data = null;
 		try {
 			DatabaseManager db = DatabaseManager.getSingleton();
-			db.setPatternNumber(2);
 			cn = db.getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementAtomicMass = " + atomMass);
 			rs.next();
@@ -109,7 +106,6 @@ public class ElementRDG {
 		ElementRDG data = null;
 		try {
 			DatabaseManager db = DatabaseManager.getSingleton();
-			db.setPatternNumber(2);
 			cn = db.getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementName = '" + eName + "'");
 			rs.next();
@@ -181,7 +177,6 @@ public class ElementRDG {
 		Connection cn;
 		try {
 			DatabaseManager db = DatabaseManager.getSingleton();
-			db.setPatternNumber(2);
 			cn = db.getConnection();
 			//May need a WHERE clause at end
 			stmt = cn.prepareStatement("UPDATE Element SET elementAtomicNumber = ?, elementAtomicMass = ?, elementName = ?, WHERE elementOrMetalID = ?");

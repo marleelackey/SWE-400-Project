@@ -18,9 +18,14 @@ public class TestAcidDTO {
 	 * JUnit to test the AcidDTO constructor and getters
 	 */
 	@Test
-	public void test() {
+	public static void test() {
 		AcidDTO dto = new AcidDTO(1, 4);
 		assertEquals(1, dto.getAcidID());
 		assertEquals(4, dto.getAcidSolute());
+	}
+	
+	@Test
+	public static void runAllTheTests() {
+		test();
 	}
 }

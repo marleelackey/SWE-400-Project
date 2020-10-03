@@ -2,15 +2,9 @@ package Tests;
 
 import static org.junit.Assert.*;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import org.junit.Test;
 
 import Classes.AcidRDG;
-import Datasource.DatabaseException;
-import Datasource.DatabaseManager;
 
 /**
  * Test class for the AcidRDG class
@@ -70,25 +64,6 @@ public class TestAcidRDG {
 		
 		String typeFakeNews = AcidRDG.findTypeByName("notReallyAnAcid");
 		assertNull(typeFakeNews);
-	}
-	
-	/**
-	 * Method to see if a Chemical with a given name is an Acid
-	 * @param name
-	 * @return
-	 */
-	public static String findTypeByName(String name) {
-		Connection c;
-		try {
-			c = DatabaseManager.getSingleton().getConnection();
-			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Acid WHERE Acid.acidName = '" + name + "'");
-			if (rs.next()) {
-				return "Acid";
-			}
-		} catch (SQLException | DatabaseException e) {
-			DatabaseException.detectError(e);
-		}
-		return null;
 	}
 	
 	/**

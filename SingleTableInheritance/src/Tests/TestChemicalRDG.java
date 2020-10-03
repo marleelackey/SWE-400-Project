@@ -1,8 +1,8 @@
 package Tests;
-import static org.junit.Assert.*;
-import java.sql.*;
-import org.junit.*;
-import Classes.ChemicalDTO;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
 import Classes.ChemicalRDG;
 import Datasource.DatabaseException;
 /** 
@@ -108,7 +108,7 @@ public class TestChemicalRDG {
 		assertEquals(chem.getSoluteB(), 1);
 	}
 
-	public static void testAll() throws Exception {
+	public static void runAllTheTests() throws Exception {
 		constructor1Test();
 		findersTest();
 		updateTest();

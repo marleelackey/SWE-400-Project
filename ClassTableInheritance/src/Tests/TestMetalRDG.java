@@ -1,10 +1,9 @@
 package Tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import Classes.ElementRDG;
 import Classes.MetalRDG;
 
 public class TestMetalRDG {

@@ -38,7 +38,6 @@ public class ElementTDG {
 		
 		try {
 			DatabaseManager db = DatabaseManager.getSingleton();
-			db.setPatternNumber(2);
 			Connection cn = db.getConnection();
 			rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementAtomicMass > " + lower + " AND elementAtomicMass < " + upper);
 			while(rs.next()) {

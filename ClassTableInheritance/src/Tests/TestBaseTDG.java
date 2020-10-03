@@ -19,14 +19,17 @@ public class TestBaseTDG {
 	}
 	
 	@Test
-	public void testGetAllBases() {
+	public static void testGetAllBases() {
 		ArrayList<BaseDTO> list = new ArrayList<BaseDTO>();
 		
 		list = BaseTDG.getAllBases();
-		assertEquals(list.get(0).getID(), 9);
-		assertEquals(list.get(1).getID(), 10);
-
-		
+		assertEquals(list.get(0).getID(), 12);
+		assertEquals(list.get(1).getID(), 13);		
+	}
+	
+	@Test
+	public static void runAllTheTests() {
+		testGetAllBases();
 	}
 
 }

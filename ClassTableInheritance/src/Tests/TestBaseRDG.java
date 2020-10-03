@@ -2,8 +2,6 @@ package Tests;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.SQLException;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +17,7 @@ public class TestBaseRDG {
 	}
 	
 	@Test
-	public void testBaseRDG() {
+	public static void testBaseRDG() {
 		BaseRDG rdg = new BaseRDG(1, 2);
 		
 		assertEquals(1, rdg.getID());
@@ -33,13 +31,13 @@ public class TestBaseRDG {
 	}
 	
 	@Test
-	public void testFindByID() {
+	public static void testFindByID() {
 		BaseRDG rdg = BaseRDG.findByID(12);
 		assertEquals(12, rdg.getID());
 	}
 	
 	@Test
-	public void testUpdate() {
+	public static void testUpdate() {
 		try {
 			DatabaseManager.getSingleton().setTesting();
 			
@@ -56,4 +54,10 @@ public class TestBaseRDG {
 		}
 	}
 
+	@Test
+	public static void runAllTheTests() {
+		testBaseRDG();
+		testFindByID();
+		testUpdate();
+	}
 }

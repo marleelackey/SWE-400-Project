@@ -1,12 +1,12 @@
 package Tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import org.junit.Test;
+
 import Classes.ChemicalDTO;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
@@ -66,7 +66,7 @@ public class TestChemicalDTO {
 	/**
 	 * Run all the tests for ChemicalDTO
 	 */
-	public static void testAll() {
+	public static void runAllTheTests() {
 		testConstructorAndGetters();
 		testSingleSelect();
 	}
