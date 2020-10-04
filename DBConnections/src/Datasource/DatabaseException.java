@@ -59,6 +59,7 @@ public class DatabaseException extends Exception
 	}
 	
 	/**
+	 * Prints some information about an Exception.
 	 * @author mad
 	 * @param e
 	 */
@@ -68,6 +69,12 @@ public class DatabaseException extends Exception
 		System.out.println(d.toString());
 	}
 	
+	/**
+	 * Prints some information about an Exception as well as a string 
+	 * that can be passed by whoever is calling it.
+	 * @param e
+	 * @param location
+	 */
 	public static void detectError(Exception e, String location)
 	{	
 		DatabaseException d = new DatabaseException("A problem ensued; please investigate the error in your ways. It is likely located in " + location, e);
