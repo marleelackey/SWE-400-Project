@@ -9,8 +9,18 @@ import org.junit.Test;
 import Classes.ElementDTO;
 import Classes.ElementTDG;
 
+/**
+ * 
+ * @author Daniel Holmgren
+ * @author Joshua Kellogg
+ * 
+ * Test class for ElementTDG
+ */
 public class TestElementTDG {
 
+	/**
+	 * Asserts that there is only ever one ElementTDG at a given time
+	 */
 	@Test
 	public static void testSingleton() {
 		ElementTDG c = ElementTDG.getInstance();
@@ -20,6 +30,9 @@ public class TestElementTDG {
 		assertEquals(c, d);
 	}
 	
+	/**
+	 * Tests the getElementsInRange method
+	 */
 	@Test
 	public static void testGetElementsInRange() {
 		ElementTDG c = ElementTDG.getInstance();
@@ -36,6 +49,9 @@ public class TestElementTDG {
 		System.out.println("All atomic masses in range");
 	}
 	
+	/**
+	 * In order to be efficient runs all tests at once
+	 */
 	public static void runAllTheTests() {
 		testSingleton();
 		testGetElementsInRange();

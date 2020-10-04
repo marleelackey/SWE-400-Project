@@ -6,8 +6,17 @@ import org.junit.Test;
 
 import Classes.ElementDTO;
 
+/**
+ * @author Daniel Holmgren
+ * @author Joshua
+ * Test class for elementDTO
+ */
 public class TestElementDTO {
 
+	/**
+	 * Assigns all the variables with the constructor
+	 * and gets them and makes sure there equal
+	 */
 	@Test
 	public static void testConstructor() {
 		ElementDTO e = new ElementDTO(1, 2, 3.0);
@@ -21,6 +30,9 @@ public class TestElementDTO {
 		assertEquals(e.getAtomicNumber(), 532);
 	}
 
+	/**
+	 * Runs it all, because efficiency
+	 */
 	public static void runAllTheTests() {
 		testConstructor();
 	}

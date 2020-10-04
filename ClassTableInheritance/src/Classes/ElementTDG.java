@@ -6,14 +6,26 @@ import java.util.ArrayList;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 
+/**
+ * @author Daniel Holmgren
+ * @author Joshua Kellogg
+ *
+ */
 public class ElementTDG {
 
 	private static ElementTDG instance;
 	
+	/**
+	 * Empty constructor for singleton purposes 
+	 */
 	private ElementTDG() {
 		
 	}
 	
+	/**
+	 * Singleton getter for singleton purposes
+	 * @return
+	 */
 	public static ElementTDG getInstance() {
 		if(instance == null) {
 			instance = new ElementTDG();
@@ -21,6 +33,14 @@ public class ElementTDG {
 		return instance;
 	}
 	
+	/**
+	 * the getElementsInRange method,
+	 * It gets a list of elementDTOs corresponding to elements
+	 * in the database within the lower and upper range
+	 * @param lower
+	 * @param upper
+	 * @return
+	 */
 	public ArrayList<ElementDTO> getElementInRange(double lower, double upper){
 		ArrayList<ElementDTO> data = new ArrayList<ElementDTO>();
 		ResultSet rs;

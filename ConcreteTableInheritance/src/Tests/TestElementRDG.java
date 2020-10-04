@@ -6,10 +6,19 @@ import org.junit.Test;
 
 import Classes.ElementRDG;
 
+/**
+ * @author Daniel Holmgren
+ * @author Joshua Kellogg
+ * 
+ * Test class for the ElementRDG
+ */
 public class TestElementRDG {
 	
 	//DONT FORGET ROLLBACK
 
+	/**
+	 * Tests the constructor
+	 */
 	@Test
 	public static void testConstructor() {
 		ElementRDG e = new ElementRDG(1, 10, 12.4, "Test");
@@ -19,6 +28,10 @@ public class TestElementRDG {
 		assertEquals(e.getName(), "Test");
 	}
 	
+	/**
+	 * Makes sure the getters and setters can get and set
+	 * respectively
+	 */
 	@Test
 	public static void testGettersAndSetters() {
 		ElementRDG e = new ElementRDG(1, 2, 3.0, "Tester");
@@ -31,6 +44,9 @@ public class TestElementRDG {
 		assertEquals(e.getName(), "New Name");
 	}
 	
+	/**
+	 * Tests the findByID method
+	 */
 	@Test
 	public static void testFindByID() {
 		ElementRDG e = ElementRDG.findByID(4);
@@ -39,7 +55,10 @@ public class TestElementRDG {
 		assertEquals(e.getAtomicNumber(), 12);
 		assertEquals(e.getAtomicMass(), 50.01, 0.01);
 	}
-	
+
+	/**
+	 * Tests the findByName method
+	 */
 	@Test
 	public static void testFindByName() {
 		ElementRDG e = ElementRDG.findByName("element2");
@@ -62,6 +81,9 @@ public class TestElementRDG {
 		assertNull(typeFakeNews);
 	}
 	
+	/**
+	 * Tests the findByAtomicNumber method
+	 */
 	@Test
 	public static void testFindByAtomicNumber() {
 		ElementRDG e = ElementRDG.findByAtomicNumber(55);
@@ -71,6 +93,9 @@ public class TestElementRDG {
 		assertEquals(e.getAtomicMass(), 20.2, 0.01);
 	}
 	
+	/**
+	 * Tests the findByAtomicMass method
+	 */
 	@Test
 	public static void testFindByAtomicMass() {
 		ElementRDG e = ElementRDG.findByAtomicMass(40.0);
@@ -87,6 +112,7 @@ public class TestElementRDG {
 	
 	/**
 	 * @author Madeline and Adam
+	 * To be efficient
 	 */
 	public static void runAllTheTests() {
 		testConstructor();

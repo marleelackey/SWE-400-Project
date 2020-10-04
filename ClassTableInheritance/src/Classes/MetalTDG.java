@@ -7,14 +7,27 @@ import java.util.ArrayList;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 
+/**
+ * @author Daniel Holmgren
+ * @author Joshua Kellogg
+ *
+ * The metalTDG for accessing the database
+ */
 public class MetalTDG {
 	private static MetalTDG instance;
 	
-	
+	/**
+	 * Empty constructor for the singleton to use
+	 */
 	private MetalTDG() {
 		
 	}
 	
+	/**
+	 * If an instance of this class does not yet exist
+	 * creates one 
+	 * @return the instance of the metalTDG
+	 */
 	public static MetalTDG getSingleton() {
 		if(instance == null) {
 			instance = new MetalTDG();
@@ -22,6 +35,10 @@ public class MetalTDG {
 		return instance;
 	}
 	
+	/**
+	 * Tests the getAllMethods method 
+	 * @return
+	 */
 	public ArrayList<MetalDTO> getAllMetals(){
 		ArrayList<MetalDTO> data = new ArrayList<MetalDTO>();
 		ResultSet rs;

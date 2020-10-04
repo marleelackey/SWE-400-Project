@@ -9,7 +9,7 @@ import Tests.TestEVERYTHING;
 
 /**
  * Concrete Table Inheritance Runner
- * @author Joshua
+ * @author Joshua B
  *
  */
 public class Runnable {

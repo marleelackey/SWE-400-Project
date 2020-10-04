@@ -8,6 +8,12 @@ import java.sql.SQLException;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 
+/**
+ * 
+ * @author Daniel Holmgren
+ * @author Joshua Kellogg
+ * The row data gateway that will allow us to access the metal table
+ */
 public class MetalRDG {
 	private int ID,
 				atomicNumber,
@@ -16,6 +22,14 @@ public class MetalRDG {
 	private String name;
 	private static Connection cn;
 	
+	/**
+	 * Constructor assigns instance variables and sets up the connection that well need for the other methods in this class
+	 * @param ID
+	 * @param atomicNumber
+	 * @param dissolvedBy
+	 * @param atomicMass
+	 * @param name
+	 */
 	public MetalRDG(int ID, int atomicNumber, int dissolvedBy, double atomicMass, String name) {
 		this.ID = ID;
 		this.atomicNumber = atomicNumber;
@@ -49,6 +63,11 @@ public class MetalRDG {
 		return results;
 	}
 	
+	/**
+	 * Given the name of a metal will return the information from the database about that metal
+	 * @param name
+	 * @return A metalRDG with information from the database corresponding to the given name
+	 */
 	public static MetalRDG findByName(String name) {
 		MetalRDG results = null;
 		try {
@@ -81,6 +100,9 @@ public class MetalRDG {
 		return null;
 	}
 	
+	/**
+	 * Will update the database with the current values of the instance variables
+	 */
 	public void update() {
 		PreparedStatement stmt;
 		try {

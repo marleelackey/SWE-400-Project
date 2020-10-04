@@ -10,11 +10,15 @@ import org.junit.Test;
 import Classes.MetalDTO;
 import Classes.MetalTDG;
 
+/**
+ * @author Dan Holmgren
+ * @author Josh Kellogg
+ * Test class for the metalTDG
+ */
 public class TestMetalTDG {
 
 	/**
-	 * @author Dan Holmgren
-	 * @author Josh Kellogg
+	 * Tests the constructor
 	 */
 	@Test
 	public static void testConstructor() {
@@ -22,6 +26,9 @@ public class TestMetalTDG {
 		assertNotEquals(m, null);
 	}
 	
+	/**
+	 * Tests the getAllMetals method
+	 */
 	@Test
 	public static void testGetAllMetals() {
 		MetalTDG m = MetalTDG.getInstance();
@@ -32,6 +39,9 @@ public class TestMetalTDG {
 		}
 	}
 
+	/**
+	 * Runs all of the tests in this class
+	 */
 	public static void runAllTheTests() {
 		testConstructor();
 		testGetAllMetals();

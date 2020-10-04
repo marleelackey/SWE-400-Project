@@ -6,8 +6,17 @@ import org.junit.Test;
 
 import Classes.MetalRDG;
 
+/**
+ * @author Daniel Holmgren
+ * @author Joshua Kellogg
+ * Test class metalTDG
+ *
+ */
 public class TestMetalRDG {
 
+	/**
+	 * Makes sure the constructor constructs correctly
+	 */
 	@Test
 	public static void testConstructor() {
 		MetalRDG m = new MetalRDG(1, 2);
@@ -17,6 +26,9 @@ public class TestMetalRDG {
 		assertEquals(m.getDissolvedBy(), 3);
 	}
 	
+	/**
+	 * Asserts findByID works
+	 */
 	@Test
 	public static void testFindByID() {
 		MetalRDG m = MetalRDG.findByID(10);
@@ -24,6 +36,9 @@ public class TestMetalRDG {
 		assertEquals(m.getDissolvedBy(), 66);
 	}
 	
+	/**
+	 * Updates the database and asserts the changes were made
+	 */
 	@Test
 	public static void testUpdate() {
 		MetalRDG m = MetalRDG.findByID(11);
@@ -35,6 +50,9 @@ public class TestMetalRDG {
 		assertEquals(d.getDissolvedBy(), 456);
 	}
 	
+	/**
+	 * Efficient 
+	 */
 	public static void runAllTheTests() {
 		testConstructor();
 		testFindByID();

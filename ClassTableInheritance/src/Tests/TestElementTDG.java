@@ -9,14 +9,27 @@ import org.junit.Test;
 import Classes.ElementDTO;
 import Classes.ElementTDG;
 
+/**
+ * @author Daniel Holmgren
+ * @author Joshua Kellogg
+ * Test class for the ElementTDG
+ *
+ */
 public class TestElementTDG {
 
+	/**
+	 * Runs constructor and makes sure it is not mull
+	 */
 	@Test
 	public static void testConstructor() {
 		ElementTDG e = ElementTDG.getInstance();
 		assertNotEquals(e, null);
 	}
 	
+	/**
+	 * Runs getElementsInRange and asserts the amount of results 
+	 * and that the correct information is in each of those things
+	 */
 	@Test
 	public static void testGetElementsInRange() {
 		ElementTDG c = ElementTDG.getInstance();
@@ -32,6 +45,9 @@ public class TestElementTDG {
 		}
 	}
 
+	/**
+	 * runs all tests in this class for efficient
+	 */
 	public static void runAllTheTests() {
 		testConstructor();
 		testGetElementsInRange();

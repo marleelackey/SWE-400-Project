@@ -9,7 +9,7 @@ import Tests.TestEVERYTHING;
 
 /**
  * Single Table Inheritance Runner
- * @author Joshua
+ * @author Joshua B
  *
  */
 public class Runnable {

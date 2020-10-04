@@ -16,7 +16,7 @@ import Datasource.DatabaseManager;
 public class AcidTDG {
 
 	/**
-	 * Constructor-y stuff for the singleton of AcidTDG
+	 * Constructor stuff for the singleton of AcidTDG
 	 */
 	private static AcidTDG Singleton;
 

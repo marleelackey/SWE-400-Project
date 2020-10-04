@@ -6,8 +6,18 @@ import org.junit.Test;
 
 import Classes.MetalRDG;
 
+/**
+ * 
+ * @author Daniel Holmgren
+ * @author Joshua Kellogg
+ * Test class for metalRDG
+ */
 public class TestMetalRDG {
 
+	/**
+	 * Tests the constructor assigns variables correctly and that
+	 * we can get them back
+	 */
 	@Test
 	public static void testConstructorAndGetters() {
 		MetalRDG m = new MetalRDG(1, 2, 3, 4.0, "Test");
@@ -18,6 +28,9 @@ public class TestMetalRDG {
 		assertEquals(m.getName(), "Test");
 	}
 	
+	/**
+	 * Tests the findByID method
+	 */
 	@Test
 	public static void testFindByID() {
 		MetalRDG m = MetalRDG.findByID(20);
@@ -27,6 +40,9 @@ public class TestMetalRDG {
 		assertEquals(m.getName(), "metal1");
 	}
 	
+	/**
+	 * Tests the findByName method
+	 */
 	@Test
 	public static void testFindByName() {
 		MetalRDG m = MetalRDG.findByName("metal2");
@@ -36,6 +52,10 @@ public class TestMetalRDG {
 		assertEquals(m.getName(), "metal2");
 	}
 	
+	/**
+	 * Tests to make sure our update method successfully updates 
+	 * the database
+	 */
 	@Test
 	public static void testUpdate() {
 		MetalRDG m = MetalRDG.findByID(20);
@@ -46,6 +66,9 @@ public class TestMetalRDG {
 		assertEquals(f.getAtomicMass(), 450.0, 0.01);
 	}
 	
+	/**
+	 * Runs all the tests at once for efficiency
+	 */
 	public static void runAllTheTests() {
 		testConstructorAndGetters();
 		testFindByID();

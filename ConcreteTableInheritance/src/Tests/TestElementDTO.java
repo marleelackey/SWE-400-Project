@@ -6,8 +6,16 @@ import org.junit.Test;
 
 import Classes.ElementDTO;
 
+/**
+ * @author Daniel Holmgren
+ * @author Joshua Kellogg
+ * Test class for the ElementDTO
+ */
 public class TestElementDTO {
 
+	/**
+	 * Makes sure the constructor can assign the correct values
+	 */
 	@Test
 	public static void testConstructor() {
 		ElementDTO e = new ElementDTO(1, 2, 3.0, "Test");
@@ -17,6 +25,9 @@ public class TestElementDTO {
 		assertEquals("Test", e.getName());
 	}
 	
+	/**
+	 * To be efficient
+	 */
 	public static void runAllTheTests() {
 		testConstructor();
 	}

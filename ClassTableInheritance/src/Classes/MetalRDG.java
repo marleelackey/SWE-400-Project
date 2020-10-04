@@ -7,11 +7,22 @@ import java.sql.ResultSet;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 
+/**
+ * @author Daniel Holmgren
+ * @author Joshua Kellogg
+ *
+ * The metalRDG class for accessing the database
+ */
 public class MetalRDG {
 	private int ID,
 				dissolvedBy;
 	private static Connection cn;
 	
+	/**
+	 * Constructor, assigns variables and sets up the connection for use in the rest of the class
+	 * @param ID
+	 * @param dissolvedBy
+	 */
 	public MetalRDG(int ID, int dissolvedBy) {
 		this.ID = ID;
 		this.dissolvedBy = dissolvedBy;
@@ -25,6 +36,11 @@ public class MetalRDG {
 		}
 	}
 	
+	/**
+	 * Returns a metalRDG with the given ID
+	 * @param ID
+	 * @return
+	 */
 	public static MetalRDG findByID(int ID) {
 		MetalRDG data = null;
 		try {
@@ -37,6 +53,9 @@ public class MetalRDG {
 		return data;
 	}
 	
+	/**
+	 * Updates the database with the given instance variables 
+	 */
 	public void update() {
 		PreparedStatement stmt;
 		try {
@@ -49,6 +68,7 @@ public class MetalRDG {
 		}
 	}
 
+	// Getters and setter
 	public int getID() {
 		return ID;
 	}

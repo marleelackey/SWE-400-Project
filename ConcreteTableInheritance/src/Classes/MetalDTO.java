@@ -1,12 +1,25 @@
 package Classes;
 
+/**
+ * 
+ * @author Daniel Holmgren
+ * @author Joshua Kellogg
+ * A data transfer object to transfer information about a metal around
+ */
 public class MetalDTO {
 	private int ID,
 				atomicNumber,
 				dissolvedBy;
 	private double atomicMass;
 	private String name;
-	
+	/**
+	 * Assigns instance variables
+	 * @param ID
+	 * @param atomicNumber
+	 * @param dissolvedBy
+	 * @param atomicMass
+	 * @param name
+	 */
 	public MetalDTO(int ID, int atomicNumber, int dissolvedBy, double atomicMass, String name) {
 		this.ID = ID;
 		this.atomicNumber = atomicNumber;

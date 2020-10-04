@@ -10,8 +10,16 @@ import Classes.ChemicalDTO;
 import Classes.ChemicalTDG;
 import Classes.CompoundMadeOfElementDTO;
 
+/**
+ * @author Joshua Kellogg
+ * @author Daniel Holgren
+ *
+ */
 public class TestChemicalTDG {
 	
+	/**
+	 * Test to assure there is only ever one instance of the object
+	 */
 	@Test
 	public static void testSingleton() {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
@@ -19,6 +27,9 @@ public class TestChemicalTDG {
 		assertEquals(c, d);
 	}
 	
+	/**
+	 * Test the get all bases method
+	 */
 	@Test
 	public static void testGetAllBases() {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
@@ -31,6 +42,9 @@ public class TestChemicalTDG {
 		}
 	}
 	
+	/**
+	 * Test the get Elements in range method
+	 */
 	@Test
 	public static void testGetElementsInRange() {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
@@ -46,6 +60,9 @@ public class TestChemicalTDG {
 		System.out.println("All atomic masses in range");
 	}
 	
+	/**
+	 * Test the get compounds by element method
+	 */
 	@Test
 	public static void testGetCompoundsByElement() {
 		ChemicalTDG c = ChemicalTDG.getSingleton();
@@ -58,6 +75,9 @@ public class TestChemicalTDG {
 		}
 	}
 
+	/**
+	 * A test to allow for efficient testing of the whole system
+	 */
 	public static void runAllTheTests() {
 		testSingleton();
 		testGetAllBases();

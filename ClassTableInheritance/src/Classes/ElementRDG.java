@@ -7,12 +7,24 @@ import java.sql.ResultSet;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 
+/**
+ * @author Daniel Holmgren
+ * @author Joshua Kellogg
+ *
+ * ElementRdg uses to access the database
+ */
 public class ElementRDG {
 	private int ID,
 				atomicNumber;
 	private double atomicMass;
 	private static Connection cn;
 	
+	/**
+	 * Contructor, assigns instance variables and sets up connection for use in other methods
+	 * @param ID
+	 * @param atomicNumber
+	 * @param atomicMass
+	 */
 	public ElementRDG(int ID, int atomicNumber, double atomicMass) {
 		this.ID = ID;
 		this.atomicNumber = atomicNumber;
@@ -26,6 +38,11 @@ public class ElementRDG {
 		}
 	}
 	
+	/**
+	 * finds the appropriate Element by its ID
+	 * @param ID
+	 * @return
+	 */
 	public static ElementRDG findByID(int ID) {
 		ElementRDG data = null;
 		try {
@@ -38,6 +55,11 @@ public class ElementRDG {
 		return data;
 	}
 	
+	/**
+	 * finds the appropriate Element by its Atomic Number
+	 * @param ID
+	 * @return
+	 */
 	public static ElementRDG findByAtomicNumber(int atomicNumber) {
 		ElementRDG data = null;
 		try {
@@ -50,6 +72,11 @@ public class ElementRDG {
 		return data;
 	}
 	
+	/**
+	 * finds the appropriate Element by its Atomic Mass
+	 * @param ID
+	 * @return
+	 */
 	public static ElementRDG findByAtomicMass(double atomicMass) {
 		ElementRDG data = null;
 		try {
@@ -62,6 +89,9 @@ public class ElementRDG {
 		return data;
 	}
 	
+	/**
+	 * Updates the database with the information currently in the instance variables
+	 */
 	public void update() {
 		PreparedStatement stmt;
 		try {
@@ -74,6 +104,8 @@ public class ElementRDG {
 			DatabaseException.detectError(e);
 		}
 	}
+	
+	// Getters and Setters
 	
 	public int getID() {
 		return ID;
