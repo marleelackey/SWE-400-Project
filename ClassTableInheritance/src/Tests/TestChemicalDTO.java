@@ -24,33 +24,32 @@ public class TestChemicalDTO {
 	 */
 	@Test
 	public static void testConstructorAndGetters() {
-		ChemicalDTO dto = new ChemicalDTO(1, "thingy", 0);
+		ChemicalDTO dto = new ChemicalDTO(1, "thingy");
 
 		assertEquals(dto.getChemicalID(), 1);
 		assertEquals(dto.getChemicalName(), "thingy");
-		assertEquals(dto.getChemicalType(), 0);
 	}
-	
+
 	/**
-	 * A Junit to test that we can select a tuple from the DB and store it in a ChemicalDTO
+	 * A Junit to test that we can select a tuple from the DB and store it in a
+	 * ChemicalDTO
 	 */
 	@Test
 	public static void testSingleSelect() {
 		Connection cn;
 		ChemicalDTO dto = null;
-		
+
 		try {
 			cn = DatabaseManager.getSingleton().getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE ChemicalID = 9");
 			rs.next();
-			dto = new ChemicalDTO(rs.getInt(1), rs.getString(2), rs.getInt(3));
+			dto = new ChemicalDTO(rs.getInt(1), rs.getString(2));
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
-		
+
 		assertEquals(dto.getChemicalID(), 9);
 		assertEquals(dto.getChemicalName(), "metal1");
-		assertEquals(dto.getChemicalType(), 4);
 	}
 
 	/**

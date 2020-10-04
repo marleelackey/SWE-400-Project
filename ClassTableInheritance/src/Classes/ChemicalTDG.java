@@ -38,18 +38,18 @@ public class ChemicalTDG {
 	public ArrayList<ChemicalDTO> getAllChemicals() {
 		ArrayList<ChemicalDTO> list = new ArrayList<ChemicalDTO>();
 		Connection c;
-		
+
 		try {
 			c = DatabaseManager.getSingleton().getConnection();
 			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Chemical");
-			while(rs.next()) {
-				ChemicalDTO dto = new ChemicalDTO(rs.getInt(1), rs.getString(2), rs.getInt(3));
+			while (rs.next()) {
+				ChemicalDTO dto = new ChemicalDTO(rs.getInt(1), rs.getString(2));
 				list.add(dto);
 			}
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
-		
+
 		return list;
 	}
 }
