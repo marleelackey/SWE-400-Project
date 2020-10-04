@@ -9,6 +9,7 @@ import Datasource.DatabaseManager;
 
 /**
  * A Row Data Gateway for the Acid table
+ * 
  * @author Madeline & Adam
  *
  */
@@ -43,7 +44,7 @@ public class AcidRDG {
 			rs.next();
 			result = new AcidRDG(rs.getInt(1), rs.getInt(2));
 		} catch (Exception e) {
-			DatabaseException.detectError(e);
+			DatabaseException.detectError(e, "AcidRDG.findByID - Class");
 		}
 		return result;
 	}
@@ -60,9 +61,13 @@ public class AcidRDG {
 			s.setInt(2, acidID);
 			s.execute();
 		} catch (Exception e) {
-			DatabaseException.detectError(e);
+			DatabaseException.detectError(e, "AcidRDG.update - Class");
 		}
 	}
+
+	/**
+	 * Getters and Setters for AcidRDG in Class Table
+	 */
 
 	public int getAcidID() {
 		return acidID;

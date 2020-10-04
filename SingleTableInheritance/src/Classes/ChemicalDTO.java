@@ -42,6 +42,10 @@ public class ChemicalDTO {
 		chemicalSoluteB = soluteB;
 	}
 
+	/**
+	 * Getters methods for ChemicalDTO instance variables
+	 */
+
 	public int getChemicalID() {
 		return chemicalID;
 	}

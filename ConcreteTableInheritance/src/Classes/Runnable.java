@@ -1,7 +1,5 @@
 package Classes;
 
-import java.sql.SQLException;
-
 import Datasource.ConcreteTableCreator;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
@@ -9,23 +7,28 @@ import Tests.TestEVERYTHING;
 
 /**
  * Concrete Table Inheritance Runner
+ * 
  * @author Joshua B
  *
  */
 public class Runnable {
 
-	public static void main(String[] args) throws DatabaseException, SQLException {
-		DatabaseManager.setPatternNumber(2);
-        DatabaseManager.getSingleton().openConnection();
-        ConcreteTableCreator.dropAllTables();
-        ConcreteTableCreator.createTables();
-        ConcreteTableCreator.addTestRows();
-        
-        TestEVERYTHING.testRunAllTheTests();
-                
-        System.out.println("yee yee brethren");
-        
-        DatabaseManager.getSingleton().closeConnection();
+	public static void main(String[] args) {
+		try {
+			DatabaseManager.setPatternNumber(2);
+			DatabaseManager.getSingleton().openConnection();
+			ConcreteTableCreator.dropAllTables();
+			ConcreteTableCreator.createTables();
+			ConcreteTableCreator.addTestRows();
+
+			TestEVERYTHING.testRunAllTheTests();
+
+			System.out.println("yee yee brethren");
+
+			DatabaseManager.getSingleton().closeConnection();
+		} catch (Exception e) {
+			DatabaseException.detectError(e, "Runnable - Concrete");
+		}
 	}
 
 }

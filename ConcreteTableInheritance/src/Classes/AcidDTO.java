@@ -14,8 +14,9 @@ public class AcidDTO {
 
 	/**
 	 * Constructor for an AcidDTO
-	 * @param ID the ID of the acid
-	 * @param name the name of the acid
+	 * 
+	 * @param ID     the ID of the acid
+	 * @param name   the name of the acid
 	 * @param solute the ID of the acid's solute
 	 */
 	public AcidDTO(int ID, String name, int solute) {
@@ -23,6 +24,10 @@ public class AcidDTO {
 		acidName = name;
 		acidSolute = solute;
 	}
+
+	/**
+	 * Getters for AcidDTO concrete
+	 */
 
 	public int getAcidID() {
 		return acidID;

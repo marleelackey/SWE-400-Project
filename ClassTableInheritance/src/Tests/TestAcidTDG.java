@@ -39,7 +39,10 @@ public class TestAcidTDG {
 		assertEquals(2, list.get(1).getAcidID());
 		assertEquals(3, list.get(2).getAcidID());
 	}
-	
+
+	/**
+	 * Runs all the tests in this class
+	 */
 	public static void runAllTheTests() {
 		testInitialization();
 		testGetAll();

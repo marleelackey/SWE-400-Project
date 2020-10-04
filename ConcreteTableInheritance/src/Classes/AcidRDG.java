@@ -48,7 +48,7 @@ public class AcidRDG {
 			rs.next();
 			result = new AcidRDG(rs.getInt(1), rs.getString(2), rs.getInt(3));
 		} catch (Exception e) {
-			DatabaseException.detectError(e);
+			DatabaseException.detectError(e, "AcidRDG.findByID - Concrete");
 		}
 		return result;
 	}
@@ -68,13 +68,14 @@ public class AcidRDG {
 			rs.next();
 			result = new AcidRDG(rs.getInt(1), rs.getString(2), rs.getInt(3));
 		} catch (Exception e) {
-			DatabaseException.detectError(e);
+			DatabaseException.detectError(e, "AcidRDG.findByName - Concrete");
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Method to see if a Chemical with a given name is an Acid
+	 * 
 	 * @param name the name of the Chemical
 	 * @return Acid if it is an Acid, null if it is not
 	 */
@@ -87,7 +88,7 @@ public class AcidRDG {
 				return "Acid";
 			}
 		} catch (SQLException | DatabaseException e) {
-			DatabaseException.detectError(e);
+			DatabaseException.detectError(e, "AcidRDG.findTypeByName - Concrete");
 		}
 		return null;
 	}
@@ -105,9 +106,13 @@ public class AcidRDG {
 			s.setInt(3, acidID);
 			s.execute();
 		} catch (Exception e) {
-			DatabaseException.detectError(e);
+			DatabaseException.detectError(e, "AcidRDG.update - Concrete");
 		}
 	}
+
+	/**
+	 * Getters and Setters for AcidRDG Concrete
+	 */
 
 	public int getAcidID() {
 		return acidID;

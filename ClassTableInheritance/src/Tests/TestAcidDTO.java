@@ -23,7 +23,10 @@ public class TestAcidDTO {
 		assertEquals(1, dto.getAcidID());
 		assertEquals(4, dto.getAcidSolute());
 	}
-	
+
+	/**
+	 * Run the tests in this class
+	 */
 	@Test
 	public static void runAllTheTests() {
 		test();

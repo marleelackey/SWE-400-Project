@@ -25,6 +25,9 @@ public class TestAcidDTO {
 		assertEquals(5, dto.getAcidSolute());
 	}
 
+	/**
+	 * Runs all the tests in this class
+	 */
 	public static void runAllTheTests() {
 		test();
 	}

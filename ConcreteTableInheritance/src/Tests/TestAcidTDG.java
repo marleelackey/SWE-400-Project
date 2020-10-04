@@ -26,7 +26,7 @@ public class TestAcidTDG {
 
 		assertNotEquals(tdg, null);
 	}
-	
+
 	/**
 	 * Test method to make sure we can get all the Acids in the database
 	 */
@@ -40,6 +40,9 @@ public class TestAcidTDG {
 		assertEquals(3, list.get(2).getAcidID());
 	}
 
+	/**
+	 * Runs all tests in this class
+	 */
 	public static void runAllTheTests() {
 		testInitialization();
 		testGetAll();

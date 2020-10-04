@@ -38,18 +38,18 @@ public class AcidTDG {
 	public ArrayList<AcidDTO> getAllAcids() {
 		ArrayList<AcidDTO> list = new ArrayList<AcidDTO>();
 		Connection c;
-		
+
 		try {
 			c = DatabaseManager.getSingleton().getConnection();
 			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Acid");
-			while(rs.next()) {
+			while (rs.next()) {
 				AcidDTO dto = new AcidDTO(rs.getInt(1), rs.getInt(2));
 				list.add(dto);
 			}
 		} catch (Exception e) {
-			DatabaseException.detectError(e);
+			DatabaseException.detectError(e, "AcidTDG.getAllAcids - Class");
 		}
-		
+
 		return list;
 	}
 }

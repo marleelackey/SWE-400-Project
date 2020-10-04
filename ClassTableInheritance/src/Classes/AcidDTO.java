@@ -22,6 +22,10 @@ public class AcidDTO {
 		acidSolute = solute;
 	}
 
+	/**
+	 * Getters for AcidDTO in Class Table
+	 */
+
 	public int getAcidID() {
 		return acidID;
 	}

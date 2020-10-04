@@ -5,6 +5,12 @@ import org.junit.Test;
 
 import Classes.CompoundMadeOfElementDTO;
 
+/**
+ * Test class for CompoundMadeOfElement table
+ * 
+ * @author Madeline & co.
+ *
+ */
 public class TestCompoundMadeOfElement {
 
 	/**
@@ -16,7 +22,7 @@ public class TestCompoundMadeOfElement {
 		assertEquals(1, idk.getCompoundID());
 		assertEquals(3, idk.getElementID());
 	}
-	
+
 	/**
 	 * Allows for our tests to be run in TestEverything()
 	 */

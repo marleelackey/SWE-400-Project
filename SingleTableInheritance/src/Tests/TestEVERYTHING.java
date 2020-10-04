@@ -10,8 +10,11 @@ import org.junit.Test;
  */
 public class TestEVERYTHING {
 
+	/**
+	 * Runs every test in Single Table Inheritance
+	 */
 	@Test
-	public static void testRunAllTheTests() throws Exception {
+	public static void testRunAllTheTests() {
 		TestChemicalDTO.runAllTheTests();
 		TestChemicalRDG.runAllTheTests();
 		TestChemicalTDG.runAllTheTests();
