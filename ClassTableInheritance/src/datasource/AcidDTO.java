@@ -12,7 +12,7 @@ public class AcidDTO {
 	private int acidSolute;
 
 	/**
-	 * Constructor for the AcidDTO
+	 * Constructor for the Acid Data Transfer Object
 	 * 
 	 * @param ID     the ID of the acid
 	 * @param solute the ID of the acid's solute
