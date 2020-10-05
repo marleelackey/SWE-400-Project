@@ -8,8 +8,15 @@ import java.util.ArrayList;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 
+/**
+ * @author Josh B and Ace
+ * Base Table DataGateway for the Base table  
+ */
 public class BaseTDG {
 
+	/**
+	 * @return an array list of all the rows from the Base table 
+	 */
 	public static ArrayList<BaseDTO> getAllBases() {
 		ArrayList<BaseDTO> list = new ArrayList<BaseDTO>();
 		Connection c;

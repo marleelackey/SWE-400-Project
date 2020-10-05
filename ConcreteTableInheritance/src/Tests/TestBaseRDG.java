@@ -8,8 +8,16 @@ import org.junit.Test;
 import Classes.BaseRDG;
 import Datasource.DatabaseManager;
 
+/**
+ * @author Josh B and Ace 
+ * Test class for the Row Data gateway  
+ */
 public class TestBaseRDG {
 	
+	/**
+	 * Before method to set up the DB Connections 
+	 * project to connect to the correct database 
+	 */
 	@Before
 	public void SelectDatabase() {
 		DatabaseManager.setPatternNumber(2);

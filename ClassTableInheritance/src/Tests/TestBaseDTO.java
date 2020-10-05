@@ -6,6 +6,10 @@ import org.junit.Test;
 
 import Classes.BaseDTO;
 
+/**
+ * @author Ace and Josh B 
+ * Test class for the Data transfer object class
+ */
 public class TestBaseDTO {
 	
 	@Test

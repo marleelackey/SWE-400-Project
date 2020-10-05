@@ -7,11 +7,25 @@ import java.sql.ResultSet;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 
+/**
+ * @author Ace and Josh B.
+ *
+ */
 public class BaseRDG {
 
 	private int id;
 	private int solute;
 	
+	
+	public BaseRDG(int id, int solute) {
+		this.id = id;
+		this.solute = solute;
+	}
+	
+	/**
+	 * @param id
+	 * @return The row from the Base table that corresponds with the ID submitted as a parameter
+	 */
 	public static BaseRDG findByID(int id) {
 		Connection c;
 		BaseRDG result = null;
@@ -24,11 +38,6 @@ public class BaseRDG {
 			DatabaseException.detectError(e, "Exception in BaseRDG.findByID()");
 		}
 		return result;
-	}
-
-	public BaseRDG(int id, int solute) {
-		this.id = id;
-		this.solute = solute;
 	}
 
 	public int getID() {
@@ -47,6 +56,12 @@ public class BaseRDG {
 		this.solute = s;		
 	}
 
+	/**
+	 * Update method for the Row Data Gateway instance 
+	 * using the instance variables as the replacement
+	 * information 
+	 * 
+	 */
 	public void update() {
 		Connection c;
 		try {

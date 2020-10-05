@@ -11,13 +11,23 @@ import Classes.BaseDTO;
 import Classes.BaseTDG;
 import Datasource.DatabaseManager;
 
+/**
+ * @author Ace and Josh B
+ * Test Class for the BaseTDG class
+ */
 public class TestBaseTDG {
 	
+	/**
+	 * @before every test so that the correct Database is selected 
+	 */
 	@Before
 	public void runRunnable() {
 		DatabaseManager.setPatternNumber(2);
 	}
 	
+	/**
+	 * Tests getting all of the stored bases from the Base Table  
+	 */
 	@Test
 	public static void testGetAllBases() {
 		ArrayList<BaseDTO> list = new ArrayList<BaseDTO>();
@@ -27,6 +37,9 @@ public class TestBaseTDG {
 		assertEquals(list.get(1).getID(), 13);		
 	}
 	
+	/**
+	 * Runner for all of the tests in the class 
+	 */
 	@Test
 	public static void runAllTheTests() {
 		testGetAllBases();

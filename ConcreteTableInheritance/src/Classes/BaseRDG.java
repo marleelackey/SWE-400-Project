@@ -8,11 +8,22 @@ import java.sql.SQLException;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 
+/**
+ * @author Josh B, Madeline, Adam and Ace  
+ * 
+ *
+ */
 public class BaseRDG {
 	private int ID;
 	private String name;
 	private int solute;
 	
+	/**
+	 * Constructor for the RDG class 
+	 * @param id, (Identification number)
+	 * @param nme  (base name)
+	 * @param slte (Solute for the base) 
+	 */
 	public BaseRDG(int id, String nme, int slte)
 	{
 		this.ID = id;
@@ -20,6 +31,11 @@ public class BaseRDG {
 		solute = slte;
 	}
 	
+	/**
+	 * @param ident
+	 * @return a RDG instance of the result of the search 
+	 * of a specific base via ID number 
+	 */
 	public static BaseRDG findByID(int ident)
 	{
 		Connection c;
@@ -36,6 +52,11 @@ public class BaseRDG {
 		return result;
 	}
 
+	/**
+	 * @param nm
+	 * @return a RDG instance of the result of the search 
+	 * of a specific base via Base name 
+	 */
 	public static BaseRDG findByName(String nm) {
 		Connection c;
 		BaseRDG result = null;

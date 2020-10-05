@@ -6,8 +6,15 @@ import java.util.ArrayList;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 
+/**
+ * @author Josh B and Ace 
+ * The Table Data Gateway Class 
+ */
 public class BaseTDG {
 
+	/**
+	 * @return an array of the rows from the Base class 
+	 */
 	public static ArrayList<BaseDTO> getAllBases() 
 	{
 		ArrayList<BaseDTO> data = new ArrayList<BaseDTO>();

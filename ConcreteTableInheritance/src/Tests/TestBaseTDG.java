@@ -11,14 +11,25 @@ import Classes.BaseDTO;
 import Classes.BaseTDG;
 import Datasource.DatabaseManager;
 
+/**
+ * @author Josh B and Ace
+ *Test class for the Table Data Gateway
+ */
 public class TestBaseTDG {
 	
 	
+	/**
+	 * Sets up the DC connections class to run
+	 * using the correct Database
+	 */
 	@Before
 	public void runRunnable() {
 		DatabaseManager.setPatternNumber(3);
 	}
 	
+	/**
+	 * Tests getting all of the rows from the Base table 
+	 */
 	@Test
 	public static void testGetAllBases() {
 		ArrayList<BaseDTO> list = new ArrayList<BaseDTO>();

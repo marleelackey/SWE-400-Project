@@ -9,13 +9,23 @@ import Classes.BaseRDG;
 import Datasource.DatabaseException;
 import Datasource.DatabaseManager;
 
+/**
+ * @author Ace and Josh B
+ * Test class for the BaseRDG Class 
+ */
 public class TestBaseRDG {
 	
+	/**
+	 * @before method connecting the the DBconnection to the correct database
+	 */
 	@Before
 	public void runRunnable() {
 		DatabaseManager.setPatternNumber(3);
 	}
 	
+	/**
+	 * Tests the getter and setter methods in the BaseRDG class
+	 */
 	@Test
 	public static void testBaseRDG() {
 		BaseRDG rdg = new BaseRDG(1, 2);
@@ -30,12 +40,18 @@ public class TestBaseRDG {
 		assertEquals(4, rdg.getSolute());
 	}
 	
+	/**
+	 * Tests the find by ID method in the BaseRDG class
+	 */
 	@Test
 	public static void testFindByID() {
 		BaseRDG rdg = BaseRDG.findByID(12);
 		assertEquals(12, rdg.getID());
 	}
 	
+	/**
+	 * Tests the update method in the BaseRDG Class
+	 */
 	@Test
 	public static void testUpdate() {
 		try {
@@ -54,6 +70,9 @@ public class TestBaseRDG {
 		}
 	}
 
+	/**
+	 * Runs all of the tests in the class
+	 */
 	@Test
 	public static void runAllTheTests() {
 		testBaseRDG();
