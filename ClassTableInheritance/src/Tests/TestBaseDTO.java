@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import Classes.BaseDTO;
+import datasource.BaseDTO;
 
 /**
  * @author Ace and Josh B 

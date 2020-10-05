@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import Classes.BaseDTO;
-import Classes.BaseTDG;
-import Datasource.DatabaseManager;
+import datasource.BaseDTO;
+import datasource.BaseTDG;
+import datasource.DatabaseManager;
 
 /**
  * @author Ace and Josh B

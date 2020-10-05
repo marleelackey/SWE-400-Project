@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import Classes.ChemicalDTO;
-import Classes.ChemicalTDG;
+import datasource.ChemicalDTO;
+import datasource.ChemicalTDG;
 
 public class TestChemicalTDG {
 	

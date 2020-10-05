@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import Classes.AcidDTO;
-import Classes.AcidTDG;
+import datasource.AcidDTO;
+import datasource.AcidTDG;
 
 /**
  * JUnit for the AcidTDG class

@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Classes.ElementRDG;
+import datasource.ElementRDG;
 /**
  * @author Daniel Holmgren
  * @author Joshua Kellogg

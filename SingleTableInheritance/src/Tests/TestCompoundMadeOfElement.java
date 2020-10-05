@@ -3,7 +3,7 @@ package Tests;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import Classes.CompoundMadeOfElementDTO;
+import datasource.CompoundMadeOfElementDTO;
 
 /**
  * Test class for CompoundMadeOfElement table

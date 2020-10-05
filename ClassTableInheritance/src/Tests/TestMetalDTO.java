@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Classes.MetalDTO;
+import datasource.MetalDTO;
 
 /**
  * @author Daniel Holmgren

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import Classes.MetalDTO;
-import Classes.MetalTDG;
+import datasource.MetalDTO;
+import datasource.MetalTDG;
 /**
  * @author Daniel Holmgren
  * @author Joshua Kellogg

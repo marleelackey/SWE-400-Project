@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import Classes.ElementDTO;
-import Classes.ElementTDG;
+import datasource.ElementDTO;
+import datasource.ElementTDG;
 
 /**
  * @author Daniel Holmgren

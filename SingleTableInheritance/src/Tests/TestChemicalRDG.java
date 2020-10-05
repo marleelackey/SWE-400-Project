@@ -3,8 +3,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import Classes.ChemicalRDG;
-import Datasource.DatabaseException;
+import datasource.ChemicalRDG;
+import datasource.DatabaseException;
 /** 
  * 
  * @author Taryn Whitman

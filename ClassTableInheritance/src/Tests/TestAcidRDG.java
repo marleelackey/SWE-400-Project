@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Classes.AcidRDG;
+import datasource.AcidRDG;
 
 /**
  * Test class for the AcidRDG class

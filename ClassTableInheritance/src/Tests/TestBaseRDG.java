@@ -5,9 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import Classes.BaseRDG;
-import Datasource.DatabaseException;
-import Datasource.DatabaseManager;
+import datasource.BaseRDG;
+import datasource.DatabaseException;
+import datasource.DatabaseManager;
 
 /**
  * @author Ace and Josh B

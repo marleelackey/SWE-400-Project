@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import Classes.CompoundDTO;
-import Classes.CompoundTDG;
+import datasource.CompoundDTO;
+import datasource.CompoundTDG;
 
 public class TestCompoundTDG {
 

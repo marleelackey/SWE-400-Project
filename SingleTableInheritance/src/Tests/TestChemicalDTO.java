@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 
 import org.junit.Test;
 
-import Classes.ChemicalDTO;
-import Datasource.DatabaseException;
-import Datasource.DatabaseManager;
+import datasource.ChemicalDTO;
+import datasource.DatabaseException;
+import datasource.DatabaseManager;
 
 /**
  * Test Class for Chemical DTO

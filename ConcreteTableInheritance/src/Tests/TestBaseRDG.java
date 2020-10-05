@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import Classes.BaseRDG;
-import Datasource.DatabaseManager;
+import datasource.BaseRDG;
+import datasource.DatabaseManager;
 
 /**
  * @author Josh B and Ace 
