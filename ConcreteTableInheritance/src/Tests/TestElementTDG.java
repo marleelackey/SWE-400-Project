@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import datasource.CompoundDTO;
-import datasource.CompoundTDG;
 import datasource.ElementDTO;
 import datasource.ElementTDG;
 
