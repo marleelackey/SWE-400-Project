@@ -5,9 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import datasource.DatabaseException;
-import datasource.DatabaseManager;
-
 /**
  * @author Marlee Lackey
  * @author Taryn Whitman

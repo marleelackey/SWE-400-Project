@@ -5,9 +5,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import datasource.DatabaseException;
-import datasource.DatabaseManager;
-
 /**
  * @author Josh B and Ace
  * Base Table DataGateway for the Base table  

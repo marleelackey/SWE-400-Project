@@ -2,9 +2,6 @@ package datasource;
 
 import java.util.ArrayList;
 
-import datasource.DatabaseException;
-import datasource.DatabaseManager;
-
 import java.sql.*;
 
 /**

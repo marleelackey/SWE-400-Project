@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import datasource.DatabaseException;
-import datasource.DatabaseManager;
-
 /**
  * Table Data Gateway for the Acid table
  * 

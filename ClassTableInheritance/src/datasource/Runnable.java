@@ -1,11 +1,6 @@
 package datasource;
 
-import java.sql.SQLException;
-
 import Tests.TestEVERYTHING;
-import datasource.ClassTableCreator;
-import datasource.DatabaseException;
-import datasource.DatabaseManager;
 
 /**
  * Class Table Inheritance Runner

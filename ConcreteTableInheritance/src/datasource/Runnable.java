@@ -1,9 +1,6 @@
 package datasource;
 
 import Tests.TestEVERYTHING;
-import datasource.ConcreteTableCreator;
-import datasource.DatabaseException;
-import datasource.DatabaseManager;
 
 /**
  * Concrete Table Inheritance Runner

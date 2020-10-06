@@ -1,9 +1,6 @@
 package datasource;
 
 import Tests.TestEVERYTHING;
-import datasource.DatabaseException;
-import datasource.DatabaseManager;
-import datasource.SingleTableCreator;
 
 /**
  * Runner for the Single Table Inheritance project.

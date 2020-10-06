@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import datasource.DatabaseException;
-import datasource.DatabaseManager;
-
 /**
  * @author Daniel Holmgren
  * @author Joshua Kellogg

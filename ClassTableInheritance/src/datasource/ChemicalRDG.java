@@ -2,10 +2,6 @@ package datasource;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import datasource.DatabaseException;
-import datasource.DatabaseManager;
 
 /**
  * Row Data Gateway for Chemical

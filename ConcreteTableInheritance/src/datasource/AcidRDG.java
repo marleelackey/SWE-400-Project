@@ -5,9 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import datasource.DatabaseException;
-import datasource.DatabaseManager;
-
 /**
  * A Row Data Gateway for the Acid table
  * 

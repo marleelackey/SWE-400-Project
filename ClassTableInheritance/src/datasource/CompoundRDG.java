@@ -2,9 +2,6 @@ package datasource;
 
 import java.sql.*;
 
-import datasource.DatabaseException;
-import datasource.DatabaseManager;
-
 /**
  * @author Taryn Whitman
  * @author Marlee Lackey
