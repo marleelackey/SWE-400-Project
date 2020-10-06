@@ -44,6 +44,21 @@ public class TestElementTDG {
 			}
 		}
 	}
+	
+	/**
+	 * Test that you can return all the compounds that a given element is in
+	 */
+	@Test
+	public static void testGetElementsInCompound() {
+		ElementTDG e = ElementTDG.getInstance();
+		ArrayList<ElementDTO> list = e.getElementsInCompound(14);
+		assertEquals(list.size(), 2); // amount of tuples
+		assertEquals(list.get(0).getID(), 4); 
+		assertEquals(list.get(1).getID(), 5); 
+
+
+	}
+	
 
 	/**
 	 * runs all tests in this class for efficient
@@ -51,6 +66,7 @@ public class TestElementTDG {
 	public static void runAllTheTests() {
 		testConstructor();
 		testGetElementsInRange();
+		testGetElementsInCompound();
 	}
 
 }

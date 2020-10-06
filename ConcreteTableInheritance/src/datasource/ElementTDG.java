@@ -2,6 +2,7 @@ package datasource;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -53,5 +54,39 @@ public class ElementTDG {
 		}
 		
 		return data;
+	}
+	
+	/** 
+	 * Return all the elements in a given compound
+	 * @param c_ID -- ID of the compound 
+	 * @return the list of elements that are in the compound
+	 */
+	public ArrayList<ElementDTO> getElementsInCompound(int c_ID) {
+		ArrayList<ElementDTO> list = new ArrayList<ElementDTO>();
+		ArrayList<Integer> listOfCompounds = new ArrayList<Integer>();
+		
+		ResultSet r, s;
+		
+		try {
+			Connection connection = DatabaseManager.getSingleton().getConnection();
+			r = connection.createStatement().executeQuery("SELECT * FROM CompoundMadeOfElement WHERE CompoundMadeOfElement.compoundID = " + c_ID);
+			
+			while(r.next()) {
+				listOfCompounds.add(r.getInt(2));
+			}
+			for (int i : listOfCompounds) {
+				ElementDTO dto;
+				s = connection.createStatement().executeQuery("SELECT * FROM Element WHERE Element.elementOrMetalID = " + i);
+				s.next();
+				dto = new ElementDTO(s.getInt("elementOrMetalID"), s.getInt("elementAtomicNumber"), s.getDouble("elementAtomicMass"), s.getString("elementName") );
+				list.add(dto);
+			}
+			
+		} catch (DatabaseException | SQLException e) {
+			DatabaseException.detectError(e);
+		}
+
+		return list;
+		
 	}
 }

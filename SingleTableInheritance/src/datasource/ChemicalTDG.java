@@ -102,6 +102,28 @@ public class ChemicalTDG {
 	}
 	
 	/**
+	 * Return a DTO of all the elements in a given compound
+	 * @param c_ID the id of the compound
+	 * @return CompoundMadeOfElementID
+	 */
+	public ArrayList<CompoundMadeOfElementDTO> getElementsInCompound(int c_ID) {
+		ArrayList<CompoundMadeOfElementDTO> data = new ArrayList<CompoundMadeOfElementDTO>();
+		ResultSet rs;
+		
+		try {
+			Connection cn = DatabaseManager.getSingleton().getConnection();
+			rs = cn.createStatement().executeQuery("SELECT * FROM CompoundMadeOfElement WHERE compoundID = " + c_ID);
+			while(rs.next()) {
+				data.add(new CompoundMadeOfElementDTO(rs.getInt("elementID"), c_ID));
+			}
+
+		} catch(Exception e) {
+			DatabaseException.detectError(e);
+		}
+		return data;
+	}
+	
+	/**
 	 * Figures out which chemicals can be dissolved by a particular acid
 	 * 
 	 * @author Madeline & Taryn & Josh K

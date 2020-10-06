@@ -76,6 +76,20 @@ public class TestChemicalTDG {
 	}
 	
 	/**
+	 * Test the getElementsInCompound() method
+	 */
+	@Test
+	public static void testGetElementsInCompound() {
+		ChemicalTDG c = ChemicalTDG.getSingleton();
+		ArrayList<CompoundMadeOfElementDTO> result = c.getElementsInCompound(15);
+		//Test to make sure it gets the correct number of dtos
+		assertEquals(2, result.size());
+		//Test to make sure all compounds have the correct elements
+		for(int i = 0; i < result.size(); i++) {
+			assertEquals(result.get(i).getElementID(), 15);
+		}
+	}
+	/**
 	 * Makes sure we can find the metals that are dissolved by a particular acid
 	 */
 	@Test
@@ -99,6 +113,7 @@ public class TestChemicalTDG {
 		testGetElementsInRange();
 		testGetCompoundsByElement();
 		testGetMetalsDissolvedByAcid();
+		testGetElementsInCompound();
 	}
 
 }
