@@ -33,7 +33,7 @@ public class TestMetalRDG {
 	public static void testFindByID() {
 		MetalRDG m = MetalRDG.findByID(10);
 		assertEquals(m.getID(), 10);
-		assertEquals(m.getDissolvedBy(), 66);
+		assertEquals(m.getDissolvedBy(), 2);
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public class TestMetalRDG {
 	public static void testUpdate() {
 		MetalRDG m = MetalRDG.findByID(11);
 		assertEquals(m.getID(), 11);
-		assertEquals(m.getDissolvedBy(), 77);
+		assertEquals(m.getDissolvedBy(), 1);
 		m.setDissolvedBy(456);
 		m.update();
 		MetalRDG d = MetalRDG.findByID(11);

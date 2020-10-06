@@ -101,4 +101,27 @@ public class ChemicalTDG {
 		return data;
 	}
 	
+	/**
+	 * Figures out which chemicals can be dissolved by a particular acid
+	 * 
+	 * @author Madeline & Taryn & Josh K
+	 * @param a_id the ID of the acid
+	 * @return a list of the chemicals that can be dissolved by the acid
+	 */
+	public ArrayList<ChemicalDTO> getChemicalsDissolvedByAcid(int a_id) {
+		ArrayList<ChemicalDTO> data = new ArrayList<ChemicalDTO>();
+		ResultSet rs;
+		try {
+			DatabaseManager db = DatabaseManager.getSingleton();
+			Connection cn = db.getConnection();
+			rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE chemicalDissolvedBy = " + a_id);
+			while (rs.next()) {
+				data.add(new ChemicalDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getDouble(5), rs.getInt(6), rs.getInt(7), rs.getInt(8)));
+			}
+		} catch (Exception e) {
+			DatabaseException.detectError(e);
+		}
+		return data;
+	}
+	
 }

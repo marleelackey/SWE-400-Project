@@ -74,6 +74,21 @@ public class TestChemicalTDG {
 			assertEquals(result.get(i).getElementID(), 10);
 		}
 	}
+	
+	/**
+	 * Makes sure we can find the metals that are dissolved by a particular acid
+	 */
+	@Test
+	public static void testGetMetalsDissolvedByAcid() {
+		ChemicalTDG c = ChemicalTDG.getSingleton();
+		ArrayList<ChemicalDTO> results = new ArrayList<ChemicalDTO>();
+		results = c.getChemicalsDissolvedByAcid(8);
+		assertEquals(results.size(), 3);
+		assertEquals(12, results.get(0).getChemicalID());
+		assertEquals(13, results.get(1).getChemicalID());
+		assertEquals(14, results.get(2).getChemicalID());
+		System.out.println("tis a miracle!");
+	}
 
 	/**
 	 * A test to allow for efficient testing of the whole system
@@ -83,6 +98,7 @@ public class TestChemicalTDG {
 		testGetAllBases();
 		testGetElementsInRange();
 		testGetCompoundsByElement();
+		testGetMetalsDissolvedByAcid();
 	}
 
 }

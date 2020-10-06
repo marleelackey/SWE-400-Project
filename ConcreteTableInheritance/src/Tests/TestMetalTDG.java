@@ -12,8 +12,7 @@ import datasource.MetalTDG;
 
 /**
  * @author Dan Holmgren
- * @author Josh Kellogg
- * Test class for the metalTDG
+ * @author Josh Kellogg Test class for the metalTDG
  */
 public class TestMetalTDG {
 
@@ -25,7 +24,7 @@ public class TestMetalTDG {
 		MetalTDG m = MetalTDG.getInstance();
 		assertNotEquals(m, null);
 	}
-	
+
 	/**
 	 * Tests the getAllMetals method
 	 */
@@ -34,9 +33,24 @@ public class TestMetalTDG {
 		MetalTDG m = MetalTDG.getInstance();
 		ArrayList<MetalDTO> results = m.getAllMetals();
 		assertEquals(results.size(), 4);
-		for(int i = 0; i < results.size(); i++) {
+		for (int i = 0; i < results.size() - 1; i++) {
 			assertEquals(results.get(i).getDissolvedBy(), (i + 5));
 		}
+		assertEquals(7, results.get(3).getDissolvedBy());
+	}
+
+	/**
+	 * Makes sure we can find the metals that are dissolved by a particular acid
+	 */
+	@Test
+	public static void testGetMetalsDissolvedByAcid() {
+		MetalTDG m = MetalTDG.getInstance();
+		ArrayList<MetalDTO> results = new ArrayList<MetalDTO>();
+		results = m.getMetalsDissolvedByAcid(7);
+		assertEquals(results.size(), 2);
+		assertEquals(22, results.get(0).getID());
+		assertEquals(23, results.get(1).getID());
+		System.out.println("tis a miracle!");
 	}
 
 	/**
@@ -45,6 +59,7 @@ public class TestMetalTDG {
 	public static void runAllTheTests() {
 		testConstructor();
 		testGetAllMetals();
+		testGetMetalsDissolvedByAcid();
 	}
 
 }

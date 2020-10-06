@@ -39,11 +39,26 @@ public class TestMetalTDG {
 	}
 	
 	/**
+	 * Makes sure we can find the metals that are dissolved by a particular acid
+	 */
+	@Test
+	public static void testGetMetalsDissolvedByAcid() {
+		MetalTDG m = MetalTDG.getSingleton();
+		ArrayList<MetalDTO> results = new ArrayList<MetalDTO>();
+		results = m.getMetalsDissolvedByAcid(2);
+		assertEquals(results.size(), 2);
+		assertEquals(9, results.get(0).getID());
+		assertEquals(10, results.get(1).getID());
+		System.out.println("tis a miracle!");
+	}
+	
+	/**
 	 * To be effiecient
 	 */
 	public static void runAllTheTests() {
 		testConstructor();
 		testGetAllMetals();
+		testGetMetalsDissolvedByAcid();
 	}
 
 }

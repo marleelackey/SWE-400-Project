@@ -90,7 +90,7 @@ public class ConcreteTableCreator {
 										"INSERT INTO Metal VALUES (20, 'metal1', 21, 21.0, 5)",
 										"INSERT INTO Metal VALUES (21, 'metal2', 22, 22.0, 6)",
 										"INSERT INTO Metal VALUES (22, 'metal3', 23, 23.0, 7)",
-										"INSERT INTO Metal VALUES (23, 'metal4', 24, 24.0, 8)",
+										"INSERT INTO Metal VALUES (23, 'metal4', 24, 24.0, 7)",
 										"INSERT INTO CompoundMadeOfElement VALUES (0, 4)",
 										"INSERT INTO CompoundMadeOfElement VALUES (0, 5)",
 										"INSERT INTO CompoundMadeOfElement VALUES (2, 4)",

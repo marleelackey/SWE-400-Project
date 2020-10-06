@@ -3,17 +3,17 @@ package datasource;
 /**
  * 
  * @author Daniel Holmgren
- * @author Joshua Kellogg
- * A data transfer object to transfer information about a metal around
+ * @author Joshua Kellogg A data transfer object to transfer information about a
+ *         metal around
  */
 public class MetalDTO {
-	private int ID,
-				atomicNumber,
-				dissolvedBy;
+	private int ID, atomicNumber, dissolvedBy;
 	private double atomicMass;
 	private String name;
+
 	/**
 	 * Assigns instance variables
+	 * 
 	 * @param ID
 	 * @param atomicNumber
 	 * @param dissolvedBy
@@ -30,10 +30,10 @@ public class MetalDTO {
 
 	/**
 	 * Getters and Setters
+	 * 
 	 * @return the requested variables
 	 */
-	
-	
+
 	public int getID() {
 		return ID;
 	}
