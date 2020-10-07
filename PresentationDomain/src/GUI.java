@@ -10,6 +10,7 @@ public class GUI {
 	private final Dimension FRAME_SIZE = new Dimension(800, 500);
 	
 	JFrame mainFrame = new JFrame("SWE Rocks!");
+	JTabbedPane mainPane = new JTabbedPane();
 	
 	JPanel elementMainPanel = new JPanel();
 	JPanel listOfElementsPanel = new JPanel();
@@ -37,9 +38,23 @@ public class GUI {
 	
 	public GUI() {
 		setupPanels(elementMainPanel, listOfElementsPanel, elementControlPanel);
+		setupPanels(metalMainPanel, listOfMetalsPanel, metalControlPanel);
+		setupPanels(compoundMainPanel, listOfCompoundPanel, compoundControlPanel);
+		setupPanels(acidMainPanel, listOfAcidsPanel, acidControlPanel);
+		setupPanels(baseMainPanel, listOfBasesPanel, baseControlPanel);
+		setupPanels(chemicalMainPanel, listOfChemicalsPanel, chemicalControlPanel);
+		
 		mainFrame.setPreferredSize(FRAME_SIZE);
 		mainFrame.pack();
-		mainFrame.add(elementMainPanel);
+		
+		mainPane.addTab("Element", elementMainPanel);
+		mainPane.addTab("Metal", metalMainPanel);
+		mainPane.addTab("Compound", compoundMainPanel);
+		mainPane.addTab("Acid", acidMainPanel);
+		mainPane.addTab("Base", baseMainPanel);
+		mainPane.addTab("Chemical", chemicalMainPanel);
+		
+		mainFrame.add(mainPane);
 		mainFrame.setVisible(true);
 	}
 	
