@@ -10,65 +10,51 @@ A user should be able to create an element that gets added to the data source. -
 * create an ExecuterForCommands class that calls execute on proper command - 10/10
 * create a Command interface - 10/10
 * create the concrete command AddElementCmd - 10/10
-* constructor for all the proper instance variables
-/** execute method that calls what it needs to in the domain object
 * create an Element domain object class - 10/11
-/** createConstructor(), findConstructor(), persist(), all business logic
 * create an ElementMapperInterface - 10/11
 * create an ElementMapper for each inheritance pattern - 10/11
-/** method to create an element
 
 
 A user should be able to modify how many moles we have of a chemical. - due 10/11
-We need to:
-Create a UI - 10/11
-Create an ExecuterForCommands class that calls execute on proper command - 10/10
-Create a Command interface - 10/10
-Create the concrete command ModifyChemicalAmountCmd - 10/10
-constructor for all the proper instance variables
-Execute method that calls what it needs to in the domain object
-Create a Chemical domain object class - 10/11
-createConstructor(), findConstructor(), persist(), all business logic
-Create a ChemicalMapperInterface - 10/11
-Create a ChemicalMapper for each inheritance pattern - 10/11
-Method to modify the amount of a chemical
+
+* Create a UI - 10/11
+* Create an ExecuterForCommands class that calls execute on proper command - 10/10
+* Create a Command interface - 10/10
+* Create the concrete command ModifyChemicalAmountCmd - 10/10
+* Create a Chemical domain object class - 10/11
+* Create a ChemicalMapperInterface - 10/11
+* Create a ChemicalMapper for each inheritance pattern - 10/11
 
 
 A user should be able to modify the atomic number of an element. - due 10/12
-Create components in the UI to choose element and input new atomic number
-Create command to modify atomic number
-Add that command to executer 
-Add finder constructor to mapper
-create components in ui to choose element and input new atomic number
+
+* Create components in the UI to choose element and input new atomic number
+* Create command to modify atomic number
+* Add that command to executer 
+* Add finder constructor to mapper
+* create components in ui to choose element and input new atomic number
 
 A user should be able to specify what acid dissolves a particular metal. - due 10/12
 We need to
-Create a UI - 10/12
-Create an ExecuteForCommands class that calls execute on proper command - 10/11
-Create a command interface - 10/10
-Create the concrete command OverwriteAcidToDissolveMetalCmd - 10/11
-constructor for all the proper instance variables
-Execute method that calls what it needs to in the domain object
-Create a Metal domain object class - 10/12
-createConstructor(), findConstructor(), persist(), all business logic
-Create a Metal Mapper interface - 10/12
-Create a concrete Metal class for each inheritance pattern 10/12
-Method to set dissolvedBy in Metal
+
+* Create a UI - 10/12
+* Create an ExecuteForCommands class that calls execute on proper command - 10/11
+* Create a command interface - 10/10
+* Create the concrete command OverwriteAcidToDissolveMetalCmd - 10/11
+* Create a Metal domain object class - 10/12
+* Create a Metal Mapper interface - 10/12
+* Create a concrete Metal class for each inheritance pattern 10/12
 
 
 A user should be able to generate a report of which chemicals are low in quantity. - due 10/14
-We need to:
-Create a UI
-Create an ExecuterForCommands class that calls execute on proper command
-Create a Command interface - 10/10
-Create the concrete command GenerateLowChemicalsReportCmd
-constructor for all the proper instance variables
-Execute method that calls what it needs to in the domain object
-Create a Chemical domain object class
-createConstructor(), findConstructor(), persist(), all business logic
-Create a ChemicalMapperInterface
-Create a ChemicalMapper for each inheritance pattern
-Method to generate a low chemicals report
+
+* Create a UI
+* Create an ExecuterForCommands class that calls execute on proper command
+* Create a Command interface - 10/10
+* Create the concrete command GenerateLowChemicalsReportCmd
+* Create a Chemical domain object class
+* Create a ChemicalMapperInterface
+* Create a ChemicalMapper for each inheritance pattern
 
 
 A user should be able to add an element to an existing compound. - due 10/14
