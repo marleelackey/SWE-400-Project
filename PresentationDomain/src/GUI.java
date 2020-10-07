@@ -1,3 +1,4 @@
+import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -5,8 +6,9 @@ import javax.swing.*;
  * @author Joshua Kellogg
  *
  */
-public class GUI 
-{
+public class GUI {
+	private final Dimension FRAME_SIZE = new Dimension(800, 500);
+	
 	JFrame mainFrame = new JFrame("SWE Rocks!");
 	
 	JPanel elementMainPanel = new JPanel();
@@ -32,5 +34,23 @@ public class GUI
 	JPanel chemicalMainPanel = new JPanel();
 	JPanel listOfChemicalsPanel = new JPanel();
 	JPanel chemicalControlPanel = new JPanel();
+	
+	public GUI() {
+		setupPanels(elementMainPanel, listOfElementsPanel, elementControlPanel);
+		mainFrame.setPreferredSize(FRAME_SIZE);
+		mainFrame.pack();
+		mainFrame.add(elementMainPanel);
+		mainFrame.setVisible(true);
+	}
+	
+	private void setupPanels(JPanel main, JPanel list, JPanel control) {
+		list.setPreferredSize(new Dimension( (int)Math.floor(FRAME_SIZE.height * .2), FRAME_SIZE.height));
+		control.setPreferredSize(new Dimension( (int)Math.floor(FRAME_SIZE.height * .8), FRAME_SIZE.height));
+		list.setBackground(new Color(235, 91, 52));
+		control.setBackground(new Color(52, 186, 235));
+		main.setLayout(new BoxLayout(main, BoxLayout.LINE_AXIS));
+		main.add(list);
+		main.add(control);
+	}
 	
 }
