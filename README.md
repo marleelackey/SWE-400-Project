@@ -5,18 +5,17 @@ Domain Objects - Marlee & Taryn
 Mappers - Ace & Joshua B
 
 A user should be able to create an element that gets added to the data source. - due 10/11
-We need to:
-create a UI - 10/11
-create an ExecuterForCommands class that calls execute on proper command - 10/10
-create a Command interface - 10/10
-create the concrete command AddElementCmd - 10/10
-constructor for all the proper instance variables
-execute method that calls what it needs to in the domain object
-create an Element domain object class - 10/11
-createConstructor(), findConstructor(), persist(), all business logic
-create an ElementMapperInterface - 10/11
-create an ElementMapper for each inheritance pattern - 10/11
-method to create an element
+* create a UI - 10/11
+* create an ExecuterForCommands class that calls execute on proper command - 10/10
+* create a Command interface - 10/10
+* create the concrete command AddElementCmd - 10/10
+** constructor for all the proper instance variables
+** execute method that calls what it needs to in the domain object
+* create an Element domain object class - 10/11
+** createConstructor(), findConstructor(), persist(), all business logic
+* create an ElementMapperInterface - 10/11
+* create an ElementMapper for each inheritance pattern - 10/11
+** method to create an element
 
 
 A user should be able to modify how many moles we have of a chemical. - due 10/11
