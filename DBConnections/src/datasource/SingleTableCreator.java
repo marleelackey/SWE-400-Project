@@ -22,7 +22,7 @@ public class SingleTableCreator {
 
 			String[] table_statements = {
 					"CREATE TABLE IF NOT EXISTS Chemical (chemicalID int NOT NULL, chemicalType int NOT NULL, chemicalName VARCHAR(32) NOT NULL, chemicalAtomicNumber int, chemicalAtomicMass double, chemicalDissolvedBy int, chemicalAcidSolute int, chemicalBaseSolute int, PRIMARY KEY (chemicalID))",
-					"CREATE TABLE IF NOT EXISTS CompoundMadeOfElement (compoundID int, elementID int)" };
+					"CREATE TABLE IF NOT EXISTS CompoundMadeOfElement (compoundID int, elementID int, elementQuantity int)" };
 
 			for (int i = 0; i < table_statements.length; i++) {
 				insertData = new String(table_statements[i]);
@@ -80,9 +80,9 @@ public class SingleTableCreator {
 					"INSERT INTO Chemical VALUES (14, 4, 'name13', null, 26.7, 8, null, null)",
 					"INSERT INTO Chemical VALUES (15, 5, 'name14', null, 27.7, null, null, null)",
 					"INSERT INTO Chemical VALUES (16, 5, 'name15', null, 1230.7, null, null, null)",
-					"INSERT INTO CompoundMadeOfElement VALUES (15, 10)",
-					"INSERT INTO CompoundMadeOfElement VALUES (15, 11)",
-					"INSERT INTO CompoundMadeOfElement VALUES (16, 10)" };
+					"INSERT INTO CompoundMadeOfElement VALUES (15, 10, 20)",
+					"INSERT INTO CompoundMadeOfElement VALUES (15, 11, 20)",
+					"INSERT INTO CompoundMadeOfElement VALUES (16, 10, 20)" };
 
 			for (int i = 0; i < table_statements.length; i++) {
 				insertData = new String(table_statements[i]);

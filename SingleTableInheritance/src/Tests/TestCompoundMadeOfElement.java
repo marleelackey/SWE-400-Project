@@ -18,9 +18,10 @@ public class TestCompoundMadeOfElement {
 	 */
 	@Test
 	public static void testGetters() {
-		CompoundMadeOfElementDTO idk = new CompoundMadeOfElementDTO(1, 3);
+		CompoundMadeOfElementDTO idk = new CompoundMadeOfElementDTO(1, 3, 20);
 		assertEquals(1, idk.getCompoundID());
 		assertEquals(3, idk.getElementID());
+		assertEquals(20, idk.getElementQuantity());
 	}
 
 	/**

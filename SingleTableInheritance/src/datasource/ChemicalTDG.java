@@ -92,7 +92,7 @@ public class ChemicalTDG {
 			Connection cn = DatabaseManager.getSingleton().getConnection();
 			rs = cn.createStatement().executeQuery("SELECT * FROM CompoundMadeOfElement WHERE elementID = " + ID);
 			while(rs.next()) {
-				data.add(new CompoundMadeOfElementDTO(rs.getInt("compoundID"), ID));
+				data.add(new CompoundMadeOfElementDTO(rs.getInt("compoundID"), ID, rs.getInt("elementQuantity")));
 			}
 
 		} catch(Exception e) {
@@ -114,7 +114,7 @@ public class ChemicalTDG {
 			Connection cn = DatabaseManager.getSingleton().getConnection();
 			rs = cn.createStatement().executeQuery("SELECT * FROM CompoundMadeOfElement WHERE compoundID = " + c_ID);
 			while(rs.next()) {
-				data.add(new CompoundMadeOfElementDTO(rs.getInt("elementID"), c_ID));
+				data.add(new CompoundMadeOfElementDTO(rs.getInt("elementID"), c_ID, rs.getInt("elementQuantity")));
 			}
 
 		} catch(Exception e) {
