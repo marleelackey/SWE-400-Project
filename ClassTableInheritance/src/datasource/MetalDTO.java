@@ -28,8 +28,4 @@ public class MetalDTO {
 	public int getDissolvedBy() {
 		return dissolvedBy;
 	}
-
-	public void setDissolvedBy(int dissolvedBy) {
-		this.dissolvedBy = dissolvedBy;
-	}
 }
