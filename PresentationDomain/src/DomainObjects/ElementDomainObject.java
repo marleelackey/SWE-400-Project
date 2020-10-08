@@ -1,5 +1,7 @@
 package DomainObjects;
 
+import java.sql.ResultSet;
+
 /**
  * 
  * @author Marlee Lackey
@@ -22,17 +24,46 @@ public class ElementDomainObject {
 	 * @param soluteA
 	 * @param soluteB
 	 * @param moles
+	 * @param isMetal
+	 * @param acidID
 	 */
 	public void createConstructor(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy, int soluteA,
-			int soluteB, double moles) {
-		ElementMapper em = new ElementMapper(ID, type, name, atomicNumber, atomicMass, dissolvedBy, soluteA, soluteB, moles);
-		em.createElement(ID, name, atomicNumber, atomicMass);
+			int soluteB, double moles, boolean isMetal, int acidID) {
+		ElementMapper em = new ElementMapper(ID, type, name, atomicNumber, atomicMass, dissolvedBy, soluteA, soluteB, moles, isMetal, acidID);
+		em.createElement(ID, name, atomicNumber, atomicMass, isMetal, acidID);
 		
 	}
 	
-	public void findConstructor(/*paramsn*/) {
+	/**
+	 * createConstructor() for concrete table
+	 * @param ID
+	 * @param atomicNumber
+	 * @param atomicMass
+	 * @param name
+	 * @param isMetal
+	 * @param acidID
+	 */
+	public void createConstructor(int ID, int atomicNumber, double atomicMass, String name, boolean isMetal, int acidID) {
+		ElementMapper em = new ElementMapper(ID, name, atomicNumber, atomicMass, isMetal, acidID);
+		em.createElement(ID, name, atomicNumber, atomicMass, isMetal, acidID);
+	}
+	
+	/**
+	 * createConstructor() for class table
+	 * @param ID
+	 * @param atomicNumber
+	 * @param atomicMass
+	 * @param isMetal
+	 * @param acidID
+	 */
+	public void createConstructor(int ID, int atomicNumber, double atomicMass, boolean isMetal, int acidID) {
+		
+	}
+	
+	public void findConstructor(int id) {
 		ElementMapper em = new ElementMapper(/* param */);
-		em.findByID(); // only an example
+		ResultSet rs = null;
+		rs.findByID(id); 
 	}
 
 }
