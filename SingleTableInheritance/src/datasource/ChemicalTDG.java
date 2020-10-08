@@ -45,7 +45,8 @@ public class ChemicalTDG {
 			rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE chemicalType = 1");
 			while(rs.next()) {
 				data.add(new ChemicalDTO(rs.getInt("chemicalID"), rs.getInt("chemicalType"), rs.getString("chemicalName"), rs.getInt("chemicalAtomicNumber"),
-						rs.getDouble("chemicalAtomicMass"), rs.getInt("chemicalDissolvedBy"), rs.getInt("chemicalAcidSolute"), rs.getInt("chemicalBaseSolute"), rs.getDouble("molesOfAcidToDissolve")));
+						rs.getDouble("chemicalAtomicMass"), rs.getInt("chemicalDissolvedBy"), rs.getInt("chemicalAcidSolute"), rs.getInt("chemicalBaseSolute"), 
+						rs.getDouble("molesOfAcidToDissolve"), rs.getDouble("chemicalMoles")));
 			}
 		} catch (Exception e){
 			DatabaseException.detectError(e);
@@ -69,7 +70,8 @@ public class ChemicalTDG {
 			rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE chemicalAtomicMass > " + lower + " AND chemicalAtomicMass < " + upper);
 			while(rs.next()) {
 				data.add(new ChemicalDTO(rs.getInt("chemicalID"), rs.getInt("chemicalType"), rs.getString("chemicalName"), rs.getInt("chemicalAtomicNumber"),
-						rs.getDouble("chemicalAtomicMass"), rs.getInt("chemicalDissolvedBy"), rs.getInt("chemicalAcidSolute"), rs.getInt("chemicalBaseSolute"), rs.getDouble("molesOfAcidToDissolve")));
+						rs.getDouble("chemicalAtomicMass"), rs.getInt("chemicalDissolvedBy"), rs.getInt("chemicalAcidSolute"), rs.getInt("chemicalBaseSolute"), 
+						rs.getDouble("molesOfAcidToDissolve"), rs.getDouble("chemicalMoles")));
 			}
 			
 		} catch(Exception e) {
@@ -138,7 +140,8 @@ public class ChemicalTDG {
 			Connection cn = db.getConnection();
 			rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE chemicalDissolvedBy = " + a_id);
 			while (rs.next()) {
-				data.add(new ChemicalDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getDouble(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getDouble(9)));
+				data.add(new ChemicalDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getDouble(5), rs.getInt(6),
+						rs.getInt(7), rs.getInt(8), rs.getDouble(9), rs.getDouble(10)));
 			}
 		} catch (Exception e) {
 			DatabaseException.detectError(e);

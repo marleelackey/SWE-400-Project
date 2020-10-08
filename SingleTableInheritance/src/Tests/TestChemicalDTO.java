@@ -24,7 +24,7 @@ public class TestChemicalDTO {
 	 */
 	@Test
 	public static void testConstructorAndGetters() {
-		ChemicalDTO dto = new ChemicalDTO(1, 2, "Boron", 5, 21.3, 7, 9, 12, 2.2);
+		ChemicalDTO dto = new ChemicalDTO(1, 2, "Boron", 5, 21.3, 7, 9, 12, 2.2, 10.2);
 
 		assertEquals(dto.getChemicalID(), 1);
 		assertEquals(dto.getChemicalType(), 2);
@@ -35,6 +35,7 @@ public class TestChemicalDTO {
 		assertEquals(dto.getChemicalSoluteA(), 9);
 		assertEquals(dto.getChemicalSoluteB(), 12);
 		assertEquals(dto.getChemicalMolesOfAcidToDissolve(), 2.2, .01);
+		assertEquals(dto.getChemicalMoles(), 10.2, .01);
 
 	}
 
@@ -52,7 +53,7 @@ public class TestChemicalDTO {
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE ChemicalID = 9");
 			rs.next();
 			dto = new ChemicalDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getDouble(5),
-					rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getDouble(9));
+					rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getDouble(9), rs.getDouble(10));
 		} catch (Exception e) {
 			DatabaseException.detectError(e, "TestChemicalDTO - Single");
 		}
@@ -66,6 +67,7 @@ public class TestChemicalDTO {
 		assertEquals(dto.getChemicalSoluteA(), 53);
 		assertEquals(dto.getChemicalSoluteB(), 0);
 		assertEquals(dto.getChemicalMolesOfAcidToDissolve(), 22.2, .01);
+		assertEquals(dto.getChemicalMoles(), 10.2, .01);
 	}
 
 	/**
