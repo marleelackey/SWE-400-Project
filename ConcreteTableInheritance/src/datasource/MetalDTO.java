@@ -42,31 +42,15 @@ public class MetalDTO {
 		return atomicNumber;
 	}
 
-	public void setAtomicNumber(int atomicNumber) {
-		this.atomicNumber = atomicNumber;
-	}
-
 	public double getAtomicMass() {
 		return atomicMass;
-	}
-
-	public void setAtomicMass(double atomicMass) {
-		this.atomicMass = atomicMass;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public int getDissolvedBy() {
 		return dissolvedBy;
-	}
-
-	public void setDissolvedBy(int dissolvedBy) {
-		this.dissolvedBy = dissolvedBy;
 	}
 }

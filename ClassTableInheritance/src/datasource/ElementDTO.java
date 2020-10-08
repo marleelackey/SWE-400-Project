@@ -33,15 +33,7 @@ public class ElementDTO {
 		return atomicNumber;
 	}
 
-	public void setAtomicNumber(int atomicNumber) {
-		this.atomicNumber = atomicNumber;
-	}
-
 	public double getAtomicMass() {
 		return atomicMass;
-	}
-
-	public void setAtomicMass(double atomicMass) {
-		this.atomicMass = atomicMass;
 	}
 }
