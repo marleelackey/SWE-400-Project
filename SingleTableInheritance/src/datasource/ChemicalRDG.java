@@ -37,6 +37,26 @@ public class ChemicalRDG {
 
 		// connection to the DB
 		connection = DatabaseManager.getSingleton().getConnection();
+	}
+	
+	/**
+	 * Constructor for Element
+	 * 
+	 * @param ID
+	 * @throws DatabaseException
+	 */
+	public ChemicalRDG(int ID, int type, String name) throws DatabaseException {
+		this.ID = ID;
+		this.type = type;
+		this.name = name;
+//		this.atomicNumber = null;
+//		this.atomicMass = atomicMass;
+//		this.dissolvedBy = dissolvedBy;
+//		this.soluteA = soluteA;
+//		this.soluteB = soluteB;
+
+		// connection to the DB
+		connection = DatabaseManager.getSingleton().getConnection();
 
 	}
 
@@ -289,6 +309,28 @@ public class ChemicalRDG {
 		}
 
 		return chem;
+
+	}
+	
+	public void insert() {
+		PreparedStatement stmt;
+		try {
+			stmt = connection.prepareStatement(
+					"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, null)");
+			stmt.setInt(1, ID);
+			stmt.setInt(2, type);
+			stmt.setString(3, name);
+//			stmt.setNull(4, ID);
+//			stmt.setDouble(5, atomicMass);
+//			stmt.setInt(6, dissolvedBy);
+//			stmt.setInt(7, soluteB);
+//			stmt.setInt(8, soluteA);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			DatabaseException.detectError(e);
+
+		}
 
 	}
 

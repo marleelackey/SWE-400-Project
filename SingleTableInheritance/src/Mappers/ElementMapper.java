@@ -11,7 +11,7 @@ public class ElementMapper implements ElementMapperInterface {
 		try {
 			ChemicalRDG tom = new ChemicalRDG( ident, type , name, atomicNumber, atomicMass, (Integer) null, (Integer) null,
 					(Integer) null);
-			tom.update();
+			tom.insert();
 		} catch (DatabaseException e) {
 			DatabaseException.detectError(e, "Error spotted in the ElementMapper class, CreateElementMethod");
 		}

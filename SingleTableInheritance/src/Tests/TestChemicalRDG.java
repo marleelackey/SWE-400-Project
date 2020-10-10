@@ -1,10 +1,12 @@
 package Tests;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
 import datasource.ChemicalRDG;
 import datasource.DatabaseException;
+import datasource.DatabaseManager;
 /** 
  * 
  * @author Taryn Whitman
@@ -129,6 +131,41 @@ public class TestChemicalRDG {
 		}
 		
 	}
+	
+	/**
+	 * 
+	 * Test that update works properly
+	 */
+	@Test
+	public static void testInsert() {
+		ChemicalRDG chem;
+		try {
+			DatabaseManager.getSingleton().setTesting();
+			
+			chem = new ChemicalRDG(31, 4, "bobrogyn");
+			chem.insert();
+			assertEquals(chem.getID(), 31);
+			assertEquals(chem.getType(), 4);
+			assertEquals(chem.getName(), "bobrogyn");
+//			assertNull(chem.getAtomicNumber());
+//			assertNull(chem.getAtomicMass());
+//			assertNull(chem.getDissolvedBy());
+//			assertNull(chem.getSoluteA());
+//			assertNull(chem.getSoluteB());
+			
+			ChemicalRDG chem2 = ChemicalRDG.findByIDSingle(31);
+//			System.out.println("1: " + chem.getName());
+//			System.out.println("2: "+ chem2.getName());
+
+			assertEquals(chem.getName(), chem2.getName());
+			
+			DatabaseManager.getSingleton().rollBack();
+
+		} catch (DatabaseException e) {
+			DatabaseException.detectError(e);
+		}
+				
+	}
 
 	/**
 	 * Allows for our tests to be run in TestEverything()
@@ -137,6 +174,7 @@ public class TestChemicalRDG {
 		constructor1Test();
 		findersTest();
 		updateTest();
+		testInsert();
 	}
 
 }
