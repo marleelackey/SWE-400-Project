@@ -1,6 +1,5 @@
 package mappers;
 
-import Interfaces.ElementMapperInterface;
 import Interfaces.MetalMapperInterface;
 import datasource.ChemicalRDG;
 import datasource.DatabaseException;
@@ -13,14 +12,16 @@ public class MetalMapper implements MetalMapperInterface {
 	private String name;
 	private int atomicNumber;
 	private double atomicMass;
-	private int dissolvedBy;	
+	private int dissolvedBy;
+	private double moles;
  
-	public MetalMapper(int ID, String elementName, int atomicNumber, double atomicMass, int dissolvedBy) {
+	public MetalMapper(int ID, String elementName, int atomicNumber, double atomicMass, int dissolvedBy, double moles) {
 		ident = ID;
 		this.name = elementName;
 		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
 		this.dissolvedBy = dissolvedBy;
+		this.moles = moles;
 	}
 	
 	
@@ -28,13 +29,13 @@ public class MetalMapper implements MetalMapperInterface {
 	public void createMetal() {
 		
 		try {
-			ChemicalRDG rdg1 = new ChemicalRDG(ident, name);
+			ChemicalRDG rdg1 = new ChemicalRDG(ident, name, moles);
 			rdg1.insert();
 			
 			ElementRDG rdg2 = new ElementRDG(ident, atomicNumber, atomicMass);
 			rdg2.insert();
 			
-			MetalRDG rdg3 = new MetalRDG(ident, dissolvedBy);
+			MetalRDG rdg3 = new MetalRDG(ident, dissolvedBy, moles);
 			rdg3.insert();
 			
 		} catch (Exception e) {

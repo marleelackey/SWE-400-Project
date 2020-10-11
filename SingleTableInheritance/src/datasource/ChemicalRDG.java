@@ -16,6 +16,7 @@ public class ChemicalRDG {
 	private int soluteA;
 	private int soluteB;
 	private double moles;
+	private double molesOfAcidToDissolve;
 	static Connection connection;
 
 	/**
@@ -38,7 +39,11 @@ public class ChemicalRDG {
 		this.moles = moles;
 
 		// connection to the DB
-		connection = DatabaseManager.getSingleton().getConnection();
+		try {
+			connection = DatabaseManager.getSingleton().getConnection();
+		} catch (DatabaseException e) {
+			DatabaseException.detectError(e, "ChemicalRDG - single");
+		}
 	}
 	
 	/**
@@ -47,7 +52,7 @@ public class ChemicalRDG {
 	 * @param ID
 	 * @throws DatabaseException
 	 */
-	public ChemicalRDG(int ID, int type, String name, int atomicNum, double atomicMass) throws DatabaseException {
+	public ChemicalRDG(int ID, int type, String name, int atomicNum, double atomicMass, double moles) {
 		this.ID = ID;
 		this.type = type;
 		this.name = name;
@@ -56,9 +61,14 @@ public class ChemicalRDG {
 //		this.dissolvedBy = dissolvedBy;
 //		this.soluteA = soluteA;
 //		this.soluteB = soluteB;
+		this.moles = moles;
 
 		// connection to the DB
-		connection = DatabaseManager.getSingleton().getConnection();
+		try {
+			connection = DatabaseManager.getSingleton().getConnection();
+		} catch (DatabaseException e) {
+			DatabaseException.detectError(e, "ChemicalRDG - single");
+		}
 
 	}
 	
@@ -68,13 +78,15 @@ public class ChemicalRDG {
 	 * @param ID
 	 * @throws DatabaseException
 	 */
-	public ChemicalRDG(int ID, int type, String name, int atomicNum, double atomicMass, int dissolvedBy) {
+	public ChemicalRDG(int ID, int type, String name, int atomicNum, double atomicMass, int dissolvedBy, double moles, double molesOfAcidToDissolve) {
 		this.ID = ID;
 		this.type = type;
 		this.name = name;
 		this.atomicNumber = atomicNum;
 		this.atomicMass = atomicMass;
 		this.dissolvedBy = dissolvedBy;
+		this.moles = moles;
+		this.molesOfAcidToDissolve = molesOfAcidToDissolve;
 
 		// connection to the DB
 		try {
@@ -167,6 +179,10 @@ public class ChemicalRDG {
 		moles = newMoles;
 	}
 
+	public void setMolesOfAcidToDissolve(double molesOfAcidToDissolve) {
+		this.molesOfAcidToDissolve = molesOfAcidToDissolve;
+	}
+
 	/**
 	 * Getter for ID
 	 * 
@@ -246,6 +262,10 @@ public class ChemicalRDG {
 	 */
 	public double getMoles() {
 		return moles;
+	}
+
+	public double getMolesOfAcidToDissolve() {
+		return molesOfAcidToDissolve;
 	}
 
 	/**

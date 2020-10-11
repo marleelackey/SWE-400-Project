@@ -13,7 +13,7 @@ public class TestElementMapper {
 	
 	@Test
 	public static void testCreateElement() {
-		ElementMapper mapper = new ElementMapper(40, "element", 10, 10);
+		ElementMapper mapper = new ElementMapper(40, "element", 10, 10, 4.7);
 		try {
 			DatabaseManager.getSingleton().setTesting();
 			mapper.createElement();

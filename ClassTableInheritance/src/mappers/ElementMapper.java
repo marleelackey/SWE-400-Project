@@ -10,13 +10,15 @@ public class ElementMapper implements ElementMapperInterface {
 	private int ident;
 	private String name;
 	private int atomicNumber;
-	private double atomicMass;	
+	private double atomicMass;
+	private double moles;
  
-	public ElementMapper(int ID, String elementName, int atomicNumber, double atomicMass) {
+	public ElementMapper(int ID, String elementName, int atomicNumber, double atomicMass, double moles) {
 		ident = ID;
 		this.name = elementName;
 		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
+		this.moles = moles;
 	}
 	
 	
@@ -24,7 +26,7 @@ public class ElementMapper implements ElementMapperInterface {
 	public void createElement() {
 		
 		try {
-			ChemicalRDG rdg1 = new ChemicalRDG(ident, name);
+			ChemicalRDG rdg1 = new ChemicalRDG(ident, name, moles);
 			rdg1.insert();
 			
 			ElementRDG rdg2 = new ElementRDG(ident, atomicNumber, atomicMass);

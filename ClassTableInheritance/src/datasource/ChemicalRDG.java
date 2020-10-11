@@ -3,7 +3,6 @@ package datasource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * Row Data Gateway for Chemical

@@ -1,7 +1,6 @@
 package Tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
@@ -131,7 +130,7 @@ public class TestChemicalRDG {
 		try {
 			DatabaseManager.getSingleton().setTesting();
 			
-			chem = new ChemicalRDG(31, 4, "bobrogyn", 40, 10);
+			chem = new ChemicalRDG(31, 4, "bobrogyn", 40, 10, 4.6);
 			chem.insert();
 			assertEquals(chem.getID(), 31);
 			assertEquals(chem.getType(), 4);

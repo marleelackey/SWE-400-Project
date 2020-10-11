@@ -14,7 +14,7 @@ public class TestElementMapper {
 	
 	@Test
 	public static void testCreateElement() {
-		ElementMapper mapper = new ElementMapper(40, "element", 20, 10);
+		ElementMapper mapper = new ElementMapper(40, "element", 20, 10, 4.5);
 		try {
 			DatabaseManager.getSingleton().setTesting();
 			mapper.createElement();
@@ -37,7 +37,6 @@ public class TestElementMapper {
 
 	public static void runAllTheTests() {
 		testCreateElement();
-		
 	}
 
 }
