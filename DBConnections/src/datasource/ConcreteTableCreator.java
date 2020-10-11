@@ -25,8 +25,8 @@ public class ConcreteTableCreator {
 					"CREATE TABLE IF NOT EXISTS Compound (compoundID int NOT NULL, compoundName VARCHAR(32) NOT NULL, compoundMoles double, PRIMARY KEY (compoundID))",
 					"CREATE TABLE IF NOT EXISTS Base (baseID int NOT NULL, baseName VARCHAR(32) NOT NULL, baseSolute int NOT NULL, baseMoles double, PRIMARY KEY (baseID))",
 					"CREATE TABLE IF NOT EXISTS Acid (acidID int NOT NULL, acidName VARCHAR(32) NOT NULL, acidSolute int NOT NULL, acidMoles double, PRIMARY KEY (acidID))",
-					"CREATE TABLE IF NOT EXISTS Metal (elementOrMetalID int NOT NULL, metalName VARCHAR(32) NOT NULL, metalAtomicNumber int NOT NULL, metalAtomicMass double NOT NULL, metalDissolvedBy int NOT NULL, metalMoles double, PRIMARY KEY (elementOrMetalID))",
-					"CREATE TABLE IF NOT EXISTS CompoundMadeOfElement (compoundID int, elementID int)" };
+					"CREATE TABLE IF NOT EXISTS Metal (elementOrMetalID int NOT NULL, metalName VARCHAR(32) NOT NULL, metalAtomicNumber int NOT NULL, metalAtomicMass double NOT NULL, metalDissolvedBy int NOT NULL, metalMoles double, molesOfAcidToDissolve double, PRIMARY KEY (elementOrMetalID))",
+					"CREATE TABLE IF NOT EXISTS CompoundMadeOfElement (compoundID int, elementID int, elementQuantity int)" };
 
 			for (int i = 0; i < table_statements.length; i++) {
 				insertData = new String(table_statements[i]);
@@ -87,14 +87,14 @@ public class ConcreteTableCreator {
 										"INSERT INTO Compound VALUES (0, 'Sugar Water', 28.3)",
 										"INSERT INTO Compound VALUES (1, 'Carodine', 29.5)",
 										"INSERT INTO Compound VALUES (2, 'Spicy Water', 37.3)",
-										"INSERT INTO Metal VALUES (20, 'metal1', 21, 21.0, 5, 29.4)",
-										"INSERT INTO Metal VALUES (21, 'metal2', 22, 22.0, 6, 29.5)",
-										"INSERT INTO Metal VALUES (22, 'metal3', 23, 23.0, 7, 2.8)",
-										"INSERT INTO Metal VALUES (23, 'metal4', 24, 24.0, 7, 39.5)",
-										"INSERT INTO CompoundMadeOfElement VALUES (0, 4)",
-										"INSERT INTO CompoundMadeOfElement VALUES (0, 5)",
-										"INSERT INTO CompoundMadeOfElement VALUES (2, 4)",
-										"INSERT INTO CompoundMadeOfElement VALUES (2, 8)" };
+										"INSERT INTO Metal VALUES (20, 'metal1', 21, 21.0, 5, 29.4, 43.4)",
+										"INSERT INTO Metal VALUES (21, 'metal2', 22, 22.0, 6, 29.5, 65.3)",
+										"INSERT INTO Metal VALUES (22, 'metal3', 23, 23.0, 7, 2.8, 9.6)",
+										"INSERT INTO Metal VALUES (23, 'metal4', 24, 24.0, 7, 39.5, 8.5)",
+										"INSERT INTO CompoundMadeOfElement VALUES (0, 4, 6)",
+										"INSERT INTO CompoundMadeOfElement VALUES (0, 5, 2)",
+										"INSERT INTO CompoundMadeOfElement VALUES (2, 4, 4)",
+										"INSERT INTO CompoundMadeOfElement VALUES (2, 8, 6)" };
 
 			for (int i = 0; i < table_statements.length; i++) {
 				insertData = new String(table_statements[i]);

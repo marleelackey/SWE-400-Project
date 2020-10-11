@@ -48,7 +48,7 @@ public class MetalTDG {
 			while (rs.next()) {
 				data.add(new MetalDTO(rs.getInt("elementOrMetalID"), rs.getInt("metalAtomicNumber"),
 						rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"),
-						rs.getDouble("metalMoles")));
+						rs.getDouble("metalMoles"), rs.getDouble("molesOfAcidToDissolve")));
 			}
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
@@ -73,7 +73,7 @@ public class MetalTDG {
 			while (rs.next()) {
 				data.add(new MetalDTO(rs.getInt("elementOrMetalID"), rs.getInt("metalAtomicNumber"),
 						rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"),
-						rs.getDouble("metalMoles")));
+						rs.getDouble("metalMoles"), rs.getDouble("molesOfAcidToDissolve")));
 			}
 		} catch (Exception e) {
 			DatabaseException.detectError(e);

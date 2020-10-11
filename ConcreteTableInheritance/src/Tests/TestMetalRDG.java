@@ -19,13 +19,14 @@ public class TestMetalRDG {
 	 */
 	@Test
 	public static void testConstructorAndGetters() {
-		MetalRDG m = new MetalRDG(1, 2, 3, 4.0, "Test", 4.5);
+		MetalRDG m = new MetalRDG(1, 2, 3, 4.0, "Test", 4.5, 4.4);
 		assertEquals(m.getID(), 1);
 		assertEquals(m.getAtomicNumber(), 2);
 		assertEquals(m.getDissolvedBy(), 3);
 		assertEquals(m.getAtomicMass(), 4.0, 0.01);
 		assertEquals(m.getName(), "Test");
 		assertEquals(m.getMoles(), 4.5, 0.01);
+		assertEquals(m.getMolesOfAcidToDissolve(), 4.4, 0.01);
 	}
 
 	/**
@@ -39,6 +40,7 @@ public class TestMetalRDG {
 		assertEquals(m.getID(), 20);
 		assertEquals(m.getName(), "metal1");
 		assertEquals(m.getMoles(), 29.4, 0.01);
+		assertEquals(m.getMolesOfAcidToDissolve(), 43.4, 0.01);
 	}
 
 	/**
@@ -52,6 +54,7 @@ public class TestMetalRDG {
 		assertEquals(m.getID(), 21);
 		assertEquals(m.getName(), "metal2");
 		assertEquals(m.getMoles(), 29.5, 0.01);
+		assertEquals(m.getMolesOfAcidToDissolve(), 65.3, 0.01);
 	}
 
 	/**

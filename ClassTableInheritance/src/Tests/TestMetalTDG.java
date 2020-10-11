@@ -53,7 +53,7 @@ public class TestMetalTDG {
 	}
 	
 	/**
-	 * To be effiecient
+	 * To be efficient
 	 */
 	public static void runAllTheTests() {
 		testConstructor();

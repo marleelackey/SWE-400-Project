@@ -27,7 +27,7 @@ public class ClassTableCreator {
 	             "CREATE TABLE IF NOT EXISTS CompoundMadeOfElement (compoundID int, elementID int)",
 	             "CREATE TABLE IF NOT EXISTS Base (baseID int NOT NULL, baseSolute int NOT NULL, PRIMARY KEY (baseID))",
 	             "CREATE TABLE IF NOT EXISTS Acid (acidID int NOT NULL, acidSolute int NOT NULL, PRIMARY KEY (acidID))",
-	             "CREATE TABLE IF NOT EXISTS Metal (metalID int NOT NULL, metalDissolvedBy int NOT NULL, PRIMARY KEY (metalID))",
+	             "CREATE TABLE IF NOT EXISTS Metal (metalID int NOT NULL, metalDissolvedBy int NOT NULL, molesOfAcidToDissolve double, PRIMARY KEY (metalID))",
 	            };
 
 		    for (int i = 0; i < table_statements.length; i++) {
@@ -88,9 +88,9 @@ public class ClassTableCreator {
 					"INSERT INTO Element VALUES (6, 55, 20.2)",
 					"INSERT INTO Element VALUES (7, 30, 40.0)",
 					"INSERT INTO Element VALUES (8, 44, 100.1)",
-					"INSERT INTO Metal VALUES (9, 2)",
-					"INSERT INTO Metal VALUES (10, 2)",
-					"INSERT INTO Metal VALUES (11, 1)",
+					"INSERT INTO Metal VALUES (9, 2, 4.8)",
+					"INSERT INTO Metal VALUES (10, 2, 8.4)",
+					"INSERT INTO Metal VALUES (11, 1, 12.8)",
 					"INSERT INTO Base VALUES (12, 5)",
 					"INSERT INTO Base VALUES (13, 6)",	
 					"INSERT INTO Compound VALUES (14)",

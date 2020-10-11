@@ -8,8 +8,7 @@ import datasource.MetalRDG;
 
 /**
  * @author Daniel Holmgren
- * @author Joshua Kellogg
- * Test class metalTDG
+ * @author Joshua Kellogg Test class metalTDG
  *
  */
 public class TestMetalRDG {
@@ -19,13 +18,16 @@ public class TestMetalRDG {
 	 */
 	@Test
 	public static void testConstructor() {
-		MetalRDG m = new MetalRDG(1, 2);
+		MetalRDG m = new MetalRDG(1, 2, 4.8);
 		assertEquals(m.getID(), 1);
 		assertEquals(m.getDissolvedBy(), 2);
+		assertEquals(m.getMolesOfAcidToDissolve(), 4.8, 0.01);
 		m.setDissolvedBy(3);
 		assertEquals(m.getDissolvedBy(), 3);
+		m.setMolesOfAcidToDissolve(3.7);
+		assertEquals(m.getMolesOfAcidToDissolve(), 3.7, 0.01);
 	}
-	
+
 	/**
 	 * Asserts findByID works
 	 */
@@ -34,8 +36,9 @@ public class TestMetalRDG {
 		MetalRDG m = MetalRDG.findByID(10);
 		assertEquals(m.getID(), 10);
 		assertEquals(m.getDissolvedBy(), 2);
+		assertEquals(m.getMolesOfAcidToDissolve(), 8.4, 0.01);
 	}
-	
+
 	/**
 	 * Updates the database and asserts the changes were made
 	 */
@@ -49,9 +52,9 @@ public class TestMetalRDG {
 		MetalRDG d = MetalRDG.findByID(11);
 		assertEquals(d.getDissolvedBy(), 456);
 	}
-	
+
 	/**
-	 * Efficient 
+	 * Efficient
 	 */
 	public static void runAllTheTests() {
 		testConstructor();

@@ -18,13 +18,14 @@ public class TestMetalDTO {
 	 */
 	@Test
 	public static void testConstructorAndGetters() {
-		MetalDTO m = new MetalDTO(1, 2, 3, 4.0, "Name", 3.7);
+		MetalDTO m = new MetalDTO(1, 2, 3, 4.0, "Name", 3.7, 8.4);
 		assertEquals(m.getAtomicMass(), 4.0, 0.01);
 		assertEquals(m.getAtomicNumber(), 2);
 		assertEquals(m.getDissolvedBy(), 3);
 		assertEquals(m.getID(), 1);
 		assertEquals(m.getName(), "Name");
 		assertEquals(m.getMoles(), 3.7, 0.01);
+		assertEquals(m.getMolesOfAcidToDissolve(), 8.4, 0.01);
 	}
 
 	/**

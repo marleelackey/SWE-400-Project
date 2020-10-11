@@ -16,6 +16,7 @@ public class MetalRDG {
 	private double atomicMass;
 	private String name;
 	private double moles;
+	private double molesOfAcidToDissolve;
 	private static Connection cn;
 
 	/**
@@ -28,14 +29,17 @@ public class MetalRDG {
 	 * @param atomicMass
 	 * @param name
 	 * @param moles
+	 * @param molesOfAcidToDissolve
 	 */
-	public MetalRDG(int ID, int atomicNumber, int dissolvedBy, double atomicMass, String name, double moles) {
+	public MetalRDG(int ID, int atomicNumber, int dissolvedBy, double atomicMass, String name, double moles,
+			double molesOfAcidToDissolve) {
 		this.ID = ID;
 		this.atomicNumber = atomicNumber;
 		this.dissolvedBy = dissolvedBy;
 		this.atomicMass = atomicMass;
 		this.name = name;
 		this.moles = moles;
+		this.molesOfAcidToDissolve = molesOfAcidToDissolve;
 
 		try {
 			DatabaseManager db = DatabaseManager.getSingleton();
@@ -58,7 +62,7 @@ public class MetalRDG {
 			rs.next();
 			results = new MetalRDG(rs.getInt("elementOrMetalID"), rs.getInt("metalAtomicNumber"),
 					rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"),
-					rs.getDouble("metalMoles"));
+					rs.getDouble("metalMoles"), rs.getDouble("molesOfAcidToDissolve"));
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
@@ -80,7 +84,7 @@ public class MetalRDG {
 			rs.next();
 			results = new MetalRDG(rs.getInt("elementOrMetalID"), rs.getInt("metalAtomicNumber"),
 					rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"),
-					rs.getDouble("metalMoles"));
+					rs.getDouble("metalMoles"), rs.getDouble("molesOfAcidToDissolve"));
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
@@ -116,13 +120,14 @@ public class MetalRDG {
 		PreparedStatement stmt;
 		try {
 			stmt = cn.prepareStatement(
-					"UPDATE Metal SET metalName = ?, metalAtomicNumber = ?, metalAtomicMass = ?, metalDissolvedBy = ?, metalMoles = ? WHERE elementOrMetalID = ?");
+					"UPDATE Metal SET metalName = ?, metalAtomicNumber = ?, metalAtomicMass = ?, metalDissolvedBy = ?, metalMoles = ?, molesOfAcidToDissolve = ? WHERE elementOrMetalID = ?");
 			stmt.setString(1, name);
 			stmt.setInt(2, atomicNumber);
 			stmt.setDouble(3, atomicMass);
 			stmt.setDouble(4, dissolvedBy);
 			stmt.setDouble(5, moles);
-			stmt.setInt(6, ID);
+			stmt.setDouble(6, molesOfAcidToDissolve);
+			stmt.setInt(7, ID);
 			stmt.execute();
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
@@ -173,6 +178,14 @@ public class MetalRDG {
 
 	public void setMoles(double moles) {
 		this.moles = moles;
+	}
+
+	public double getMolesOfAcidToDissolve() {
+		return molesOfAcidToDissolve;
+	}
+
+	public void setMolesOfAcidToDissolve(double molesOfAcidToDissolve) {
+		this.molesOfAcidToDissolve = molesOfAcidToDissolve;
 	}
 
 }
