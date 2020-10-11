@@ -19,6 +19,9 @@ public class TestEVERYTHING {
 		TestChemicalRDG.runAllTheTests();
 		TestChemicalTDG.runAllTheTests();
 		TestCompoundMadeOfElement.runAllTheTests();
+		TestElementMapper.runAllTheTests();
+		TestMetalMapper.runAllTheTests();
+
 	}
 
 }

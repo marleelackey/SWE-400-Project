@@ -37,6 +37,10 @@ public class TestEVERYTHING {
 		TestMetalDTO.runAllTheTests();
 		TestMetalRDG.runAllTheTests();
 		TestMetalTDG.runAllTheTests();
+		
+		TestElementMapper.runAllTheTests();
+		TestMetalMapper.runAllTheTests();
+
 	}
 
 }

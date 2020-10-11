@@ -102,6 +102,26 @@ public class ElementRDG {
 		}
 	}
 	
+	public void insert() {
+		PreparedStatement stmt;
+		try {
+			Connection connection = DatabaseManager.getSingleton().getConnection();
+
+			stmt = connection.prepareStatement(
+					"INSERT INTO Element VALUES (?, ?, ?)");
+			stmt.setInt(1, ID);
+			stmt.setInt(2, atomicNumber);
+			stmt.setDouble(3, atomicMass);
+
+			stmt.executeUpdate();		
+		
+		} catch (Exception e) {
+			DatabaseException.detectError(e);
+
+		}
+
+	}
+	
 	// Getters and Setters
 	
 	public int getID() {

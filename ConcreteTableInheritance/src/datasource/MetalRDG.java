@@ -133,6 +133,26 @@ public class MetalRDG {
 			DatabaseException.detectError(e);
 		}
 	}
+	
+	public void insert() {
+
+		PreparedStatement stmt;
+		try {
+			stmt = DatabaseManager.getSingleton().getConnection().prepareStatement(
+					"INSERT INTO Metal VALUES (?, ?, ?, ?, ?)");
+			
+			stmt.setInt(1, ID);
+			stmt.setString(2, name);
+			stmt.setInt(3, atomicNumber);
+			stmt.setDouble(4, atomicMass);
+			stmt.setInt(5, dissolvedBy);
+
+			stmt.execute();	
+		} catch (Exception e) {
+			e.printStackTrace();
+			DatabaseException.detectError(e, "exception in ElementRDG.insert()");
+		}		
+	}
 
 	// Getters and Setters
 
