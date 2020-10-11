@@ -45,18 +45,42 @@ public class ChemicalRDG {
 	 * @param ID
 	 * @throws DatabaseException
 	 */
-	public ChemicalRDG(int ID, int type, String name) throws DatabaseException {
+	public ChemicalRDG(int ID, int type, String name, int atomicNum, double atomicMass) throws DatabaseException {
 		this.ID = ID;
 		this.type = type;
 		this.name = name;
-//		this.atomicNumber = null;
-//		this.atomicMass = atomicMass;
+		this.atomicNumber = atomicNum;
+		this.atomicMass = atomicMass;
 //		this.dissolvedBy = dissolvedBy;
 //		this.soluteA = soluteA;
 //		this.soluteB = soluteB;
 
 		// connection to the DB
 		connection = DatabaseManager.getSingleton().getConnection();
+
+	}
+	
+	/**
+	 * Constructor for Metal
+	 * 
+	 * @param ID
+	 * @throws DatabaseException
+	 */
+	public ChemicalRDG(int ID, int type, String name, int atomicNum, double atomicMass, int dissolvedBy) {
+		this.ID = ID;
+		this.type = type;
+		this.name = name;
+		this.atomicNumber = atomicNum;
+		this.atomicMass = atomicMass;
+		this.dissolvedBy = dissolvedBy;
+
+		// connection to the DB
+		try {
+			connection = DatabaseManager.getSingleton().getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+			DatabaseException.detectError(e, "exception in ChemicalRDG constructor");
+		}
 
 	}
 
@@ -315,17 +339,59 @@ public class ChemicalRDG {
 	public void insert() {
 		PreparedStatement stmt;
 		try {
-			stmt = connection.prepareStatement(
-					"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, null)");
-			stmt.setInt(1, ID);
-			stmt.setInt(2, type);
-			stmt.setString(3, name);
-//			stmt.setNull(4, ID);
-//			stmt.setDouble(5, atomicMass);
-//			stmt.setInt(6, dissolvedBy);
-//			stmt.setInt(7, soluteB);
-//			stmt.setInt(8, soluteA);
-			stmt.executeUpdate();
+			switch(type) {
+			case 1:
+				stmt = connection.prepareStatement(
+						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, ?)");
+				stmt.setInt(1, ID);
+				stmt.setInt(2, type);
+				stmt.setString(3, name);
+				stmt.setInt(4, soluteB);
+				stmt.executeUpdate();		
+				break;
+			case 2:
+				stmt = connection.prepareStatement(
+						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, ?, null)");
+				stmt.setInt(1, ID);
+				stmt.setInt(2, type);
+				stmt.setString(3, name);
+				stmt.setInt(4, soluteA);
+				stmt.executeUpdate();		
+				break;
+			case 3:
+				stmt = connection.prepareStatement(
+						"INSERT INTO Chemical VALUES (?, ?, ?, ?, ?, null, null, null)");
+				stmt.setInt(1, ID);
+				stmt.setInt(2, type);
+				stmt.setString(3, name);
+				stmt.setInt(4, atomicNumber);
+				stmt.setDouble(5, atomicMass);
+				stmt.executeUpdate();		
+				break;
+			case 4:
+				stmt = connection.prepareStatement(
+						"INSERT INTO Chemical VALUES (?, ?, ?, ?, ?, ?, null, null)");
+				stmt.setInt(1, ID);
+				stmt.setInt(2, type);
+				stmt.setString(3, name);
+				stmt.setInt(4, atomicNumber);
+				stmt.setDouble(5, atomicMass);
+				stmt.setInt(6, dissolvedBy);
+				stmt.executeUpdate();		
+				break;
+			case 5:
+				stmt = connection.prepareStatement(
+						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, null)");
+				stmt.setInt(1, ID);
+				stmt.setInt(2, type);
+				stmt.setString(3, name);
+				stmt.setInt(4, atomicNumber);
+				stmt.setDouble(5, atomicMass);
+				stmt.setInt(6, dissolvedBy);
+				stmt.executeUpdate();		
+				break;
+			}
+
 
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);

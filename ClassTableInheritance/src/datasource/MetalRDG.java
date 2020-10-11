@@ -64,6 +64,25 @@ public class MetalRDG {
 			DatabaseException.detectError(e);
 		}
 	}
+	
+	public void insert() {
+		PreparedStatement stmt;
+		try {
+			Connection connection = DatabaseManager.getSingleton().getConnection();
+
+			stmt = connection.prepareStatement(
+					"INSERT INTO Metal VALUES (?, ?)");
+			stmt.setInt(1, ID);
+			stmt.setInt(2, dissolvedBy);
+
+			stmt.executeUpdate();		
+		
+		} catch (Exception e) {
+			DatabaseException.detectError(e);
+
+		}
+
+	}
 
 	// Getters and setter
 	public int getID() {

@@ -4,21 +4,28 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import Mappers.ElementMapper;
+import mappers.ElementMapper;
 import datasource.ChemicalRDG;
 import datasource.DatabaseException;
 import datasource.DatabaseManager;
+import datasource.ElementRDG;
 
 public class TestElementMapper {
 	
 	@Test
 	public static void testCreateElement() {
-		ElementMapper mapper = new ElementMapper(40, "element", 10, 10);
+		ElementMapper mapper = new ElementMapper(40, "element", 20, 10);
 		try {
 			DatabaseManager.getSingleton().setTesting();
 			mapper.createElement();
-			ChemicalRDG rdg = ChemicalRDG.findByIDSingle(40);
-			assertEquals("element", rdg.getName());
+			ChemicalRDG rdg = ChemicalRDG.findByID(40);
+			assertEquals("element", rdg.getChemicalName());
+			
+			ElementRDG rdg2 = ElementRDG.findByID(40);
+			assertEquals(20, rdg2.getAtomicNumber());
+			assertEquals(10, rdg2.getAtomicMass(), 0.001);
+
+			
 			DatabaseManager.getSingleton().rollBack();
 
 

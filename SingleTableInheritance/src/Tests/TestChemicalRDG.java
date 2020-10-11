@@ -142,7 +142,7 @@ public class TestChemicalRDG {
 		try {
 			DatabaseManager.getSingleton().setTesting();
 			
-			chem = new ChemicalRDG(31, 4, "bobrogyn");
+			chem = new ChemicalRDG(31, 4, "bobrogyn", 40, 10);
 			chem.insert();
 			assertEquals(chem.getID(), 31);
 			assertEquals(chem.getType(), 4);

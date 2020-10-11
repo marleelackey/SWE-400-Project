@@ -11,6 +11,9 @@ public class ElementRDG {
 	private double atomicMass;
 	private String name;
 	
+	static Connection connection;
+
+	
 	/**
 	 * Constructor for ElementRDG
 	 * 
@@ -26,6 +29,14 @@ public class ElementRDG {
 		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
 		this.name = name;
+		
+		try {
+			connection = DatabaseManager.getSingleton().getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+			DatabaseException.detectError(e, "exception in ElementRDG constructor");
+		}
+
 	}
 	
 	/**
@@ -184,5 +195,24 @@ public class ElementRDG {
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
+	}
+
+	public void insert() {
+
+		PreparedStatement stmt;
+		try {
+			stmt = connection.prepareStatement(
+					"INSERT INTO Element VALUES (?, ?, ?, ?)");
+			
+			stmt.setInt(1, ID);
+			stmt.setString(2, name);
+			stmt.setInt(3, atomicNumber);
+			stmt.setDouble(4, atomicMass);
+
+			stmt.execute();	
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DatabaseException.detectError(e, "exception in ElementRDG.insert()");
+		}		
 	}
 }

@@ -4,10 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import Mappers.ElementMapper;
-import datasource.ChemicalRDG;
+import mappers.ElementMapper;
 import datasource.DatabaseException;
 import datasource.DatabaseManager;
+import datasource.ElementRDG;
 
 public class TestElementMapper {
 	
@@ -17,7 +17,7 @@ public class TestElementMapper {
 		try {
 			DatabaseManager.getSingleton().setTesting();
 			mapper.createElement();
-			ChemicalRDG rdg = ChemicalRDG.findByIDSingle(40);
+			ElementRDG rdg = ElementRDG.findByID(40);
 			assertEquals("element", rdg.getName());
 			DatabaseManager.getSingleton().rollBack();
 

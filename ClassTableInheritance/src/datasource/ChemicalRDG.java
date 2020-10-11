@@ -1,7 +1,9 @@
 package datasource;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Row Data Gateway for Chemical
@@ -72,6 +74,24 @@ public class ChemicalRDG {
 
 	public String getChemicalName() {
 		return chemicalName;
+	}
+	
+	public void insert() {
+		PreparedStatement stmt;
+		try {
+			Connection connection = DatabaseManager.getSingleton().getConnection();
+
+			stmt = connection.prepareStatement(
+					"INSERT INTO Chemical VALUES (?, ?)");
+			stmt.setInt(1, chemicalID);
+			stmt.setString(2, chemicalName);
+			stmt.executeUpdate();		
+		
+		} catch (Exception e) {
+			DatabaseException.detectError(e);
+
+		}
+
 	}
 
 }
