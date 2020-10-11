@@ -22,7 +22,7 @@ public class TestChemicalRDG {
 		
 		ChemicalRDG chemical;
 		try {
-			chemical = new ChemicalRDG(9, 2, "bobrogyn", 51, 20.7, 52, 53, 2);
+			chemical = new ChemicalRDG(9, 2, "bobrogyn", 51, 20.7, 52, 53, 2, 1.0);
 			assertEquals(chemical.getID(), 9);
 			assertEquals(chemical.getType(), 2);
 			assertEquals(chemical.getName(), "bobrogyn");
@@ -31,6 +31,7 @@ public class TestChemicalRDG {
 			assertEquals(chemical.getDissolvedBy(), 52);
 			assertEquals(chemical.getSoluteA(), 53);
 			assertEquals(chemical.getSoluteB(), 2);
+			assertEquals(chemical.getMoles(), 1.0, 0.01);
 		} catch (DatabaseException e) {
 			DatabaseException.detectError(e);
 		}
@@ -95,7 +96,7 @@ public class TestChemicalRDG {
 	public static void updateTest() {
 		ChemicalRDG chem;
 		try {
-			chem = new ChemicalRDG(30, 2, "bobrogyn", 2, 2.999, 1, 0, 1 );
+			chem = new ChemicalRDG(30, 2, "bobrogyn", 2, 2.999, 1, 0, 1, 2.0);
 			chem.update();
 			assertEquals(chem.getID(), 30);
 			assertEquals(chem.getType(), 2);
@@ -105,6 +106,7 @@ public class TestChemicalRDG {
 			assertEquals(chem.getDissolvedBy(), 1);
 			assertEquals(chem.getSoluteA(), 0);
 			assertEquals(chem.getSoluteB(), 1);
+			assertEquals(chem.getMoles(), 2.0, 0.01);
 			
 		} catch (DatabaseException e) {
 			DatabaseException.detectError(e);
@@ -113,7 +115,7 @@ public class TestChemicalRDG {
 		
 		// make a change and make sure its changed
 		try {
-			chem = new ChemicalRDG(30, 2, "bobrogyn", 3, 3.999, 1, 0, 1 );
+			chem = new ChemicalRDG(30, 2, "bobrogyn", 3, 3.999, 1, 0, 1, 3.0);
 			chem.update();
 			assertEquals(chem.getID(), 30);
 			assertEquals(chem.getType(), 2);
@@ -123,6 +125,7 @@ public class TestChemicalRDG {
 			assertEquals(chem.getDissolvedBy(), 1);
 			assertEquals(chem.getSoluteA(), 0);
 			assertEquals(chem.getSoluteB(), 1);
+			assertEquals(chem.getMoles(), 3.0, 0.01);
 			
 		} catch (DatabaseException e) {
 			DatabaseException.detectError(e);
