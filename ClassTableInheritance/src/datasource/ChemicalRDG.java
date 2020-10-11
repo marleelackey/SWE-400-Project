@@ -90,9 +90,11 @@ public class ChemicalRDG {
 			Connection connection = DatabaseManager.getSingleton().getConnection();
 
 			stmt = connection.prepareStatement(
-					"INSERT INTO Chemical VALUES (?, ?)");
+					"INSERT INTO Chemical VALUES (?, ?, ?)");
 			stmt.setInt(1, chemicalID);
 			stmt.setString(2, chemicalName);
+			stmt.setDouble(3, chemicalMoles);
+
 			stmt.executeUpdate();		
 		
 		} catch (Exception e) {

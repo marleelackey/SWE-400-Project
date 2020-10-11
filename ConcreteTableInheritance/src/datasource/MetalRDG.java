@@ -139,13 +139,16 @@ public class MetalRDG {
 		PreparedStatement stmt;
 		try {
 			stmt = DatabaseManager.getSingleton().getConnection().prepareStatement(
-					"INSERT INTO Metal VALUES (?, ?, ?, ?, ?)");
+					"INSERT INTO Metal VALUES (?, ?, ?, ?, ?, ?, ?)");
 			
 			stmt.setInt(1, ID);
 			stmt.setString(2, name);
 			stmt.setInt(3, atomicNumber);
 			stmt.setDouble(4, atomicMass);
 			stmt.setInt(5, dissolvedBy);
+			stmt.setDouble(6, moles);
+			stmt.setDouble(7, molesOfAcidToDissolve);		
+
 
 			stmt.execute();	
 		} catch (Exception e) {

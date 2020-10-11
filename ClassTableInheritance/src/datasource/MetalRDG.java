@@ -79,9 +79,10 @@ public class MetalRDG {
 			Connection connection = DatabaseManager.getSingleton().getConnection();
 
 			stmt = connection.prepareStatement(
-					"INSERT INTO Metal VALUES (?, ?)");
+					"INSERT INTO Metal VALUES (?, ?, ?)");
 			stmt.setInt(1, ID);
 			stmt.setInt(2, dissolvedBy);
+			stmt.setDouble(3, molesOfAcidToDissolve);
 
 			stmt.executeUpdate();		
 		

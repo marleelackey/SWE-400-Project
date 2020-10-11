@@ -67,6 +67,7 @@ public class DatabaseException extends Exception
 	{	
 		DatabaseException d = new DatabaseException("A problem ensued; please investigate the error in your ways", e);
 		System.out.println(d.toString());
+		e.printStackTrace();
 	}
 	
 	/**
@@ -79,6 +80,7 @@ public class DatabaseException extends Exception
 	{	
 		DatabaseException d = new DatabaseException("A problem ensued; please investigate the error in your ways. It is likely located in " + location, e);
 		System.out.println(d.toString());
+		e.printStackTrace();
 	}
 
 }

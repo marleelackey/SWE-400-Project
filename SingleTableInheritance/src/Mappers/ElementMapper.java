@@ -12,11 +12,12 @@ public class ElementMapper implements ElementMapperInterface {
 	private double moles;
 
  
-	public ElementMapper(int ID, String elementName, int atomicNumber, double atomicMass) {
+	public ElementMapper(int ID, String elementName, int atomicNumber, double atomicMass, double moles) {
 		ident = ID;
 		this.name = elementName;
 		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
+		this.moles = moles;
 	}
 	
 

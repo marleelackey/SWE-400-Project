@@ -24,7 +24,7 @@ public class ClassTableCreator {
 	            {"CREATE TABLE IF NOT EXISTS Chemical (chemicalID int NOT NULL, chemicalName VARCHAR(32) NOT NULL, chemicalMoles double, PRIMARY KEY (chemicalID))",
 	             "CREATE TABLE IF NOT EXISTS Element (elementID int NOT NULL, elementAtomicNumber int NOT NULL, elementAtomicMass double NOT NULL, PRIMARY KEY (elementID))",
 	             "CREATE TABLE IF NOT EXISTS Compound (compoundID int NOT NULL, PRIMARY KEY (compoundID))",
-	             "CREATE TABLE IF NOT EXISTS CompoundMadeOfElement (compoundID int, elementID int)",
+	             "CREATE TABLE IF NOT EXISTS CompoundMadeOfElement (compoundID int, elementID int, elementQuantity int)",
 	             "CREATE TABLE IF NOT EXISTS Base (baseID int NOT NULL, baseSolute int NOT NULL, PRIMARY KEY (baseID))",
 	             "CREATE TABLE IF NOT EXISTS Acid (acidID int NOT NULL, acidSolute int NOT NULL, PRIMARY KEY (acidID))",
 	             "CREATE TABLE IF NOT EXISTS Metal (metalID int NOT NULL, metalDissolvedBy int NOT NULL, molesOfAcidToDissolve double, PRIMARY KEY (metalID))",
@@ -110,10 +110,10 @@ public class ClassTableCreator {
 					"INSERT INTO Chemical VALUES (13, \"base2\", 2.7)",
 					"INSERT INTO Chemical VALUES (14, \"compound1\", 9.3)",
 					"INSERT INTO Chemical VALUES (15, \"compound2\", 8.4)",
-					"INSERT INTO CompoundMadeOfElement VALUES (14, 4)",
-					"INSERT INTO CompoundMadeOfElement VALUES (14, 5)",
-					"INSERT INTO CompoundMadeOfElement VALUES (15, 4)",
-					"INSERT INTO CompoundMadeOfElement VALUES (15, 8)"};
+					"INSERT INTO CompoundMadeOfElement VALUES (14, 4, 2)",
+					"INSERT INTO CompoundMadeOfElement VALUES (14, 5, 4)",
+					"INSERT INTO CompoundMadeOfElement VALUES (15, 4, 2)",
+					"INSERT INTO CompoundMadeOfElement VALUES (15, 8, 4)"};
 
 			for (int i = 0; i < table_statements.length; i++) {
 				insertData = new String(table_statements[i]);

@@ -25,7 +25,7 @@ public class TestChemicalRDG {
 	public static void constructor1Test() {
 
 		ChemicalRDG chemical;
-		chemical = new ChemicalRDG(9, 2, "bobrogyn", 51, 20.7, 52, 53, 2, 1.0);
+		chemical = new ChemicalRDG(9, 2, "bobrogyn", 51, 20.7, 52, 53, 2, 1.0, 2.0);
 		assertEquals(chemical.getID(), 9);
 		assertEquals(chemical.getType(), 2);
 		assertEquals(chemical.getName(), "bobrogyn");
@@ -94,7 +94,7 @@ public class TestChemicalRDG {
 	@Test
 	public static void updateTest() {
 		ChemicalRDG chem;
-		chem = new ChemicalRDG(30, 2, "bobrogyn", 2, 2.999, 1, 0, 1, 2.0);
+		chem = new ChemicalRDG(30, 2, "bobrogyn", 2, 2.999, 1, 0, 1, 2.0, 1.0);
 		chem.update();
 		assertEquals(chem.getID(), 30);
 		assertEquals(chem.getType(), 2);
@@ -106,7 +106,7 @@ public class TestChemicalRDG {
 		assertEquals(chem.getSoluteB(), 1);
 		assertEquals(chem.getMoles(), 2.0, 0.01);
 
-		chem = new ChemicalRDG(30, 2, "bobrogyn", 3, 3.999, 1, 0, 1, 3.0);
+		chem = new ChemicalRDG(30, 2, "bobrogyn", 3, 3.999, 1, 0, 1, 3.0, 2.0);
 		chem.update();
 		assertEquals(chem.getID(), 30);
 		assertEquals(chem.getType(), 2);

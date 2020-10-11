@@ -27,7 +27,7 @@ public class ChemicalRDG {
 	 * @throws DatabaseException
 	 */
 	public ChemicalRDG(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy, int soluteA,
-			int soluteB, double moles) {
+			int soluteB, double moles, double molesOfAcidToDissolve) {
 		this.ID = ID;
 		this.type = type;
 		this.name = name;
@@ -37,6 +37,7 @@ public class ChemicalRDG {
 		this.soluteA = soluteA;
 		this.soluteB = soluteB;
 		this.moles = moles;
+		this.molesOfAcidToDissolve = molesOfAcidToDissolve;
 
 		// connection to the DB
 		try {
@@ -281,7 +282,7 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalID = " + ID);
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8), r.getDouble(9));
+					r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
@@ -302,7 +303,7 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalName = '" + name + "'");
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8), r.getDouble(9));
+					r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
@@ -324,7 +325,7 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalName = '" + name + "'");
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8), r.getDouble(9));
+					r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
@@ -370,7 +371,7 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalAtomicNumber = " + atomicNumber);
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8), r.getDouble(9));
+					r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
@@ -391,7 +392,7 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalAtomicMass = " + atomicMass);
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8), r.getDouble(9));
+					r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
@@ -405,53 +406,70 @@ public class ChemicalRDG {
 		try {
 			switch(type) {
 			case 1:
+				//Base
 				stmt = connection.prepareStatement(
-						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, ?)");
+						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, ?, ?, null)");
 				stmt.setInt(1, ID);
 				stmt.setInt(2, type);
 				stmt.setString(3, name);
 				stmt.setInt(4, soluteB);
+				stmt.setDouble(5, moles);
+
 				stmt.executeUpdate();		
 				break;
 			case 2:
+				//Acid
 				stmt = connection.prepareStatement(
-						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, ?, null)");
+						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, ?, null, ?, null)");
 				stmt.setInt(1, ID);
 				stmt.setInt(2, type);
 				stmt.setString(3, name);
 				stmt.setInt(4, soluteA);
+				stmt.setDouble(5, moles);
+
 				stmt.executeUpdate();		
 				break;
 			case 3:
+				//Element
 				stmt = connection.prepareStatement(
-						"INSERT INTO Chemical VALUES (?, ?, ?, ?, ?, null, null, null)");
+						"INSERT INTO Chemical VALUES (?, ?, ?, ?, ?, null, null, null, ?, null)");
 				stmt.setInt(1, ID);
 				stmt.setInt(2, type);
 				stmt.setString(3, name);
 				stmt.setInt(4, atomicNumber);
 				stmt.setDouble(5, atomicMass);
+				stmt.setDouble(6, moles);
+
 				stmt.executeUpdate();		
 				break;
 			case 4:
+				//Metal
 				stmt = connection.prepareStatement(
-						"INSERT INTO Chemical VALUES (?, ?, ?, ?, ?, ?, null, null)");
+						"INSERT INTO Chemical VALUES (?, ?, ?, ?, ?, ?, null, null, ?, ?)");
 				stmt.setInt(1, ID);
 				stmt.setInt(2, type);
 				stmt.setString(3, name);
 				stmt.setInt(4, atomicNumber);
 				stmt.setDouble(5, atomicMass);
 				stmt.setInt(6, dissolvedBy);
+				stmt.setDouble(7, moles);
+				stmt.setDouble(8, molesOfAcidToDissolve);
+
+
 				stmt.executeUpdate();		
 				break;
 			case 5:
+				//Compound
 				stmt = connection.prepareStatement(
-						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, null)");
+						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, null, ?, null)");
 				stmt.setInt(1, ID);
 				stmt.setInt(2, type);
 				stmt.setString(3, name);
 				stmt.setInt(4, atomicNumber);
 				stmt.setDouble(5, atomicMass);
 				stmt.setInt(6, dissolvedBy);
+				stmt.setDouble(7, moles);
+
 				stmt.executeUpdate();		
 				break;
 			}
@@ -472,7 +490,7 @@ public class ChemicalRDG {
 		try {
 			stmt = connection.prepareStatement(
 					"UPDATE Chemical SET chemicalName = ?, chemicalType = ?, chemicalAtomicNumber = ?,"
-							+ "chemicalAtomicMass = ?, chemicalDissolvedBy = ?, chemicalBaseSolute = ?, chemicalAcidSolute = ?, chemicalMoles = ? WHERE Chemical.chemicalID = ?");
+							+ "chemicalAtomicMass = ?, chemicalDissolvedBy = ?, chemicalBaseSolute = ?, chemicalAcidSolute = ?, chemicalMoles = ?, molesOfAcidToDissolve = ? WHERE Chemical.chemicalID = ?");
 			stmt.setString(1, name);
 			stmt.setInt(2, type);
 			stmt.setInt(3, atomicNumber);
@@ -480,8 +498,10 @@ public class ChemicalRDG {
 			stmt.setInt(5, dissolvedBy);
 			stmt.setInt(6, soluteB);
 			stmt.setInt(7, soluteA);
-			stmt.setInt(8, ID);
-			stmt.setDouble(9, moles);
+			stmt.setDouble(8, moles);
+			stmt.setDouble(9, molesOfAcidToDissolve);
+			stmt.setInt(10, ID);
+
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {

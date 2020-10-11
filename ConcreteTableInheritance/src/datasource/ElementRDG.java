@@ -213,12 +213,14 @@ public class ElementRDG {
 		PreparedStatement stmt;
 		try {
 			stmt = connection.prepareStatement(
-					"INSERT INTO Element VALUES (?, ?, ?, ?)");
+					"INSERT INTO Element VALUES (?, ?, ?, ?, ?)");
 			
 			stmt.setInt(1, ID);
 			stmt.setString(2, name);
 			stmt.setInt(3, atomicNumber);
 			stmt.setDouble(4, atomicMass);
+			stmt.setDouble(5, moles);
+
 
 			stmt.execute();	
 		} catch (SQLException e) {

@@ -15,7 +15,7 @@ public class TestMetalMapper {
 	
 	@Test
 	public static void testCreateMetal() {
-		MetalMapper mapper = new MetalMapper(40, "element", 20, 10, 30, 5.3);
+		MetalMapper mapper = new MetalMapper(40, "element", 20, 10, 30, 5.3, 1.1);
 		try {
 			DatabaseManager.getSingleton().setTesting();
 			mapper.createMetal();

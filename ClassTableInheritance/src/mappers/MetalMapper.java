@@ -14,14 +14,17 @@ public class MetalMapper implements MetalMapperInterface {
 	private double atomicMass;
 	private int dissolvedBy;
 	private double moles;
+	private double molesOfAcidToDissolve;
+
  
-	public MetalMapper(int ID, String elementName, int atomicNumber, double atomicMass, int dissolvedBy, double moles) {
+	public MetalMapper(int ID, String elementName, int atomicNumber, double atomicMass, int dissolvedBy, double moles, double molesOfAcidToDissolve) {
 		ident = ID;
 		this.name = elementName;
 		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
 		this.dissolvedBy = dissolvedBy;
 		this.moles = moles;
+		this.molesOfAcidToDissolve = molesOfAcidToDissolve;
 	}
 	
 	
@@ -35,7 +38,7 @@ public class MetalMapper implements MetalMapperInterface {
 			ElementRDG rdg2 = new ElementRDG(ident, atomicNumber, atomicMass);
 			rdg2.insert();
 			
-			MetalRDG rdg3 = new MetalRDG(ident, dissolvedBy, moles);
+			MetalRDG rdg3 = new MetalRDG(ident, dissolvedBy, molesOfAcidToDissolve);
 			rdg3.insert();
 			
 		} catch (Exception e) {
