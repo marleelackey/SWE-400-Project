@@ -20,17 +20,20 @@ public class TestAcidRDG {
 	 */
 	@Test
 	public static void testConstructorGettersSetters() {
-		AcidRDG rdg = new AcidRDG(1, "Hydrochloric Acid", 27);
+		AcidRDG rdg = new AcidRDG(1, "Hydrochloric Acid", 27, 4.7);
 
 		assertEquals(1, rdg.getAcidID());
 		assertEquals("Hydrochloric Acid", rdg.getAcidName());
 		assertEquals(27, rdg.getAcidSolute());
+		assertEquals(4.7, rdg.getAcidMoles(), 0.01);
 
 		rdg.setAcidName("Nitric Acid");
 		rdg.setAcidSolute(42);
+		rdg.setAcidMoles(400.2);
 
 		assertEquals("Nitric Acid", rdg.getAcidName());
 		assertEquals(42, rdg.getAcidSolute());
+		assertEquals(400.2, rdg.getAcidMoles(), 0.01);
 	}
 
 	/**
@@ -42,6 +45,7 @@ public class TestAcidRDG {
 		assertEquals(2, rdg.getAcidID());
 		assertEquals("acid2", rdg.getAcidName());
 		assertEquals(5, rdg.getAcidSolute());
+		assertEquals(18.5, rdg.getAcidMoles(), 0.01);
 	}
 
 	/**
@@ -53,6 +57,7 @@ public class TestAcidRDG {
 		assertEquals(1, rdg.getAcidID());
 		assertEquals("acid1", rdg.getAcidName());
 		assertEquals(4, rdg.getAcidSolute());
+		assertEquals(12.3, rdg.getAcidMoles(), 0.01);
 	}
 
 	/**

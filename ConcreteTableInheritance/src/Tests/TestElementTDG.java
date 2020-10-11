@@ -14,7 +14,7 @@ import datasource.ElementTDG;
  * @author Daniel Holmgren
  * @author Joshua Kellogg
  * 
- * Test class for ElementTDG
+ *         Test class for ElementTDG
  */
 public class TestElementTDG {
 
@@ -29,7 +29,7 @@ public class TestElementTDG {
 		assertNotEquals(d, null);
 		assertEquals(c, d);
 	}
-	
+
 	/**
 	 * Tests the getElementsInRange method
 	 */
@@ -38,17 +38,17 @@ public class TestElementTDG {
 		ElementTDG c = ElementTDG.getInstance();
 		ArrayList<ElementDTO> result = new ArrayList<ElementDTO>();
 		result = c.getElementsInRange(0, 100);
-		//Test to make sure it gets the correct number of dtos
+		// Test to make sure it gets the correct number of dtos
 		assertEquals(4, result.size());
-		//Test to make sure all dto atomic masses are in range
-		for(int i = 0; i < result.size(); i++) {
-			if((result.get(i).getAtomicMass() < 1) || result.get(i).getAtomicMass() > 100) {
+		// Test to make sure all dto atomic masses are in range
+		for (int i = 0; i < result.size(); i++) {
+			if ((result.get(i).getAtomicMass() < 1) || result.get(i).getAtomicMass() > 100) {
 				fail("Atomic mass not in range");
 			}
 		}
 		System.out.println("All atomic masses in range");
 	}
-	
+
 	/**
 	 * Test that you can return all the compounds that a given element is in
 	 */
@@ -57,12 +57,10 @@ public class TestElementTDG {
 		ElementTDG e = ElementTDG.getInstance();
 		ArrayList<ElementDTO> list = e.getElementsInCompound(2);
 		assertEquals(list.size(), 2); // amount of tuples
-		assertEquals(list.get(0).getID(), 4); 
-		assertEquals(list.get(1).getID(), 8); 
-
-
+		assertEquals(list.get(0).getID(), 4);
+		assertEquals(list.get(1).getID(), 8);
 	}
-	
+
 	/**
 	 * In order to be efficient runs all tests at once
 	 */

@@ -40,7 +40,7 @@ public class AcidTDG {
 			c = DatabaseManager.getSingleton().getConnection();
 			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Acid");
 			while (rs.next()) {
-				AcidDTO dto = new AcidDTO(rs.getInt(1), rs.getString(2), rs.getInt(3));
+				AcidDTO dto = new AcidDTO(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
 				list.add(dto);
 			}
 		} catch (Exception e) {

@@ -19,10 +19,11 @@ public class TestAcidDTO {
 	 */
 	@Test
 	public static void test() {
-		AcidDTO dto = new AcidDTO(1, "Hydrochloric Acid", 5);
+		AcidDTO dto = new AcidDTO(1, "Hydrochloric Acid", 5, 5.9);
 		assertEquals(1, dto.getAcidID());
 		assertEquals("Hydrochloric Acid", dto.getAcidName());
 		assertEquals(5, dto.getAcidSolute());
+		assertEquals(5.9, dto.getAcidMoles(), 0.01);
 	}
 
 	/**

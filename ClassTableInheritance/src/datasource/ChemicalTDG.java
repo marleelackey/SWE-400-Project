@@ -40,7 +40,7 @@ public class ChemicalTDG {
 			c = DatabaseManager.getSingleton().getConnection();
 			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Chemical");
 			while (rs.next()) {
-				ChemicalDTO dto = new ChemicalDTO(rs.getInt(1), rs.getString(2));
+				ChemicalDTO dto = new ChemicalDTO(rs.getInt(1), rs.getString(2), rs.getDouble(3));
 				list.add(dto);
 			}
 		} catch (Exception e) {

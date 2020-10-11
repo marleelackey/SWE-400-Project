@@ -16,6 +16,7 @@ public class AcidRDG {
 	private int acidID;
 	private String acidName;
 	private int acidSolute;
+	private double acidMoles;
 
 	/**
 	 * Constructor for AcidRDG
@@ -23,11 +24,13 @@ public class AcidRDG {
 	 * @param ID     the ID of the Acid
 	 * @param name   the name of the Acid
 	 * @param solute the Chemical ID that is a solute of the Acid
+	 * @param moles  the number of moles of the acid we have in inventory
 	 */
-	public AcidRDG(int ID, String name, int solute) {
+	public AcidRDG(int ID, String name, int solute, double moles) {
 		acidID = ID;
 		acidName = name;
 		acidSolute = solute;
+		acidMoles = moles;
 	}
 
 	/**
@@ -43,7 +46,7 @@ public class AcidRDG {
 			c = DatabaseManager.getSingleton().getConnection();
 			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Acid WHERE acidID = " + ID);
 			rs.next();
-			result = new AcidRDG(rs.getInt(1), rs.getString(2), rs.getInt(3));
+			result = new AcidRDG(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
 		} catch (Exception e) {
 			DatabaseException.detectError(e, "AcidRDG.findByID - Concrete");
 		}
@@ -63,7 +66,7 @@ public class AcidRDG {
 			c = DatabaseManager.getSingleton().getConnection();
 			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Acid WHERE acidName = '" + name + "'");
 			rs.next();
-			result = new AcidRDG(rs.getInt(1), rs.getString(2), rs.getInt(3));
+			result = new AcidRDG(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
 		} catch (Exception e) {
 			DatabaseException.detectError(e, "AcidRDG.findByName - Concrete");
 		}
@@ -97,10 +100,12 @@ public class AcidRDG {
 		Connection c;
 		try {
 			c = DatabaseManager.getSingleton().getConnection();
-			PreparedStatement s = c.prepareStatement("UPDATE Acid SET acidName = ?, acidSolute = ? WHERE acidID = ?");
+			PreparedStatement s = c
+					.prepareStatement("UPDATE Acid SET acidName = ?, acidSolute = ?, acidMoles = ? WHERE acidID = ?");
 			s.setString(1, acidName);
 			s.setInt(2, acidSolute);
-			s.setInt(3, acidID);
+			s.setDouble(3, acidMoles);
+			s.setInt(4, acidID);
 			s.execute();
 		} catch (Exception e) {
 			DatabaseException.detectError(e, "AcidRDG.update - Concrete");
@@ -123,12 +128,20 @@ public class AcidRDG {
 		return acidSolute;
 	}
 
+	public double getAcidMoles() {
+		return acidMoles;
+	}
+
 	public void setAcidName(String acidName) {
 		this.acidName = acidName;
 	}
 
 	public void setAcidSolute(int acidSolute) {
 		this.acidSolute = acidSolute;
+	}
+
+	public void setAcidMoles(double acidMoles) {
+		this.acidMoles = acidMoles;
 	}
 
 }

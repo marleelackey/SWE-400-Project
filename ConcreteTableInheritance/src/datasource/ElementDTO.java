@@ -10,19 +10,22 @@ public class ElementDTO {
 				atomicNumber;
 	private double atomicMass;
 	private String name;
+	private double moles;
 	
 	/**
 	 * Assigns instance variables
 	 * @param ID
 	 * @param atomicNumber
 	 * @param atomicMass
+	 * @param moles
 	 * @param name
 	 */
-	public ElementDTO(int ID, int atomicNumber, double atomicMass, String name) {
+	public ElementDTO(int ID, int atomicNumber, double atomicMass, String name, double moles) {
 		this.ID = ID;
 		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
 		this.name = name;
+		this.moles = moles;
 	}
 	
 	// Getters
@@ -41,4 +44,9 @@ public class ElementDTO {
 	public String getName() {
 		return name;
 	}
+	
+	public double getMoles() {
+		return moles;
+	}
+
 }

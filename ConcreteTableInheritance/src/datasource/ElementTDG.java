@@ -46,7 +46,7 @@ public class ElementTDG {
 			Connection cn = db.getConnection();
 			rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementAtomicMass > " + lower + " AND elementAtomicMass < " + upper);
 			while(rs.next()) {
-				data.add(new ElementDTO(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName")));
+				data.add(new ElementDTO(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"), rs.getDouble("elementMoles")));
 			}
 			
 		} catch(Exception e) {
@@ -78,7 +78,7 @@ public class ElementTDG {
 				ElementDTO dto;
 				s = connection.createStatement().executeQuery("SELECT * FROM Element WHERE Element.elementOrMetalID = " + i);
 				s.next();
-				dto = new ElementDTO(s.getInt("elementOrMetalID"), s.getInt("elementAtomicNumber"), s.getDouble("elementAtomicMass"), s.getString("elementName") );
+				dto = new ElementDTO(s.getInt("elementOrMetalID"), s.getInt("elementAtomicNumber"), s.getDouble("elementAtomicMass"), s.getString("elementName"), s.getDouble("elementMoles") );
 				list.add(dto);
 			}
 			
