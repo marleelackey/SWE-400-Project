@@ -15,6 +15,7 @@ public class ChemicalRDG {
 	private int dissolvedBy; // is the ID of the Acid it is dissolved by
 	private int soluteA;
 	private int soluteB;
+	private double moles;
 	static Connection connection;
 
 	/**
@@ -25,7 +26,7 @@ public class ChemicalRDG {
 	 * @throws DatabaseException
 	 */
 	public ChemicalRDG(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy, int soluteA,
-			int soluteB) throws DatabaseException {
+			int soluteB, double moles) throws DatabaseException {
 		this.ID = ID;
 		this.type = type;
 		this.name = name;
@@ -34,6 +35,7 @@ public class ChemicalRDG {
 		this.dissolvedBy = dissolvedBy;
 		this.soluteA = soluteA;
 		this.soluteB = soluteB;
+		this.moles = moles;
 
 		// connection to the DB
 		connection = DatabaseManager.getSingleton().getConnection();
@@ -167,6 +169,14 @@ public class ChemicalRDG {
 	public int getSoluteB() {
 		return soluteB;
 	}
+	
+	public double getMoles() {
+		return moles;
+	}
+	
+	public void setMoles(double newMoles) {
+		moles = newMoles;
+	}
 
 	/**
 	 * Find a chemical using the ID
@@ -180,7 +190,7 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalID = " + ID);
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8));
+					r.getInt(7), r.getInt(8), r.getDouble(9));
 		} catch (SQLException | DatabaseException e) {
 			DatabaseException.detectError(e);
 		}
@@ -200,7 +210,7 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalName = '" + name + "'");
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8));
+					r.getInt(7), r.getInt(8), r.getDouble(9));
 		} catch (SQLException | DatabaseException e) {
 			DatabaseException.detectError(e);
 		}
@@ -221,7 +231,7 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalName = '" + name + "'");
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8));
+					r.getInt(7), r.getInt(8), r.getDouble(9));
 		} catch (SQLException | DatabaseException e) {
 			DatabaseException.detectError(e);
 		}
@@ -246,6 +256,9 @@ public class ChemicalRDG {
 			break;
 		case (5):
 			typeString = "Compound";
+			break;
+		default:
+			System.out.println("Error: Type not found");
 		}
 
 		return typeString;
@@ -263,7 +276,7 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalAtomicNumber = " + atomicNumber);
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8));
+					r.getInt(7), r.getInt(8), r.getDouble(9));
 		} catch (SQLException | DatabaseException e) {
 			DatabaseException.detectError(e);
 		}
@@ -283,7 +296,7 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalAtomicMass = " + atomicMass);
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8));
+					r.getInt(7), r.getInt(8), r.getDouble(9));
 		} catch (SQLException | DatabaseException e) {
 			DatabaseException.detectError(e);
 		}
@@ -300,7 +313,7 @@ public class ChemicalRDG {
 		try {
 			stmt = connection.prepareStatement(
 					"UPDATE Chemical SET chemicalName = ?, chemicalType = ?, chemicalAtomicNumber = ?,"
-							+ "chemicalAtomicMass = ?, chemicalDissolvedBy = ?, chemicalBaseSolute = ?, chemicalAcidSolute = ? WHERE Chemical.chemicalID = ?");
+							+ "chemicalAtomicMass = ?, chemicalDissolvedBy = ?, chemicalBaseSolute = ?, chemicalAcidSolute = ?, chemicalMoles = ? WHERE Chemical.chemicalID = ?");
 			stmt.setString(1, name);
 			stmt.setInt(2, type);
 			stmt.setInt(3, atomicNumber);
@@ -309,6 +322,7 @@ public class ChemicalRDG {
 			stmt.setInt(6, soluteB);
 			stmt.setInt(7, soluteA);
 			stmt.setInt(8, ID);
+			stmt.setDouble(9, moles);
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
