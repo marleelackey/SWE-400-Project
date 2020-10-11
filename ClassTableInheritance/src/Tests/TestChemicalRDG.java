@@ -22,9 +22,10 @@ public class TestChemicalRDG {
 	@Test
 	public static void constructor1Test() {
 
-		ChemicalRDG chemical = new ChemicalRDG(4, "idk");
+		ChemicalRDG chemical = new ChemicalRDG(4, "idk", 45.4);
 		assertEquals(chemical.getChemicalID(), 4);
 		assertEquals(chemical.getChemicalName(), "idk");
+		assertEquals(chemical.getChemicalMoles(), 45.4, 0.01);
 	}
 
 	/**
@@ -36,10 +37,12 @@ public class TestChemicalRDG {
 		ChemicalRDG chem = ChemicalRDG.findByID(5);
 		assertEquals(chem.getChemicalID(), 5);
 		assertEquals(chem.getChemicalName(), "element2");
+		assertEquals(chem.getChemicalMoles(), 19.2, 0.01);
 
 		ChemicalRDG chem1 = ChemicalRDG.findByName("acid1");
 		assertEquals(chem1.getChemicalID(), 1);
 		assertEquals(chem1.getChemicalName(), "acid1");
+		assertEquals(chem1.getChemicalMoles(), 1.3, 0.01);
 	}
 
 	public static void runAllTheTests() {

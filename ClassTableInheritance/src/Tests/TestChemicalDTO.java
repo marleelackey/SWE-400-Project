@@ -24,10 +24,11 @@ public class TestChemicalDTO {
 	 */
 	@Test
 	public static void testConstructorAndGetters() {
-		ChemicalDTO dto = new ChemicalDTO(1, "thingy");
+		ChemicalDTO dto = new ChemicalDTO(1, "thingy", 4.5);
 
 		assertEquals(dto.getChemicalID(), 1);
 		assertEquals(dto.getChemicalName(), "thingy");
+		assertEquals(dto.getChemicalMoles(), 4.5, 0.01);
 	}
 
 	/**
@@ -43,13 +44,14 @@ public class TestChemicalDTO {
 			cn = DatabaseManager.getSingleton().getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE ChemicalID = 9");
 			rs.next();
-			dto = new ChemicalDTO(rs.getInt(1), rs.getString(2));
+			dto = new ChemicalDTO(rs.getInt(1), rs.getString(2), rs.getDouble(3));
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
 
 		assertEquals(dto.getChemicalID(), 9);
 		assertEquals(dto.getChemicalName(), "metal1");
+		assertEquals(dto.getChemicalMoles(), 12.5, 0.01);
 	}
 
 	/**
