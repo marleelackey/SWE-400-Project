@@ -8,8 +8,7 @@ import datasource.ElementDTO;
 
 /**
  * @author Daniel Holmgren
- * @author Joshua Kellogg
- * Test class for the ElementDTO
+ * @author Joshua Kellogg Test class for the ElementDTO
  */
 public class TestElementDTO {
 
@@ -18,13 +17,14 @@ public class TestElementDTO {
 	 */
 	@Test
 	public static void testConstructor() {
-		ElementDTO e = new ElementDTO(1, 2, 3.0, "Test");
+		ElementDTO e = new ElementDTO(1, 2, 3.0, "Test", 8.9);
 		assertEquals(1, e.getID());
 		assertEquals(2, e.getAtomicNumber());
 		assertEquals(3.0, e.getAtomicMass(), 0.01);
 		assertEquals("Test", e.getName());
+		assertEquals(8.9, e.getMoles(), 0.01);
 	}
-	
+
 	/**
 	 * To be efficient
 	 */

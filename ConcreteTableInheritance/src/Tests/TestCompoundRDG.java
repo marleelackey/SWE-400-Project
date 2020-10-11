@@ -19,13 +19,14 @@ public class TestCompoundRDG {
 	 */
 	@Test
 	public static void testConstructorAndGettersAndSetters() {
-		CompoundRDG comp = new CompoundRDG(2, "Iodine");
+		CompoundRDG comp = new CompoundRDG(2, "Iodine", 0.8);
 		assertEquals(comp.getCompoundID(), 2);
 		assertEquals(comp.getCompoundName(), "Iodine");
-		
+		assertEquals(comp.getCompoundMoles(), 0.8, 0.01);
+
 		comp.setCompoundName("Carodine");
 		assertEquals(comp.getCompoundName(), "Carodine");
-	
+
 	}
 
 	/**
@@ -36,26 +37,28 @@ public class TestCompoundRDG {
 		CompoundRDG comp = CompoundRDG.findByIDConcrete(1);
 		assertEquals(comp.getCompoundID(), 1);
 		assertEquals(comp.getCompoundName(), "Carodine");
-		
+		assertEquals(comp.getCompoundMoles(), 29.5, 0.01);
+
 		CompoundRDG comp1 = CompoundRDG.findByNameConcrete("Carodine");
 		assertEquals(comp1.getCompoundID(), 1);
 		assertEquals(comp1.getCompoundName(), "Carodine");
-		
+		assertEquals(comp1.getCompoundMoles(), 29.5, 0.01);
 	}
-	
+
 	/**
 	 * JUnit to test that we can get the type from a name (if it exists)
+	 * 
 	 * @author Madeline and Adam
 	 */
 	@Test
 	public static void testFindTypeByName() {
 		String type = CompoundRDG.findTypeByName("Carodine");
 		assertEquals("Compound", type);
-		
+
 		String typeFakeNews = CompoundRDG.findTypeByName("notReallyACompound");
 		assertNull(typeFakeNews);
 	}
-	
+
 	/**
 	 * Test that the update method works correctly
 	 */
@@ -64,13 +67,13 @@ public class TestCompoundRDG {
 		CompoundRDG comp = CompoundRDG.findByIDConcrete(1);
 		comp.setCompoundName("Sweet Carodine");
 		comp.update();
-		
+
 		CompoundRDG compare = CompoundRDG.findByIDConcrete(1);
 		assertEquals(compare.getCompoundName(), "Sweet Carodine");
 	}
-	
+
 	/**
-	 *  runner used by entire Concrete project to run all tests at once
+	 * runner used by entire Concrete project to run all tests at once
 	 */
 	public static void runAllTheTests() {
 		testConstructorAndGettersAndSetters();
