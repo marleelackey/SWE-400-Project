@@ -30,6 +30,8 @@ public class ChemicalDTO {
 	 * @param dissolvedBy  the Acid ID that dissolves a Metal
 	 * @param soluteA      the Chemical ID that is the solute of an Acid
 	 * @param soluteB      the Chemical ID that is the solute of a Base
+	 * @param moles        the number of moles of the chemical that we have in
+	 *                     inventory
 	 */
 	public ChemicalDTO(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy, int soluteA,
 			int soluteB, double moles) {
@@ -79,7 +81,7 @@ public class ChemicalDTO {
 	public int getChemicalSoluteB() {
 		return chemicalSoluteB;
 	}
-	
+
 	public double getChemicalMoles() {
 		return chemicalMoles;
 	}

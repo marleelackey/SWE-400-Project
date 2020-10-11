@@ -26,7 +26,7 @@ public class ChemicalRDG {
 	 * @throws DatabaseException
 	 */
 	public ChemicalRDG(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy, int soluteA,
-			int soluteB, double moles) throws DatabaseException {
+			int soluteB, double moles) {
 		this.ID = ID;
 		this.type = type;
 		this.name = name;
@@ -38,12 +38,17 @@ public class ChemicalRDG {
 		this.moles = moles;
 
 		// connection to the DB
-		connection = DatabaseManager.getSingleton().getConnection();
+		try {
+			connection = DatabaseManager.getSingleton().getConnection();
+		} catch (DatabaseException e) {
+			DatabaseException.detectError(e, "ChemicalRDG - Single");
+		}
 
 	}
 
 	/**
 	 * Setter for id
+	 * 
 	 * @param id the new value of ID you want to set
 	 */
 	public void setID(int id) {
@@ -52,6 +57,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Setter for type
+	 * 
 	 * @param type the new value of type you want to set
 	 */
 	public void setType(int type) {
@@ -60,6 +66,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Setter for name
+	 * 
 	 * @param name the new value of name you want to set
 	 */
 	public void setName(String name) {
@@ -68,6 +75,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Setter for atomicNumber
+	 * 
 	 * @param atomicNumber the new value of atomicNumber you want to set
 	 */
 	public void setAtomicNumber(int atomicNumber) {
@@ -76,6 +84,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Setter for atomicMass
+	 * 
 	 * @param atomicMass the new value of atomicMass you want to set
 	 */
 	public void setAtomicMass(double atomicMass) {
@@ -84,6 +93,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Setter for dissolvedBY
+	 * 
 	 * @param dissolvedBy the new value of dissolvedBy you want to set
 	 */
 	public void setDissolvedBy(int dissolvedBy) {
@@ -92,14 +102,16 @@ public class ChemicalRDG {
 
 	/**
 	 * Setter for soluteA
+	 * 
 	 * @param soluteA the new value of soluteA you want to set
 	 */
 	public void setSoluteA(int soluteA) {
 		this.soluteA = soluteA;
 	}
 
-	/** 
+	/**
 	 * Setter for soluteB
+	 * 
 	 * @param soluteB the new value of soluteB you want to set
 	 */
 	public void setSoluteB(int soluteB) {
@@ -107,7 +119,17 @@ public class ChemicalRDG {
 	}
 
 	/**
-	 * Getter for ID 
+	 * Setter for moles
+	 * 
+	 * @param newMoles the new number of moles
+	 */
+	public void setMoles(double newMoles) {
+		moles = newMoles;
+	}
+
+	/**
+	 * Getter for ID
+	 * 
 	 * @return ID
 	 */
 	public int getID() {
@@ -116,6 +138,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for type
+	 * 
 	 * @return type
 	 */
 	public int getType() {
@@ -124,6 +147,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for name
+	 * 
 	 * @return name
 	 */
 	public String getName() {
@@ -132,6 +156,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for atomicNumber
+	 * 
 	 * @return atomicNumber
 	 */
 	public int getAtomicNumber() {
@@ -140,6 +165,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for atomicMass
+	 * 
 	 * @return atomicMass
 	 */
 	public double getAtomicMass() {
@@ -148,6 +174,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for dissolvedBy
+	 * 
 	 * @return dissolvedBy
 	 */
 	public int getDissolvedBy() {
@@ -156,6 +183,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for soluteA
+	 * 
 	 * @return soluteA
 	 */
 	public int getSoluteA() {
@@ -164,22 +192,25 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for soluteB
+	 * 
 	 * @return soluteB
 	 */
 	public int getSoluteB() {
 		return soluteB;
 	}
-	
+
+	/**
+	 * Getter for moles
+	 * 
+	 * @return moles
+	 */
 	public double getMoles() {
 		return moles;
-	}
-	
-	public void setMoles(double newMoles) {
-		moles = newMoles;
 	}
 
 	/**
 	 * Find a chemical using the ID
+	 * 
 	 * @param ID the id of a chemical you are looking for
 	 * @return ChemicalRDG
 	 */
@@ -191,7 +222,7 @@ public class ChemicalRDG {
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
 					r.getInt(7), r.getInt(8), r.getDouble(9));
-		} catch (SQLException | DatabaseException e) {
+		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
 
@@ -200,6 +231,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Find a chemical using the name
+	 * 
 	 * @param name the name of a chemical you are looking for
 	 * @return ChemicalRDG
 	 */
@@ -211,7 +243,7 @@ public class ChemicalRDG {
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
 					r.getInt(7), r.getInt(8), r.getDouble(9));
-		} catch (SQLException | DatabaseException e) {
+		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
 
@@ -221,6 +253,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Find the type of a chemical using the name
+	 * 
 	 * @param name the name of a chemical you are looking for
 	 * @return typeString
 	 */
@@ -232,7 +265,7 @@ public class ChemicalRDG {
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
 					r.getInt(7), r.getInt(8), r.getDouble(9));
-		} catch (SQLException | DatabaseException e) {
+		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
 
@@ -266,6 +299,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Find a chemical using the atomicNumber
+	 * 
 	 * @param atomicNumber the atomicNumber of a chemical you are looking for
 	 * @return ChemicalRDG
 	 */
@@ -277,7 +311,7 @@ public class ChemicalRDG {
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
 					r.getInt(7), r.getInt(8), r.getDouble(9));
-		} catch (SQLException | DatabaseException e) {
+		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
 
@@ -286,6 +320,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Find a chemical using the atomicMass
+	 * 
 	 * @param atomicMass the atomicMass of a chemical you are looking for
 	 * @return ChemicalRDG
 	 */
@@ -297,7 +332,7 @@ public class ChemicalRDG {
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
 					r.getInt(7), r.getInt(8), r.getDouble(9));
-		} catch (SQLException | DatabaseException e) {
+		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
 
