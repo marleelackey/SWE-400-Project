@@ -19,12 +19,13 @@ public class TestCompoundDTO {
 	 */
 	@Test
 	public static void testConstructor() {
-		CompoundDTO chem = new CompoundDTO(7, "Carodine");
+		CompoundDTO chem = new CompoundDTO(7, "Carodine", 5.8);
 		assertEquals(chem.getCompoundID(), 7);
 		assertEquals(chem.getCompoundName(), "Carodine");
-		
+		assertEquals(chem.getCompoundMoles(), 5.8, 0.01);
+
 	}
-	
+
 	/**
 	 * runner used by entire Concrete project to run all tests at once
 	 */

@@ -15,6 +15,8 @@ public class ChemicalRDG {
 	private int dissolvedBy; // is the ID of the Acid it is dissolved by
 	private int soluteA;
 	private int soluteB;
+	private double moles;
+	private double molesOfAcidToDissolve;
 	static Connection connection;
 
 	/**
@@ -25,7 +27,7 @@ public class ChemicalRDG {
 	 * @throws DatabaseException
 	 */
 	public ChemicalRDG(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy, int soluteA,
-			int soluteB) throws DatabaseException {
+			int soluteB, double moles, double molesOfAcidToDissolve) {
 		this.ID = ID;
 		this.type = type;
 		this.name = name;
@@ -34,14 +36,72 @@ public class ChemicalRDG {
 		this.dissolvedBy = dissolvedBy;
 		this.soluteA = soluteA;
 		this.soluteB = soluteB;
+		this.moles = moles;
+		this.molesOfAcidToDissolve = molesOfAcidToDissolve;
 
 		// connection to the DB
-		connection = DatabaseManager.getSingleton().getConnection();
+		try {
+			connection = DatabaseManager.getSingleton().getConnection();
+		} catch (DatabaseException e) {
+			DatabaseException.detectError(e, "ChemicalRDG - single");
+		}
+	}
+	
+	/**
+	 * Constructor for Element
+	 * 
+	 * @param ID
+	 * @throws DatabaseException
+	 */
+	public ChemicalRDG(int ID, int type, String name, int atomicNum, double atomicMass, double moles) {
+		this.ID = ID;
+		this.type = type;
+		this.name = name;
+		this.atomicNumber = atomicNum;
+		this.atomicMass = atomicMass;
+//		this.dissolvedBy = dissolvedBy;
+//		this.soluteA = soluteA;
+//		this.soluteB = soluteB;
+		this.moles = moles;
+
+		// connection to the DB
+		try {
+			connection = DatabaseManager.getSingleton().getConnection();
+		} catch (DatabaseException e) {
+			DatabaseException.detectError(e, "ChemicalRDG - single");
+		}
+
+	}
+	
+	/**
+	 * Constructor for Metal
+	 * 
+	 * @param ID
+	 * @throws DatabaseException
+	 */
+	public ChemicalRDG(int ID, int type, String name, int atomicNum, double atomicMass, int dissolvedBy, double moles, double molesOfAcidToDissolve) {
+		this.ID = ID;
+		this.type = type;
+		this.name = name;
+		this.atomicNumber = atomicNum;
+		this.atomicMass = atomicMass;
+		this.dissolvedBy = dissolvedBy;
+		this.moles = moles;
+		this.molesOfAcidToDissolve = molesOfAcidToDissolve;
+
+		// connection to the DB
+		try {
+			connection = DatabaseManager.getSingleton().getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+			DatabaseException.detectError(e, "exception in ChemicalRDG constructor");
+		}
 
 	}
 
 	/**
 	 * Setter for id
+	 * 
 	 * @param id the new value of ID you want to set
 	 */
 	public void setID(int id) {
@@ -50,6 +110,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Setter for type
+	 * 
 	 * @param type the new value of type you want to set
 	 */
 	public void setType(int type) {
@@ -58,6 +119,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Setter for name
+	 * 
 	 * @param name the new value of name you want to set
 	 */
 	public void setName(String name) {
@@ -66,6 +128,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Setter for atomicNumber
+	 * 
 	 * @param atomicNumber the new value of atomicNumber you want to set
 	 */
 	public void setAtomicNumber(int atomicNumber) {
@@ -74,6 +137,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Setter for atomicMass
+	 * 
 	 * @param atomicMass the new value of atomicMass you want to set
 	 */
 	public void setAtomicMass(double atomicMass) {
@@ -82,6 +146,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Setter for dissolvedBY
+	 * 
 	 * @param dissolvedBy the new value of dissolvedBy you want to set
 	 */
 	public void setDissolvedBy(int dissolvedBy) {
@@ -90,14 +155,16 @@ public class ChemicalRDG {
 
 	/**
 	 * Setter for soluteA
+	 * 
 	 * @param soluteA the new value of soluteA you want to set
 	 */
 	public void setSoluteA(int soluteA) {
 		this.soluteA = soluteA;
 	}
 
-	/** 
+	/**
 	 * Setter for soluteB
+	 * 
 	 * @param soluteB the new value of soluteB you want to set
 	 */
 	public void setSoluteB(int soluteB) {
@@ -105,7 +172,21 @@ public class ChemicalRDG {
 	}
 
 	/**
-	 * Getter for ID 
+	 * Setter for moles
+	 * 
+	 * @param newMoles the new number of moles
+	 */
+	public void setMoles(double newMoles) {
+		moles = newMoles;
+	}
+
+	public void setMolesOfAcidToDissolve(double molesOfAcidToDissolve) {
+		this.molesOfAcidToDissolve = molesOfAcidToDissolve;
+	}
+
+	/**
+	 * Getter for ID
+	 * 
 	 * @return ID
 	 */
 	public int getID() {
@@ -114,6 +195,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for type
+	 * 
 	 * @return type
 	 */
 	public int getType() {
@@ -122,6 +204,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for name
+	 * 
 	 * @return name
 	 */
 	public String getName() {
@@ -130,6 +213,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for atomicNumber
+	 * 
 	 * @return atomicNumber
 	 */
 	public int getAtomicNumber() {
@@ -138,6 +222,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for atomicMass
+	 * 
 	 * @return atomicMass
 	 */
 	public double getAtomicMass() {
@@ -146,6 +231,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for dissolvedBy
+	 * 
 	 * @return dissolvedBy
 	 */
 	public int getDissolvedBy() {
@@ -154,6 +240,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for soluteA
+	 * 
 	 * @return soluteA
 	 */
 	public int getSoluteA() {
@@ -162,6 +249,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Getter for soluteB
+	 * 
 	 * @return soluteB
 	 */
 	public int getSoluteB() {
@@ -169,7 +257,21 @@ public class ChemicalRDG {
 	}
 
 	/**
+	 * Getter for moles
+	 * 
+	 * @return moles
+	 */
+	public double getMoles() {
+		return moles;
+	}
+
+	public double getMolesOfAcidToDissolve() {
+		return molesOfAcidToDissolve;
+	}
+
+	/**
 	 * Find a chemical using the ID
+	 * 
 	 * @param ID the id of a chemical you are looking for
 	 * @return ChemicalRDG
 	 */
@@ -180,8 +282,8 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalID = " + ID);
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8));
-		} catch (SQLException | DatabaseException e) {
+					r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
+		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
 
@@ -190,6 +292,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Find a chemical using the name
+	 * 
 	 * @param name the name of a chemical you are looking for
 	 * @return ChemicalRDG
 	 */
@@ -200,8 +303,8 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalName = '" + name + "'");
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8));
-		} catch (SQLException | DatabaseException e) {
+					r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
+		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
 
@@ -211,6 +314,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Find the type of a chemical using the name
+	 * 
 	 * @param name the name of a chemical you are looking for
 	 * @return typeString
 	 */
@@ -221,8 +325,8 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalName = '" + name + "'");
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8));
-		} catch (SQLException | DatabaseException e) {
+					r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
+		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
 
@@ -246,6 +350,9 @@ public class ChemicalRDG {
 			break;
 		case (5):
 			typeString = "Compound";
+			break;
+		default:
+			System.out.println("Error: Type not found");
 		}
 
 		return typeString;
@@ -253,6 +360,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Find a chemical using the atomicNumber
+	 * 
 	 * @param atomicNumber the atomicNumber of a chemical you are looking for
 	 * @return ChemicalRDG
 	 */
@@ -263,8 +371,8 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalAtomicNumber = " + atomicNumber);
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8));
-		} catch (SQLException | DatabaseException e) {
+					r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
+		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
 
@@ -273,6 +381,7 @@ public class ChemicalRDG {
 
 	/**
 	 * Find a chemical using the atomicMass
+	 * 
 	 * @param atomicMass the atomicMass of a chemical you are looking for
 	 * @return ChemicalRDG
 	 */
@@ -283,12 +392,93 @@ public class ChemicalRDG {
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalAtomicMass = " + atomicMass);
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8));
-		} catch (SQLException | DatabaseException e) {
+					r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
+		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
 
 		return chem;
+
+	}
+	
+	public void insert() {
+		PreparedStatement stmt;
+		try {
+			switch(type) {
+			case 1:
+				//Base
+				stmt = connection.prepareStatement(
+						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, ?, ?, null)");
+				stmt.setInt(1, ID);
+				stmt.setInt(2, type);
+				stmt.setString(3, name);
+				stmt.setInt(4, soluteB);
+				stmt.setDouble(5, moles);
+
+				stmt.executeUpdate();		
+				break;
+			case 2:
+				//Acid
+				stmt = connection.prepareStatement(
+						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, ?, null, ?, null)");
+				stmt.setInt(1, ID);
+				stmt.setInt(2, type);
+				stmt.setString(3, name);
+				stmt.setInt(4, soluteA);
+				stmt.setDouble(5, moles);
+
+				stmt.executeUpdate();		
+				break;
+			case 3:
+				//Element
+				stmt = connection.prepareStatement(
+						"INSERT INTO Chemical VALUES (?, ?, ?, ?, ?, null, null, null, ?, null)");
+				stmt.setInt(1, ID);
+				stmt.setInt(2, type);
+				stmt.setString(3, name);
+				stmt.setInt(4, atomicNumber);
+				stmt.setDouble(5, atomicMass);
+				stmt.setDouble(6, moles);
+
+				stmt.executeUpdate();		
+				break;
+			case 4:
+				//Metal
+				stmt = connection.prepareStatement(
+						"INSERT INTO Chemical VALUES (?, ?, ?, ?, ?, ?, null, null, ?, ?)");
+				stmt.setInt(1, ID);
+				stmt.setInt(2, type);
+				stmt.setString(3, name);
+				stmt.setInt(4, atomicNumber);
+				stmt.setDouble(5, atomicMass);
+				stmt.setInt(6, dissolvedBy);
+				stmt.setDouble(7, moles);
+				stmt.setDouble(8, molesOfAcidToDissolve);
+
+
+				stmt.executeUpdate();		
+				break;
+			case 5:
+				//Compound
+				stmt = connection.prepareStatement(
+						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, null, ?, null)");
+				stmt.setInt(1, ID);
+				stmt.setInt(2, type);
+				stmt.setString(3, name);
+				stmt.setInt(4, atomicNumber);
+				stmt.setDouble(5, atomicMass);
+				stmt.setInt(6, dissolvedBy);
+				stmt.setDouble(7, moles);
+
+				stmt.executeUpdate();		
+				break;
+			}
+
+
+		} catch (SQLException e) {
+			DatabaseException.detectError(e);
+
+		}
 
 	}
 
@@ -300,7 +490,7 @@ public class ChemicalRDG {
 		try {
 			stmt = connection.prepareStatement(
 					"UPDATE Chemical SET chemicalName = ?, chemicalType = ?, chemicalAtomicNumber = ?,"
-							+ "chemicalAtomicMass = ?, chemicalDissolvedBy = ?, chemicalBaseSolute = ?, chemicalAcidSolute = ? WHERE Chemical.chemicalID = ?");
+							+ "chemicalAtomicMass = ?, chemicalDissolvedBy = ?, chemicalBaseSolute = ?, chemicalAcidSolute = ?, chemicalMoles = ?, molesOfAcidToDissolve = ? WHERE Chemical.chemicalID = ?");
 			stmt.setString(1, name);
 			stmt.setInt(2, type);
 			stmt.setInt(3, atomicNumber);
@@ -308,7 +498,10 @@ public class ChemicalRDG {
 			stmt.setInt(5, dissolvedBy);
 			stmt.setInt(6, soluteB);
 			stmt.setInt(7, soluteA);
-			stmt.setInt(8, ID);
+			stmt.setDouble(8, moles);
+			stmt.setDouble(9, molesOfAcidToDissolve);
+			stmt.setInt(10, ID);
+
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {

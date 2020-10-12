@@ -10,6 +10,10 @@ public class ElementRDG {
 				atomicNumber;
 	private double atomicMass;
 	private String name;
+	private double moles;
+	
+	static Connection connection;
+
 	
 	/**
 	 * Constructor for ElementRDG
@@ -20,12 +24,21 @@ public class ElementRDG {
 	 * @param atomicNumber The Element's atomic number
 	 * @param atomicMass The Element's atomic mass
 	 * @param name The Element's name
+	 * @param moles the number of moles of this element in inventory
 	 */
-	public ElementRDG(int ID, int atomicNumber, double atomicMass, String name) {
+	public ElementRDG(int ID, int atomicNumber, double atomicMass, String name, double moles) {
 		this.ID = ID;
 		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
 		this.name = name;
+		this.moles = moles;
+
+		try {
+			connection = DatabaseManager.getSingleton().getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+			DatabaseException.detectError(e, "exception in ElementRDG constructor");
+		}
 	}
 	
 	/**
@@ -42,7 +55,7 @@ public class ElementRDG {
 			cn = db.getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementOrMetalID = " + ID);
 			rs.next();
-			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"));
+			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"), rs.getDouble("elementMoles"));
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
@@ -63,7 +76,7 @@ public class ElementRDG {
 			cn = db.getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementAtomicNumber = " + atomicNum);
 			rs.next();
-			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"));
+			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"), rs.getDouble("elementMoles"));
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
@@ -85,7 +98,7 @@ public class ElementRDG {
 			cn = db.getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementAtomicMass = " + atomMass);
 			rs.next();
-			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"));		
+			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"), rs.getDouble("elementMoles"));		
 		} catch (Exception e ){
 			DatabaseException.detectError(e);
 		}
@@ -106,7 +119,7 @@ public class ElementRDG {
 			cn = db.getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementName = '" + eName + "'");
 			rs.next();
-			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"));		} catch (Exception e ){
+			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"), rs.getDouble("elementAtomicMass"), rs.getString("elementName"), rs.getDouble("elementMoles"));		} catch (Exception e ){
 			DatabaseException.detectError(e);
 		}
 		return data;
@@ -164,6 +177,14 @@ public class ElementRDG {
 		this.name = name;
 	}
 	
+	public double getMoles() {
+		return moles;
+	}
+
+	public void setMoles(double moles) {
+		this.moles = moles;
+	}
+	
 	/**
 	 * @author Dan Holmgren
 	 * @author Josh Kellogg
@@ -176,13 +197,35 @@ public class ElementRDG {
 			DatabaseManager db = DatabaseManager.getSingleton();
 			cn = db.getConnection();
 			//May need a WHERE clause at end
-			stmt = cn.prepareStatement("UPDATE Element SET elementAtomicNumber = ?, elementAtomicMass = ?, elementName = ?, WHERE elementOrMetalID = ?");
+			stmt = cn.prepareStatement("UPDATE Element SET elementAtomicNumber = ?, elementAtomicMass = ?, elementName = ?, elementMoles = ?, WHERE elementOrMetalID = ?");
 			stmt.setInt(1, atomicNumber);
 			stmt.setDouble(2, atomicMass);
 			stmt.setString(3, name);
-			stmt.setInt(4, ID);
+			stmt.setDouble(4, moles);
+			stmt.setInt(5, ID);
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
+	}
+
+	public void insert() {
+
+		PreparedStatement stmt;
+		try {
+			stmt = connection.prepareStatement(
+					"INSERT INTO Element VALUES (?, ?, ?, ?, ?)");
+			
+			stmt.setInt(1, ID);
+			stmt.setString(2, name);
+			stmt.setInt(3, atomicNumber);
+			stmt.setDouble(4, atomicMass);
+			stmt.setDouble(5, moles);
+
+
+			stmt.execute();	
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DatabaseException.detectError(e, "exception in ElementRDG.insert()");
+		}		
 	}
 }

@@ -16,7 +16,7 @@ public class ChemicalDTO {
 	private int chemicalDissolvedBy;
 	private int chemicalSoluteA;
 	private int chemicalSoluteB;
-	private double chemicalMolesOfAcidToDissolve;
+	private double chemicalMoles;
 
 	/**
 	 * Constructor for ChemicalDTO
@@ -30,6 +30,8 @@ public class ChemicalDTO {
 	 * @param dissolvedBy  the Acid ID that dissolves a Metal
 	 * @param soluteA      the Chemical ID that is the solute of an Acid
 	 * @param soluteB      the Chemical ID that is the solute of a Base
+	 * @param moles        the number of moles of the chemical that we have in
+	 *                     inventory
 	 */
 	public ChemicalDTO(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy, int soluteA,
 			int soluteB, double moles) {
@@ -41,7 +43,7 @@ public class ChemicalDTO {
 		chemicalDissolvedBy = dissolvedBy;
 		chemicalSoluteA = soluteA;
 		chemicalSoluteB = soluteB;
-		chemicalMolesOfAcidToDissolve = moles;
+		chemicalMoles = moles;
 	}
 
 	/**
@@ -80,12 +82,8 @@ public class ChemicalDTO {
 		return chemicalSoluteB;
 	}
 
-	public double getChemicalMolesOfAcidToDissolve() {
-		return chemicalMolesOfAcidToDissolve;
-	}
-
-	public void setChemicalMolesOfAcidToDissolve(double moles) {
-		this.chemicalMolesOfAcidToDissolve = moles;
+	public double getChemicalMoles() {
+		return chemicalMoles;
 	}
 
 }

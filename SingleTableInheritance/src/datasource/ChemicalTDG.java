@@ -45,7 +45,7 @@ public class ChemicalTDG {
 			rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE chemicalType = 1");
 			while(rs.next()) {
 				data.add(new ChemicalDTO(rs.getInt("chemicalID"), rs.getInt("chemicalType"), rs.getString("chemicalName"), rs.getInt("chemicalAtomicNumber"),
-						rs.getDouble("chemicalAtomicMass"), rs.getInt("chemicalDissolvedBy"), rs.getInt("chemicalAcidSolute"), rs.getInt("chemicalBaseSolute"), rs.getDouble("molesOfAcidToDissolve")));
+						rs.getDouble("chemicalAtomicMass"), rs.getInt("chemicalDissolvedBy"), rs.getInt("chemicalAcidSolute"), rs.getInt("chemicalBaseSolute"), rs.getDouble("chemicalMoles")));
 			}
 		} catch (Exception e){
 			DatabaseException.detectError(e);
@@ -69,7 +69,7 @@ public class ChemicalTDG {
 			rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE chemicalAtomicMass > " + lower + " AND chemicalAtomicMass < " + upper);
 			while(rs.next()) {
 				data.add(new ChemicalDTO(rs.getInt("chemicalID"), rs.getInt("chemicalType"), rs.getString("chemicalName"), rs.getInt("chemicalAtomicNumber"),
-						rs.getDouble("chemicalAtomicMass"), rs.getInt("chemicalDissolvedBy"), rs.getInt("chemicalAcidSolute"), rs.getInt("chemicalBaseSolute"), rs.getDouble("molesOfAcidToDissolve")));
+						rs.getDouble("chemicalAtomicMass"), rs.getInt("chemicalDissolvedBy"), rs.getInt("chemicalAcidSolute"), rs.getInt("chemicalBaseSolute"), rs.getDouble("chemicalMoles")));
 			}
 			
 		} catch(Exception e) {

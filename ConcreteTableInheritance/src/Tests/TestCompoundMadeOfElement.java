@@ -19,10 +19,11 @@ public class TestCompoundMadeOfElement {
 	 */
 	@Test
 	public static void testConstructorAndGetters() {
-		
-		CompoundMadeOfElement comp = new CompoundMadeOfElement(1,2);
+
+		CompoundMadeOfElement comp = new CompoundMadeOfElement(1, 2, 5);
 		assertEquals(comp.getCompoundID(), 1);
 		assertEquals(comp.getElementID(), 2);
+		assertEquals(comp.getElementQuantity(), 5);
 	}
 
 	/**

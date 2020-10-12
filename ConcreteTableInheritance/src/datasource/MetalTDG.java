@@ -47,7 +47,8 @@ public class MetalTDG {
 			rs = cn.createStatement().executeQuery("SELECT * FROM Metal");
 			while (rs.next()) {
 				data.add(new MetalDTO(rs.getInt("elementOrMetalID"), rs.getInt("metalAtomicNumber"),
-						rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName")));
+						rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"),
+						rs.getDouble("metalMoles"), rs.getDouble("molesOfAcidToDissolve")));
 			}
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
@@ -71,7 +72,8 @@ public class MetalTDG {
 			rs = cn.createStatement().executeQuery("SELECT * FROM Metal WHERE metalDissolvedBy = " + a_id);
 			while (rs.next()) {
 				data.add(new MetalDTO(rs.getInt("elementOrMetalID"), rs.getInt("metalAtomicNumber"),
-						rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName")));
+						rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"),
+						rs.getDouble("metalMoles"), rs.getDouble("molesOfAcidToDissolve")));
 			}
 		} catch (Exception e) {
 			DatabaseException.detectError(e);

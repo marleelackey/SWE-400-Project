@@ -24,7 +24,7 @@ public class TestChemicalDTO {
 	 */
 	@Test
 	public static void testConstructorAndGetters() {
-		ChemicalDTO dto = new ChemicalDTO(1, 2, "Boron", 5, 21.3, 7, 9, 12, 2.2);
+		ChemicalDTO dto = new ChemicalDTO(1, 2, "Boron", 5, 21.3, 7, 9, 12, 6.0);
 
 		assertEquals(dto.getChemicalID(), 1);
 		assertEquals(dto.getChemicalType(), 2);
@@ -34,8 +34,7 @@ public class TestChemicalDTO {
 		assertEquals(dto.getChemicalDissolvedBy(), 7);
 		assertEquals(dto.getChemicalSoluteA(), 9);
 		assertEquals(dto.getChemicalSoluteB(), 12);
-		assertEquals(dto.getChemicalMolesOfAcidToDissolve(), 2.2, .01);
-
+		assertEquals(dto.getChemicalMoles(), 6.0, 0.01);
 	}
 
 	/**
@@ -65,7 +64,7 @@ public class TestChemicalDTO {
 		assertEquals(dto.getChemicalDissolvedBy(), 52);
 		assertEquals(dto.getChemicalSoluteA(), 53);
 		assertEquals(dto.getChemicalSoluteB(), 0);
-		assertEquals(dto.getChemicalMolesOfAcidToDissolve(), 22.2, .01);
+		assertEquals(dto.getChemicalMoles(), 9.0, 0.01);
 	}
 
 	/**

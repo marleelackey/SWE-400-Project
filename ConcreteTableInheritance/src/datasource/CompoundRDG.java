@@ -9,30 +9,34 @@ import java.sql.*;
  *
  */
 public class CompoundRDG {
-	
+
 	private int compoundID;
 	private String compoundName;
+	private double compoundMoles;
 	static Connection connection;
 
 	/**
 	 * Constructor for CompoundRDG
-	 * @param id Passes in the ID for CompoundRDG
+	 * 
+	 * @param id   Passes in the ID for CompoundRDG
 	 * @param name Passes in the Name for CompoundRDG
 	 */
-	public CompoundRDG (int id, String name) {
+	public CompoundRDG(int id, String name, double moles) {
 		compoundID = id;
 		compoundName = name;
-		
+		setCompoundMoles(moles);
+
 		try {
 			connection = DatabaseManager.getSingleton().getConnection();
 		} catch (DatabaseException e) {
 			DatabaseException.detectError(e);
-		}	
+		}
 
 	}
 
 	/**
 	 * Getter for compoundID
+	 * 
 	 * @return compoundID
 	 */
 	public int getCompoundID() {
@@ -41,14 +45,25 @@ public class CompoundRDG {
 
 	/**
 	 * Getter for compoundName
+	 * 
 	 * @return compoundName
 	 */
 	public String getCompoundName() {
 		return compoundName;
 	}
-	
+
+	/**
+	 * Getter for compoundMoles
+	 * 
+	 * @return the compoundMoles
+	 */
+	public double getCompoundMoles() {
+		return compoundMoles;
+	}
+
 	/**
 	 * Setter for compoundName
+	 * 
 	 * @param compoundName name of compound
 	 */
 	public void setCompoundName(String compoundName) {
@@ -56,44 +71,58 @@ public class CompoundRDG {
 	}
 
 	/**
+	 * Setter for compoundMoles
+	 * 
+	 * @param compoundMoles the number of moles in inventory
+	 */
+	public void setCompoundMoles(double compoundMoles) {
+		this.compoundMoles = compoundMoles;
+	}
+
+	/**
 	 * Find a chemical using the ID
+	 * 
 	 * @param ID the id of a chemical you are looking for
 	 * @return ChemicalRDG
 	 */
 	public static CompoundRDG findByIDConcrete(int ID) {
-		CompoundRDG chem = null;							
+		CompoundRDG chem = null;
 		try {
-			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Compound WHERE Compound.compoundID = " + ID);
+			ResultSet r = connection.createStatement()
+					.executeQuery("SELECT * FROM Compound WHERE Compound.compoundID = " + ID);
 			r.next();
-			chem = new CompoundRDG(r.getInt(1), r.getString(2));						
+			chem = new CompoundRDG(r.getInt(1), r.getString(2), r.getDouble(3));
 		} catch (SQLException e) {
-			DatabaseException.detectError(e);					
+			DatabaseException.detectError(e);
 		}
-										
-		return chem;	
-	
-		}
-	
+
+		return chem;
+
+	}
+
 	/**
 	 * Find a chemical using the name
+	 * 
 	 * @param name the name of a chemical you are looking for
 	 * @return ChemicalRDG
 	 */
 	public static CompoundRDG findByNameConcrete(String name) {
-		CompoundRDG chem = null;							
+		CompoundRDG chem = null;
 		try {
-			ResultSet r = connection.createStatement().executeQuery("SELECT * FROM Compound WHERE Compound.compoundName = '" + name + "'");
+			ResultSet r = connection.createStatement()
+					.executeQuery("SELECT * FROM Compound WHERE Compound.compoundName = '" + name + "'");
 			r.next();
-			chem = new CompoundRDG(r.getInt(1), r.getString(2));						
+			chem = new CompoundRDG(r.getInt(1), r.getString(2), r.getDouble(3));
 		} catch (SQLException e) {
-			DatabaseException.detectError(e);					
+			DatabaseException.detectError(e);
 		}
-										
-		return chem;	
+
+		return chem;
 	}
-	
+
 	/**
 	 * Method to see if a Chemical with a given name is a Compound
+	 * 
 	 * @author Madeline and Adam
 	 * @param name the name of the Chemical
 	 * @return Compound if it is a Compound, null if it is not
@@ -102,7 +131,8 @@ public class CompoundRDG {
 		Connection c;
 		try {
 			c = DatabaseManager.getSingleton().getConnection();
-			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Compound WHERE Compound.compoundName = '" + name + "'");
+			ResultSet rs = c.createStatement()
+					.executeQuery("SELECT * FROM Compound WHERE Compound.compoundName = '" + name + "'");
 			if (rs.next()) {
 				return "Compound";
 			}
@@ -111,18 +141,20 @@ public class CompoundRDG {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Updates the database with new values to an existing chemical
 	 */
 	public void update() {
 		PreparedStatement stmt;
 		try {
-			stmt = connection.prepareStatement("UPDATE Compound SET compoundName = ? WHERE Compound.compoundID = ?");
+			stmt = connection.prepareStatement(
+					"UPDATE Compound SET compoundName = ?, compoundMoles = ? WHERE Compound.compoundID = ?");
 			stmt.setString(1, compoundName);
-			stmt.setInt(2, compoundID);
+			stmt.setDouble(2, compoundMoles);
+			stmt.setInt(3, compoundID);
 			stmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}

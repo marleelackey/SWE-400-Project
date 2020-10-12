@@ -4,23 +4,26 @@ package datasource;
  * @author Joshua Kellogg
  * @author Daniel Holmgren
  * 
- * The data transfer object for metal
+ *         The data transfer object for metal
  */
 public class MetalDTO {
-	private int ID,
-				dissolvedBy;
+	private int ID, dissolvedBy;
+	private double molesOfAcidToDissolve;
 
 	/**
 	 * Constructor, assigns instance variables
+	 * 
 	 * @param ID
 	 * @param dissolvedBy
+	 * @param molesOfAcidToDissolve
 	 */
-	public MetalDTO(int ID, int dissolvedBy) {
+	public MetalDTO(int ID, int dissolvedBy, double molesOfAcidToDissolve) {
 		this.ID = ID;
 		this.dissolvedBy = dissolvedBy;
+		this.molesOfAcidToDissolve = molesOfAcidToDissolve;
 	}
-	
-	// Getters and setter
+
+	// Getters
 	public int getID() {
 		return ID;
 	}
@@ -29,7 +32,7 @@ public class MetalDTO {
 		return dissolvedBy;
 	}
 
-	public void setDissolvedBy(int dissolvedBy) {
-		this.dissolvedBy = dissolvedBy;
+	public double getMolesOfAcidToDissolve() {
+		return molesOfAcidToDissolve;
 	}
 }
