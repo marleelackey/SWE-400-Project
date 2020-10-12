@@ -44,7 +44,8 @@ public class AddElementCmd implements CommandInterface {
 	@Override
 	public void execute() {
 		ElementMapper em = new ElementMapper();
-		em.createElement(elementID, elementName, elementAtomicNumber, elementAtomicMass, isMetal, acidID);
+		ElementDomainObject edo = em.createElement(elementID, elementName, elementAtomicNumber, elementAtomicMass, isMetal, acidID);
+		edo.persist();
 	}
 
 	public int getElementID() {
