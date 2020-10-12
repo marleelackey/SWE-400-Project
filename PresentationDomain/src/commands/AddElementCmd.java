@@ -37,13 +37,14 @@ public class AddElementCmd implements CommandInterface {
 		isMetal = metal;
 		acidID = a_id;
 	}
-	
+
 	/**
-	 * Execute the AddElementCmd
+	 * Execute the AddElementCmd by creating a mapper to handle the insertion
 	 */
 	@Override
 	public void execute() {
-		//TODO
+		ElementMapper em = new ElementMapper();
+		em.createElement(elementID, elementName, elementAtomicNumber, elementAtomicMass, isMetal, acidID);
 	}
 
 	public int getElementID() {
