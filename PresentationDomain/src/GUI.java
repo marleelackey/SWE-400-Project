@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
 
 /**
  * This here be the gui
@@ -72,7 +73,56 @@ public class GUI {
 		main.add(list);
 		main.add(control);
 	}
+	
 	 private void setupelementPanel() {
-		 elementControlPanel.add(new JTextArea("Add Element"));
+		 JPanel addElementPanel = new JPanel(new GridLayout(0, 2));
+		 addElementPanel.setBackground(new Color(52, 186, 235));
+		 JPanel findElementsInRangePanel = new JPanel();
+		 findElementsInRangePanel.setBackground(new Color(52, 186, 235));
+		 JPanel findElementPanel = new JPanel();
+		 findElementPanel.setBackground(new Color(52, 186, 235));
+		 JPanel getCompoundByElementPanel = new JPanel();
+		 getCompoundByElementPanel.setBackground(new Color(52, 186, 235));
+		 JPanel modifyElementPanel = new JPanel();
+		 modifyElementPanel.setBackground(new Color(52, 186, 235));
+
+		 elementControlPanel.setLayout(new BoxLayout(elementControlPanel, BoxLayout.PAGE_AXIS));
+		 
+		 JButton addElementButton = new JButton("Add Element");
+
+		 addElementPanel.add(new JTextArea("Add Element"));
+		 addElementPanel.add(addElementButton);
+		 addElementPanel.add(new JTextArea("Atomic Number: "));
+		 JTextField atomicNumberInput = new JTextField();
+		 addElementPanel.add(atomicNumberInput);
+		 addElementPanel.add(new JTextArea("Atomic Mass: "));
+		 JTextField atomicMassInput = new JTextField();
+		 addElementPanel.add(atomicMassInput);
+		 addElementPanel.add(new JTextArea("Name: "));
+		 JTextField nameInput = new JTextField();
+		 addElementPanel.add(nameInput);
+		 
+		 addElementButton.addActionListener(new ActionListener() 
+		 {
+	         public void actionPerformed(ActionEvent e) 
+	         {
+	            System.out.println("Booton Pressed");
+	            System.out.println("Atomic Num is: " + atomicNumberInput.getText());
+	            System.out.println("Atomic Mass is: " + atomicMassInput.getText());
+	            System.out.println("Name is: " + nameInput.getText());
+	         }
+		 });
+		 
+		 
+		 findElementsInRangePanel.add(new JTextArea("Find Elements In Range"));
+		 findElementPanel.add(new JTextArea("Find Element By Something"));
+		 getCompoundByElementPanel.add(new JTextArea("Get Compounds By Element"));
+		 modifyElementPanel.add(new JTextArea("Modify Element"));
+		 elementControlPanel.add(addElementPanel);
+		 elementControlPanel.add(findElementsInRangePanel);
+		 elementControlPanel.add(findElementPanel);
+		 elementControlPanel.add(getCompoundByElementPanel);
+		 elementControlPanel.add(modifyElementPanel);
+
 	 }
 }
