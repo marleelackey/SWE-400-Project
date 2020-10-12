@@ -44,6 +44,11 @@ public class GUI {
 		setupPanels(baseMainPanel, listOfBasesPanel, baseControlPanel);
 		setupPanels(chemicalMainPanel, listOfChemicalsPanel, chemicalControlPanel);
 		
+		setupelementPanel();
+		
+		
+		
+		
 		mainFrame.setPreferredSize(FRAME_SIZE);
 		mainFrame.pack();
 		
@@ -67,5 +72,7 @@ public class GUI {
 		main.add(list);
 		main.add(control);
 	}
-	
+	 private void setupelementPanel() {
+		 elementControlPanel.add(new JTextArea("Add Element"));
+	 }
 }
