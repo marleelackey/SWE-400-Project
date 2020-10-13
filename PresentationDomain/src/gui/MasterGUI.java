@@ -1,3 +1,4 @@
+package gui;
 import java.awt.*;
 import javax.swing.*;
 
@@ -12,7 +13,7 @@ import java.awt.event.*;
  * @author Joshua Kellogg
  *
  */
-public class GUI {
+public class MasterGUI {
 	private final Dimension FRAME_SIZE = new Dimension(800, 500);
 
 	JFrame mainFrame = new JFrame("SWE Rocks!");
@@ -42,7 +43,7 @@ public class GUI {
 	JPanel listOfChemicalsPanel = new JPanel();
 	JPanel chemicalControlPanel = new JPanel();
 
-	public GUI() {
+	public MasterGUI() {
 		setupPanels(elementMainPanel, listOfElementsPanel, elementControlPanel);
 		setupPanels(metalMainPanel, listOfMetalsPanel, metalControlPanel);
 		setupPanels(compoundMainPanel, listOfCompoundPanel, compoundControlPanel);
