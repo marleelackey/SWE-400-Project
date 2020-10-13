@@ -3,6 +3,8 @@
  */
 package commands;
 
+import mappers.ElementMapper;
+
 /**
  * 
  * A command to add an element to the database
@@ -43,9 +45,11 @@ public class AddElementCmd implements CommandInterface {
 	 */
 	@Override
 	public void execute() {
-		ElementMapper em = new ElementMapper();
-		ElementDomainObject edo = em.createElement(elementID, elementName, elementAtomicNumber, elementAtomicMass, isMetal, acidID);
-		edo.persist();
+		ElementMapper em = new ElementMapper(1, "hello", 5, 4.4, 6.6);
+		//ElementDomainObject edo = em.createElement(elementID, elementName, elementAtomicNumber, elementAtomicMass,
+			//	isMetal, acidID);
+		//edo.persist();
+		// BOO!!!
 	}
 
 	public int getElementID() {

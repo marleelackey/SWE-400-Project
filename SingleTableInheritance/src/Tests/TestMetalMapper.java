@@ -4,10 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import Mappers.MetalMapper;
 import datasource.ChemicalRDG;
 import datasource.DatabaseException;
 import datasource.DatabaseManager;
+import mappers.MetalMapper;
 
 public class TestMetalMapper {
 	
