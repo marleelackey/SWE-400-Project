@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import DomainObjects.ElementDomainObject;
 import mappers.ElementMapper;
 import datasource.ChemicalRDG;
 import datasource.DatabaseException;
@@ -17,7 +18,11 @@ public class TestElementMapper {
 		ElementMapper mapper = new ElementMapper(40, "element", 20, 10, 4.5);
 		try {
 			DatabaseManager.getSingleton().setTesting();
-			mapper.createElement();
+			ElementDomainObject e = mapper.createElement();
+			e.persist();
+			assertEquals(e, ElementMapper.identityMap.get(40));
+			assertEquals("element", e.getElementName());
+
 			ChemicalRDG rdg = ChemicalRDG.findByID(40);
 			assertEquals("element", rdg.getChemicalName());
 			

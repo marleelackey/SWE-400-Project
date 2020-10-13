@@ -1,5 +1,6 @@
 package mappers;
 
+import DomainObjects.ElementDomainObject;
 import Interfaces.ElementMapperInterface;
 import datasource.ChemicalRDG;
 import datasource.DatabaseException;
@@ -21,20 +22,65 @@ public class ElementMapper implements ElementMapperInterface {
 		this.moles = moles;
 	}
 	
-	
+
 	@Override
-	public void createElement() {
-		
-		try {
-			ChemicalRDG rdg1 = new ChemicalRDG(ident, name, moles);
-			rdg1.insert();
-			
-			ElementRDG rdg2 = new ElementRDG(ident, atomicNumber, atomicMass);
-			rdg2.insert();
-			
-		} catch (Exception e) {
-			DatabaseException.detectError(e, "Error spotted in the ElementMapper class, CreateElementMethod");
+	public ElementDomainObject createElement() throws Exception {
+		if (identityMap.containsKey(this.ident)) {
+			return identityMap.get(this.ident);
 		}
+		ElementDomainObject element = new ElementDomainObject(this);
+		identityMap.put(this.ident, element);
+		return element;
+	}
+
+
+	@Override
+	public void persist() {
+		ChemicalRDG rdg1 = new ChemicalRDG(ident, name, moles);
+		rdg1.insert();
+		
+		ElementRDG rdg2 = new ElementRDG(ident, atomicNumber, atomicMass);
+		rdg2.insert();
+	}
+
+
+	/**
+	 * @return the ident
+	 */
+	public int getIdent() {
+		return ident;
+	}
+
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+
+	/**
+	 * @return the atomicNumber
+	 */
+	public int getAtomicNumber() {
+		return atomicNumber;
+	}
+
+
+	/**
+	 * @return the atomicMass
+	 */
+	public double getAtomicMass() {
+		return atomicMass;
+	}
+
+
+	/**
+	 * @return the moles
+	 */
+	public double getMoles() {
+		return moles;
 	}
 
 }
