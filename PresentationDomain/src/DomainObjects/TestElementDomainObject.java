@@ -10,16 +10,17 @@ public class TestElementDomainObject {
 	public void testConstructorAndSetters() {
 		ElementDataMapper d = new ElementDataMapper();
 		ElementDomainObject e = new ElementDomainObject(d);
-		assertEquals(e.dataMapper, d);
-		assertEquals(e.setAcidID(123), e.acidID);
-		assertEquals(e.setElementAtomicMass(123.1), e.elementAtomicMass);
-		assertEquals(e.setElementAtomicNumber(12), e.elementAtomicNumber);
-		assertEquals(e.setElementID(1222), e.elementID);
-		assertEquals(e.setElementName("Carodine"), e.elementName);
+		assertEquals(e.getDataMapper(), d);
+		assertEquals(e.setAcidID(123), e.getAcidID());
+		assertEquals(e.setIsMetal(true), e.getIsMetal());
+		assertEquals(e.setElementAtomicMass(123.1), e.getElementAtomicMass());
+		assertEquals(e.setElementAtomicNumber(12), e.getElementAtomicNumber());
+		assertEquals(e.setElementID(1222), e.getElementID());
+		assertEquals(e.setElementName("Carodine"), e.getElementName());
 
 		// test border cases
-		assertNotEquals(e.setElementAtomicNumber(124), e.elementAtomicNumber); // atomic number cant be more than atomic mass
-		assertNotEquals(e.setElementName("Carodine Rocks"), e.elementName); // name can't be two words
+		assertNotEquals(e.setElementAtomicNumber(124), e.getElementAtomicNumber()); // atomic number cant be more than atomic mass
+		assertNotEquals(e.setElementName("Carodine Rocks"), e.getElementName()); // name can't be two words
 		
 	}
 
