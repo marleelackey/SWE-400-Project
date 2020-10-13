@@ -1,4 +1,4 @@
-package Mappers;
+package mappers;
 
 import Interfaces.MetalMapperInterface;
 import datasource.ChemicalRDG;
