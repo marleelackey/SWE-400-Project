@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+/DomainObjects/
+=======
+>>>>>>> TestElementDO
 /AcidGUI.class
 /BaseGUI.class
 /ElementGUI.class
@@ -7,3 +13,7 @@
 /Runnable.class
 /commands/
 /gui/
+<<<<<<< HEAD
+=======
+>>>>>>> 11a3dc341bbaf9d3caae242db0727750d10090be
+>>>>>>> TestElementDO
