@@ -11,13 +11,13 @@ public class ElementDomainObject {
 	/**
 	 * Instance variables
 	 */
-	private ElementDataMapper dataMapper;
-	private int elementID;
-	private String elementName;
-	private int elementAtomicNumber;
-	private double elementAtomicMass;
-	private boolean isMetal;
-	private int acidID;
+	ElementDataMapper dataMapper;
+	int elementID;
+	String elementName;
+	int elementAtomicNumber;
+	double elementAtomicMass;
+	boolean isMetal;
+	int acidID;
 	
 	/**
 	 * Constructor
@@ -43,7 +43,7 @@ public class ElementDomainObject {
 	 */
 	public void setElementID(int ID) throws Exception {
 		elementID = ID;
-		//TODO: check business logic
+		//TODO: check business logic, might be in compound not element tho
 	}
 
 	/**
