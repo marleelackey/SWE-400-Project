@@ -7,7 +7,5 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SingleTableInheritance"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ClassTableInheritance"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ConcreteTableInheritance"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
