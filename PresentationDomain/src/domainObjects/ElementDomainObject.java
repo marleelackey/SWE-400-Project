@@ -1,4 +1,6 @@
-package DomainObjects;
+package domainObjects;
+
+import mappers.ElementMapper;
 
 /**
  * 
@@ -11,28 +13,27 @@ public class ElementDomainObject {
 	/**
 	 * Instance variables
 	 */
-	private ElementDataMapper dataMapper;
+	private ElementMapper dataMapper;
 	private int elementID;
 	private String elementName;
 	private int elementAtomicNumber;
 	private double elementAtomicMass;
-	private boolean isMetal;
-	private int acidID;
 	
 	/**
 	 * Constructor
 	 * @param dm the data mapper that created this ElementDomainObject
 	 * @throws Exception throws an exception if one of the setter's throw an exception
 	 */
-	public ElementDomainObject(ElementDataMapper dm) throws Exception {
+	public ElementDomainObject(ElementMapper dm) throws Exception {
 		dataMapper = dm;
-		elementID.setElementID(dm.getID());
-        elementName.setElementName(dm.getName());
-        elementAtomicMass.setElementAtomicMass(dm.getAtomicMass());
-        elementAtomicNumber.setElementAtomicNumber(dm.getAtomicNumber());
-        isMetal.setIsMetal(dm.getIsMetal());
-        acidID.setAcidID(dm.getAcidID());
- 
+		setElementID(dm.getID());
+        setElementName(dm.getName());
+        setElementAtomicMass(dm.getAtomicMass());
+        setElementAtomicNumber(dm.getAtomicNumber());
+//        setIsMetal(dm.getIsMetal());
+//        setAcidID(dm.getAcidID());
+        // NOTE: these probably aren't needed anymore because whether it's a metal or not is being handled in the command.
+        // there should be a metal domain object that has acid ID and all the other vars, but isMetal only exists at gui and command level
 	}
 	
 	
@@ -116,7 +117,7 @@ public class ElementDomainObject {
 	 * Getter for elementName
 	 * @return elementName
 	 */
-	public int getElementName() {
+	public String getElementName() {
 		return elementName;
 	}
 
@@ -124,7 +125,7 @@ public class ElementDomainObject {
 	 * Getter for elementAtomicMass
 	 * @return elementAtomicMass
 	 */
-	public int getElementAtomicMass() {
+	public double getElementAtomicMass() {
 		return elementAtomicMass;
 	}
 	
@@ -140,7 +141,7 @@ public class ElementDomainObject {
 	 * Getter for IsMetal
 	 * @return isMetal
 	 */
-	public int getIsMetal() {
+	public boolean getIsMetal() {
 		return isMetal;
 		
 	}
@@ -157,7 +158,7 @@ public class ElementDomainObject {
 	 * Return the data mapper that created the domain object
 	 * @return dataMapper
 	 */
-	public ElementDataMapper getDataMapper() {
+	public ElementMapper getDataMapper() {
 		return dataMapper;
 	}
 	

@@ -1,4 +1,4 @@
-package DomainObjects;
+package domainObjects;
 
 import static org.junit.Assert.*;
 

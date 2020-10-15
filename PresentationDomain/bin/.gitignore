@@ -1,19 +1,2 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-/DomainObjects/
-=======
->>>>>>> TestElementDO
-/AcidGUI.class
-/BaseGUI.class
-/ElementGUI.class
-/GUI$1.class
-/GUI.class
-/MetalGUI.class
-/Runnable.class
+/domainObjects/
 /commands/
-/gui/
-<<<<<<< HEAD
-=======
->>>>>>> 11a3dc341bbaf9d3caae242db0727750d10090be
->>>>>>> TestElementDO

@@ -55,14 +55,14 @@ public class AddElementCmd implements CommandInterface {
 	@Override
 	public void execute() {
 		if (isMetal()) {
-			MetalMapper mm = new MetalMapper(elementID, elementName, elementAtomicNumber, elementAtomicMass, acidID,
+			MetalMapper mm = new MetalMapper();
+			MetalDomainObject mdo = mm.createMetal(elementID, elementName, elementAtomicNumber, elementAtomicMass, acidID,
 					elementMoles, elementMolesOfAcidToDissolve);
-			MetalDomainObject mdo = mm.createMetal();
 			mdo.persist();
 		} else {
-			ElementMapper em = new ElementMapper(elementID, elementName, elementAtomicNumber, elementAtomicMass,
+			ElementMapper em = new ElementMapper();
+			ElementDomainObject edo = em.createElement(elementID, elementName, elementAtomicNumber, elementAtomicMass,
 					elementMoles);
-			ElementDomainObject edo = em.createElement();
 			edo.persist();
 		}
 		// BOO!!!
