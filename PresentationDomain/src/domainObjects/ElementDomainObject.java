@@ -21,19 +21,16 @@ public class ElementDomainObject {
 	
 	/**
 	 * Constructor
-	 * @param dm the data mapper that created this ElementDomainObject
+	 * @param em the data mapper that created this ElementDomainObject
 	 * @throws Exception throws an exception if one of the setter's throw an exception
 	 */
-	public ElementDomainObject(ElementMapper dm) throws Exception {
-		dataMapper = dm;
-		setElementID(dm.getID());
-        setElementName(dm.getName());
-        setElementAtomicMass(dm.getAtomicMass());
-        setElementAtomicNumber(dm.getAtomicNumber());
-//        setIsMetal(dm.getIsMetal());
-//        setAcidID(dm.getAcidID());
-        // NOTE: these probably aren't needed anymore because whether it's a metal or not is being handled in the command.
-        // there should be a metal domain object that has acid ID and all the other vars, but isMetal only exists at gui and command level
+	public ElementDomainObject(ElementMapper em) throws Exception {
+		dataMapper = em;
+		setElementID(dataMapper.getID());
+        setElementName(dataMapper.getName());
+        setElementAtomicMass(dataMapper.getAtomicMass());
+        setElementAtomicNumber(dataMapper.getAtomicNumber());
+
 	}
 	
 	
@@ -82,22 +79,7 @@ public class ElementDomainObject {
 		elementAtomicMass = atomicMass;
 	}
 
-	/**
-	 * Set isMetal
-	 * @param isM
-	 */
-	public void setMetal(boolean isM) {
-		isMetal = isM;
-	}
 
-	/**
-	 * Set AcidID 
-	 * @param a_ID
-	 */
-	public void setAcidID(int a_ID) {
-		acidID = a_ID;
-	}
-	
 	/**
 	 * Call the persist() method in DataMapper to persist the changes made to element
 	 */
@@ -137,22 +119,6 @@ public class ElementDomainObject {
 		return elementAtomicNumber;
 	}
 	
-	/**
-	 * Getter for IsMetal
-	 * @return isMetal
-	 */
-	public boolean getIsMetal() {
-		return isMetal;
-		
-	}
-	
-	/**
-	 * Getter for acidID
-	 * @return acidID
-	 */
-	public int getAcidID() {
-		return acidID;
-	}
 	
 	/**
 	 * Return the data mapper that created the domain object
