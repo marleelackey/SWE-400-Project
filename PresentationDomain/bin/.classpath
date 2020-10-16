@@ -10,5 +10,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="/MapperInterfaces"/>
 	<classpathentry kind="lib" path="/ClassTableInheritance"/>
+	<classpathentry kind="src" path="/ConcreteTableInheritance"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
