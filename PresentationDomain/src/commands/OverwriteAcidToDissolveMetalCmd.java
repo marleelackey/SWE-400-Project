@@ -1,5 +1,8 @@
 package commands;
 
+import domainObjects.MetalDomainObject;
+import mappers.MetalMapper;
+
 /**
  * Command class to overwrite which acid can dissolve a particular metal
  * 
@@ -26,7 +29,10 @@ public class OverwriteAcidToDissolveMetalCmd {
 	 * Execute method to invoke the overwrite acid to dissolve metal command
 	 */
 	public void execute() {
-		// TODO
+		MetalMapper mm = new MetalMapper();
+		MetalDomainObject mdo = mm.findByID(metalID);
+		mdo.setAcidID(newAcidID);
+		mdo.persist();
 	}
 
 	public int getMetalID() {

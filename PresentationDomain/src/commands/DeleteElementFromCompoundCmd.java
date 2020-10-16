@@ -1,6 +1,7 @@
 package commands;
 
 /**
+ * Command class to remove an existing element from an existing compound
  * 
  * @author Madeline and Adam
  *
@@ -9,27 +10,28 @@ public class DeleteElementFromCompoundCmd implements CommandInterface {
 
 	private int elementID;
 	private int compoundID;
-	
+
 	/**
 	 * 
 	 * Constructor
 	 * 
-	 * @param elementID
-	 * @param compoundID
+	 * @param elementID  the ID of the element to remove
+	 * @param compoundID the ID of the compound it's in
 	 */
 	public DeleteElementFromCompoundCmd(int elementID, int compoundID) {
 		this.elementID = elementID;
 		this.compoundID = compoundID;
 	}
-	
-	
+
 	/**
 	 * We deleting elements from compounds out here
 	 */
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-		
+		CompoundMapper cm = new CompoundMapper();
+		CompoundDomainObject cdo = cm.findByID(compoundID);
+		cdo.removeElement(elementID);
+		cdo.persist();
 	}
 
 	/**
@@ -39,7 +41,6 @@ public class DeleteElementFromCompoundCmd implements CommandInterface {
 	public int getElementID() {
 		return elementID;
 	}
-
 
 	public int getCompoundID() {
 		return compoundID;

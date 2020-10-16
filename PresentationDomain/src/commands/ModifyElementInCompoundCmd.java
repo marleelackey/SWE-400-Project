@@ -30,7 +30,10 @@ public class ModifyElementInCompoundCmd {
 	 * Execute method to invoke the modify element in compound command
 	 */
 	public void execute() {
-		// TODO
+		CompoundMapper cm = new CompoundMapper();
+		CompoundDomainObject cdo = cm.findByID(compoundID);
+		cdo.modifyElementQuantity(elementID, newElementQuantity);
+		cdo.persist();
 	}
 
 	public int getElementID() {
