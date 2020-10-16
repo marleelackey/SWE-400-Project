@@ -3,6 +3,8 @@
  */
 package commands;
 
+import domainObjects.ElementDomainObject;
+import domainObjects.MetalDomainObject;
 import mappers.ElementMapper;
 import mappers.MetalMapper;
 
@@ -51,9 +53,10 @@ public class AddElementCmd implements CommandInterface {
 
 	/**
 	 * Execute the AddElementCmd by creating a mapper and receiving a domain object
+	 * @throws Exception 
 	 */
 	@Override
-	public void execute() {
+	public void execute() throws Exception {
 		if (isMetal()) {
 			MetalMapper mm = new MetalMapper();
 			MetalDomainObject mdo = mm.createMetal(elementID, elementName, elementAtomicNumber, elementAtomicMass, acidID,

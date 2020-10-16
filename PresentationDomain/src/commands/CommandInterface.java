@@ -13,7 +13,8 @@ public interface CommandInterface {
 
 	/**
 	 * An execute method
+	 * @throws Exception 
 	 */
-	public void execute();
+	public void execute() throws Exception;
 
 }

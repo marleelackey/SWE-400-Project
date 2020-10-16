@@ -1,5 +1,7 @@
 package commands;
 
+import mappers.CompoundMapper;
+
 /**
  * Command class to modify how many atoms of an element are in one molecule of a
  * compound

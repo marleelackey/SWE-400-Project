@@ -1,5 +1,7 @@
 package commands;
 
+import mappers.CompoundMapper;
+
 /**
  * Command class to remove an existing element from an existing compound
  * 

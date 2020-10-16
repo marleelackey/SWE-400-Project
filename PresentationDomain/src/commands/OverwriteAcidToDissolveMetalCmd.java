@@ -27,8 +27,9 @@ public class OverwriteAcidToDissolveMetalCmd {
 
 	/**
 	 * Execute method to invoke the overwrite acid to dissolve metal command
+	 * @throws Exception 
 	 */
-	public void execute() {
+	public void execute() throws Exception {
 		MetalMapper mm = new MetalMapper();
 		MetalDomainObject mdo = mm.findByID(metalID);
 		mdo.setAcidID(newAcidID);
