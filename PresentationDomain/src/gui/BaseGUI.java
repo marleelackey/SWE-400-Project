@@ -2,9 +2,15 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class BaseGUI implements guiInterface {
 	JPanel baseMainPanel = new JPanel();
@@ -19,5 +25,36 @@ public class BaseGUI implements guiInterface {
 		baseMainPanel.setLayout(new BoxLayout(baseMainPanel, BoxLayout.LINE_AXIS));
 		baseMainPanel.add(listOfBasesPanel);
 		baseMainPanel.add(baseControlPanel);
+		
+		setuplistOfBasesPanel();
+		setupupdateBasePanel();
+	}
+
+	private void setuplistOfBasesPanel() {
+		listOfBasesPanel.add(new JLabel("Bases"));
+	}
+
+	private void setupupdateBasePanel() {
+		JButton updateBaseButton = new JButton("Update");
+		JPanel updateBasePanel = new JPanel(new GridLayout(0,2));
+		updateBasePanel.add(new JLabel("Weight: "));
+		JTextField weightInput = new JTextField();
+		updateBasePanel.add(weightInput);
+		updateBasePanel.add(new JLabel("Volume: "));
+		JTextField volumeInput = new JTextField();
+		updateBasePanel.add(volumeInput);
+		updateBasePanel.add(updateBaseButton);
+		
+		updateBaseButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * Command stuff goes here
+				 * 
+				 */
+			}
+		});
+		
+		baseControlPanel.add(updateBasePanel);
+		
 	}
 }

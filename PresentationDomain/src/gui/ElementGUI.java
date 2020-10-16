@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import commands.AddElementCmd;
@@ -31,34 +31,34 @@ public class ElementGUI implements guiInterface {
 		elementMainPanel.add(listOfElementsPanel);
 		elementMainPanel.add(elementControlPanel);
 		
-		setupelementPanel();
+		elementControlPanel.setLayout(new BoxLayout(elementControlPanel, BoxLayout.PAGE_AXIS));
+		
+		setuplistOfElementsPanel();
+		setupAddElementPanel();
+		setupfindElementsInRangePanel();
+		setupfindElementPanel();
+		setupgetCompoundByElementPanel();
+		setupmodifyElementPanel();
 	}
 	
-	private void setupelementPanel() {
+	private void setuplistOfElementsPanel() {
+		listOfElementsPanel.add(new JLabel("Element"));
+	}
+
+	private void setupAddElementPanel() {
 		JPanel addElementPanel = new JPanel(new GridLayout(0, 2));
 		addElementPanel.setBackground(new Color(52, 186, 235));
-		JPanel findElementsInRangePanel = new JPanel();
-		findElementsInRangePanel.setBackground(new Color(52, 186, 235));
-		JPanel findElementPanel = new JPanel();
-		findElementPanel.setBackground(new Color(52, 186, 235));
-		JPanel getCompoundByElementPanel = new JPanel();
-		getCompoundByElementPanel.setBackground(new Color(52, 186, 235));
-		JPanel modifyElementPanel = new JPanel();
-		modifyElementPanel.setBackground(new Color(52, 186, 235));
-
-		elementControlPanel.setLayout(new BoxLayout(elementControlPanel, BoxLayout.PAGE_AXIS));
-
 		JButton addElementButton = new JButton("Add Element");
 
-		addElementPanel.add(new JTextArea("Add Element"));
+		addElementPanel.add(new JLabel("Add Element"));
 		addElementPanel.add(addElementButton);
-		addElementPanel.add(new JTextArea("Atomic Number: "));
+		addElementPanel.add(new JLabel("Atomic Number: "));
 		JTextField atomicNumberInput = new JTextField();
 		addElementPanel.add(atomicNumberInput);
-		addElementPanel.add(new JTextArea("Atomic Mass: "));
+		addElementPanel.add(new JLabel("Atomic Mass: "));
 		JTextField atomicMassInput = new JTextField();
 		addElementPanel.add(atomicMassInput);
-		addElementPanel.add(new JTextArea("Name: "));
+		addElementPanel.add(new JLabel("Name: "));
 		JTextField nameInput = new JTextField();
 		addElementPanel.add(nameInput);
 		JCheckBox isMetalInput = new JCheckBox("Is Metal?");
@@ -71,22 +71,82 @@ public class ElementGUI implements guiInterface {
 //				new ExecuterForCommands(
 //						new AddElementCmd(547, nameInput.getText(), Integer.parseInt(atomicNumberInput.getText()),
 //								Double.parseDouble(atomicMassInput.getText()), isMetalInput.isSelected(), 0));
-				System.out.println("Booton Pressed");
-				System.out.println("Atomic Num is: " + atomicNumberInput.getText());
-				System.out.println("Atomic Mass is: " + atomicMassInput.getText());
-				System.out.println("Name is: " + nameInput.getText());
 			}
 		});
 
-		findElementsInRangePanel.add(new JTextArea("Find Elements In Range"));
-		findElementPanel.add(new JTextArea("Find Element By Something"));
-		getCompoundByElementPanel.add(new JTextArea("Get Compounds By Element"));
-		modifyElementPanel.add(new JTextArea("Modify Element"));
 		elementControlPanel.add(addElementPanel);
-		elementControlPanel.add(findElementsInRangePanel);
-		elementControlPanel.add(findElementPanel);
-		elementControlPanel.add(getCompoundByElementPanel);
-		elementControlPanel.add(modifyElementPanel);
-
 	}
+	
+	private void setupfindElementsInRangePanel() {
+		JPanel findElementsInRangePanel = new JPanel(new GridLayout(0, 2));
+		findElementsInRangePanel.setBackground(new Color(52, 186, 235));
+		findElementsInRangePanel.add(new JLabel("Find Elements In Range"));
+		JButton findElementsInRangeButton = new JButton("Find");
+		findElementsInRangePanel.add(findElementsInRangeButton);
+		findElementsInRangePanel.add(new JLabel("Lower Bound"));
+		JTextField lowerBoundInput = new JTextField();
+		findElementsInRangePanel.add(lowerBoundInput);
+		findElementsInRangePanel.add(new JLabel("Upper Bound"));
+		JTextField upperBoundInput = new JTextField();
+		findElementsInRangePanel.add(upperBoundInput);
+		
+		findElementsInRangeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * Command Stuff goes here
+				 */
+			}
+		});
+		
+		elementControlPanel.add(findElementsInRangePanel);
+	}
+	
+	private void setupfindElementPanel() {
+		JPanel findElementPanel = new JPanel();
+		findElementPanel.setBackground(new Color(52, 186, 235));		
+		JButton findByButton = new JButton("Find");
+		findElementPanel.add(new JLabel("Find Element By Something"));
+		JComboBox findByType = new JComboBox(new String[] {"Atomic Number","Atomic Mass","Name"});
+		findElementPanel.add(findByType);
+		findElementPanel.add(findByButton);
+		
+		findByButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * Command Stuff goes here
+				 */
+			}
+		});
+		
+		elementControlPanel.add(findElementPanel);
+	}
+	
+	private void setupgetCompoundByElementPanel() {
+		JPanel getCompoundByElementPanel = new JPanel(new GridLayout(0, 2));
+		getCompoundByElementPanel.setBackground(new Color(52, 186, 235));	
+		getCompoundByElementPanel.add(new JLabel("Get Compounds By Element"));
+		JButton getCompoundsButton = new JButton("Find Compounds");
+		getCompoundByElementPanel.add(getCompoundsButton);
+		getCompoundByElementPanel.add(new JLabel("Element Name"));
+		JTextField elementNameInput = new JTextField();
+		getCompoundByElementPanel.add(elementNameInput);
+		getCompoundsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * Command Stuff goes here
+				 */
+			}
+		});
+		
+		elementControlPanel.add(getCompoundByElementPanel);
+	}
+	
+	private void setupmodifyElementPanel() {
+		JPanel modifyElementPanel = new JPanel();
+		modifyElementPanel.setBackground(new Color(52, 186, 235));		
+		modifyElementPanel.add(new JLabel("Modify Element"));
+		
+		elementControlPanel.add(modifyElementPanel);
+	}
+
 }

@@ -35,15 +35,18 @@ public class MasterGUI implements guiInterface {
 		mainFrame.setVisible(true);
 	}
 
-	private void setupPanels(JPanel main, JPanel list, JPanel control) {
-		list.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .2), FRAME_SIZE.height));
-		control.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .8), FRAME_SIZE.height));
-		list.setBackground(new Color(235, 91, 52));
-		control.setBackground(new Color(52, 186, 235));
-		main.setLayout(new BoxLayout(main, BoxLayout.LINE_AXIS));
-		main.add(list);
-		main.add(control);
-	}
+	/**
+	 * Outline for the basic stuff each tab needs
+	 */
+//	private void setupPanels(JPanel main, JPanel list, JPanel control) {
+//		list.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .2), FRAME_SIZE.height));
+//		control.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .8), FRAME_SIZE.height));
+//		list.setBackground(new Color(235, 91, 52));
+//		control.setBackground(new Color(52, 186, 235));
+//		main.setLayout(new BoxLayout(main, BoxLayout.LINE_AXIS));
+//		main.add(list);
+//		main.add(control);
+//	}
 
 	
 }
