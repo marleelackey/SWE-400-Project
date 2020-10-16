@@ -80,10 +80,10 @@ public class CompoundRDG {
 	}
 
 	/**
-	 * Find a chemical using the ID
+	 * Find a compound using the ID
 	 * 
-	 * @param ID the id of a chemical you are looking for
-	 * @return ChemicalRDG
+	 * @param ID the id of a compound you are looking for
+	 * @return CompoundRDG
 	 */
 	public static CompoundRDG findByIDConcrete(int ID) {
 		CompoundRDG chem = null;

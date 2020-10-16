@@ -1,5 +1,6 @@
 package commands;
 
+import mappers.CompoundMapper;
 import mappers.ElementMapper;
 
 /**
