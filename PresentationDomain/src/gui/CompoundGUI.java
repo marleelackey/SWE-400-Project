@@ -1,5 +1,59 @@
 package gui;
 
-public class CompoundGUI {
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class CompoundGUI implements guiInterface {
+	JPanel compoundMainPanel = new JPanel();
+	JPanel listOfCompoundPanel = new JPanel();
+	JPanel compoundControlPanel = new JPanel();
+	
+	public CompoundGUI() {
+		listOfCompoundPanel.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .2), FRAME_SIZE.height));
+		compoundControlPanel.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .8), FRAME_SIZE.height));
+		listOfCompoundPanel.setBackground(new Color(235, 91, 52));
+		compoundControlPanel.setBackground(new Color(52, 186, 235));
+		compoundMainPanel.setLayout(new BoxLayout(compoundMainPanel, BoxLayout.LINE_AXIS));
+		compoundMainPanel.add(listOfCompoundPanel);
+		compoundMainPanel.add(compoundControlPanel);
+		
+		setuplistOfCompoundPanel();
+		setupupdateCompoundPanel();
+	}
+
+	private void setuplistOfCompoundPanel() {
+		listOfCompoundPanel.add(new JLabel("Compound"));
+	}
+
+	private void setupupdateCompoundPanel() {
+		JButton updateCompoundButton = new JButton("Update");
+		JPanel updateCompoundPanel = new JPanel(new GridLayout(0,2));
+		updateCompoundPanel.add(new JLabel("Weight: "));
+		JTextField weightInput = new JTextField();
+		updateCompoundPanel.add(weightInput);
+		updateCompoundPanel.add(new JLabel("Volume: "));
+		JTextField volumeInput = new JTextField();
+		updateCompoundPanel.add(volumeInput);
+		updateCompoundPanel.add(updateCompoundButton);
+		
+		updateCompoundButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * Command stuff goes here
+				 * 
+				 */
+			}
+		});
+
+		compoundControlPanel.add(updateCompoundPanel);
+	}
 }

@@ -1,7 +1,3 @@
-/.classpath
-/.project
-/.settings/
-/commands/
 /domainObjects/
 /gui/
-/quantifiedElementPackage/
+/commands/
