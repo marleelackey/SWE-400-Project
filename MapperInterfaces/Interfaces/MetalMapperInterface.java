@@ -1,9 +1,12 @@
 package Interfaces;
 
+import domainObjects.MetalDomainObject;
+
 public interface MetalMapperInterface {
 	
-	public void createMetal();
-//	public void persist();
+	public void persist();
+	public MetalDomainObject createMetal(int ID, String elementName, int atomicNumber, double atomicMass, int dissolvedBy, double moles,
+			double molesOfAcidToDissolve) throws Exception;
 
 //	public Element findByAtomicNumber(int atomicNumber);
 //	public Element findByAtomicMass(int atomicMass);

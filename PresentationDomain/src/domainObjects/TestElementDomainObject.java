@@ -1,25 +1,23 @@
 package domainObjects;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class TestElementDomainObject {
 
 	@Test
 	public void testConstructorAndSetters() {
-		ElementDataMapper d = new ElementDataMapper();
+		// int ID, String elementName, int atomicNumber, double atomicMass, double moles
+		ElementMapper d = new ElementMapper(23, "Carodine", 2, 234.22, 28.2);
 		ElementDomainObject e = new ElementDomainObject(d);
 		assertEquals(e.getDataMapper(), d);
-		assertEquals(e.setAcidID(123), e.getAcidID());
-		assertEquals(e.setIsMetal(true), e.getIsMetal());
-		assertEquals(e.setElementAtomicMass(123.1), e.getElementAtomicMass());
-		assertEquals(e.setElementAtomicNumber(12), e.getElementAtomicNumber());
-		assertEquals(e.setElementID(1222), e.getElementID());
-		assertEquals(e.setElementName("Carodine"), e.getElementName());
+		assertEquals(e.getElementAtomicMass(), 234.22, 0.01);
+		assertEquals(e.getElementAtomicNumber(), 2);
+		assertEquals(e.getElementID(), 23);
+		assertEquals(e.getElementName(), "Carodine");
 
 		// test border cases
-		assertNotEquals(e.setElementAtomicNumber(124), e.getElementAtomicNumber()); // atomic number cant be more than atomic mass
+		assertNotEquals(e.setElementAtomicNumber(1111), e.getElementAtomicNumber()); // atomic number cant be more than atomic mass
 		assertNotEquals(e.setElementName("Carodine Rocks"), e.getElementName()); // name can't be two words
 		
 	}
