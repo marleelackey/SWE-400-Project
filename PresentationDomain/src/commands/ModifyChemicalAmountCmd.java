@@ -1,5 +1,7 @@
 package commands;
 
+import domainObjects.ChemicalDomainObject;
+
 /**
  * Command class to modify a chemical's amount in inventory
  * 
