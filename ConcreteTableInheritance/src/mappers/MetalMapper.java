@@ -46,11 +46,22 @@ public class MetalMapper implements MetalMapperInterface {
 
 	public void persist() {
 		try {
-			MetalRDG rdg = new MetalRDG(ident, atomicNumber, dissolvedBy, atomicMass, name, moles,
-					molesOfAcidToDissolve);
-			rdg.insert();
+			MetalRDG metal = MetalRDG.findByID(ident);
+			if (metal.equals(null)) {
+				MetalRDG rdg = new MetalRDG(ident, atomicNumber, dissolvedBy, atomicMass, name, moles,
+						molesOfAcidToDissolve);
+				rdg.insert();
+			} else {
+				metal.setAtomicMass(atomicMass);
+				metal.setAtomicNumber(atomicNumber);
+				metal.setDissolvedBy(dissolvedBy);
+				metal.setMoles(moles);
+				metal.setMolesOfAcidToDissolve(molesOfAcidToDissolve);
+				metal.setName(name);
+				metal.update();
+			}
 		} catch (Exception e) {
-			DatabaseException.detectError(e, "Error spotted in the MetalMapper class, CreateMetal method");
+			DatabaseException.detectError(e, "Error spotted in the MetalMapper class, Persist method");
 		}
 	}
 

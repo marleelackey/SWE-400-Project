@@ -11,11 +11,13 @@ import mappers.ChemicalMapper;
 public class ChemicalDomainObject {
 	private ChemicalMapper dataMapper;
 	private int chemicalID;
+	private String chemicalName;
 	private double chemicalMoles;
 
 	public ChemicalDomainObject(ChemicalMapper dm) {
 		dataMapper = dm;
 		setChemicalID(dataMapper.getID());
+		setChemicalName(dataMapper.getName());
 		setChemicalMoles(dataMapper.getMoles());
 		dm.setCdo(this);
 	}
@@ -36,6 +38,20 @@ public class ChemicalDomainObject {
 	 */
 	public int getChemicalID() {
 		return chemicalID;
+	}
+
+	/**
+	 * @return the chemicalName
+	 */
+	public String getChemicalName() {
+		return chemicalName;
+	}
+
+	/**
+	 * @param chemicalName the chemicalName to set
+	 */
+	public void setChemicalName(String chemicalName) {
+		this.chemicalName = chemicalName;
 	}
 
 	/**

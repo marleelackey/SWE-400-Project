@@ -4,19 +4,16 @@ import java.util.ArrayList;
 
 import Interfaces.ChemicalMapperInterface;
 import datasource.AcidDTO;
-import datasource.AcidRDG;
 import datasource.AcidTDG;
 import datasource.BaseDTO;
-import datasource.BaseRDG;
 import datasource.BaseTDG;
+import datasource.ChemicalRDG;
 import datasource.CompoundDTO;
-import datasource.CompoundRDG;
 import datasource.CompoundTDG;
 import datasource.ElementDTO;
 import datasource.ElementRDG;
 import datasource.ElementTDG;
 import datasource.MetalDTO;
-import datasource.MetalRDG;
 import datasource.MetalTDG;
 import domainObjects.ChemicalDomainObject;
 
@@ -36,50 +33,20 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 	}
 
 	public void persist() {
-		ElementRDG element = ElementRDG.findByID(ID);
-		CompoundRDG compound = CompoundRDG.findByIDConcrete(ID);
-		MetalRDG metal = MetalRDG.findByID(ID);
-		AcidRDG acid = AcidRDG.findByID(ID);
-		BaseRDG base = BaseRDG.findByID(ID);
-
-		if (!element.equals(null)) {
-			element.setMoles(moles);
-			element.update();
-		} else if (!compound.equals(null)) {
-			compound.setCompoundMoles(moles);
-			compound.update();
-		} else if (!metal.equals(null)) {
-			metal.setMoles(moles);
-			metal.update();
-		} else if (!acid.equals(null)) {
-			acid.setAcidMoles(moles);
-			acid.update();
-		} else if (!base.equals(null)) {
-			base.setMoles(moles);
-			base.update();
+		ChemicalRDG rdg = ChemicalRDG.findByID(ID);
+		if (rdg.equals(null)) {
+			rdg = new ChemicalRDG(ID, name, moles);
+			rdg.insert();
+		} else {
+			rdg.setChemicalMoles(moles);
+			rdg.update();
 		}
 	}
 
 	public ChemicalDomainObject findByID(int chemicalID) throws Exception {
-		ElementRDG element = ElementRDG.findByID(chemicalID);
-		CompoundRDG compound = CompoundRDG.findByIDConcrete(chemicalID);
-		MetalRDG metal = MetalRDG.findByID(chemicalID);
-		AcidRDG acid = AcidRDG.findByID(chemicalID);
-		BaseRDG base = BaseRDG.findByID(chemicalID);
+		ChemicalRDG rdg = ChemicalRDG.findByID(chemicalID);
 
-		if (!element.equals(null)) {
-			cdo = createChemical(element.getID(), element.getName(), element.getMoles());
-		} else if (!compound.equals(null)) {
-			cdo = createChemical(compound.getCompoundID(), compound.getCompoundName(), compound.getCompoundMoles());
-		} else if (!metal.equals(null)) {
-			cdo = createChemical(metal.getID(), metal.getName(), metal.getMoles());
-		} else if (!acid.equals(null)) {
-			cdo = createChemical(acid.getAcidID(), acid.getAcidName(), acid.getAcidMoles());
-		} else if (!base.equals(null)) {
-			cdo = createChemical(base.getID(), base.getName(), base.getMoles());
-		}
-
-		return cdo;
+		return createChemical(chemicalID, rdg.getChemicalName(), rdg.getChemicalMoles());
 	}
 
 	public ArrayList<ChemicalDomainObject> findLowChemicals() throws Exception {
@@ -88,8 +55,10 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		// elements that have less than 20 moles
 		ArrayList<ElementDTO> elements = ElementTDG.getInstance().getAllElements();
 		for (ElementDTO e : elements) {
-			if (e.getMoles() < 20) {
-				lowChemicals.add(createChemical(e.getID(), e.getName(), e.getMoles()));
+			ChemicalRDG cForElements1 = ChemicalRDG.findByID(e.getID());
+			if (cForElements1.getChemicalMoles() < 20) {
+				lowChemicals.add(
+						createChemical(e.getID(), cForElements1.getChemicalName(), cForElements1.getChemicalMoles()));
 				elements.remove(e);
 			}
 		}
@@ -106,12 +75,14 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 					numAtoms += ElementRDG.findQuantityInCompound(containedElement.getID(), c.getCompoundID());
 				}
 				int thisElement = ElementRDG.findQuantityInCompound(e.getID(), c.getCompoundID());
-
 				// calculate percentage that the element makes up of total number of moles
-				totalToReplenish += thisElement / numAtoms * c.getCompoundMoles();
+				ChemicalRDG cForCompound = ChemicalRDG.findByID(c.getCompoundID());
+				totalToReplenish += thisElement / numAtoms * cForCompound.getChemicalMoles();
 			}
-			if (e.getMoles() < totalToReplenish) {
-				lowChemicals.add(createChemical(e.getID(), e.getName(), e.getMoles()));
+			ChemicalRDG cForElement2 = ChemicalRDG.findByID(e.getID());
+			if (cForElement2.getChemicalMoles() < totalToReplenish) {
+				lowChemicals.add(
+						createChemical(e.getID(), cForElement2.getChemicalName(), cForElement2.getChemicalMoles()));
 			}
 		}
 
@@ -119,21 +90,24 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		// it
 		ArrayList<AcidDTO> acids = AcidTDG.getSingleton().getAllAcids();
 		for (AcidDTO a : acids) {
-			ArrayList<MetalDTO> metals = MetalTDG.getInstance().getMetalsDissolvedByAcid(a.getAcidID());
+			ArrayList<MetalDTO> metals = MetalTDG.getSingleton().getMetalsDissolvedByAcid(a.getAcidID());
 			double totalToDissolve = 0;
 			for (MetalDTO m : metals) {
 				totalToDissolve += m.getMolesOfAcidToDissolve();
 			}
-			if (a.getAcidMoles() < totalToDissolve) {
-				lowChemicals.add(createChemical(a.getAcidID(), a.getAcidName(), a.getAcidMoles()));
+			ChemicalRDG cForAcids = ChemicalRDG.findByID(a.getAcidID());
+			if (cForAcids.getChemicalMoles() < totalToDissolve) {
+				lowChemicals
+						.add(createChemical(a.getAcidID(), cForAcids.getChemicalName(), cForAcids.getChemicalMoles()));
 			}
 		}
 
 		// bases that have less than 40 moles
 		ArrayList<BaseDTO> bases = BaseTDG.getAllBases();
 		for (BaseDTO b : bases) {
-			if (b.getMoles() < 40) {
-				lowChemicals.add(createChemical(b.getID(), b.getName(), b.getMoles()));
+			ChemicalRDG cForBases = ChemicalRDG.findByID(b.getID());
+			if (cForBases.getChemicalMoles() < 40) {
+				lowChemicals.add(createChemical(b.getID(), cForBases.getChemicalName(), cForBases.getChemicalMoles()));
 			}
 		}
 
@@ -142,10 +116,6 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 
 	public int getID() {
 		return ID;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public double getMoles() {
@@ -158,6 +128,14 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 
 	public void setCdo(ChemicalDomainObject cdo) {
 		this.cdo = cdo;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setMoles(double moles) {
+		this.moles = moles;
 	}
 
 }

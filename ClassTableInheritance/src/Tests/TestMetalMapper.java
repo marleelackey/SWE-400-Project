@@ -12,24 +12,24 @@ import datasource.ElementRDG;
 import datasource.MetalRDG;
 
 public class TestMetalMapper {
-	
+
 	@Test
 	public static void testCreateMetal() {
-		MetalMapper mapper = new MetalMapper(40, "element", 20, 10, 30, 5.3, 1.1);
+		MetalMapper mapper = new MetalMapper();
 		try {
 			DatabaseManager.getSingleton().setTesting();
-			mapper.createMetal();
-			
+			mapper.createMetal(40, "element", 20, 10, 30, 5.3, 1.1);
+
 			ChemicalRDG rdg = ChemicalRDG.findByID(40);
 			assertEquals("element", rdg.getChemicalName());
-			
+
 			ElementRDG rdg2 = ElementRDG.findByID(40);
 			assertEquals(20, rdg2.getAtomicNumber());
 			assertEquals(10, rdg2.getAtomicMass(), 0.001);
-			
+
 			MetalRDG rdg3 = MetalRDG.findByID(40);
 			assertEquals(30, rdg3.getDissolvedBy());
-			
+
 			DatabaseManager.getSingleton().rollBack();
 
 		} catch (Exception e) {
@@ -40,7 +40,7 @@ public class TestMetalMapper {
 
 	public static void runAllTheTests() {
 		testCreateMetal();
-		
+
 	}
 
 }

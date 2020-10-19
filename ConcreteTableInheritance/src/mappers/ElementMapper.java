@@ -2,6 +2,7 @@ package mappers;
 
 import Interfaces.ElementMapperInterface;
 import datasource.DatabaseException;
+import datasource.ElementDTO;
 import datasource.ElementRDG;
 import domainObjects.ElementDomainObject;
 
@@ -27,10 +28,19 @@ public class ElementMapper implements ElementMapperInterface {
 
 	public void persist() {
 		try {
-			ElementRDG rdg = new ElementRDG(ident, atomicNumber, atomicMass, name, moles);
-			rdg.insert();
+			ElementRDG element = ElementRDG.findByID(ident);
+			if (element.equals(null)) {
+				ElementRDG rdg = new ElementRDG(ident, atomicNumber, atomicMass, name, moles);
+				rdg.insert();
+			} else {
+				element.setAtomicMass(atomicMass);
+				element.setAtomicNumber(atomicNumber);
+				element.setMoles(moles);
+				element.setName(name);
+				element.update();
+			}
 		} catch (Exception e) {
-			DatabaseException.detectError(e, "Error spotted in the ElementMapper class, CreateElementMethod");
+			DatabaseException.detectError(e, "Error spotted in the ElementMapper class, Persist method");
 		}
 	}
 

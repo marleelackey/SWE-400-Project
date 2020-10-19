@@ -83,20 +83,19 @@ public class ChemicalRDG {
 	public String getChemicalName() {
 		return chemicalName;
 	}
-	
+
 	public void insert() {
 		PreparedStatement stmt;
 		try {
 			Connection connection = DatabaseManager.getSingleton().getConnection();
 
-			stmt = connection.prepareStatement(
-					"INSERT INTO Chemical VALUES (?, ?, ?)");
+			stmt = connection.prepareStatement("INSERT INTO Chemical VALUES (?, ?, ?)");
 			stmt.setInt(1, chemicalID);
 			stmt.setString(2, chemicalName);
 			stmt.setDouble(3, chemicalMoles);
 
-			stmt.executeUpdate();		
-		
+			stmt.executeUpdate();
+
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 
@@ -116,6 +115,19 @@ public class ChemicalRDG {
 	 */
 	public void setChemicalMoles(double chemicalMoles) {
 		this.chemicalMoles = chemicalMoles;
+	}
+
+	public void update() {
+		PreparedStatement stmt;
+		try {
+			Connection cn = DatabaseManager.getSingleton().getConnection();
+			stmt = cn.prepareStatement("UPDATE Chemical SET chemicalMoles = ? WHERE chemicalID = ?");
+			stmt.setDouble(1, chemicalMoles);
+			stmt.setInt(2, chemicalID);
+			stmt.execute();
+		} catch (Exception e) {
+			DatabaseException.detectError(e);
+		}
 	}
 
 }

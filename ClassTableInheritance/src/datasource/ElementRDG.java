@@ -3,6 +3,7 @@ package datasource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * @author Daniel Holmgren
@@ -120,6 +121,29 @@ public class ElementRDG {
 
 		}
 
+	}
+	
+	/**
+	 * Find out how many atoms of an element are in a molecule of a compound
+	 * 
+	 * @param eID the element ID
+	 * @param cID the compound ID
+	 * @return the number of atoms
+	 */
+	public static int findQuantityInCompound(int eID, int cID) {
+		Connection c;
+		int lol = 0;
+		try {
+			c = DatabaseManager.getSingleton().getConnection();
+			ResultSet rs = c.createStatement().executeQuery(
+					"SELECT * FROM CompoundMadeOfElement WHERE elementID = " + eID + " AND compoundID = " + cID);
+			if (rs.next()) {
+				lol = rs.getInt("elementQuantity");
+			}
+		} catch (SQLException | DatabaseException e) {
+			DatabaseException.detectError(e);
+		}
+		return lol;
 	}
 	
 	// Getters and Setters
