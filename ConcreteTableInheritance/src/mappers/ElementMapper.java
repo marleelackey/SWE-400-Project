@@ -14,7 +14,6 @@ public class ElementMapper implements ElementMapperInterface {
 	private double moles;
 	private ElementDomainObject edo;
 
-	@Override
 	public ElementDomainObject createElement(int ID, String elementName, int atomicNumber, double atomicMass,
 			double moles) throws Exception {
 		ident = ID;

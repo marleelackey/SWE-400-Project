@@ -13,10 +13,10 @@ public class TestElementMapper {
 	
 	@Test
 	public static void testCreateElement() {
-		ElementMapper mapper = new ElementMapper(40, "element", 10, 10, 4.7);
+		ElementMapper mapper = new ElementMapper();
 		try {
 			DatabaseManager.getSingleton().setTesting();
-			mapper.createElement();
+			mapper.createElement(40, "element", 10, 10, 4.7);
 			ElementRDG rdg = ElementRDG.findByID(40);
 			assertEquals("element", rdg.getName());
 			DatabaseManager.getSingleton().rollBack();

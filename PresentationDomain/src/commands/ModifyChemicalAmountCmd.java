@@ -31,7 +31,7 @@ public class ModifyChemicalAmountCmd implements CommandInterface {
 	public void execute() {
 		ChemicalMapper cm = new ChemicalMapper();
 		ChemicalDomainObject cdo = cm.findByID(chemicalID);
-		cdo.setChemicalAmount(newChemicalAmount);
+		cdo.setChemicalMoles(newChemicalAmount);
 		cdo.persist();
 	}
 

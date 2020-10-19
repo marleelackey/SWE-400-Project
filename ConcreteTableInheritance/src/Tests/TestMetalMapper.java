@@ -13,10 +13,10 @@ public class TestMetalMapper {
 	
 	@Test
 	public static void testCreateMetal() {
-		MetalMapper mapper = new MetalMapper(40, "element", 10, 10, 30, 3.6, 6.8);
+		MetalMapper mapper = new MetalMapper();
 		try {
 			DatabaseManager.getSingleton().setTesting();
-			mapper.createMetal();
+			mapper.createMetal(40, "element", 10, 10, 30, 3.6, 6.8);
 			MetalRDG rdg = MetalRDG.findByID(40);
 			assertEquals(30, rdg.getDissolvedBy());
 			DatabaseManager.getSingleton().rollBack();
