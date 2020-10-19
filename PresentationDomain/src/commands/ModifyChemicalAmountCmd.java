@@ -1,6 +1,7 @@
 package commands;
 
 import domainObjects.ChemicalDomainObject;
+import mappers.ChemicalMapper;
 
 /**
  * Command class to modify a chemical's amount in inventory
@@ -26,9 +27,10 @@ public class ModifyChemicalAmountCmd implements CommandInterface {
 
 	/**
 	 * Execute method to invoke the ModifyChemicalAmountCmd
+	 * @throws Exception 
 	 */
 	@Override
-	public void execute() {
+	public void execute() throws Exception {
 		ChemicalMapper cm = new ChemicalMapper();
 		ChemicalDomainObject cdo = cm.findByID(chemicalID);
 		cdo.setChemicalMoles(newChemicalAmount);

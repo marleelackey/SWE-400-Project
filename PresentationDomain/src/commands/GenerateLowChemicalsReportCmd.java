@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import domainObjects.ChemicalDomainObject;
+import mappers.ChemicalMapper;
 
 /**
  * Command class to generate a report of the chemicals that are running low in
@@ -31,8 +32,9 @@ public class GenerateLowChemicalsReportCmd {
 
 	/**
 	 * Execute method to invoke the generate low chemicals report command
+	 * @throws Exception 
 	 */
-	public void execute() {
+	public void execute() throws Exception {
 		fw = new FileWriter(outputFile);
 		ChemicalMapper cm = new ChemicalMapper();
 		ArrayList<ChemicalDomainObject> chem_list = cm.findLowChemicals();

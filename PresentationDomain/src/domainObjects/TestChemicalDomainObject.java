@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import mappers.ChemicalMapper;
+
 /**
  * 
  * @author Marlee Lackey
@@ -15,10 +17,12 @@ public class TestChemicalDomainObject {
 	@Test
 	public void test() {
 		ChemicalMapper c = new ChemicalMapper();
-		ElementDomainObject e = new ElementDomainObject(c);
+		ChemicalDomainObject e = new ChemicalDomainObject(c);
 		assertEquals(e.getDataMapper(), c);
-		assertEquals(e.setChemicalID(1222), e.getChemicalID());
-		assertEquals(e.setChemicalMoles(23.22), e.getChemicalMoles());
+		e.setChemicalID(1222);
+		assertEquals(1222, e.getChemicalID());
+		e.setChemicalMoles(23.22);
+		assertEquals(23.22, e.getChemicalMoles(), 0.01);
 
 		
 	}
