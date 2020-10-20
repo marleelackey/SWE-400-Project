@@ -14,6 +14,10 @@ public class ChemicalDomainObject {
 	private String chemicalName;
 	private double chemicalMoles;
 
+	/**
+	 * Constructor for ChemicalDomainObject
+	 * @param dm he dataMapper that made this chemical domain object
+	 */
 	public ChemicalDomainObject(ChemicalMapper dm) {
 		dataMapper = dm;
 		setChemicalID(dataMapper.getID());
@@ -81,6 +85,10 @@ public class ChemicalDomainObject {
 		return dataMapper;
 	}
 
+	/**
+	 * Call the persist() method in DataMapper to persist the changes made to
+	 * chemical
+	 */
 	public void persist() {
 		dataMapper.persist();
 	}

@@ -6,8 +6,16 @@ import org.junit.Test;
 
 import mappers.MetalMapper;
 
+/**
+ * @author Marlee Lackey
+ * @author Taryn Whitman
+ */
 public class TestMetalDomainObject {
 
+	/**
+	 * Test that the constructor and setters work properly
+	 * @throws Exception
+	 */
 	@Test
 	public void test() throws Exception {
 		

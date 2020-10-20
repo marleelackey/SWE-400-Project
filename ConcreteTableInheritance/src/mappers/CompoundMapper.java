@@ -9,6 +9,7 @@ import datasource.DatabaseException;
 import datasource.ElementDTO;
 import datasource.ElementRDG;
 import datasource.ElementTDG;
+import domainObjects.CompoundDomainObject;
 import domainObjects.ElementDomainObject;
 import quantifiedElementPackage.QuantifiedElement;
 
@@ -126,6 +127,11 @@ public class CompoundMapper implements CompoundMapperInterface {
 
 	public void setMyElements(ArrayList<QuantifiedElement> myElements) {
 		this.myElements = myElements;
+	}
+
+	public void setCdo(CompoundDomainObject compoundDomainObject) {
+		cdo = compoundDomainObject;
+		
 	}
 
 }

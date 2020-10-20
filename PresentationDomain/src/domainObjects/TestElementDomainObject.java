@@ -5,8 +5,16 @@ import org.junit.Test;
 
 import mappers.ElementMapper;
 
+/**
+ * @author Marlee Lackey
+ * @author Taryn Whitman
+ */
 public class TestElementDomainObject {
 
+	/**
+	 * Test that the constructor and setters work properly
+	 * @throws Exception
+	 */
 	@Test
 	public void testConstructorAndSetters() throws Exception {
 		// int ID, String elementName, int atomicNumber, double atomicMass, double moles

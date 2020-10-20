@@ -7,13 +7,15 @@ import org.junit.Test;
 import mappers.ChemicalMapper;
 
 /**
- * 
  * @author Marlee Lackey
  * @author Taryn Whitman
  *
  */
 public class TestChemicalDomainObject {
 
+	/** 
+	 * Test that the constructor and setters work properly
+	 */
 	@Test
 	public void test() {
 		ChemicalMapper c = new ChemicalMapper();
