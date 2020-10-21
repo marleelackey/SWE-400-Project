@@ -47,7 +47,7 @@ public class MetalMapper implements MetalMapperInterface {
 	public void persist() {
 		try {
 			MetalRDG metal = MetalRDG.findByID(ident);
-			if (metal.equals(null)) {
+			if (metal == null) {
 				MetalRDG rdg = new MetalRDG(ident, atomicNumber, dissolvedBy, atomicMass, name, moles,
 						molesOfAcidToDissolve);
 				rdg.insert();

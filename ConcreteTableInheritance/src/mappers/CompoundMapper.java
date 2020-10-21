@@ -1,5 +1,6 @@
 package mappers;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Interfaces.CompoundMapperInterface;
@@ -22,10 +23,10 @@ public class CompoundMapper implements CompoundMapperInterface {
 	private CompoundDomainObject cdo;
 
 	@Override
-	public CompoundDomainObject findByID(int cID) {
+	public CompoundDomainObject findByID(int cID) throws Exception {
 		CompoundRDG rdg = CompoundRDG.findByIDConcrete(cID);
 
-		ArrayList<QuantifiedElement> element_list;
+		ArrayList<QuantifiedElement> element_list = new ArrayList<QuantifiedElement>();
 		ElementTDG tdg = ElementTDG.getInstance();
 		ArrayList<ElementDTO> list = tdg.getElementsInCompound(cID);
 
@@ -43,8 +44,8 @@ public class CompoundMapper implements CompoundMapperInterface {
 		compoundName = rdg.getCompoundName();
 		moles = rdg.getCompoundMoles();
 		myElements = element_list;
-
-		return new CompoundDomainObject(this);
+		cdo = new CompoundDomainObject(this);
+		return cdo;
 	}
 
 	@Override
@@ -60,14 +61,21 @@ public class CompoundMapper implements CompoundMapperInterface {
 		}
 	}	
 
-	private void compareElementsAndPersist() {
+	private void compareElementsAndPersist() throws SQLException, DatabaseException {
 		// see if a relationship has been deleted from cdo
 		for (QuantifiedElement e : myElements) {
+			System.out.println(e.getElement().getElementName());
+
 			if (!cdo.getElements().contains(e)) {
+				System.out.println("doesn not contain e");
 				myElements.remove(e);
 				CompoundMadeOfElementRDG r = new CompoundMadeOfElementRDG(compoundID, e.getElement().getElementID(), e.getQuantityInCompound());
 				r.delete();
 			}
+		}
+		
+		for (QuantifiedElement e : cdo.getElements()) {
+			System.out.println(e.getElement().getElementName());
 		}
 		// see if a relationship has been inserted into cdo
 		for (QuantifiedElement e : cdo.getElements()) {
@@ -131,7 +139,7 @@ public class CompoundMapper implements CompoundMapperInterface {
 
 	public void setCdo(CompoundDomainObject compoundDomainObject) {
 		cdo = compoundDomainObject;
-		
+			
 	}
 
 }

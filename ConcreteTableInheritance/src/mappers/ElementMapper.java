@@ -29,7 +29,7 @@ public class ElementMapper implements ElementMapperInterface {
 	public void persist() {
 		try {
 			ElementRDG element = ElementRDG.findByID(ident);
-			if (element.equals(null)) {
+			if (element == null) {
 				ElementRDG rdg = new ElementRDG(ident, atomicNumber, atomicMass, name, moles);
 				rdg.insert();
 			} else {

@@ -29,8 +29,8 @@ public class MetalDomainObject {
 		dataMapper = mm;
 		setMetalID(dataMapper.getIdent());
 		setMetalName(dataMapper.getName());
-		setMetalAtomicNumber(dataMapper.getAtomicNumber());
 		setMetalAtomicMass(dataMapper.getAtomicMass());
+		setMetalAtomicNumber(dataMapper.getAtomicNumber());
 		mm.setMetal(this);
 	}
 

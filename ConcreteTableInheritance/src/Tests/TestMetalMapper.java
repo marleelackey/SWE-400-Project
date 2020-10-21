@@ -16,7 +16,8 @@ public class TestMetalMapper {
 		MetalMapper mapper = new MetalMapper();
 		try {
 			DatabaseManager.getSingleton().setTesting();
-			mapper.createMetal(40, "element", 10, 10, 30, 3.6, 6.8);
+			mapper.createMetal(40, "element", 9, 10, 30, 3.6, 6.8);
+			mapper.persist();
 			MetalRDG rdg = MetalRDG.findByID(40);
 			assertEquals(30, rdg.getDissolvedBy());
 			DatabaseManager.getSingleton().rollBack();

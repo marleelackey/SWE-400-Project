@@ -39,6 +39,8 @@ public class TestEVERYTHING {
 		
 		TestElementMapper.runAllTheTests();
 		TestMetalMapper.runAllTheTests();
+		TestCompoundMapper.runAllTheTests();
+
 
 	}
 

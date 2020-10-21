@@ -67,7 +67,7 @@ public class TestElementRDG {
 		ElementRDG e = ElementRDG.findByName("element2");
 		assertEquals(e.getID(), 5);
 		assertEquals(e.getName(), "element2");
-		assertEquals(e.getAtomicNumber(), 40);
+		assertEquals(e.getAtomicNumber(), 10);
 		assertEquals(e.getAtomicMass(), 20.0, 0.01);
 		assertEquals(e.getMoles(), 16.3, 0.01);
 	}
@@ -91,10 +91,10 @@ public class TestElementRDG {
 	 */
 	@Test
 	public static void testFindByAtomicNumber() {
-		ElementRDG e = ElementRDG.findByAtomicNumber(55);
+		ElementRDG e = ElementRDG.findByAtomicNumber(11);
 		assertEquals(e.getID(), 6);
 		assertEquals(e.getName(), "element3");
-		assertEquals(e.getAtomicNumber(), 55);
+		assertEquals(e.getAtomicNumber(), 11);
 		assertEquals(e.getAtomicMass(), 20.2, 0.01);
 		assertEquals(e.getMoles(), 29.5, 0.01);
 	}

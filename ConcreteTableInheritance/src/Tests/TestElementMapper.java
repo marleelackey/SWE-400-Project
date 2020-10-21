@@ -17,6 +17,7 @@ public class TestElementMapper {
 		try {
 			DatabaseManager.getSingleton().setTesting();
 			mapper.createElement(40, "element", 10, 10, 4.7);
+			mapper.persist();
 			ElementRDG rdg = ElementRDG.findByID(40);
 			assertEquals("element", rdg.getName());
 			DatabaseManager.getSingleton().rollBack();

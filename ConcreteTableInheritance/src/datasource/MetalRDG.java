@@ -63,7 +63,9 @@ public class MetalRDG {
 			results = new MetalRDG(rs.getInt("elementOrMetalID"), rs.getInt("metalAtomicNumber"),
 					rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"),
 					rs.getDouble("metalMoles"), rs.getDouble("molesOfAcidToDissolve"));
-		} catch (SQLException e) {
+		} catch (SQLException s) {
+			return results;
+		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
 		return results;

@@ -55,6 +55,8 @@ public class ElementRDG {
 			rs.next();
 			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"),
 					rs.getDouble("elementAtomicMass"), rs.getString("elementName"), rs.getDouble("elementMoles"));
+		} catch (SQLException s) {
+			return data;			
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
