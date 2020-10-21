@@ -1,5 +1,6 @@
 package mappers;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Interfaces.CompoundMapperInterface;
@@ -11,6 +12,7 @@ import datasource.ElementDTO;
 import datasource.ElementRDG;
 import datasource.ElementTDG;
 import domainObjects.ChemicalDomainObject;
+import domainObjects.CompoundDomainObject;
 import domainObjects.ElementDomainObject;
 import quantifiedElementPackage.QuantifiedElement;
 
@@ -66,7 +68,7 @@ public class CompoundMapper implements CompoundMapperInterface {
 		}
 	}	
 
-	private void compareElementsAndPersist() {
+	private void compareElementsAndPersist() throws SQLException, DatabaseException {
 		// see if a relationship has been deleted from cdo
 		for (QuantifiedElement e : myElements) {
 			if (!cdo.getElements().contains(e)) {

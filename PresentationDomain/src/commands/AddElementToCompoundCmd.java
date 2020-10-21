@@ -1,5 +1,6 @@
 package commands;
 
+import domainObjects.CompoundDomainObject;
 import mappers.CompoundMapper;
 import mappers.ElementMapper;
 
