@@ -2,7 +2,6 @@ package mappers;
 
 import Interfaces.ElementMapperInterface;
 import datasource.DatabaseException;
-import datasource.ElementDTO;
 import datasource.ElementRDG;
 import domainObjects.ElementDomainObject;
 
@@ -24,6 +23,29 @@ public class ElementMapper implements ElementMapperInterface {
 		this.moles = moles;
 
 		return new ElementDomainObject(this);
+	}
+
+	public static ElementDomainObject findByName(String name) throws Exception {
+		ElementRDG element = ElementRDG.findByName(name);
+		ElementMapper em = new ElementMapper();
+		return em.createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
+				element.getMoles());
+	}
+
+	public static ElementDomainObject findByAtomicNumber(int aNum) throws Exception {
+		ElementRDG element = ElementRDG.findByAtomicNumber(aNum);
+
+		ElementMapper em = new ElementMapper();
+		return em.createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
+				element.getMoles());
+	}
+
+	public static ElementDomainObject findByAtomicMass(int aMass) throws Exception {
+		ElementRDG element = ElementRDG.findByAtomicMass(aMass);
+
+		ElementMapper em = new ElementMapper();
+		return em.createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
+				element.getMoles());
 	}
 
 	public void persist() {

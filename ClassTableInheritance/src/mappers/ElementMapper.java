@@ -27,6 +27,33 @@ public class ElementMapper implements ElementMapperInterface {
 		return new ElementDomainObject(this);
 	}
 
+	public static ElementDomainObject findByName(String name) throws Exception {
+		ChemicalRDG c_element = ChemicalRDG.findByName(name);
+		ElementRDG element = ElementRDG.findByID(c_element.getChemicalID());
+
+		ElementMapper em = new ElementMapper();
+		return em.createElement(c_element.getChemicalID(), c_element.getChemicalName(), element.getAtomicNumber(),
+				element.getAtomicMass(), c_element.getChemicalMoles());
+	}
+
+	public static ElementDomainObject findByAtomicNumber(int aNum) throws Exception {
+		ElementRDG element = ElementRDG.findByAtomicNumber(aNum);
+		ChemicalRDG c_element = ChemicalRDG.findByID(element.getID());
+
+		ElementMapper em = new ElementMapper();
+		return em.createElement(element.getID(), c_element.getChemicalName(), element.getAtomicNumber(),
+				element.getAtomicMass(), c_element.getChemicalMoles());
+	}
+
+	public static ElementDomainObject findByAtomicMass(int aMass) throws Exception {
+		ElementRDG element = ElementRDG.findByAtomicMass(aMass);
+		ChemicalRDG c_element = ChemicalRDG.findByID(element.getID());
+
+		ElementMapper em = new ElementMapper();
+		return em.createElement(element.getID(), c_element.getChemicalName(), element.getAtomicNumber(),
+				element.getAtomicMass(), c_element.getChemicalMoles());
+	}
+
 	public void persist() {
 		try {
 			ChemicalRDG element = ChemicalRDG.findByID(ident);
