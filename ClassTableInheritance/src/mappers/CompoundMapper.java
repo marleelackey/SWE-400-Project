@@ -25,11 +25,11 @@ public class CompoundMapper implements CompoundMapperInterface {
 	private CompoundDomainObject cdo;
 
 	@Override
-	public CompoundDomainObject findByID(int cID) {
+	public CompoundDomainObject findByID(int cID) throws Exception {
 		CompoundRDG rdg = CompoundRDG.findByIDClass(cID);
 		ChemicalRDG chem = ChemicalRDG.findByID(cID);
 
-		ArrayList<QuantifiedElement> element_list;
+		ArrayList<QuantifiedElement> element_list = new ArrayList<QuantifiedElement>();
 		ArrayList<ElementDTO> list = ElementTDG.getInstance().getElementsInCompound(cID);
 
 		for (ElementDTO e : list) {

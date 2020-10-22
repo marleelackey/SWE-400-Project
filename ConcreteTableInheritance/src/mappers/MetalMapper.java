@@ -52,6 +52,13 @@ public class MetalMapper implements MetalMapperInterface {
 						molesOfAcidToDissolve);
 				rdg.insert();
 			} else {
+				atomicMass = this.getMetal().getMetalAtomicMass();
+				atomicNumber = this.getMetal().getMetalAtomicNumber();
+				dissolvedBy = this.getMetal().getDissolvedBy();
+				moles = this.getMetal().getMoles();
+				molesOfAcidToDissolve = this.getMetal().getMolesOfAcidToDissolve();
+				name = this.getMetal().getMetalName();
+
 				metal.setAtomicMass(atomicMass);
 				metal.setAtomicNumber(atomicNumber);
 				metal.setDissolvedBy(dissolvedBy);

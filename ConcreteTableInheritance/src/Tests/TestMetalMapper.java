@@ -4,10 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import mappers.ChemicalMapper;
+import mappers.CompoundMapper;
 import mappers.MetalMapper;
 import datasource.DatabaseException;
 import datasource.DatabaseManager;
 import datasource.MetalRDG;
+import domainObjects.ChemicalDomainObject;
+import domainObjects.MetalDomainObject;
 
 public class TestMetalMapper {
 	
@@ -28,10 +32,44 @@ public class TestMetalMapper {
 			DatabaseException.detectError(e, "Exception in TestMetalMapper.testCreateMetal()");
 		}
 	}
+	
+	public static void testFindBy() {
+		MetalMapper mapper = new MetalMapper();
+		try {
+			DatabaseManager.getSingleton().setTesting();
+			MetalDomainObject metal = mapper.findByID(20);
+			assertEquals(metal.getMoles(), 29.4, 0.001);
+			DatabaseManager.getSingleton().rollBack();
 
-	public static void runAllTheTests() {
-		testCreateMetal();
+		} catch (Exception e) {
+			e.printStackTrace();
+			DatabaseException.detectError(e, "Exception in TestElementMapper.testCreateElement()");
+		}
+	}
+	
+	public static void testPersist() throws Exception {
+		
+		MetalMapper cm = new MetalMapper();
+		MetalDomainObject m = cm.findByID(21);
+		
+		m.setMoles(90);
+		
+		m.persist();
+		
+		MetalMapper mc = new MetalMapper();
+		MetalDomainObject m2 = mc.findByID(21);
+		
+		assertEquals(90, m2.getMoles(), 0.001);
 		
 	}
+
+	public static void runAllTheTests() throws Exception {
+		testCreateMetal();
+		testFindBy();
+		testPersist();
+		
+	}
+
+
 
 }

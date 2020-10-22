@@ -93,7 +93,9 @@ public class CompoundRDG {
 			r.next();
 			chem = new CompoundRDG(r.getInt(1), r.getString(2), r.getDouble(3));
 		} catch (SQLException e) {
-			DatabaseException.detectError(e);
+			return chem;
+		} catch (Exception ex) {
+			DatabaseException.detectError(ex);
 		}
 
 		return chem;

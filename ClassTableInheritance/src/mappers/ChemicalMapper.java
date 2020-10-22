@@ -138,4 +138,9 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		this.moles = moles;
 	}
 
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
 }

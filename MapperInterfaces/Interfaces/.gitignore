@@ -3,3 +3,5 @@
 /MetalMapperInterface.class
 /CompoundMapperInterface.class
 /ChemicalMapperInterface.class
+/BaseMapperInterface.class
+/AcidMapperInterface.class
