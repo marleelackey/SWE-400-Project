@@ -232,12 +232,13 @@ public class ElementRDG {
 			cn = db.getConnection();
 			// May need a WHERE clause at end
 			stmt = cn.prepareStatement(
-					"UPDATE Element SET elementAtomicNumber = ?, elementAtomicMass = ?, elementName = ?, elementMoles = ?, WHERE elementOrMetalID = ?");
+					"UPDATE Element SET elementAtomicNumber = ?, elementAtomicMass = ?, elementName = ?, elementMoles = ? WHERE elementOrMetalID = ?");
 			stmt.setInt(1, atomicNumber);
 			stmt.setDouble(2, atomicMass);
 			stmt.setString(3, name);
 			stmt.setDouble(4, moles);
 			stmt.setInt(5, ID);
+			stmt.executeUpdate();
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}

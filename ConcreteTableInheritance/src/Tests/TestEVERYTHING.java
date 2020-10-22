@@ -12,9 +12,10 @@ public class TestEVERYTHING {
 
 	/**
 	 * Test that runs all tests in Concrete
+	 * @throws Exception 
 	 */
 	@Test
-	public static void testRunAllTheTests() {
+	public static void testRunAllTheTests() throws Exception {
 		TestAcidDTO.runAllTheTests();
 		TestAcidRDG.runAllTheTests();
 		TestAcidTDG.runAllTheTests();
@@ -40,6 +41,7 @@ public class TestEVERYTHING {
 		TestElementMapper.runAllTheTests();
 		TestMetalMapper.runAllTheTests();
 		TestCompoundMapper.runAllTheTests();
+		TestChemicalMapper.runAllTheTests();
 
 
 	}

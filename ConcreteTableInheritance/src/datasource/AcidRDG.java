@@ -47,6 +47,8 @@ public class AcidRDG {
 			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Acid WHERE acidID = " + ID);
 			rs.next();
 			result = new AcidRDG(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
+		} catch (SQLException ex) {
+			return result;
 		} catch (Exception e) {
 			DatabaseException.detectError(e, "AcidRDG.findByID - Concrete");
 		}

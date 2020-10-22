@@ -42,19 +42,20 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		AcidRDG acid = AcidRDG.findByID(ID);
 		BaseRDG base = BaseRDG.findByID(ID);
 
-		if (!element.equals(null)) {
+		moles = cdo.getChemicalMoles();
+		if (element != null) {
 			element.setMoles(moles);
 			element.update();
-		} else if (!compound.equals(null)) {
+		} else if (compound != null) {
 			compound.setCompoundMoles(moles);
 			compound.update();
-		} else if (!metal.equals(null)) {
+		} else if (metal != null) {
 			metal.setMoles(moles);
 			metal.update();
-		} else if (!acid.equals(null)) {
+		} else if (acid != null) {
 			acid.setAcidMoles(moles);
 			acid.update();
-		} else if (!base.equals(null)) {
+		} else if (base != null) {
 			base.setMoles(moles);
 			base.update();
 		}
@@ -67,15 +68,15 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		AcidRDG acid = AcidRDG.findByID(chemicalID);
 		BaseRDG base = BaseRDG.findByID(chemicalID);
 
-		if (!element.equals(null)) {
+		if (element != null) {
 			cdo = createChemical(element.getID(), element.getName(), element.getMoles());
-		} else if (!compound.equals(null)) {
+		} else if (compound != null) {
 			cdo = createChemical(compound.getCompoundID(), compound.getCompoundName(), compound.getCompoundMoles());
-		} else if (!metal.equals(null)) {
+		} else if (metal != null) {
 			cdo = createChemical(metal.getID(), metal.getName(), metal.getMoles());
-		} else if (!acid.equals(null)) {
+		} else if (acid != null) {
 			cdo = createChemical(acid.getAcidID(), acid.getAcidName(), acid.getAcidMoles());
-		} else if (!base.equals(null)) {
+		} else if (base != null) {
 			cdo = createChemical(base.getID(), base.getName(), base.getMoles());
 		}
 

@@ -44,6 +44,8 @@ public class BaseRDG {
 			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Base WHERE baseID = " + ident);
 			rs.next();
 			result = new BaseRDG(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
+		} catch (SQLException ex) {
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			DatabaseException.detectError(e);

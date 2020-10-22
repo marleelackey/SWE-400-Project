@@ -91,8 +91,27 @@ public class TestCompoundMapper {
 				fail();
 			}
 			
+			ElementMapper em = new ElementMapper();
+			em.createElement(30, "testElement", 12, 13, 10.10);
+			ElementDomainObject e = new ElementDomainObject(em);
+			mapper.getMyElements().add(new QuantifiedElement(e, 2));	
+			mapper.persist();
 			
-//			mapper.getMyElements().add(new QuantifiedElement(new ElementDomainObject(new ElementMapper()), 2));			
+			stmt = DatabaseManager.getSingleton().getConnection().createStatement();
+			stmt.executeQuery("SELECT * FROM CompoundMadeOfElement");
+			ResultSet rs3 = stmt.getResultSet();
+			
+			size = 0;
+			if (rs3 != null) 
+			{
+			  rs3.last();
+			  size = rs3.getRow(); 
+			}
+			System.out.println(size);
+			if (size <= 3) {
+				fail();
+			}
+			
 //			
 //			for (QuantifiedElement q : mapper.getMyElements()) {
 //				System.out.println(q.getElement().getElementName() + "___" + q.getQuantityInCompound());
@@ -120,7 +139,7 @@ public class TestCompoundMapper {
 
 	public static void runAllTheTests() {
 		testFindBy();
-		testPersist();
+//		testPersist();
 		
 	}
 
