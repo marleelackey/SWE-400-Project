@@ -28,7 +28,8 @@ public class FindElementByAtomicNumberCmd implements CommandInterface {
 	 */
 	@Override
 	public void execute() throws Exception {
-		edo = ElementMapper.findByAtomicNumber(atomicNumber);
+		ElementMapper em = new ElementMapper();
+		edo = em.findByAtomicNumber(atomicNumber);
 	}
 
 	/**
