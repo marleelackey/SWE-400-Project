@@ -18,6 +18,7 @@ public class ElementDomainObject {
 	private String elementName;
 	private int elementAtomicNumber;
 	private double elementAtomicMass;
+	private double elementMoles;
 
 	/**
 	 * Constructor
@@ -32,6 +33,7 @@ public class ElementDomainObject {
 		setElementName(dataMapper.getName());
 		setElementAtomicMass(dataMapper.getAtomicMass());
 		setElementAtomicNumber(dataMapper.getAtomicNumber());
+		setElementMoles(dataMapper.getMoles());
 		em.setElement(this);
 	}
 
@@ -85,6 +87,15 @@ public class ElementDomainObject {
 	}
 
 	/**
+	 * Set elementMoles
+	 * 
+	 * @param elementMoles
+	 */
+	public void setElementMoles(double elementMoles) {
+		this.elementMoles = elementMoles;
+	}
+
+	/**
 	 * Call the persist() method in DataMapper to persist the changes made to
 	 * element
 	 */
@@ -126,6 +137,15 @@ public class ElementDomainObject {
 	 */
 	public int getElementAtomicNumber() {
 		return elementAtomicNumber;
+	}
+
+	/**
+	 * Getter for elementMoles
+	 * 
+	 * @return elementMoles
+	 */
+	public double getElementMoles() {
+		return elementMoles;
 	}
 
 	/**

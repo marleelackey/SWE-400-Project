@@ -1,8 +1,12 @@
 package mappers;
 
+import java.util.ArrayList;
+
 import Interfaces.ElementMapperInterface;
 import datasource.DatabaseException;
+import datasource.ElementDTO;
 import datasource.ElementRDG;
+import datasource.ElementTDG;
 import domainObjects.ElementDomainObject;
 
 public class ElementMapper implements ElementMapperInterface {
@@ -25,27 +29,38 @@ public class ElementMapper implements ElementMapperInterface {
 		return new ElementDomainObject(this);
 	}
 
-	public static ElementDomainObject findByName(String name) throws Exception {
+	public ElementDomainObject findByID(int id) throws Exception {
+		ElementRDG element = ElementRDG.findByID(id);
+		return createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
+				element.getMoles());
+	}
+
+	public ElementDomainObject findByName(String name) throws Exception {
 		ElementRDG element = ElementRDG.findByName(name);
-		ElementMapper em = new ElementMapper();
-		return em.createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
+		return createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
 				element.getMoles());
 	}
 
-	public static ElementDomainObject findByAtomicNumber(int aNum) throws Exception {
+	public ElementDomainObject findByAtomicNumber(int aNum) throws Exception {
 		ElementRDG element = ElementRDG.findByAtomicNumber(aNum);
-
-		ElementMapper em = new ElementMapper();
-		return em.createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
+		return createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
 				element.getMoles());
 	}
 
-	public static ElementDomainObject findByAtomicMass(int aMass) throws Exception {
+	public ElementDomainObject findByAtomicMass(int aMass) throws Exception {
 		ElementRDG element = ElementRDG.findByAtomicMass(aMass);
-
-		ElementMapper em = new ElementMapper();
-		return em.createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
+		return createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
 				element.getMoles());
+	}
+
+	public ArrayList<ElementDomainObject> findElementsInRange(double highRange, double lowRange) throws Exception {
+		ElementTDG et = ElementTDG.getInstance();
+		ArrayList<ElementDTO> edto = et.getElementsInRange(lowRange, highRange);
+		ArrayList<ElementDomainObject> edo = new ArrayList<ElementDomainObject>();
+		for (ElementDTO e : edto) {
+			edo.add(createElement(e.getID(), e.getName(), e.getAtomicNumber(), e.getAtomicMass(), e.getMoles()));
+		}
+		return edo;
 	}
 
 	public void persist() {

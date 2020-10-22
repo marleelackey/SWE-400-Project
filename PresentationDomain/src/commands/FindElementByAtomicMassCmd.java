@@ -28,7 +28,8 @@ public class FindElementByAtomicMassCmd implements CommandInterface {
 	 */
 	@Override
 	public void execute() throws Exception {
-		edo = ElementMapper.findByAtomicMass(atomicMass);
+		ElementMapper em = new ElementMapper();
+		edo = em.findByAtomicMass(atomicMass);
 	}
 
 	/**

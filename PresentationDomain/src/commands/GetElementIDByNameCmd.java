@@ -28,7 +28,8 @@ public class GetElementIDByNameCmd implements CommandInterface {
 	 */
 	@Override
 	public void execute() throws Exception {
-		ElementDomainObject edo = ElementMapper.findByName(elementName);
+		ElementMapper em = new ElementMapper();
+		ElementDomainObject edo = em.findByName(elementName);
 		elementID = edo.getElementID();
 	}
 

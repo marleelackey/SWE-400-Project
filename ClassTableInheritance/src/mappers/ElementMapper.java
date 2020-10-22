@@ -23,34 +23,34 @@ public class ElementMapper implements ElementMapperInterface {
 		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
 		this.moles = moles;
-
 		return new ElementDomainObject(this);
 	}
 
-	public static ElementDomainObject findByName(String name) throws Exception {
+	public ElementDomainObject findByID(int id) throws Exception {
+		ChemicalRDG c_element = ChemicalRDG.findByID(id);
+		ElementRDG element = ElementRDG.findByID(id);
+		return createElement(c_element.getChemicalID(), c_element.getChemicalName(), element.getAtomicNumber(),
+				element.getAtomicMass(), c_element.getChemicalMoles());
+	}
+
+	public ElementDomainObject findByName(String name) throws Exception {
 		ChemicalRDG c_element = ChemicalRDG.findByName(name);
 		ElementRDG element = ElementRDG.findByID(c_element.getChemicalID());
-
-		ElementMapper em = new ElementMapper();
-		return em.createElement(c_element.getChemicalID(), c_element.getChemicalName(), element.getAtomicNumber(),
+		return createElement(c_element.getChemicalID(), c_element.getChemicalName(), element.getAtomicNumber(),
 				element.getAtomicMass(), c_element.getChemicalMoles());
 	}
 
-	public static ElementDomainObject findByAtomicNumber(int aNum) throws Exception {
+	public ElementDomainObject findByAtomicNumber(int aNum) throws Exception {
 		ElementRDG element = ElementRDG.findByAtomicNumber(aNum);
 		ChemicalRDG c_element = ChemicalRDG.findByID(element.getID());
-
-		ElementMapper em = new ElementMapper();
-		return em.createElement(element.getID(), c_element.getChemicalName(), element.getAtomicNumber(),
+		return createElement(element.getID(), c_element.getChemicalName(), element.getAtomicNumber(),
 				element.getAtomicMass(), c_element.getChemicalMoles());
 	}
 
-	public static ElementDomainObject findByAtomicMass(int aMass) throws Exception {
+	public ElementDomainObject findByAtomicMass(int aMass) throws Exception {
 		ElementRDG element = ElementRDG.findByAtomicMass(aMass);
 		ChemicalRDG c_element = ChemicalRDG.findByID(element.getID());
-
-		ElementMapper em = new ElementMapper();
-		return em.createElement(element.getID(), c_element.getChemicalName(), element.getAtomicNumber(),
+		return createElement(element.getID(), c_element.getChemicalName(), element.getAtomicNumber(),
 				element.getAtomicMass(), c_element.getChemicalMoles());
 	}
 
