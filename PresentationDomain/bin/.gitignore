@@ -1,1 +1,10 @@
+/.classpath
+/.project
+/.settings/
 /commands/
+<<<<<<< HEAD
+=======
+/domainObjects/
+/gui/
+/quantifiedElementPackage/
+>>>>>>> 50c45f3edd796e8c1a43897992ca82cc5474f54b
