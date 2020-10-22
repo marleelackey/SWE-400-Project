@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import commands.AddElementCmd;
 import commands.ExecuterForCommands;
+import commands.GetElementIDByNameCmd;
 import mappers.MetalMapper;
 
 public class ElementGUI implements guiInterface {
@@ -32,7 +33,7 @@ public class ElementGUI implements guiInterface {
 		elementMainPanel.add(listOfElementsPanel);
 		elementMainPanel.add(elementControlPanel);
 		
-		elementControlPanel.setLayout(new BoxLayout(elementControlPanel, BoxLayout.PAGE_AXIS));
+		//elementControlPanel.setLayout(new BoxLayout(elementControlPanel, BoxLayout.PAGE_AXIS));
 		
 		setuplistOfElementsPanel();
 		setupAddElementPanel();
@@ -78,6 +79,13 @@ public class ElementGUI implements guiInterface {
 
 		addElementButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					new ExecuterForCommands(
+							new GetElementIDByNameCmd(nameInput.getText()));
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
 				try {
 					new ExecuterForCommands(
 							new AddElementCmd(547, nameInput.getText(), Integer.parseInt(atomicNumberInput.getText()),

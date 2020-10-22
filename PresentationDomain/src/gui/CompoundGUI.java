@@ -30,6 +30,8 @@ public class CompoundGUI implements guiInterface {
 		setuplistOfCompoundPanel();
 		setupupdateCompoundPanel();
 		setupmodifyCompoundAmountPanel();
+		setupaddElementToCompoundAmountPanel();
+		setupremoveElementFromCompoundAmountPanel();
 	}
 
 	private void setuplistOfCompoundPanel() {
@@ -87,6 +89,21 @@ public class CompoundGUI implements guiInterface {
 		addElementToCompoundAmountPanel.add(new JLabel("Modify Amount"));
 		JComboBox compoundNameInput = new JComboBox(new String[] {"TwoThings", "ThreeThings", "Multiple"});
 		addElementToCompoundAmountPanel.add(compoundNameInput);
+		// Commmand stuff to get list of elements in the compound
+		JComboBox elementNameInput = new JComboBox(new String[] {"Element", "Eleminty", "OLOmont"});
+		addElementToCompoundAmountPanel.add(elementNameInput);
+
+		JButton addElement = new JButton("Remove");
+		addElement.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * Command Stuff goes here
+				 * 
+				 */
+			}
+		});
+		addElementToCompoundAmountPanel.add(addElement);
+		compoundControlPanel.add(addElementToCompoundAmountPanel);
 	}
 	
 	private void setupremoveElementFromCompoundAmountPanel() {
@@ -95,5 +112,20 @@ public class CompoundGUI implements guiInterface {
 		removeElementFromCompoundAmountPanel.add(new JLabel("Modify Amount"));
 		JComboBox compoundNameInput = new JComboBox(new String[] {"TwoThings", "ThreeThings", "Multiple"});
 		removeElementFromCompoundAmountPanel.add(compoundNameInput);
+		// Command thing for getting list of Elements
+		JComboBox elementNameInput = new JComboBox(new String[] {"Element", "Eleminty", "OLOmont"});
+		removeElementFromCompoundAmountPanel.add(elementNameInput);
+		
+		JButton removeElement = new JButton("Remove");
+		removeElement.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * Command Stuff goes here
+				 * 
+				 */
+			}
+		});
+		removeElementFromCompoundAmountPanel.add(removeElement);
+		compoundControlPanel.add(removeElementFromCompoundAmountPanel);
 	}
 }
