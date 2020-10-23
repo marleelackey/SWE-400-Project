@@ -19,6 +19,7 @@ import commands.AddElementCmd;
 import commands.ExecuterForCommands;
 import commands.FindElementsInRangeCmd;
 import commands.GetElementIDByNameCmd;
+import domainObjects.ElementDomainObject;
 import mappers.MetalMapper;
 
 public class ElementGUI implements guiInterface {
@@ -124,14 +125,16 @@ public class ElementGUI implements guiInterface {
 		
 		findElementsInRangeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FindElementsInRangeCmd doo = new FindElementsInRangeCmd(Integer.parseInt(lowerBoundInput.getText()), Integer.parseInt(upperBoundInput.getText()));
+				FindElementsInRangeCmd doo = new FindElementsInRangeCmd(Double.parseDouble(lowerBoundInput.getText()), Double.parseDouble(upperBoundInput.getText()));
 				try {
+					System.out.println("Before");
 					new ExecuterForCommands(doo);
+					System.out.println("After");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				
-				ArrayList loo = doo.getElementArrayList();
+				ArrayList<ElementDomainObject> loo = doo.getElementArrayList();
 				for(int i = 0; i < loo.size(); i++)
 				{
 					System.out.println(loo.get(i));
