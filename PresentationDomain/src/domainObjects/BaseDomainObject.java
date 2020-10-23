@@ -99,6 +99,9 @@ public class BaseDomainObject {
 		return dataMapper;
 	}
 	
+	/**
+	 * Call the persist() method in DataMapper to persist the changes made to base
+	 */
 	public void persist() {
 		dataMapper.persist();
 	}
