@@ -26,18 +26,21 @@ public class ElementGUI implements guiInterface {
 	JPanel elementMainPanel = new JPanel();
 	JPanel listOfElementsPanel = new JPanel();
 	JPanel elementControlPanel = new JPanel();
-	
+
 	public ElementGUI() {
-		listOfElementsPanel.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .2), FRAME_SIZE.height));
-		elementControlPanel.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .8), FRAME_SIZE.height));
+		listOfElementsPanel
+				.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .2), FRAME_SIZE.height));
+		elementControlPanel
+				.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .8), FRAME_SIZE.height));
 		listOfElementsPanel.setBackground(new Color(235, 91, 52));
 		elementControlPanel.setBackground(new Color(52, 186, 235));
 		elementMainPanel.setLayout(new BoxLayout(elementMainPanel, BoxLayout.LINE_AXIS));
 		elementMainPanel.add(listOfElementsPanel);
 		elementMainPanel.add(elementControlPanel);
-		
-		//elementControlPanel.setLayout(new BoxLayout(elementControlPanel, BoxLayout.PAGE_AXIS));
-		
+
+		// elementControlPanel.setLayout(new BoxLayout(elementControlPanel,
+		// BoxLayout.PAGE_AXIS));
+
 		setuplistOfElementsPanel();
 		setupAddElementPanel();
 		setupfindElementsInRangePanel();
@@ -46,7 +49,6 @@ public class ElementGUI implements guiInterface {
 		setupmodifyElementPanel();
 		setupmodifyElementAmountPanel();
 	}
-
 
 	private void setuplistOfElementsPanel() {
 		listOfElementsPanel.add(new JLabel("Element"));
@@ -68,48 +70,45 @@ public class ElementGUI implements guiInterface {
 		addElementPanel.add(new JLabel("Name: "));
 		JTextField nameInput = new JTextField();
 		addElementPanel.add(nameInput);
-		//Amount
-		
+		// Amount
+
 		JCheckBox isMetalInput = new JCheckBox("Is Metal?");
 		addElementPanel.add(isMetalInput);
-		
-		
+
 //		AcidMapper am = new AcidMapper();
 //		am.getAllAcids();
-		JComboBox metalDissolvedByInput = new JComboBox(new String[]{"Thing1", "Thing2", "ThingThrice"});
+		JComboBox metalDissolvedByInput = new JComboBox(new String[] { "Thing1", "Thing2", "ThingThrice" });
 		addElementPanel.add(metalDissolvedByInput);
-		//How much mole to dissolve
+		// How much mole to dissolve
 
 		addElementButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
-					new ExecuterForCommands(
-							new GetElementIDByNameCmd(nameInput.getText()));
+					new ExecuterForCommands(new GetElementIDByNameCmd(nameInput.getText()));
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
 				try {
 					new ExecuterForCommands(
 							new AddElementCmd(547, nameInput.getText(), Integer.parseInt(atomicNumberInput.getText()),
-								Double.parseDouble(atomicMassInput.getText()), isMetalInput.isSelected(), 0, 0, 0));
+									Double.parseDouble(atomicMassInput.getText()), isMetalInput.isSelected(), 0, 0, 0));
 				} catch (NumberFormatException e1) {
-					
+
 					e1.printStackTrace();
 				} catch (Exception e1) {
-					
+
 					e1.printStackTrace();
 				}
 //				AddElementCmd(int id, String name, int num, double mass, boolean metal, int a_id, double mol,
-	//					double molToDissolve)
-				
-				
+				// double molToDissolve)
+
 			}
 		});
 
 		elementControlPanel.add(addElementPanel);
 	}
-	
+
 	private void setupfindElementsInRangePanel() {
 		JPanel findElementsInRangePanel = new JPanel(new GridLayout(0, 2));
 		findElementsInRangePanel.setBackground(new Color(52, 186, 0));
@@ -122,41 +121,39 @@ public class ElementGUI implements guiInterface {
 		findElementsInRangePanel.add(new JLabel("Upper Bound"));
 		JTextField upperBoundInput = new JTextField();
 		findElementsInRangePanel.add(upperBoundInput);
-		
+
 		findElementsInRangeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FindElementsInRangeCmd doo = new FindElementsInRangeCmd(Double.parseDouble(lowerBoundInput.getText()), Double.parseDouble(upperBoundInput.getText()));
+				FindElementsInRangeCmd doo = new FindElementsInRangeCmd(Double.parseDouble(upperBoundInput.getText()),
+						Double.parseDouble(lowerBoundInput.getText()));
 				try {
-					System.out.println("Before");
 					new ExecuterForCommands(doo);
-					System.out.println("After");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
+
 				ArrayList<ElementDomainObject> loo = doo.getElementArrayList();
-				for(ElementDomainObject thingamabob : loo)
-				{
-					System.out.println(thingamabob);
+				for (ElementDomainObject thingamabob : loo) {
+					System.out.println(thingamabob.toString());
 				}
 				/**
 				 * Command Stuff goes here
 				 */
 			}
 		});
-		
+
 		elementControlPanel.add(findElementsInRangePanel);
 	}
-	
+
 	private void setupfindElementPanel() {
 		JPanel findElementPanel = new JPanel();
-		findElementPanel.setBackground(new Color(52, 200, 235));		
+		findElementPanel.setBackground(new Color(52, 200, 235));
 		JButton findByButton = new JButton("Find");
 		findElementPanel.add(new JLabel("Find Element By Something"));
-		JComboBox findByType = new JComboBox(new String[] {"Atomic Number","Atomic Mass","Name"});
+		JComboBox findByType = new JComboBox(new String[] { "Atomic Number", "Atomic Mass", "Name" });
 		findElementPanel.add(findByType);
 		findElementPanel.add(findByButton);
-		
+
 		findByButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/**
@@ -164,10 +161,10 @@ public class ElementGUI implements guiInterface {
 				 */
 			}
 		});
-		
+
 		elementControlPanel.add(findElementPanel);
 	}
-	
+
 	private void setupgetCompoundByElementPanel() {
 		JPanel getCompoundByElementPanel = new JPanel(new GridLayout(0, 2));
 		getCompoundByElementPanel.setBackground(new Color(0, 186, 235));
@@ -184,15 +181,15 @@ public class ElementGUI implements guiInterface {
 				 */
 			}
 		});
-		
+
 		elementControlPanel.add(getCompoundByElementPanel);
 	}
-	
+
 	private void setupmodifyElementPanel() {
 		JPanel modifyElementPanel = new JPanel(new GridLayout(0, 2));
-		modifyElementPanel.setBackground(new Color(52, 200, 220));	
+		modifyElementPanel.setBackground(new Color(52, 200, 220));
 		modifyElementPanel.add(new JLabel("Modify Element"));
-		JComboBox elementNameInput = new JComboBox(new String[] {"Radon", "Brodium", "CoolGuyElement"});
+		JComboBox elementNameInput = new JComboBox(new String[] { "Radon", "Brodium", "CoolGuyElement" });
 		modifyElementPanel.add(elementNameInput);
 		modifyElementPanel.add(new JLabel("New Atomic Number:"));
 		JTextField newNumInput = new JTextField();
@@ -208,12 +205,12 @@ public class ElementGUI implements guiInterface {
 		modifyElementPanel.add(changeNum);
 		elementControlPanel.add(modifyElementPanel);
 	}
-	
+
 	private void setupmodifyElementAmountPanel() {
 		JPanel modifyElementAmountPanel = new JPanel(new GridLayout(0, 2));
-		modifyElementAmountPanel.setBackground(new Color(220, 200, 220));	
+		modifyElementAmountPanel.setBackground(new Color(220, 200, 220));
 		modifyElementAmountPanel.add(new JLabel("Modify Amount"));
-		JComboBox elementNameInput = new JComboBox(new String[] {"Radon", "Brodium", "CoolGuyElement"});
+		JComboBox elementNameInput = new JComboBox(new String[] { "Radon", "Brodium", "CoolGuyElement" });
 		modifyElementAmountPanel.add(elementNameInput);
 		modifyElementAmountPanel.add(new JLabel("New Amount"));
 		JTextField newAmountInput = new JTextField();

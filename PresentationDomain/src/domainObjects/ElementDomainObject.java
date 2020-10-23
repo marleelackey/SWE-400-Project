@@ -157,4 +157,11 @@ public class ElementDomainObject {
 		return dataMapper;
 	}
 
+	public String toString() {
+		return ("Element: " + elementName + ", atomic mass " + elementAtomicMass + ", atomic number "
+				+ elementAtomicNumber + ", " + elementMoles + " moles in inventory");
+		// Element: [name], atomic mass [mass], atomic number [num], [mol] moles in
+		// inventory
+	}
+
 }
