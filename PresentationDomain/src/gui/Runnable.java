@@ -6,6 +6,7 @@ import datasource.DatabaseManager;
 
 public class Runnable {
 	public static void main(String[] args) throws DatabaseException {
+		DatabaseManager.getSingleton().closeConnection();
 		DatabaseManager.setPatternNumber(2);
 		DatabaseManager.getSingleton().openConnection();
 		

@@ -131,7 +131,7 @@ public class ElementGUI implements guiInterface {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-
+    
 				ArrayList<ElementDomainObject> loo = doo.getElementArrayList();
 				for (ElementDomainObject thingamabob : loo) {
 					System.out.println(thingamabob.toString());
