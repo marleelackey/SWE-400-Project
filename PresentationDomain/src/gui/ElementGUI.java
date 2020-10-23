@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -16,6 +17,7 @@ import javax.swing.JTextField;
 
 import commands.AddElementCmd;
 import commands.ExecuterForCommands;
+import commands.FindElementsInRangeCmd;
 import commands.GetElementIDByNameCmd;
 import mappers.MetalMapper;
 
@@ -122,6 +124,18 @@ public class ElementGUI implements guiInterface {
 		
 		findElementsInRangeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				FindElementsInRangeCmd doo = new FindElementsInRangeCmd(Integer.parseInt(lowerBoundInput.getText()), Integer.parseInt(upperBoundInput.getText()));
+				try {
+					new ExecuterForCommands(doo);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				
+				ArrayList loo = doo.getElementArrayList();
+				for(int i = 0; i < loo.size(); i++)
+				{
+					System.out.println(loo.get(i));
+				}
 				/**
 				 * Command Stuff goes here
 				 */
