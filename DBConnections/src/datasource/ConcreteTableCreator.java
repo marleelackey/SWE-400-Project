@@ -98,7 +98,9 @@ public class ConcreteTableCreator {
 
 			for (int i = 0; i < table_statements.length; i++) {
 				insertData = new String(table_statements[i]);
-				stmt.executeUpdate(insertData);
+				if (stmt.executeUpdate(insertData) == 0) {
+					System.out.println("Didn't add row: " + insertData);
+				}
 			}
 	
 		} catch (Exception e) {

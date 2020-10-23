@@ -135,9 +135,9 @@ public class ElementGUI implements guiInterface {
 				}
 				
 				ArrayList<ElementDomainObject> loo = doo.getElementArrayList();
-				for(int i = 0; i < loo.size(); i++)
+				for(ElementDomainObject thingamabob : loo)
 				{
-					System.out.println(loo.get(i));
+					System.out.println(thingamabob);
 				}
 				/**
 				 * Command Stuff goes here
