@@ -17,6 +17,8 @@ import javax.swing.JTextField;
 
 import commands.AddElementCmd;
 import commands.ExecuterForCommands;
+import commands.FindElementByAtomicMassCmd;
+import commands.FindElementByAtomicNumberCmd;
 import commands.FindElementsInRangeCmd;
 import commands.GetElementIDByNameCmd;
 import domainObjects.ElementDomainObject;
@@ -131,7 +133,7 @@ public class ElementGUI implements guiInterface {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-    
+
 				ArrayList<ElementDomainObject> loo = doo.getElementArrayList();
 				for (ElementDomainObject thingamabob : loo) {
 					System.out.println(thingamabob.toString());
@@ -146,19 +148,51 @@ public class ElementGUI implements guiInterface {
 	}
 
 	private void setupfindElementPanel() {
-		JPanel findElementPanel = new JPanel();
+		JPanel findElementPanel = new JPanel(new GridLayout(0, 2));
 		findElementPanel.setBackground(new Color(52, 200, 235));
 		JButton findByButton = new JButton("Find");
 		findElementPanel.add(new JLabel("Find Element By Something"));
 		JComboBox findByType = new JComboBox(new String[] { "Atomic Number", "Atomic Mass", "Name" });
 		findElementPanel.add(findByType);
+		JTextField findByInput = new JTextField();
+		findElementPanel.add(findByInput);
 		findElementPanel.add(findByButton);
 
 		findByButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Command Stuff goes here
-				 */
+				if (findByType.getItemAt(findByType.getSelectedIndex()) == "Atomic Number") {
+					FindElementByAtomicNumberCmd c1 = new FindElementByAtomicNumberCmd(
+							Integer.parseInt(findByInput.getText()));
+					try {
+						new ExecuterForCommands(c1);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					System.out.println(c1.getEdo().toString());
+				} else if (findByType.getItemAt(findByType.getSelectedIndex()) == "Atomic Mass") {
+					FindElementByAtomicMassCmd c1 = new FindElementByAtomicMassCmd(
+							Double.parseDouble(findByInput.getText()));
+					try {
+						new ExecuterForCommands(c1);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					System.out.println(c1.getEdo().toString());
+
+					/**
+					 * Need to uncomment when findElementByNameCmd is done
+					 */
+//				} else if(findByType.getItemAt(findByType.getSelectedIndex()) == "Name") {
+//					FindElementByNameCmd c1 = new FindElementByNameCmd(findByInput.getText());
+//					try {
+//						new ExecuterForCommands(c1);
+//					} catch (Exception e1) {
+//						e1.printStackTrace();
+//					}
+//					System.out.println(c1.getEdo().toString());
+				} else {
+					System.out.println("Ruh roh");
+				}
 			}
 		});
 

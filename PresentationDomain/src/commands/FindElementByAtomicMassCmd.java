@@ -11,7 +11,7 @@ import mappers.ElementMapper;
  */
 public class FindElementByAtomicMassCmd implements CommandInterface {
 
-	private int atomicMass;
+	private double atomicMass;
 	private ElementDomainObject edo;
 
 	/**
@@ -19,7 +19,7 @@ public class FindElementByAtomicMassCmd implements CommandInterface {
 	 * 
 	 * @param a_mass the atomic mass of the element we need
 	 */
-	public FindElementByAtomicMassCmd(int a_mass) {
+	public FindElementByAtomicMassCmd(double a_mass) {
 		atomicMass = a_mass;
 	}
 

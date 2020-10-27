@@ -47,7 +47,7 @@ public class ElementMapper implements ElementMapperInterface {
 				element.getAtomicMass(), c_element.getChemicalMoles());
 	}
 
-	public ElementDomainObject findByAtomicMass(int aMass) throws Exception {
+	public ElementDomainObject findByAtomicMass(double aMass) throws Exception {
 		ElementRDG element = ElementRDG.findByAtomicMass(aMass);
 		ChemicalRDG c_element = ChemicalRDG.findByID(element.getID());
 		return createElement(element.getID(), c_element.getChemicalName(), element.getAtomicNumber(),
