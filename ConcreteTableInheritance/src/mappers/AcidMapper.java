@@ -5,17 +5,13 @@ package mappers;
 
 import java.util.ArrayList;
 
-import Interfaces.AcidDomainObject;
 import Interfaces.AcidMapperInterface;
-import Interfaces.BaseMapperInterface;
 import datasource.AcidDTO;
 import datasource.AcidTDG;
-import datasource.BaseDTO;
-import datasource.BaseTDG;
 import datasource.MetalDTO;
 import datasource.MetalTDG;
-import domainObjects.ElementDomainObject;
 import domainObjects.MetalDomainObject;
+import domainObjects.AcidDomainObject;
 
 /**
  * @author Josh B. , Ace W.
@@ -41,11 +37,15 @@ public class AcidMapper implements AcidMapperInterface {
 	}
 
 	@Override
-	public ArrayList<AcidDomainObject> getAllAcids() {
+	public ArrayList<AcidDomainObject> getAllAcids() throws Exception {
 				ArrayList<AcidDTO> Adot = AcidTDG.getSingleton().getAllAcids();
 				ArrayList<AcidDomainObject> Doa = new ArrayList<AcidDomainObject>();
-				for(AcidDTO b : Adot) {
-					Doa.add(createAcid(b.getAcidID(), b.getAcidName(), b.getAcidMoles(), b.getAcidSolute()));
+				try {
+					for(AcidDTO b : Adot) {
+						Doa.add(createAcid(b.getAcidID(), b.getAcidName(), b.getAcidMoles(), b.getAcidSolute()));
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 				
 				return Doa;
@@ -65,6 +65,36 @@ public class AcidMapper implements AcidMapperInterface {
 		}
 		
 		return metals;
+	}
+
+	public static domainObjects.AcidDomainObject findByName(String acidName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public void persist() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int getIdent() {
+		return ident;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public double getMoles() {
+		return moles;
+	}
+
+	public int getSolute() {
+		return solute;
+	}
+
+	public AcidDomainObject getAcid() {
+		return acid;
 	}
 
 }

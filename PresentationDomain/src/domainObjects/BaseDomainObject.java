@@ -21,10 +21,10 @@ public class BaseDomainObject {
 	 */
 	public BaseDomainObject(BaseMapper bm) {
 		dataMapper = bm;
-		setBaseID(dataMapper.getID());
-		setBaseName(dataMapper.getName());
-		setBaseSolute(dataMapper.getSolute());
-		setBaseMoles(dataMapper.getMoles());
+		setBaseID(dataMapper.getBaseID());
+		setBaseName(dataMapper.getBaseName());
+		setBaseSolute(dataMapper.getBaseSolute());
+		setBaseMoles(dataMapper.getBaseMoles());
 	}
 	
 	/**

@@ -2,8 +2,6 @@ package domainObjects;
 
 import static org.junit.Assert.*;
 
-import org.junit.Test;
-
 import mappers.AcidMapper;
 
 public class TestAcidDomainObject {

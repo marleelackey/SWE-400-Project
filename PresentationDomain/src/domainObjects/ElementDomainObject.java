@@ -1,6 +1,8 @@
 package domainObjects;
 
+import mappers.CompoundMapper;
 import mappers.ElementMapper;
+import quantifiedElementPackage.QuantifiedElement;
 
 /**
  * 
@@ -35,6 +37,13 @@ public class ElementDomainObject {
 		setElementAtomicNumber(dataMapper.getAtomicNumber());
 		setElementMoles(dataMapper.getMoles());
 		em.setElement(this);
+	}
+	
+	public void addToCompound(int compoundID, int elementQuantity) throws Exception {
+		CompoundMapper cm = new CompoundMapper();
+		CompoundDomainObject cdo = cm.findByID(compoundID);
+		cdo.getElements().add(new QuantifiedElement(this, elementQuantity));
+		cdo.persist();
 	}
 
 	/**

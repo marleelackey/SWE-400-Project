@@ -3,7 +3,6 @@ package domainObjects;
 import java.util.ArrayList;
 
 import mappers.CompoundMapper;
-import mappers.ElementMapper;
 import quantifiedElementPackage.QuantifiedElement;
 
 /**
@@ -31,6 +30,19 @@ public class CompoundDomainObject {
 		setCompoundElements(dataMapper.getMyElements());
 		dataMapper.setCdo(this);
 	}
+	
+	public void removeElement(int elementID) {
+		compoundElements.removeIf(e -> (e.getElement().getElementID() == elementID));
+	}
+	
+	public void modifyElementQuantity(int elementID, int newElementQuantity) {
+		for (QuantifiedElement e : compoundElements) {
+			if (e.getElement().getElementID() == elementID) {
+				e.setQuantityInCompound(newElementQuantity);
+				break;
+			}
+		}
+	}
 
 	/**
 	 * Return the data mapper that created the domain object
@@ -48,8 +60,8 @@ public class CompoundDomainObject {
 	 */
 	public void setCompoundElements(ArrayList<QuantifiedElement> elements) throws Exception {
 		for (QuantifiedElement e : elements) {
-			if (elements.indexOf(e) != elements.lastIndexOf(e)) { // if the first occurance != last occurance, then
-																	// there are more than 1 occurances
+			if (elements.indexOf(e) != elements.lastIndexOf(e)) { // if the first occurrence != last occurrence, then
+																	// there are more than 1 occurrences
 				throw new Exception("This element is already added!");
 			}
 		}

@@ -31,8 +31,9 @@ public class ModifyElementInCompoundCmd {
 
 	/**
 	 * Execute method to invoke the modify element in compound command
+	 * @throws Exception 
 	 */
-	public void execute() {
+	public void execute() throws Exception {
 		CompoundMapper cm = new CompoundMapper();
 		CompoundDomainObject cdo = cm.findByID(compoundID);
 		cdo.modifyElementQuantity(elementID, newElementQuantity);

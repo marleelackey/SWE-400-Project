@@ -5,9 +5,10 @@ package mappers;
 
 import java.util.ArrayList;
 
-import Interfaces.BaseDomainObject;
+import domainObjects.BaseDomainObject;
 import Interfaces.BaseMapperInterface;
 import datasource.BaseDTO;
+import datasource.BaseRDG;
 import datasource.BaseTDG;
 
 /**
@@ -15,16 +16,46 @@ import datasource.BaseTDG;
  *
  */
 public class BaseMapper implements BaseMapperInterface {
+	
+	private int baseID;
+	private String baseName;
+	private int baseSolute;
+	private double baseMoles;
 
 	@Override
 	public ArrayList<BaseDomainObject> getAllBases() {
 		ArrayList<BaseDTO> Adot = BaseTDG.getAllBases();
-		ArrayList<BaseDomainObject> Doa = null;
+		ArrayList<BaseDomainObject> Doa = new ArrayList<>();
 		for(BaseDTO b :Adot) {
-			Doa.add(new BaseDomainObject(b.getID(),b.getName(), b.getSolute(),b.getMoles()));
+			baseID = b.getID();
+			baseName = b.getName();
+			baseSolute = b.getSolute();
+			baseMoles = b.getMoles();
+			Doa.add(new BaseDomainObject(this));
 		}
 		
 		return Doa;
+	}
+
+	public void persist() {
+		BaseRDG b = new BaseRDG(baseID, baseName, baseSolute, baseMoles);
+		b.update();
+	}
+
+	public int getBaseID() {
+		return baseID;
+	}
+
+	public String getBaseName() {
+		return baseName;
+	}
+
+	public int getBaseSolute() {
+		return baseSolute;
+	}
+
+	public double getBaseMoles() {
+		return baseMoles;
 	}
 
 }

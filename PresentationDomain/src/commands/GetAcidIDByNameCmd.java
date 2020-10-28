@@ -1,5 +1,8 @@
 package commands;
 
+import domainObjects.AcidDomainObject;
+import mappers.AcidMapper;
+
 /**
  * Command to get an acid's ID using its name
  * 

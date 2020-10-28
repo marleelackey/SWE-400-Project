@@ -16,7 +16,7 @@ public class AcidDomainObject {
 	 */
 	public AcidDomainObject(AcidMapper bm) {
 		dataMapper = bm;
-		setAcidID(dataMapper.getID());
+		setAcidID(dataMapper.getIdent());
 		setAcidName(dataMapper.getName());
 		setAcidSolute(dataMapper.getSolute());
 		setAcidMoles(dataMapper.getMoles());

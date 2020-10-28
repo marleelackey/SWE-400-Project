@@ -2,14 +2,7 @@ package domainObjects;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
-import org.junit.Test;
-
 import mappers.BaseMapper;
-import mappers.CompoundMapper;
-import mappers.ElementMapper;
-import quantifiedElementPackage.QuantifiedElement;
 
 /**
  * @author Marlee Lackey
