@@ -62,6 +62,15 @@ public class ElementMapper implements ElementMapperInterface {
 		}
 		return edo;
 	}
+	
+	public ArrayList<ElementDomainObject> getAllElements() throws Exception {
+		ArrayList<ElementDTO> elements = ElementTDG.getInstance().getAllElements();
+		ArrayList<ElementDomainObject> list = new ArrayList<>();
+		for (ElementDTO e : elements) {
+			list.add(createElement(e.getID(), e.getName(), e.getAtomicNumber(), e.getAtomicMass(), e.getMoles()));
+		}
+		return list;
+	}
 
 	public void persist() {
 		try {
