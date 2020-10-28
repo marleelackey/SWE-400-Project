@@ -123,4 +123,13 @@ public class CompoundDomainObject {
 		dataMapper.persist();
 	}
 
+	/**
+	 * Return a readable string
+	 */
+	public String toString() {
+		return("Compound: " + compoundName + ", "+ compoundMoles + "moles in inventory");
+		
+		// TODO: Should the compoundElements get printed out, and if so how lol
+	}
+
 }

@@ -92,5 +92,12 @@ public class ChemicalDomainObject {
 	public void persist() {
 		dataMapper.persist();
 	}
-
+	
+	/**
+	 * Return a readable string
+	 */
+	public String toString() {
+		return("Chemical: " + chemicalName + ", "+ chemicalMoles + "moles in inventory");
+	}
+	
 }

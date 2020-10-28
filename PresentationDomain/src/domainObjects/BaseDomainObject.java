@@ -106,6 +106,9 @@ public class BaseDomainObject {
 		dataMapper.persist();
 	}
 	
+	/**
+	 * Return a readable string
+	 */
 	public String toString() {
 		return("Base: " + baseName + ", ID of solute: " + baseSolute + ", "+ baseMoles + "moles in inventory");
 	}

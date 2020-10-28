@@ -101,6 +101,9 @@ public class AcidDomainObject {
 		dataMapper.persist();
 	}
 	
+	/**
+	 * Return a readable string
+	 */
 	public String toString() {
 		return("Acid: " + acidName + ", ID of solute: " + acidSolute + ", "+ acidMoles + "moles in inventory");
 	}
