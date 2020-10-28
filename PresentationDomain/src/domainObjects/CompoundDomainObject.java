@@ -3,6 +3,7 @@ package domainObjects;
 import java.util.ArrayList;
 
 import mappers.CompoundMapper;
+import mappers.ElementMapper;
 import quantifiedElementPackage.QuantifiedElement;
 
 /**
@@ -127,9 +128,18 @@ public class CompoundDomainObject {
 	 * Return a readable string
 	 */
 	public String toString() {
-		return("Compound: " + compoundName + ", "+ compoundMoles + "moles in inventory");
+		// for loop to get a string of all elements
+		String elements = "";
+		int i = 0;
+		for (QuantifiedElement e : compoundElements) {
+			elements = elements +  "( " + e.getElement().getElementName() + ", " + e.getQuantityInCompound() + ")";
+			if ( i < compoundElements.size()) {
+				elements = elements + ", ";
+			}
+			i++;
+		}
 		
-		// TODO: Should the compoundElements get printed out, and if so how lol
+		return("Compound: " + compoundName + ", elements: " + elements + ", "+ compoundMoles + "moles in inventory");
 	}
 
 }
