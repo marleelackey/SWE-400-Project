@@ -171,4 +171,22 @@ public class CompoundMapper implements CompoundMapperInterface {
 		return cdo;
 	}
 
+	/**
+	 * Finds all the compounds that contain a specific element
+	 * 
+	 * @param elementID the ID of the element to search by
+	 * @return the list of compounds
+	 * @throws Exception
+	 */
+	public ArrayList<CompoundDomainObject> getCompoundsByElement(int elementID) throws Exception {
+		ArrayList<CompoundDTO> comps = CompoundTDG.getSingleton().getCompoundsByElement(elementID);
+		ArrayList<CompoundDomainObject> list = new ArrayList<>();
+
+		for (CompoundDTO c : comps) {
+			list.add(findByID(c.getCompoundID()));
+		}
+
+		return list;
+	}
+
 }
