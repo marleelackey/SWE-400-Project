@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 import Interfaces.AcidMapperInterface;
 import datasource.AcidDTO;
+import datasource.AcidRDG;
 import datasource.AcidTDG;
+import datasource.ElementRDG;
 import datasource.MetalDTO;
 import datasource.MetalTDG;
 import domainObjects.MetalDomainObject;
@@ -67,9 +69,16 @@ public class AcidMapper implements AcidMapperInterface {
 		return metals;
 	}
 
-	public static domainObjects.AcidDomainObject findByName(String acidName) {
-		// TODO Auto-generated method stub
-		return null;
+	public static domainObjects.AcidDomainObject findByName(String acidName) throws Exception {
+		AcidMapper mapper = new AcidMapper();
+		AcidRDG rdg = AcidRDG.findByName(acidName);
+		
+		mapper.ident = rdg.getAcidID();
+		mapper.name = rdg.getAcidName();
+		mapper.moles = rdg.getAcidMoles();
+		mapper.ident = rdg.getAcidSolute();
+
+		return mapper.createAcid(rdg.getAcidID(), rdg.getAcidName(), rdg.getAcidMoles(), rdg.getAcidSolute());
 	}
 	
 	public void persist() {
