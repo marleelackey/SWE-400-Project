@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -28,6 +29,7 @@ public class ChemicalGUI implements guiInterface {
 		
 		setuplistOfChemicalsPanel();
 		setupupdateChemicalPanel();
+		setupmodifyChemicalAmountPanel();
 	}
 
 	private void setuplistOfChemicalsPanel() {
@@ -55,5 +57,27 @@ public class ChemicalGUI implements guiInterface {
 		});
 		
 		chemicalControlPanel.add(updateChemicalPanel);
+	}
+	
+	private void setupmodifyChemicalAmountPanel() {
+		JPanel modifyChemicalAmountPanel = new JPanel(new GridLayout(0, 2));
+		modifyChemicalAmountPanel.setBackground(new Color(220, 200, 220));	
+		modifyChemicalAmountPanel.add(new JLabel("Modify Amount"));
+		JComboBox chemicalNameInput = new JComboBox(new String[] {"GenericChemName", "Chem", "CoolGuyChem"});
+		modifyChemicalAmountPanel.add(chemicalNameInput);
+		modifyChemicalAmountPanel.add(new JLabel("New Amount"));
+		JTextField newAmountInput = new JTextField();
+		modifyChemicalAmountPanel.add(newAmountInput);
+		JButton changeAmount = new JButton("Change");
+		changeAmount.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * Command Stuff goes here
+				 * Integer.parseInt(newAmountInput.getText()) -- new amount
+				 */
+			}
+		});
+		modifyChemicalAmountPanel.add(changeAmount);
+		chemicalControlPanel.add(modifyChemicalAmountPanel);
 	}
 }

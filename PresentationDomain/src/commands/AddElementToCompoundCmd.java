@@ -1,7 +1,6 @@
 package commands;
 
-import domainObjects.CompoundDomainObject;
-import mappers.CompoundMapper;
+import domainObjects.ElementDomainObject;
 import mappers.ElementMapper;
 
 /**
@@ -32,13 +31,14 @@ public class AddElementToCompoundCmd implements CommandInterface {
 
 	/**
 	 * Execute method that invokes the add element to a compound command
+	 * @throws Exception 
 	 */
 	@Override
-	public void execute() {
-		CompoundMapper cm = new CompoundMapper();
-		CompoundDomainObject cdo = cm.findByID(compoundID);
-		cdo.addElement(elementID, elementQuantity);
-		cdo.persist();
+	public void execute() throws Exception {
+		ElementMapper em = new ElementMapper();
+		ElementDomainObject edo = em.findByID(elementID);
+		edo.addToCompound(compoundID, elementQuantity);
+		edo.persist();
 	}
 
 	/**

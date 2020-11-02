@@ -1,6 +1,8 @@
 package domainObjects;
 
+import mappers.CompoundMapper;
 import mappers.ElementMapper;
+import quantifiedElementPackage.QuantifiedElement;
 
 /**
  * 
@@ -18,6 +20,7 @@ public class ElementDomainObject {
 	private String elementName;
 	private int elementAtomicNumber;
 	private double elementAtomicMass;
+	private double elementMoles;
 
 	/**
 	 * Constructor
@@ -32,7 +35,15 @@ public class ElementDomainObject {
 		setElementName(dataMapper.getName());
 		setElementAtomicMass(dataMapper.getAtomicMass());
 		setElementAtomicNumber(dataMapper.getAtomicNumber());
+		setElementMoles(dataMapper.getMoles());
 		em.setElement(this);
+	}
+	
+	public void addToCompound(int compoundID, int elementQuantity) throws Exception {
+		CompoundMapper cm = new CompoundMapper();
+		CompoundDomainObject cdo = cm.findByID(compoundID);
+		cdo.getElements().add(new QuantifiedElement(this, elementQuantity));
+		cdo.persist();
 	}
 
 	/**
@@ -85,6 +96,15 @@ public class ElementDomainObject {
 	}
 
 	/**
+	 * Set elementMoles
+	 * 
+	 * @param elementMoles
+	 */
+	public void setElementMoles(double elementMoles) {
+		this.elementMoles = elementMoles;
+	}
+
+	/**
 	 * Call the persist() method in DataMapper to persist the changes made to
 	 * element
 	 */
@@ -129,12 +149,28 @@ public class ElementDomainObject {
 	}
 
 	/**
+	 * Getter for elementMoles
+	 * 
+	 * @return elementMoles
+	 */
+	public double getElementMoles() {
+		return elementMoles;
+	}
+
+	/**
 	 * Return the data mapper that created the domain object
 	 * 
 	 * @return dataMapper
 	 */
 	public ElementMapper getDataMapper() {
 		return dataMapper;
+	}
+
+	public String toString() {
+		return ("Element: " + elementName + ", atomic mass " + elementAtomicMass + ", atomic number "
+				+ elementAtomicNumber + ", " + elementMoles + " moles in inventory");
+		// Element: [name], atomic mass [mass], atomic number [num], [mol] moles in
+		// inventory
 	}
 
 }

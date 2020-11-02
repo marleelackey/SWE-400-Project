@@ -27,9 +27,10 @@ public class ModifyElementAtomicNumberCmd implements CommandInterface {
 
 	/**
 	 * Execute method to invoke the modify element atomic number command
+	 * @throws Exception 
 	 */
 	@Override
-	public void execute() {
+	public void execute() throws Exception {
 		ElementMapper em = new ElementMapper();
 		ElementDomainObject edo = em.findByID(elementID);
 		edo.setElementAtomicNumber(newElementAtomicNumber);

@@ -5,9 +5,8 @@ package Interfaces;
 
 import java.util.ArrayList;
 
-import domainObjects.ElementDomainObject;
+import domainObjects.AcidDomainObject;
 import domainObjects.MetalDomainObject;
-import mappers.AcidDomainObject;
 
 /**
  * @author Josh B., Ace
@@ -19,6 +18,6 @@ public interface AcidMapperInterface {
 
 	AcidDomainObject createAcid(int ID, String name, double moles, int solute) throws Exception;
 
-	ArrayList<AcidDomainObject> getAllAcids();
+	ArrayList<AcidDomainObject> getAllAcids() throws Exception;
 
 }

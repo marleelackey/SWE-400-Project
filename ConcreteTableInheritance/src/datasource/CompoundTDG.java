@@ -60,4 +60,24 @@ public class CompoundTDG {
 
 	}
 
+	public ArrayList<CompoundDTO> getAllCompounds() {
+		ArrayList<CompoundDTO> list = new ArrayList<>();
+
+		ResultSet r;
+
+		try {
+			Connection connection = DatabaseManager.getSingleton().getConnection();
+			r = connection.createStatement().executeQuery("SELECT * FROM Compound");
+
+			while (r.next()) {
+				list.add(new CompoundDTO(r.getInt(1), r.getString(2), r.getDouble(3)));
+			}
+
+		} catch (DatabaseException | SQLException e) {
+			DatabaseException.detectError(e);
+		}
+
+		return list;
+	}
+
 }

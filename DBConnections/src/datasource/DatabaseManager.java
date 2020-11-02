@@ -69,7 +69,7 @@ public class DatabaseManager
 	}
 
 	/**
-	 * Calls onenConnectionTo method with appropriate parameters.
+	 * Calls onenConnectionTo method with appropriate parameters
 	 */
 	public Connection openConnection()
 	{

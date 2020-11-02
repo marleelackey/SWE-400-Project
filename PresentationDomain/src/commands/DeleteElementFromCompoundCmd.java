@@ -28,9 +28,10 @@ public class DeleteElementFromCompoundCmd implements CommandInterface {
 
 	/**
 	 * We deleting elements from compounds out here
+	 * @throws Exception 
 	 */
 	@Override
-	public void execute() {
+	public void execute() throws Exception {
 		CompoundMapper cm = new CompoundMapper();
 		CompoundDomainObject cdo = cm.findByID(compoundID);
 		cdo.removeElement(elementID);

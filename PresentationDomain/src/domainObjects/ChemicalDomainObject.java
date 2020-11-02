@@ -16,7 +16,7 @@ public class ChemicalDomainObject {
 
 	/**
 	 * Constructor for ChemicalDomainObject
-	 * @param dm he dataMapper that made this chemical domain object
+	 * @param dm the dataMapper that made this chemical domain object
 	 */
 	public ChemicalDomainObject(ChemicalMapper dm) {
 		dataMapper = dm;
@@ -92,5 +92,12 @@ public class ChemicalDomainObject {
 	public void persist() {
 		dataMapper.persist();
 	}
-
+	
+	/**
+	 * Return a readable string
+	 */
+	public String toString() {
+		return("Chemical: " + chemicalName + ", "+ chemicalMoles + "moles in inventory");
+	}
+	
 }

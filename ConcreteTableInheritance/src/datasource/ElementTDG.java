@@ -46,8 +46,7 @@ public class ElementTDG {
 		try {
 			DatabaseManager db = DatabaseManager.getSingleton();
 			Connection cn = db.getConnection();
-			rs = cn.createStatement().executeQuery(
-					"SELECT * FROM Element WHERE elementAtomicMass > " + lower + " AND elementAtomicMass < " + upper);
+			rs = cn.createStatement().executeQuery("SELECT * FROM Element WHERE elementAtomicMass > " + lower + " AND elementAtomicMass < " + upper);
 			while (rs.next()) {
 				data.add(new ElementDTO(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"),
 						rs.getDouble("elementAtomicMass"), rs.getString("elementName"), rs.getDouble("elementMoles")));

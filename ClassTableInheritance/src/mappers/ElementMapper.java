@@ -23,8 +23,35 @@ public class ElementMapper implements ElementMapperInterface {
 		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
 		this.moles = moles;
-
 		return new ElementDomainObject(this);
+	}
+
+	public ElementDomainObject findByID(int id) throws Exception {
+		ChemicalRDG c_element = ChemicalRDG.findByID(id);
+		ElementRDG element = ElementRDG.findByID(id);
+		return createElement(c_element.getChemicalID(), c_element.getChemicalName(), element.getAtomicNumber(),
+				element.getAtomicMass(), c_element.getChemicalMoles());
+	}
+
+	public ElementDomainObject findByName(String name) throws Exception {
+		ChemicalRDG c_element = ChemicalRDG.findByName(name);
+		ElementRDG element = ElementRDG.findByID(c_element.getChemicalID());
+		return createElement(c_element.getChemicalID(), c_element.getChemicalName(), element.getAtomicNumber(),
+				element.getAtomicMass(), c_element.getChemicalMoles());
+	}
+
+	public ElementDomainObject findByAtomicNumber(int aNum) throws Exception {
+		ElementRDG element = ElementRDG.findByAtomicNumber(aNum);
+		ChemicalRDG c_element = ChemicalRDG.findByID(element.getID());
+		return createElement(element.getID(), c_element.getChemicalName(), element.getAtomicNumber(),
+				element.getAtomicMass(), c_element.getChemicalMoles());
+	}
+
+	public ElementDomainObject findByAtomicMass(double aMass) throws Exception {
+		ElementRDG element = ElementRDG.findByAtomicMass(aMass);
+		ChemicalRDG c_element = ChemicalRDG.findByID(element.getID());
+		return createElement(element.getID(), c_element.getChemicalName(), element.getAtomicNumber(),
+				element.getAtomicMass(), c_element.getChemicalMoles());
 	}
 
 	public void persist() {

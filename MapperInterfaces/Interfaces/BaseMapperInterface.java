@@ -1,9 +1,11 @@
 package Interfaces;
 
-import domainObjects.ElementDomainObject;
+import java.util.ArrayList;
+
+import domainObjects.BaseDomainObject;
 
 public interface BaseMapperInterface {
-	public BaseDomainObject getAllBases();
+	public ArrayList<BaseDomainObject> getAllBases();
 
 
 }

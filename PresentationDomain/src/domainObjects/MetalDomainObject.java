@@ -19,7 +19,6 @@ public class MetalDomainObject {
 	private int metalAtomicNumber;
 	private double metalAtomicMass;
 	private int dissolvedBy;
-	private int acidID;
 	private double moles;
 	private double molesOfAcidToDissolve;
 
@@ -36,6 +35,7 @@ public class MetalDomainObject {
 		setMetalAtomicNumber(dataMapper.getAtomicNumber());
 		setMoles(dataMapper.getMoles());
 		setMolesOfAcidToDissolve(dataMapper.getMolesOfAcidToDissolve());
+		setDissolvedBy(dataMapper.getDissolvedBy());
 		mm.setMetal(this);
 	}
 
@@ -160,23 +160,6 @@ public class MetalDomainObject {
 		return metalAtomicMass;
 	}
 
-	/**
-	 * Setter for acidID
-	 * 
-	 * @param id
-	 */
-	public void setAcidID(int id) {
-		acidID = id;
-	}
-
-	/**
-	 * Getter for acidID
-	 * 
-	 * @return acidID
-	 */
-	public int getAcidID() {
-		return acidID;
-	}
 
 	/**
 	 * @return the dissolvedBy

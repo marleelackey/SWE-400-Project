@@ -83,6 +83,37 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		return cdo;
 	}
 
+	/**
+	 * Find a chemical from its name
+	 * 
+	 * @author mad&ad
+	 * 
+	 * @param name da name
+	 * @return da chem
+	 * @throws Exception da error
+	 */
+	public ChemicalDomainObject findByName(String name) throws Exception {
+		ElementRDG element = ElementRDG.findByName(name);
+		CompoundRDG compound = CompoundRDG.findByNameConcrete(name);
+		MetalRDG metal = MetalRDG.findByName(name);
+		AcidRDG acid = AcidRDG.findByName(name);
+		BaseRDG base = BaseRDG.findByName(name);
+
+		if (element != null) {
+			cdo = createChemical(element.getID(), element.getName(), element.getMoles());
+		} else if (compound != null) {
+			cdo = createChemical(compound.getCompoundID(), compound.getCompoundName(), compound.getCompoundMoles());
+		} else if (metal != null) {
+			cdo = createChemical(metal.getID(), metal.getName(), metal.getMoles());
+		} else if (acid != null) {
+			cdo = createChemical(acid.getAcidID(), acid.getAcidName(), acid.getAcidMoles());
+		} else if (base != null) {
+			cdo = createChemical(base.getID(), base.getName(), base.getMoles());
+		}
+
+		return cdo;
+	}
+
 	public ArrayList<ChemicalDomainObject> findLowChemicals() throws Exception {
 		ArrayList<ChemicalDomainObject> lowChemicals = new ArrayList<ChemicalDomainObject>();
 

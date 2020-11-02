@@ -34,7 +34,7 @@ public class TestCompoundDomainObject {
 		cdo.setCompoundMoles(24.4);
 		assertEquals(24.4, cdo.getCompoundMoles(), 0.01);
 		
-		ArrayList<QuantifiedElement> elements = new ArrayList();
+		ArrayList<QuantifiedElement> elements = new ArrayList<>();
 		ElementMapper em = new ElementMapper();
 		ElementDomainObject edo = em.createElement(12, "Neilium", 13, 23.4, 32.3);
 		ElementDomainObject edo2 = em.createElement(14, "Oxygen", 12, 15.9, 23.3);
@@ -57,7 +57,7 @@ public class TestCompoundDomainObject {
 		CompoundMapper c = new CompoundMapper();
 		CompoundDomainObject cdo = new CompoundDomainObject(c);
 		
-		ArrayList<QuantifiedElement> elements = new ArrayList();
+		ArrayList<QuantifiedElement> elements = new ArrayList<>();
 		ElementMapper em = new ElementMapper();
 		ElementDomainObject edo = em.createElement(12, "Neilium", 13, 23.4, 32.3);
 		ElementDomainObject edo2 = em.createElement(14, "Oxygen", 12, 15.9, 23.3);

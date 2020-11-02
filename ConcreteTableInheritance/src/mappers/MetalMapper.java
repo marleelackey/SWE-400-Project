@@ -1,8 +1,12 @@
 package mappers;
 
+import java.util.ArrayList;
+
 import Interfaces.MetalMapperInterface;
 import datasource.DatabaseException;
+import datasource.MetalDTO;
 import datasource.MetalRDG;
+import datasource.MetalTDG;
 import domainObjects.MetalDomainObject;
 
 public class MetalMapper implements MetalMapperInterface {
@@ -42,6 +46,16 @@ public class MetalMapper implements MetalMapperInterface {
 		molesOfAcidToDissolve = rdg.getMolesOfAcidToDissolve();
 
 		return new MetalDomainObject(this);
+	}
+
+	public ArrayList<MetalDomainObject> getAllMetals() throws Exception {
+		ArrayList<MetalDTO> metals = MetalTDG.getInstance().getAllMetals();
+		ArrayList<MetalDomainObject> list = new ArrayList<>();
+		for (MetalDTO m : metals) {
+			list.add(createMetal(m.getID(), m.getName(), m.getAtomicNumber(), m.getAtomicMass(), m.getDissolvedBy(),
+					m.getMoles(), m.getMolesOfAcidToDissolve()));
+		}
+		return list;
 	}
 
 	public void persist() {

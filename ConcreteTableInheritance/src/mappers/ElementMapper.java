@@ -1,9 +1,12 @@
 package mappers;
 
+import java.util.ArrayList;
+
 import Interfaces.ElementMapperInterface;
 import datasource.DatabaseException;
 import datasource.ElementDTO;
 import datasource.ElementRDG;
+import datasource.ElementTDG;
 import domainObjects.ElementDomainObject;
 
 public class ElementMapper implements ElementMapperInterface {
@@ -24,6 +27,49 @@ public class ElementMapper implements ElementMapperInterface {
 		this.moles = moles;
 
 		return new ElementDomainObject(this);
+	}
+
+	public ElementDomainObject findByID(int id) throws Exception {
+		ElementRDG element = ElementRDG.findByID(id);
+		return createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
+				element.getMoles());
+	}
+
+	public ElementDomainObject findByName(String name) throws Exception {
+		ElementRDG element = ElementRDG.findByName(name);
+		return createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
+				element.getMoles());
+	}
+
+	public ElementDomainObject findByAtomicNumber(int aNum) throws Exception {
+		ElementRDG element = ElementRDG.findByAtomicNumber(aNum);
+		return createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
+				element.getMoles());
+	}
+
+	public ElementDomainObject findByAtomicMass(double aMass) throws Exception {
+		ElementRDG element = ElementRDG.findByAtomicMass(aMass);
+		return createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
+				element.getMoles());
+	}
+
+	public ArrayList<ElementDomainObject> findElementsInRange(double highRange, double lowRange) throws Exception {
+		ElementTDG et = ElementTDG.getInstance();
+		ArrayList<ElementDTO> edto = et.getElementsInRange(lowRange, highRange);
+		ArrayList<ElementDomainObject> edo = new ArrayList<ElementDomainObject>();
+		for (ElementDTO e : edto) {
+			edo.add(createElement(e.getID(), e.getName(), e.getAtomicNumber(), e.getAtomicMass(), e.getMoles()));
+		}
+		return edo;
+	}
+	
+	public ArrayList<ElementDomainObject> getAllElements() throws Exception {
+		ArrayList<ElementDTO> elements = ElementTDG.getInstance().getAllElements();
+		ArrayList<ElementDomainObject> list = new ArrayList<>();
+		for (ElementDTO e : elements) {
+			list.add(createElement(e.getID(), e.getName(), e.getAtomicNumber(), e.getAtomicMass(), e.getMoles()));
+		}
+		return list;
 	}
 
 	public void persist() {

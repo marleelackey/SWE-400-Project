@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Interfaces.CompoundMapperInterface;
+import datasource.CompoundDTO;
 import datasource.CompoundMadeOfElementRDG;
 import datasource.CompoundRDG;
+import datasource.CompoundTDG;
 import datasource.DatabaseException;
 import datasource.ElementDTO;
 import datasource.ElementRDG;
@@ -59,7 +61,7 @@ public class CompoundMapper implements CompoundMapperInterface {
 		} catch (Exception e) {
 			DatabaseException.detectError(e, "Error spotted in the CompoundMapper class, persist method");
 		}
-	}	
+	}
 
 	private void compareElementsAndPersist() throws SQLException, DatabaseException {
 		// see if a relationship has been deleted from cdo
@@ -69,11 +71,12 @@ public class CompoundMapper implements CompoundMapperInterface {
 			if (!cdo.getElements().contains(e)) {
 				System.out.println("doesn not contain e");
 				myElements.remove(e);
-				CompoundMadeOfElementRDG r = new CompoundMadeOfElementRDG(compoundID, e.getElement().getElementID(), e.getQuantityInCompound());
+				CompoundMadeOfElementRDG r = new CompoundMadeOfElementRDG(compoundID, e.getElement().getElementID(),
+						e.getQuantityInCompound());
 				r.delete();
 			}
 		}
-		
+
 		for (QuantifiedElement e : cdo.getElements()) {
 			System.out.println(e.getElement().getElementName());
 		}
@@ -81,7 +84,8 @@ public class CompoundMapper implements CompoundMapperInterface {
 		for (QuantifiedElement e : cdo.getElements()) {
 			if (!myElements.contains(e)) {
 				myElements.add(e);
-				CompoundMadeOfElementRDG r = new CompoundMadeOfElementRDG(compoundID, e.getElement().getElementID(), e.getQuantityInCompound());
+				CompoundMadeOfElementRDG r = new CompoundMadeOfElementRDG(compoundID, e.getElement().getElementID(),
+						e.getQuantityInCompound());
 				r.insert();
 			}
 		}
@@ -98,13 +102,14 @@ public class CompoundMapper implements CompoundMapperInterface {
 
 			if (currentQ != domainQ && domainQ != 0) {
 				e.setQuantityInCompound(domainQ);
-				CompoundMadeOfElementRDG r = new CompoundMadeOfElementRDG(compoundID, e.getElement().getElementID(), e.getQuantityInCompound());
+				CompoundMadeOfElementRDG r = new CompoundMadeOfElementRDG(compoundID, e.getElement().getElementID(),
+						e.getQuantityInCompound());
 				r.update();
 			}
 		}
 
 	}
-	
+
 	public int getCompoundID() {
 		return compoundID;
 	}
@@ -139,7 +144,49 @@ public class CompoundMapper implements CompoundMapperInterface {
 
 	public void setCdo(CompoundDomainObject compoundDomainObject) {
 		cdo = compoundDomainObject;
-			
+
+	}
+
+	public ArrayList<CompoundDomainObject> getAllCompounds() throws Exception {
+		ArrayList<CompoundDTO> cdto = CompoundTDG.getSingleton().getAllCompounds();
+		ArrayList<CompoundDomainObject> cdo = new ArrayList<CompoundDomainObject>();
+		for (CompoundDTO c : cdto) {
+			compoundID = c.getCompoundID();
+			compoundName = c.getCompoundName();
+			moles = c.getCompoundMoles();
+
+			ArrayList<ElementDTO> elements = ElementTDG.getInstance().getElementsInCompound(compoundID);
+			ArrayList<QuantifiedElement> actualElements = new ArrayList<>();
+			for (ElementDTO e : elements) {
+				ElementMapper em = new ElementMapper();
+				ElementDomainObject actualElement = em.createElement(e.getID(), e.getName(), e.getAtomicNumber(),
+						e.getAtomicMass(), e.getMoles());
+				actualElements.add(
+						new QuantifiedElement(actualElement, ElementRDG.findQuantityInCompound(e.getID(), compoundID)));
+			}
+			myElements = actualElements;
+
+			cdo.add(new CompoundDomainObject(this));
+		}
+		return cdo;
+	}
+
+	/**
+	 * Finds all the compounds that contain a specific element
+	 * 
+	 * @param elementID the ID of the element to search by
+	 * @return the list of compounds
+	 * @throws Exception
+	 */
+	public ArrayList<CompoundDomainObject> getCompoundsByElement(int elementID) throws Exception {
+		ArrayList<CompoundDTO> comps = CompoundTDG.getSingleton().getCompoundsByElement(elementID);
+		ArrayList<CompoundDomainObject> list = new ArrayList<>();
+
+		for (CompoundDTO c : comps) {
+			list.add(findByID(c.getCompoundID()));
+		}
+
+		return list;
 	}
 
 }
