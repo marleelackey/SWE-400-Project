@@ -20,8 +20,13 @@ import commands.ExecuterForCommands;
 import commands.FindElementByAtomicMassCmd;
 import commands.FindElementByAtomicNumberCmd;
 import commands.FindElementsInRangeCmd;
+import commands.GetAcidIDByNameCmd;
+import commands.GetAllAcidsCmd;
+import commands.GetAllElementsCmd;
 import commands.GetElementIDByNameCmd;
+import commands.ModifyElementAmountCmd;
 import domainObjects.ElementDomainObject;
+import mappers.AcidMapper;
 import mappers.MetalMapper;
 
 public class ElementGUI implements guiInterface {
@@ -74,32 +79,49 @@ public class ElementGUI implements guiInterface {
 		addElementPanel.add(nameInput);
 		// Amount
 
+		addElementPanel.add(new JLabel("Amount of Moles: "));
+		JTextField molesInput = new JTextField();
+		addElementPanel.add(molesInput);
+		
 		JCheckBox isMetalInput = new JCheckBox("Is Metal?");
 		addElementPanel.add(isMetalInput);
 
-//		AcidMapper am = new AcidMapper();
-//		am.getAllAcids();
-		JComboBox metalDissolvedByInput = new JComboBox(new String[] { "Thing1", "Thing2", "ThingThrice" });
+		GetAllAcidsCmd gaac = new GetAllAcidsCmd();
+		try {
+			new ExecuterForCommands(gaac);
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+
+		ArrayList<String> names = new ArrayList<String>();
+		gaac.getAcids().forEach((n) -> names.add(n.getAcidName()));
+		JComboBox metalDissolvedByInput = new JComboBox(names.toArray());
 		addElementPanel.add(metalDissolvedByInput);
 		// How much mole to dissolve
 
+		addElementPanel.add(new JLabel("Moles to Dissolve: "));
+		JTextField molesToDissolveInput = new JTextField();
+		addElementPanel.add(molesToDissolveInput);
+
 		addElementButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				GetAcidIDByNameCmd goo = new GetAcidIDByNameCmd(metalDissolvedByInput.getSelectedItem().toString());
 				try {
-					new ExecuterForCommands(new GetElementIDByNameCmd(nameInput.getText()));
-				} catch (Exception e2) {
-					e2.printStackTrace();
+					new ExecuterForCommands(goo);
+				} catch (Exception ee) {
+					System.out.println("getacididbynamefail: " + metalDissolvedByInput.getSelectedItem().toString());
+					ee.printStackTrace();
 				}
 				try {
 					new ExecuterForCommands(
 							new AddElementCmd(547, nameInput.getText(), Integer.parseInt(atomicNumberInput.getText()),
-									Double.parseDouble(atomicMassInput.getText()), isMetalInput.isSelected(), 0, 0, 0));
+									Double.parseDouble(atomicMassInput.getText()), isMetalInput.isSelected(), goo.getAcidID(),
+									Double.parseDouble(molesInput.getText()), Double.parseDouble(molesToDissolveInput.getText())));
 				} catch (NumberFormatException e1) {
-
+					System.out.println("number probaddelementfail");
 					e1.printStackTrace();
 				} catch (Exception e1) {
-
+					System.out.println("addelementfail");
 					e1.printStackTrace();
 				}
 //				AddElementCmd(int id, String name, int num, double mass, boolean metal, int a_id, double mol,
@@ -244,7 +266,20 @@ public class ElementGUI implements guiInterface {
 		JPanel modifyElementAmountPanel = new JPanel(new GridLayout(0, 2));
 		modifyElementAmountPanel.setBackground(new Color(220, 200, 220));
 		modifyElementAmountPanel.add(new JLabel("Modify Amount"));
-		JComboBox elementNameInput = new JComboBox(new String[] { "Radon", "Brodium", "CoolGuyElement" });
+		
+		ArrayList<String> eleNames = new ArrayList<String>();
+		GetAllElementsCmd glee = new GetAllElementsCmd();
+		try {
+			new ExecuterForCommands(glee);
+		} catch(Exception eet) {
+			eet.printStackTrace();
+		}
+		
+		glee.getElements().forEach((n) -> eleNames.add(n.getElementName()));
+
+		
+		JComboBox elementNameInput = new JComboBox(eleNames.toArray());
+		
 		modifyElementAmountPanel.add(elementNameInput);
 		modifyElementAmountPanel.add(new JLabel("New Amount"));
 		JTextField newAmountInput = new JTextField();
@@ -252,9 +287,18 @@ public class ElementGUI implements guiInterface {
 		JButton changeAmount = new JButton("Change");
 		changeAmount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Command Stuff goes here
-				 */
+				GetElementIDByNameCmd moose = new GetElementIDByNameCmd(elementNameInput.getSelectedItem().toString());
+				try {
+					new ExecuterForCommands(moose);
+				} catch (Exception ahhh) {
+					System.out.println(elementNameInput.getSelectedItem().toString());
+					ahhh.printStackTrace();
+				}
+				try {
+				new ExecuterForCommands(new ModifyElementAmountCmd(moose.getElementID(), Double.parseDouble(newAmountInput.getText())));
+				} catch (Exception woo) {
+					woo.printStackTrace();
+				}
 			}
 		});
 		modifyElementAmountPanel.add(changeAmount);
