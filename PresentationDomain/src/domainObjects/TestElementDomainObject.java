@@ -15,7 +15,7 @@ public class TestElementDomainObject {
 	 * Test that the constructor and setters work properly
 	 * @throws Exception
 	 */
-	@Test
+	@Test(expected = Exception.class)
 	public void testConstructorAndSetters() throws Exception {
 		// int ID, String elementName, int atomicNumber, double atomicMass, double moles
 		ElementMapper d = new ElementMapper();
@@ -34,5 +34,7 @@ public class TestElementDomainObject {
 		assertNotEquals("Carodine Rocks", e.getElementName()); // name can't be two words
 		
 	}
+	
+
 
 }
