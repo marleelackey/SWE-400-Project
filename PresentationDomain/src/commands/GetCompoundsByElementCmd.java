@@ -14,7 +14,7 @@ import mappers.CompoundMapper;
  * @author Mad&Ad
  *
  */
-public class GetCompoundsByElement implements CommandInterface {
+public class GetCompoundsByElementCmd implements CommandInterface {
 
 	private ArrayList<CompoundDomainObject> compounds;
 	private int elementID;
@@ -24,7 +24,7 @@ public class GetCompoundsByElement implements CommandInterface {
 	 * 
 	 * @param eID the ID of the element we're searching for
 	 */
-	public GetCompoundsByElement(int eID) {
+	public GetCompoundsByElementCmd(int eID) {
 		elementID = eID;
 	}
 
