@@ -9,6 +9,7 @@ public class TestAcidDomainObject {
 	/**
 	 * Test the constructor and setters
 	 */
+	
 	public void test() {
 		AcidMapper b = new AcidMapper();
 		AcidDomainObject bdo = new AcidDomainObject(b);

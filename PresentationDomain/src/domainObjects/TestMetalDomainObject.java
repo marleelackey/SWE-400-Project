@@ -16,7 +16,7 @@ public class TestMetalDomainObject {
 	 * Test that the constructor and setters work properly
 	 * @throws Exception
 	 */
-	@Test
+	@Test(expected = Exception.class)
 	public void test() throws Exception {
 		
 //		int ID, String elementName, int atomicNumber, double atomicMass, int dissolvedBy, double moles, double molesOfAcidToDissolve
@@ -28,7 +28,7 @@ public class TestMetalDomainObject {
 		assertEquals(e.getMetalAtomicNumber(), 123);
 		assertEquals(e.getMetalID(), 12);
 		assertEquals(e.getMetalName(), "Bobrogyn");
-		assertEquals(e.getAcidID(), 2);  //acid ID is equivelant to dissolvedBy I believe?
+		assertEquals(e.getDissolvedBy(), 2);  //acid ID is equivelant to dissolvedBy I believe?
 		
 		// TODO: Should we add dissolvedBy, molesOfAcidToDissolve, etc to DO??
 
