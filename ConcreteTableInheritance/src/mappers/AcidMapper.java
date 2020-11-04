@@ -69,7 +69,21 @@ public class AcidMapper implements AcidMapperInterface {
 		return metals;
 	}
 
-	public static domainObjects.AcidDomainObject findByName(String acidName) throws Exception {
+//	@Override
+//	public static domainObjects.AcidDomainObject findByName(String acidName) throws Exception {
+//		AcidMapper mapper = new AcidMapper();
+//		AcidRDG rdg = AcidRDG.findByName(acidName);
+//		
+//		mapper.ident = rdg.getAcidID();
+//		mapper.name = rdg.getAcidName();
+//		mapper.moles = rdg.getAcidMoles();
+//		mapper.ident = rdg.getAcidSolute();
+//
+//		return mapper.createAcid(rdg.getAcidID(), rdg.getAcidName(), rdg.getAcidMoles(), rdg.getAcidSolute());
+//	}
+	
+	@Override
+	public AcidDomainObject findByName(String acidName) throws Exception {
 		AcidMapper mapper = new AcidMapper();
 		AcidRDG rdg = AcidRDG.findByName(acidName);
 		
@@ -81,6 +95,7 @@ public class AcidMapper implements AcidMapperInterface {
 		return mapper.createAcid(rdg.getAcidID(), rdg.getAcidName(), rdg.getAcidMoles(), rdg.getAcidSolute());
 	}
 	
+	@Override
 	public void persist() {
 		// TODO Auto-generated method stub
 		

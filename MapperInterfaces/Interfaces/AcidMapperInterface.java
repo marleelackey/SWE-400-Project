@@ -20,4 +20,8 @@ public interface AcidMapperInterface {
 
 	ArrayList<AcidDomainObject> getAllAcids() throws Exception;
 
+	AcidDomainObject findByName(String acidName) throws Exception;
+
+	void persist();
+
 }
