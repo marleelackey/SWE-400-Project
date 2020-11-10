@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,6 +13,15 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import commands.ExecuterForCommands;
+import commands.FindIDByNameCmd;
+import commands.GetAllAcidsCmd;
+import commands.GetAllBasesCmd;
+import commands.GetAllCompoundsCmd;
+import commands.GetAllElementsCmd;
+import commands.GetAllMetalsCmd;
+import commands.ModifyChemicalAmountCmd;
 
 public class ChemicalGUI implements guiInterface {
 	JPanel chemicalMainPanel = new JPanel();
@@ -63,7 +73,27 @@ public class ChemicalGUI implements guiInterface {
 		JPanel modifyChemicalAmountPanel = new JPanel(new GridLayout(0, 2));
 		modifyChemicalAmountPanel.setBackground(new Color(220, 200, 220));	
 		modifyChemicalAmountPanel.add(new JLabel("Modify Amount"));
-		JComboBox chemicalNameInput = new JComboBox(new String[] {"GenericChemName", "Chem", "CoolGuyChem"});
+		GetAllAcidsCmd acids = new GetAllAcidsCmd();
+		GetAllBasesCmd bases = new GetAllBasesCmd();
+		GetAllCompoundsCmd compounds = new GetAllCompoundsCmd();
+		GetAllElementsCmd elements = new GetAllElementsCmd();
+		GetAllMetalsCmd metals = new GetAllMetalsCmd();
+		ArrayList<String> names = new ArrayList<String>();
+		try {
+			new ExecuterForCommands(acids);
+			acids.getAcids().forEach(n -> names.add(n.getAcidName()));
+			new ExecuterForCommands(bases);
+			bases.getBases().forEach(n -> names.add(n.getBaseName()));
+			new ExecuterForCommands(compounds);
+			compounds.getCdo().forEach(n -> names.add(n.getCompoundName()));
+			new ExecuterForCommands(elements);
+			elements.getElements().forEach(n -> names.add(n.getElementName()));
+			new ExecuterForCommands(metals);
+			metals.getMetals().forEach(n -> names.add(n.getMetalName()));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		JComboBox chemicalNameInput = new JComboBox(names.toArray());
 		modifyChemicalAmountPanel.add(chemicalNameInput);
 		modifyChemicalAmountPanel.add(new JLabel("New Amount"));
 		JTextField newAmountInput = new JTextField();
@@ -71,10 +101,14 @@ public class ChemicalGUI implements guiInterface {
 		JButton changeAmount = new JButton("Change");
 		changeAmount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Command Stuff goes here
-				 * Integer.parseInt(newAmountInput.getText()) -- new amount
-				 */
+				FindIDByNameCmd nameFinder = new FindIDByNameCmd(chemicalNameInput.getSelectedItem().toString());
+				try {
+					new ExecuterForCommands(nameFinder);
+					ModifyChemicalAmountCmd newMole = new ModifyChemicalAmountCmd(nameFinder.getID(), Double.parseDouble(newAmountInput.getText()));
+					new ExecuterForCommands(newMole);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		modifyChemicalAmountPanel.add(changeAmount);

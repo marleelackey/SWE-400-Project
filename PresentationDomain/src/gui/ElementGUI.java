@@ -28,6 +28,7 @@ import commands.GetAllElementsCmd;
 import commands.GetCompoundsByElementCmd;
 import commands.GetElementIDByNameCmd;
 import commands.ModifyChemicalAmountCmd;
+import commands.ModifyElementAtomicNumberCmd;
 import domainObjects.ElementDomainObject;
 import mappers.AcidMapper;
 import mappers.MetalMapper;
@@ -85,7 +86,7 @@ public class ElementGUI implements guiInterface {
 		addElementPanel.add(new JLabel("Amount of Moles: "));
 		JTextField molesInput = new JTextField();
 		addElementPanel.add(molesInput);
-		
+
 		JCheckBox isMetalInput = new JCheckBox("Is Metal?");
 		addElementPanel.add(isMetalInput);
 
@@ -118,8 +119,9 @@ public class ElementGUI implements guiInterface {
 				try {
 					new ExecuterForCommands(
 							new AddElementCmd(547, nameInput.getText(), Integer.parseInt(atomicNumberInput.getText()),
-									Double.parseDouble(atomicMassInput.getText()), isMetalInput.isSelected(), goo.getAcidID(),
-									Double.parseDouble(molesInput.getText()), Double.parseDouble(molesToDissolveInput.getText())));
+									Double.parseDouble(atomicMassInput.getText()), isMetalInput.isSelected(),
+									goo.getAcidID(), Double.parseDouble(molesInput.getText()),
+									Double.parseDouble(molesToDissolveInput.getText())));
 				} catch (NumberFormatException e1) {
 					System.out.println("number probaddelementfail");
 					e1.printStackTrace();
@@ -163,9 +165,6 @@ public class ElementGUI implements guiInterface {
 				for (ElementDomainObject thingamabob : loo) {
 					System.out.println(thingamabob.toString());
 				}
-				/**
-				 * Command Stuff goes here
-				 */
 			}
 		});
 
@@ -204,7 +203,7 @@ public class ElementGUI implements guiInterface {
 					}
 					System.out.println(c1.getEdo().toString());
 
-				} else if(findByType.getItemAt(findByType.getSelectedIndex()) == "Name") {
+				} else if (findByType.getItemAt(findByType.getSelectedIndex()) == "Name") {
 					FindElementByNameCmd c1 = new FindElementByNameCmd(findByInput.getText());
 					try {
 						new ExecuterForCommands(c1);
@@ -243,8 +242,7 @@ public class ElementGUI implements guiInterface {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
-				
+
 			}
 		});
 
@@ -255,7 +253,15 @@ public class ElementGUI implements guiInterface {
 		JPanel modifyElementPanel = new JPanel(new GridLayout(0, 2));
 		modifyElementPanel.setBackground(new Color(52, 200, 220));
 		modifyElementPanel.add(new JLabel("Modify Element"));
-		JComboBox elementNameInput = new JComboBox(new String[] { "Radon", "Brodium", "CoolGuyElement" });
+		GetAllElementsCmd elementGrabber = new GetAllElementsCmd();
+		ArrayList<String> eNames = new ArrayList<String>();
+		try {
+			new ExecuterForCommands(elementGrabber);
+			elementGrabber.getElements().forEach(n -> eNames.add(n.getElementName()));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		JComboBox elementNameInput = new JComboBox(eNames.toArray());
 		modifyElementPanel.add(elementNameInput);
 		modifyElementPanel.add(new JLabel("New Atomic Number:"));
 		JTextField newNumInput = new JTextField();
@@ -263,9 +269,17 @@ public class ElementGUI implements guiInterface {
 		JButton changeNum = new JButton("Change");
 		changeNum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Command Stuff goes here
-				 */
+				FindIDByNameCmd finder = new FindIDByNameCmd(elementNameInput.getSelectedItem().toString());
+				try {
+					new ExecuterForCommands(finder);
+					System.out.println(finder.getID());
+					ModifyElementAtomicNumberCmd newNum = new ModifyElementAtomicNumberCmd(finder.getID(), Integer.parseInt(newNumInput.getText()));
+					System.out.println(newNumInput.getText());
+					new ExecuterForCommands(newNum);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		modifyElementPanel.add(changeNum);
@@ -276,20 +290,19 @@ public class ElementGUI implements guiInterface {
 		JPanel modifyElementAmountPanel = new JPanel(new GridLayout(0, 2));
 		modifyElementAmountPanel.setBackground(new Color(220, 200, 220));
 		modifyElementAmountPanel.add(new JLabel("Modify Amount"));
-		
+
 		ArrayList<String> eleNames = new ArrayList<String>();
 		GetAllElementsCmd glee = new GetAllElementsCmd();
 		try {
 			new ExecuterForCommands(glee);
-		} catch(Exception eet) {
+		} catch (Exception eet) {
 			eet.printStackTrace();
 		}
-		
+
 		glee.getElements().forEach((n) -> eleNames.add(n.getElementName()));
 
-		
 		JComboBox elementNameInput = new JComboBox(eleNames.toArray());
-		
+
 		modifyElementAmountPanel.add(elementNameInput);
 		modifyElementAmountPanel.add(new JLabel("New Amount"));
 		JTextField newAmountInput = new JTextField();
@@ -305,7 +318,8 @@ public class ElementGUI implements guiInterface {
 					ahhh.printStackTrace();
 				}
 				try {
-				new ExecuterForCommands(new ModifyChemicalAmountCmd(moose.getID(), Double.parseDouble(newAmountInput.getText())));
+					new ExecuterForCommands(
+							new ModifyChemicalAmountCmd(moose.getID(), Double.parseDouble(newAmountInput.getText())));
 				} catch (Exception woo) {
 					woo.printStackTrace();
 				}
