@@ -19,10 +19,13 @@ import commands.AddElementCmd;
 import commands.ExecuterForCommands;
 import commands.FindElementByAtomicMassCmd;
 import commands.FindElementByAtomicNumberCmd;
+import commands.FindElementByNameCmd;
 import commands.FindElementsInRangeCmd;
+import commands.FindIDByNameCmd;
 import commands.GetAcidIDByNameCmd;
 import commands.GetAllAcidsCmd;
 import commands.GetAllElementsCmd;
+import commands.GetCompoundsByElementCmd;
 import commands.GetElementIDByNameCmd;
 import commands.ModifyElementAmountCmd;
 import domainObjects.ElementDomainObject;
@@ -201,17 +204,14 @@ public class ElementGUI implements guiInterface {
 					}
 					System.out.println(c1.getEdo().toString());
 
-					/**
-					 * Need to uncomment when findElementByNameCmd is done
-					 */
-//				} else if(findByType.getItemAt(findByType.getSelectedIndex()) == "Name") {
-//					FindElementByNameCmd c1 = new FindElementByNameCmd(findByInput.getText());
-//					try {
-//						new ExecuterForCommands(c1);
-//					} catch (Exception e1) {
-//						e1.printStackTrace();
-//					}
-//					System.out.println(c1.getEdo().toString());
+				} else if(findByType.getItemAt(findByType.getSelectedIndex()) == "Name") {
+					FindElementByNameCmd c1 = new FindElementByNameCmd(findByInput.getText());
+					try {
+						new ExecuterForCommands(c1);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					System.out.println(c1.getEdo().toString());
 				} else {
 					System.out.println("Ruh roh");
 				}
@@ -232,9 +232,23 @@ public class ElementGUI implements guiInterface {
 		getCompoundByElementPanel.add(elementNameInput);
 		getCompoundsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Command Stuff goes here
-				 */
+				ArrayList<String> compoundNames = new ArrayList<String>();
+				GetElementIDByNameCmd nameID = new GetElementIDByNameCmd(elementNameInput.getText());
+				try {
+					/**
+					 * HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					 */
+					new ExecuterForCommands(nameID);
+					System.out.println("nameID Is... " + nameID.getElementID());
+					GetCompoundsByElementCmd compID = new GetCompoundsByElementCmd(nameID.getElementID());
+					new ExecuterForCommands(compID);
+					compID.getCompounds().forEach(n -> compoundNames.add(n.getCompoundName()));
+					compoundNames.forEach(n -> System.out.println(n));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				
+				
 			}
 		});
 
