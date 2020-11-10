@@ -56,7 +56,7 @@ public class ElementRDG {
 			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"),
 					rs.getDouble("elementAtomicMass"), rs.getString("elementName"), rs.getDouble("elementMoles"));
 		} catch (SQLException s) {
-			return data;			
+			return data;
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
@@ -125,9 +125,10 @@ public class ElementRDG {
 			cn = db.getConnection();
 			ResultSet rs = cn.createStatement()
 					.executeQuery("SELECT * FROM Element WHERE elementName = '" + eName + "'");
-			rs.next();
-			data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"),
-					rs.getDouble("elementAtomicMass"), rs.getString("elementName"), rs.getDouble("elementMoles"));
+			if (rs.next()) {
+				data = new ElementRDG(rs.getInt("elementOrMetalID"), rs.getInt("elementAtomicNumber"),
+						rs.getDouble("elementAtomicMass"), rs.getString("elementName"), rs.getDouble("elementMoles"));
+			}
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}

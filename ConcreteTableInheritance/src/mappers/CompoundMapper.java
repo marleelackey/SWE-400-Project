@@ -181,7 +181,7 @@ public class CompoundMapper implements CompoundMapperInterface {
 	public ArrayList<CompoundDomainObject> getCompoundsByElement(int elementID) throws Exception {
 		ArrayList<CompoundDTO> comps = CompoundTDG.getSingleton().getCompoundsByElement(elementID);
 		ArrayList<CompoundDomainObject> list = new ArrayList<>();
-
+		
 		for (CompoundDTO c : comps) {
 			list.add(findByID(c.getCompoundID()));
 		}

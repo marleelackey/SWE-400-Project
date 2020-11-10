@@ -88,6 +88,7 @@ public class CompoundRDG {
 	public static CompoundRDG findByIDConcrete(int ID) {
 		CompoundRDG chem = null;
 		try {
+			connection = DatabaseManager.getSingleton().getConnection();
 			ResultSet r = connection.createStatement()
 					.executeQuery("SELECT * FROM Compound WHERE Compound.compoundID = " + ID);
 			r.next();
@@ -107,14 +108,17 @@ public class CompoundRDG {
 	 * 
 	 * @param name the name of a chemical you are looking for
 	 * @return ChemicalRDG
+	 * @throws DatabaseException
 	 */
-	public static CompoundRDG findByNameConcrete(String name) {
+	public static CompoundRDG findByNameConcrete(String name) throws DatabaseException {
 		CompoundRDG chem = null;
 		try {
+			connection = DatabaseManager.getSingleton().getConnection();
 			ResultSet r = connection.createStatement()
 					.executeQuery("SELECT * FROM Compound WHERE Compound.compoundName = '" + name + "'");
-			r.next();
-			chem = new CompoundRDG(r.getInt(1), r.getString(2), r.getDouble(3));
+			if (r.next()) {
+				chem = new CompoundRDG(r.getInt(1), r.getString(2), r.getDouble(3));
+			}
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}

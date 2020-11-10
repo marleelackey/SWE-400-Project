@@ -78,15 +78,18 @@ public class MetalRDG {
 	 * @param name
 	 * @return A metalRDG with information from the database corresponding to the
 	 *         given name
+	 * @throws DatabaseException 
 	 */
-	public static MetalRDG findByName(String name) {
+	public static MetalRDG findByName(String name) throws DatabaseException {
 		MetalRDG results = null;
+		cn = DatabaseManager.getSingleton().getConnection();
 		try {
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Metal WHERE metalName = '" + name + "'");
-			rs.next();
-			results = new MetalRDG(rs.getInt("elementOrMetalID"), rs.getInt("metalAtomicNumber"),
-					rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"),
-					rs.getDouble("metalMoles"), rs.getDouble("molesOfAcidToDissolve"));
+			if (rs.next()) {
+				results = new MetalRDG(rs.getInt("elementOrMetalID"), rs.getInt("metalAtomicNumber"),
+						rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"),
+						rs.getDouble("metalMoles"), rs.getDouble("molesOfAcidToDissolve"));
+			}
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}
@@ -135,28 +138,27 @@ public class MetalRDG {
 			DatabaseException.detectError(e);
 		}
 	}
-	
+
 	public void insert() {
 
 		PreparedStatement stmt;
 		try {
-			stmt = DatabaseManager.getSingleton().getConnection().prepareStatement(
-					"INSERT INTO Metal VALUES (?, ?, ?, ?, ?, ?, ?)");
-			
+			stmt = DatabaseManager.getSingleton().getConnection()
+					.prepareStatement("INSERT INTO Metal VALUES (?, ?, ?, ?, ?, ?, ?)");
+
 			stmt.setInt(1, ID);
 			stmt.setString(2, name);
 			stmt.setInt(3, atomicNumber);
 			stmt.setDouble(4, atomicMass);
 			stmt.setInt(5, dissolvedBy);
 			stmt.setDouble(6, moles);
-			stmt.setDouble(7, molesOfAcidToDissolve);		
+			stmt.setDouble(7, molesOfAcidToDissolve);
 
-
-			stmt.execute();	
+			stmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
 			DatabaseException.detectError(e, "exception in ElementRDG.insert()");
-		}		
+		}
 	}
 
 	// Getters and Setters

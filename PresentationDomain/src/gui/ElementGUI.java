@@ -27,7 +27,7 @@ import commands.GetAllAcidsCmd;
 import commands.GetAllElementsCmd;
 import commands.GetCompoundsByElementCmd;
 import commands.GetElementIDByNameCmd;
-import commands.ModifyElementAmountCmd;
+import commands.ModifyChemicalAmountCmd;
 import domainObjects.ElementDomainObject;
 import mappers.AcidMapper;
 import mappers.MetalMapper;
@@ -235,11 +235,7 @@ public class ElementGUI implements guiInterface {
 				ArrayList<String> compoundNames = new ArrayList<String>();
 				GetElementIDByNameCmd nameID = new GetElementIDByNameCmd(elementNameInput.getText());
 				try {
-					/**
-					 * HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-					 */
 					new ExecuterForCommands(nameID);
-					System.out.println("nameID Is... " + nameID.getElementID());
 					GetCompoundsByElementCmd compID = new GetCompoundsByElementCmd(nameID.getElementID());
 					new ExecuterForCommands(compID);
 					compID.getCompounds().forEach(n -> compoundNames.add(n.getCompoundName()));
@@ -301,7 +297,7 @@ public class ElementGUI implements guiInterface {
 		JButton changeAmount = new JButton("Change");
 		changeAmount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GetElementIDByNameCmd moose = new GetElementIDByNameCmd(elementNameInput.getSelectedItem().toString());
+				FindIDByNameCmd moose = new FindIDByNameCmd(elementNameInput.getSelectedItem().toString());
 				try {
 					new ExecuterForCommands(moose);
 				} catch (Exception ahhh) {
@@ -309,7 +305,7 @@ public class ElementGUI implements guiInterface {
 					ahhh.printStackTrace();
 				}
 				try {
-				new ExecuterForCommands(new ModifyElementAmountCmd(moose.getElementID(), Double.parseDouble(newAmountInput.getText())));
+				new ExecuterForCommands(new ModifyChemicalAmountCmd(moose.getID(), Double.parseDouble(newAmountInput.getText())));
 				} catch (Exception woo) {
 					woo.printStackTrace();
 				}

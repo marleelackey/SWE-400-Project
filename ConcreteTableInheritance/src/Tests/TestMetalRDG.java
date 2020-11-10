@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import datasource.DatabaseException;
 import datasource.MetalRDG;
 
 /**
@@ -45,9 +46,10 @@ public class TestMetalRDG {
 
 	/**
 	 * Tests the findByName method
+	 * @throws DatabaseException 
 	 */
 	@Test
-	public static void testFindByName() {
+	public static void testFindByName() throws DatabaseException {
 		MetalRDG m = MetalRDG.findByName("metal2");
 		assertEquals(m.getAtomicMass(), 22.0, 0.01);
 		assertEquals(m.getAtomicNumber(), 22);
@@ -72,8 +74,9 @@ public class TestMetalRDG {
 
 	/**
 	 * Runs all the tests at once for efficiency
+	 * @throws DatabaseException 
 	 */
-	public static void runAllTheTests() {
+	public static void runAllTheTests() throws DatabaseException {
 		testConstructorAndGetters();
 		testFindByID();
 		testFindByName();

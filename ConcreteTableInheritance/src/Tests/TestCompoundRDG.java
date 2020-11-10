@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import datasource.CompoundRDG;
+import datasource.DatabaseException;
 
 /**
  * 
@@ -31,9 +32,10 @@ public class TestCompoundRDG {
 
 	/**
 	 * Test that all the findBy's work
+	 * @throws DatabaseException 
 	 */
 	@Test
-	public static void testFinders() {
+	public static void testFinders() throws DatabaseException {
 		CompoundRDG comp = CompoundRDG.findByIDConcrete(1);
 		assertEquals(comp.getCompoundID(), 1);
 		assertEquals(comp.getCompoundName(), "Carodine");
@@ -74,8 +76,9 @@ public class TestCompoundRDG {
 
 	/**
 	 * runner used by entire Concrete project to run all tests at once
+	 * @throws DatabaseException 
 	 */
-	public static void runAllTheTests() {
+	public static void runAllTheTests() throws DatabaseException {
 		testConstructorAndGettersAndSetters();
 		testFinders();
 		testFindTypeByName();

@@ -67,8 +67,9 @@ public class AcidRDG {
 		try {
 			c = DatabaseManager.getSingleton().getConnection();
 			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Acid WHERE acidName = '" + name + "'");
-			rs.next();
-			result = new AcidRDG(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
+			if (rs.next()) {
+				result = new AcidRDG(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
+			}
 		} catch (Exception e) {
 			DatabaseException.detectError(e, "AcidRDG.findByName - Concrete");
 		}

@@ -64,8 +64,9 @@ public class BaseRDG {
 		try {
 			c = DatabaseManager.getSingleton().getConnection();
 			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Base WHERE baseName = \'" + nm + "\'");
-			rs.next();
-			result = new BaseRDG(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
+			if (rs.next()) {
+				result = new BaseRDG(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			DatabaseException.detectError(e);
