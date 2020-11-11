@@ -29,7 +29,6 @@ public class CompoundGUI implements guiInterface {
 		
 		setuplistOfCompoundPanel();
 		setupupdateCompoundPanel();
-		setupmodifyCompoundAmountPanel();
 		setupaddElementToCompoundAmountPanel();
 		setupremoveElementFromCompoundAmountPanel();
 	}
@@ -59,28 +58,6 @@ public class CompoundGUI implements guiInterface {
 		});
 
 		compoundControlPanel.add(updateCompoundPanel);
-	}
-	
-	private void setupmodifyCompoundAmountPanel() {
-		JPanel modifyCompoundAmountPanel = new JPanel(new GridLayout(0, 2));
-		modifyCompoundAmountPanel.setBackground(new Color(220, 200, 220));	
-		modifyCompoundAmountPanel.add(new JLabel("Modify Amount"));
-		JComboBox compoundNameInput = new JComboBox(new String[] {"TwoThings", "ThreeThings", "Multiple"});
-		modifyCompoundAmountPanel.add(compoundNameInput);
-		modifyCompoundAmountPanel.add(new JLabel("New Amount"));
-		JTextField newAmountInput = new JTextField();
-		modifyCompoundAmountPanel.add(newAmountInput);
-		JButton changeAmount = new JButton("Change");
-		changeAmount.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Command Stuff goes here
-				 * Integer.parseInt(newAmountInput.getText()) -- new amount
-				 */
-			}
-		});
-		modifyCompoundAmountPanel.add(changeAmount);
-		compoundControlPanel.add(modifyCompoundAmountPanel);
 	}
 	
 	private void setupaddElementToCompoundAmountPanel() {

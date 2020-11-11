@@ -9,7 +9,7 @@ import mappers.MetalMapper;
  * @author Madeline and Adam
  *
  */
-public class OverwriteAcidToDissolveMetalCmd {
+public class OverwriteAcidToDissolveMetalCmd implements CommandInterface {
 
 	private int metalID;
 	private int newAcidID;
@@ -32,7 +32,7 @@ public class OverwriteAcidToDissolveMetalCmd {
 	public void execute() throws Exception {
 		MetalMapper mm = new MetalMapper();
 		MetalDomainObject mdo = mm.findByID(metalID);
-		mdo.setAcidID(newAcidID);
+		mdo.setDissolvedBy(newAcidID);
 		mdo.persist();
 	}
 

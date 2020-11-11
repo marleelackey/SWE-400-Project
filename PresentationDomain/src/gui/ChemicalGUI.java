@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import commands.ExecuterForCommands;
 import commands.FindIDByNameCmd;
+import commands.GenerateLowChemicalsReportCmd;
 import commands.GetAllAcidsCmd;
 import commands.GetAllBasesCmd;
 import commands.GetAllCompoundsCmd;
@@ -40,7 +41,9 @@ public class ChemicalGUI implements guiInterface {
 		setuplistOfChemicalsPanel();
 		setupupdateChemicalPanel();
 		setupmodifyChemicalAmountPanel();
+		setupgenerateLowChemicalReportPanel();
 	}
+
 
 	private void setuplistOfChemicalsPanel() {
 		listOfChemicalsPanel.add(new JLabel("Chemical"));
@@ -113,5 +116,19 @@ public class ChemicalGUI implements guiInterface {
 		});
 		modifyChemicalAmountPanel.add(changeAmount);
 		chemicalControlPanel.add(modifyChemicalAmountPanel);
+	}
+	
+	private void setupgenerateLowChemicalReportPanel() {
+		JPanel chemReportPanel = new JPanel(new GridLayout(0, 2));
+		chemReportPanel.add(new JLabel("Generate Low Chemical Report"));
+		JButton generate = new JButton("Generate");
+		generate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GenerateLowChemicalsReportCmd report = new GenerateLowChemicalsReportCmd("chemReport.txt");
+				new ExecuterForCommands(report);
+			}
+		});
+		chemReportPanel.add(generate);
+		chemicalControlPanel.add(chemReportPanel);
 	}
 }

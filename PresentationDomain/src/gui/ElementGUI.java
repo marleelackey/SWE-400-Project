@@ -58,7 +58,6 @@ public class ElementGUI implements guiInterface {
 		setupfindElementPanel();
 		setupgetCompoundByElementPanel();
 		setupmodifyElementPanel();
-		setupmodifyElementAmountPanel();
 	}
 
 	private void setuplistOfElementsPanel() {
@@ -285,48 +284,4 @@ public class ElementGUI implements guiInterface {
 		modifyElementPanel.add(changeNum);
 		elementControlPanel.add(modifyElementPanel);
 	}
-
-	private void setupmodifyElementAmountPanel() {
-		JPanel modifyElementAmountPanel = new JPanel(new GridLayout(0, 2));
-		modifyElementAmountPanel.setBackground(new Color(220, 200, 220));
-		modifyElementAmountPanel.add(new JLabel("Modify Amount"));
-
-		ArrayList<String> eleNames = new ArrayList<String>();
-		GetAllElementsCmd glee = new GetAllElementsCmd();
-		try {
-			new ExecuterForCommands(glee);
-		} catch (Exception eet) {
-			eet.printStackTrace();
-		}
-
-		glee.getElements().forEach((n) -> eleNames.add(n.getElementName()));
-
-		JComboBox elementNameInput = new JComboBox(eleNames.toArray());
-
-		modifyElementAmountPanel.add(elementNameInput);
-		modifyElementAmountPanel.add(new JLabel("New Amount"));
-		JTextField newAmountInput = new JTextField();
-		modifyElementAmountPanel.add(newAmountInput);
-		JButton changeAmount = new JButton("Change");
-		changeAmount.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FindIDByNameCmd moose = new FindIDByNameCmd(elementNameInput.getSelectedItem().toString());
-				try {
-					new ExecuterForCommands(moose);
-				} catch (Exception ahhh) {
-					System.out.println(elementNameInput.getSelectedItem().toString());
-					ahhh.printStackTrace();
-				}
-				try {
-					new ExecuterForCommands(
-							new ModifyChemicalAmountCmd(moose.getID(), Double.parseDouble(newAmountInput.getText())));
-				} catch (Exception woo) {
-					woo.printStackTrace();
-				}
-			}
-		});
-		modifyElementAmountPanel.add(changeAmount);
-		elementControlPanel.add(modifyElementAmountPanel);
-	}
-
 }

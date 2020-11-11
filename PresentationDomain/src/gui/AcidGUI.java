@@ -29,7 +29,6 @@ public class AcidGUI implements guiInterface {
 		
 		setuplistOfAcidsPanel();
 		setupupdateAcidPanel();
-		setupmodifyAcidAmountPanel();
 	}
 
 	private void setuplistOfAcidsPanel() {
@@ -58,27 +57,5 @@ public class AcidGUI implements guiInterface {
 		});
 		
 		acidControlPanel.add(updateAcidPanel);
-	}
-	
-	private void setupmodifyAcidAmountPanel() {
-		JPanel modifyAcidAmountPanel = new JPanel(new GridLayout(0, 2));
-		modifyAcidAmountPanel.setBackground(new Color(220, 200, 220));	
-		modifyAcidAmountPanel.add(new JLabel("Modify Amount"));
-		JComboBox acidNameInput = new JComboBox(new String[] {"Lava", "Green", "Red"});
-		modifyAcidAmountPanel.add(acidNameInput);
-		modifyAcidAmountPanel.add(new JLabel("New Amount"));
-		JTextField newAmountInput = new JTextField();
-		modifyAcidAmountPanel.add(newAmountInput);
-		JButton changeAmount = new JButton("Change");
-		changeAmount.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Command Stuff goes here
-				 * Integer.parseInt(newAmountInput.getText()) -- new amount
-				 */
-			}
-		});
-		modifyAcidAmountPanel.add(changeAmount);
-		acidControlPanel.add(modifyAcidAmountPanel);
 	}
 }

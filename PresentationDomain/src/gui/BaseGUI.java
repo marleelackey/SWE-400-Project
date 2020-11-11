@@ -29,7 +29,6 @@ public class BaseGUI implements guiInterface {
 		
 		setuplistOfBasesPanel();
 		setupupdateBasePanel();
-		setupmodifyBaseAmountPanel();
 	}
 
 	private void setuplistOfBasesPanel() {
@@ -58,27 +57,5 @@ public class BaseGUI implements guiInterface {
 		
 		baseControlPanel.add(updateBasePanel);
 		
-	}
-	
-	private void setupmodifyBaseAmountPanel() {
-		JPanel modifyBaseAmountPanel = new JPanel(new GridLayout(0, 2));
-		modifyBaseAmountPanel.setBackground(new Color(220, 200, 220));	
-		modifyBaseAmountPanel.add(new JLabel("Modify Amount"));
-		JComboBox baseNameInput = new JComboBox(new String[] {"Foundation", "Bunker", "Water"});
-		modifyBaseAmountPanel.add(baseNameInput);
-		modifyBaseAmountPanel.add(new JLabel("New Amount"));
-		JTextField newAmountInput = new JTextField();
-		modifyBaseAmountPanel.add(newAmountInput);
-		JButton changeAmount = new JButton("Change");
-		changeAmount.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Command Stuff goes here
-				 * Integer.parseInt(newAmountInput.getText()) -- new amount
-				 */
-			}
-		});
-		modifyBaseAmountPanel.add(changeAmount);
-		baseControlPanel.add(modifyBaseAmountPanel);
-	}
+	}	
 }

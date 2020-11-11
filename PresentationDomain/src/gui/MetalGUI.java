@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,6 +13,12 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import commands.ExecuterForCommands;
+import commands.FindIDByNameCmd;
+import commands.GetAllAcidsCmd;
+import commands.GetAllMetalsCmd;
+import commands.OverwriteAcidToDissolveMetalCmd;
 
 public class MetalGUI implements guiInterface {
 	JPanel metalMainPanel = new JPanel();
@@ -30,7 +37,7 @@ public class MetalGUI implements guiInterface {
 		setuplistOfMetalsPanel();
 		setupupdateMetalPanel();
 		setupfillerMetalPanel();
-		setupmodifyMetalAmountPanel();
+		setupoverWriteAcidToDissolveMetalPanel();
 	}
 	
 	private void setuplistOfMetalsPanel() {
@@ -59,30 +66,54 @@ public class MetalGUI implements guiInterface {
 		
 		metalControlPanel.add(updateMetalPanel);
 	}
+	
 	private void setupfillerMetalPanel() {
 		JPanel fillerMetalPanel = new JPanel(new GridLayout(0,2));
 		
 		metalControlPanel.add(fillerMetalPanel);
 	}
-	private void setupmodifyMetalAmountPanel() {
-		JPanel modifyMetalAmountPanel = new JPanel(new GridLayout(0, 2));
-		modifyMetalAmountPanel.setBackground(new Color(220, 200, 220));	
-		modifyMetalAmountPanel.add(new JLabel("Modify Amount"));
-		JComboBox metalNameInput = new JComboBox(new String[] {"Steel", "Iron", "Rusty"});
-		modifyMetalAmountPanel.add(metalNameInput);
-		modifyMetalAmountPanel.add(new JLabel("New Amount"));
-		JTextField newAmountInput = new JTextField();
-		modifyMetalAmountPanel.add(newAmountInput);
-		JButton changeAmount = new JButton("Change");
-		changeAmount.addActionListener(new ActionListener() {
+	
+	private void setupoverWriteAcidToDissolveMetalPanel() {
+		JPanel overwriteAcidPanel = new JPanel(new GridLayout(0,2));
+		overwriteAcidPanel.setBackground(new Color(235, 183, 52));
+		overwriteAcidPanel.add(new JLabel("Overwrite Acid To Dissoolve Metal"));
+		JButton overwriteButton = new JButton("Overwrite");
+		overwriteAcidPanel.add(overwriteButton);
+		overwriteAcidPanel.add(new JLabel("Select Metal"));
+		ArrayList<String> metalNames = new ArrayList<String>();
+		GetAllMetalsCmd metals = new GetAllMetalsCmd();
+		try {
+			new ExecuterForCommands(metals);
+			metals.getMetals().forEach(n -> metalNames.add(n.getMetalName()));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		JComboBox metalNameBox = new JComboBox(metalNames.toArray());
+		overwriteAcidPanel.add(metalNameBox);
+		overwriteAcidPanel.add(new JLabel("Select new Acid"));
+		ArrayList<String> acidNames = new ArrayList<String>();
+		GetAllAcidsCmd acids = new GetAllAcidsCmd();
+		try {
+			new ExecuterForCommands(acids);
+			acids.getAcids().forEach(n -> acidNames.add(n.getAcidName()));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		JComboBox acidNameBox = new JComboBox(acidNames.toArray());
+		overwriteAcidPanel.add(acidNameBox);
+		overwriteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Command Stuff goes here
-				 * Integer.parseInt(newAmountInput.getText()) -- new amount
-				 */
+				FindIDByNameCmd metalName = new FindIDByNameCmd(metalNameBox.getSelectedItem().toString());
+				FindIDByNameCmd acidName = new FindIDByNameCmd(acidNameBox.getSelectedItem().toString());
+				try {
+					new ExecuterForCommands(metalName);
+					new ExecuterForCommands(acidName);
+					new ExecuterForCommands(new OverwriteAcidToDissolveMetalCmd(metalName.getID(), acidName.getID()));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
-		modifyMetalAmountPanel.add(changeAmount);
-		metalControlPanel.add(modifyMetalAmountPanel);
+		metalControlPanel.add(overwriteAcidPanel);
 	}
 }
