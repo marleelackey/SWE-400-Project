@@ -14,7 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import commands.AddElementToCompoundCmd;
+import commands.DeleteElementFromCompoundCmd;
 import commands.ExecuterForCommands;
+import commands.FindElementByNameCmd;
+import commands.FindIDByNameCmd;
 import commands.GetAllCompoundsCmd;
 import commands.GetAllElementsCmd;
 
@@ -69,6 +73,11 @@ public class CompoundGUI implements guiInterface {
 		JPanel addElementToCompoundAmountPanel = new JPanel(new GridLayout(0, 2));
 		addElementToCompoundAmountPanel.setBackground(new Color(220, 240, 220));	
 		addElementToCompoundAmountPanel.add(new JLabel("Add Element"));
+		JButton addElement = new JButton("Add");
+		addElementToCompoundAmountPanel.add(addElement);
+		addElementToCompoundAmountPanel.add(new JLabel("How Much?"));
+		JTextField muchInput = new JTextField();
+		addElementToCompoundAmountPanel.add(muchInput);
 		ArrayList<String> compNames = new ArrayList<String>();
 		GetAllCompoundsCmd compGetter = new GetAllCompoundsCmd();
 		try {
@@ -91,16 +100,22 @@ public class CompoundGUI implements guiInterface {
 		JComboBox elementNameInput = new JComboBox(elementNames.toArray());
 		addElementToCompoundAmountPanel.add(elementNameInput);
 
-		JButton addElement = new JButton("Add");
+		
 		addElement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Command Stuff goes here
-				 * 
-				 */
+				FindIDByNameCmd eleFinder = new FindIDByNameCmd(elementNameInput.getSelectedItem().toString());
+				FindIDByNameCmd compFinder = new FindIDByNameCmd(compoundNameInput.getSelectedItem().toString());
+				try {
+					new ExecuterForCommands(eleFinder);
+					new ExecuterForCommands(compFinder);
+					AddElementToCompoundCmd adder = new AddElementToCompoundCmd(eleFinder.getID(), Integer.parseInt(muchInput.getText()), compFinder.getID());
+					new ExecuterForCommands(adder);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
-		addElementToCompoundAmountPanel.add(addElement);
+
 		compoundControlPanel.add(addElementToCompoundAmountPanel);
 	}
 	
@@ -133,10 +148,16 @@ public class CompoundGUI implements guiInterface {
 		JButton removeElement = new JButton("Remove");
 		removeElement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Command Stuff goes here
-				 * 
-				 */
+				FindIDByNameCmd eleName = new FindIDByNameCmd(elementNameInput.getSelectedItem().toString());
+				FindIDByNameCmd compName = new FindIDByNameCmd(compoundNameInput.getSelectedItem().toString());
+				try {
+					new ExecuterForCommands(eleName);
+					new ExecuterForCommands(compName);
+					DeleteElementFromCompoundCmd remover = new DeleteElementFromCompoundCmd(eleName.getID(), compName.getID());
+					new ExecuterForCommands(remover);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		removeElementFromCompoundAmountPanel.add(removeElement);
