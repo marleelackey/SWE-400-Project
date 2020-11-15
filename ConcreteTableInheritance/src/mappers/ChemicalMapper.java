@@ -122,7 +122,6 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		for (ElementDTO e : elements) {
 			if (e.getMoles() < 20) {
 				lowChemicals.add(createChemical(e.getID(), e.getName(), e.getMoles()));
-				elements.remove(e);
 			}
 		}
 

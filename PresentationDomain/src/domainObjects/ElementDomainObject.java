@@ -67,6 +67,9 @@ public class ElementDomainObject {
 			throw new Exception("Element name should only be one word with no spaces.");
 		} else {
 			elementName = name;
+			if (dataMapper != null ) {
+				dataMapper.setName(name);
+			}
 		}
 	}
 
@@ -82,6 +85,9 @@ public class ElementDomainObject {
 			throw new Exception("You can not have an atomic number that is greater than the atomic mass.");
 		} else {
 			elementAtomicNumber = atomicNumber;
+			if (dataMapper != null ) {
+				dataMapper.setAtomicNumber(atomicNumber);
+			}
 		}
 
 	}
@@ -93,6 +99,9 @@ public class ElementDomainObject {
 	 */
 	public void setElementAtomicMass(double atomicMass) {
 		elementAtomicMass = atomicMass;
+		if (dataMapper != null ) {
+			dataMapper.setAtomicMass(atomicMass);
+		}
 	}
 
 	/**
@@ -102,6 +111,9 @@ public class ElementDomainObject {
 	 */
 	public void setElementMoles(double elementMoles) {
 		this.elementMoles = elementMoles;
+		if (dataMapper != null ) {
+			dataMapper.setMoles(elementMoles);
+		}
 	}
 
 	/**

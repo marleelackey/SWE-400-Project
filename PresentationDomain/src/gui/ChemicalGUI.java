@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -124,8 +127,13 @@ public class ChemicalGUI implements guiInterface {
 		JButton generate = new JButton("Generate");
 		generate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GenerateLowChemicalsReportCmd report = new GenerateLowChemicalsReportCmd("chemReport.txt");
-				new ExecuterForCommands(report);
+				GenerateLowChemicalsReportCmd report;
+				try {
+					report = new GenerateLowChemicalsReportCmd(new File("ChemicalReport.txt"));
+					new ExecuterForCommands(report);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		chemReportPanel.add(generate);

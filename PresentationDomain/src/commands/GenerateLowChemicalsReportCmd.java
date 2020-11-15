@@ -15,7 +15,7 @@ import mappers.ChemicalMapper;
  * @author Madeline and Adam
  *
  */
-public class GenerateLowChemicalsReportCmd {
+public class GenerateLowChemicalsReportCmd implements CommandInterface{
 
 	private File outputFile;
 	private FileWriter fw;
