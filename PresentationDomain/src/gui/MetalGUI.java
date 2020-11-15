@@ -76,7 +76,7 @@ public class MetalGUI implements guiInterface {
 	private void setupoverWriteAcidToDissolveMetalPanel() {
 		JPanel overwriteAcidPanel = new JPanel(new GridLayout(0,2));
 		overwriteAcidPanel.setBackground(new Color(235, 183, 52));
-		overwriteAcidPanel.add(new JLabel("Overwrite Acid To Dissoolve Metal"));
+		overwriteAcidPanel.add(new JLabel("Overwrite Acid To Dissolve Metal"));
 		JButton overwriteButton = new JButton("Overwrite");
 		overwriteAcidPanel.add(overwriteButton);
 		overwriteAcidPanel.add(new JLabel("Select Metal"));
