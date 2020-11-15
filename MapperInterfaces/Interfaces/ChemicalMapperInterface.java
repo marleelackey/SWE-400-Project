@@ -17,5 +17,6 @@ public interface ChemicalMapperInterface {
 	public double getMoles();
 	public ChemicalDomainObject getCdo();
 	public void setCdo(ChemicalDomainObject cdo);
+	ChemicalDomainObject findByName(String name) throws Exception;
 
 }

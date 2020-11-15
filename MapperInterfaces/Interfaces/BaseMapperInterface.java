@@ -7,5 +7,7 @@ import domainObjects.BaseDomainObject;
 public interface BaseMapperInterface {
 	public ArrayList<BaseDomainObject> getAllBases();
 
+	void persist();
+
 
 }

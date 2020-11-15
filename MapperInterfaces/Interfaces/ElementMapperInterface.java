@@ -1,5 +1,7 @@
 package Interfaces;
 
+import java.util.ArrayList;
+
 import domainObjects.ElementDomainObject;
 
 public interface ElementMapperInterface {
@@ -8,10 +10,16 @@ public interface ElementMapperInterface {
 
 	public ElementDomainObject createElement(int ID, String elementName, int atomicNumber, double atomicMass,
 			double moles) throws Exception;
+	ElementDomainObject findByID(int id) throws Exception;
 
-//	public Element findByAtomicNumber(int atomicNumber);
-//	public Element findByAtomicMass(int atomicMass);
-//	public Element findByID(int elementID);
-//	public Element getContainingCompounds(int atomicNumber);
+	ElementDomainObject findByName(String name) throws Exception;
+
+	ElementDomainObject findByAtomicNumber(int aNum) throws Exception;
+
+	ElementDomainObject findByAtomicMass(double aMass) throws Exception;
+
+	ArrayList<ElementDomainObject> findElementsInRange(double highRange, double lowRange) throws Exception;
+
+	ArrayList<ElementDomainObject> getAllElements() throws Exception;
 
 }

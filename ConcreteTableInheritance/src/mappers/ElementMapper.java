@@ -18,6 +18,7 @@ public class ElementMapper implements ElementMapperInterface {
 	private double moles;
 	private ElementDomainObject edo;
 
+	@Override
 	public ElementDomainObject createElement(int ID, String elementName, int atomicNumber, double atomicMass,
 			double moles) throws Exception {
 		ident = ID;
@@ -29,30 +30,35 @@ public class ElementMapper implements ElementMapperInterface {
 		return new ElementDomainObject(this);
 	}
 
+	@Override
 	public ElementDomainObject findByID(int id) throws Exception {
 		ElementRDG element = ElementRDG.findByID(id);
 		return createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
 				element.getMoles());
 	}
 
+	@Override
 	public ElementDomainObject findByName(String name) throws Exception {
 		ElementRDG element = ElementRDG.findByName(name);
 		return createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
 				element.getMoles());
 	}
 
+	@Override
 	public ElementDomainObject findByAtomicNumber(int aNum) throws Exception {
 		ElementRDG element = ElementRDG.findByAtomicNumber(aNum);
 		return createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
 				element.getMoles());
 	}
 
+	@Override
 	public ElementDomainObject findByAtomicMass(double aMass) throws Exception {
 		ElementRDG element = ElementRDG.findByAtomicMass(aMass);
 		return createElement(element.getID(), element.getName(), element.getAtomicNumber(), element.getAtomicMass(),
 				element.getMoles());
 	}
 
+	@Override
 	public ArrayList<ElementDomainObject> findElementsInRange(double highRange, double lowRange) throws Exception {
 		ElementTDG et = ElementTDG.getInstance();
 		ArrayList<ElementDTO> edto = et.getElementsInRange(lowRange, highRange);
@@ -63,6 +69,7 @@ public class ElementMapper implements ElementMapperInterface {
 		return edo;
 	}
 	
+	@Override
 	public ArrayList<ElementDomainObject> getAllElements() throws Exception {
 		ArrayList<ElementDTO> elements = ElementTDG.getInstance().getAllElements();
 		ArrayList<ElementDomainObject> list = new ArrayList<>();
@@ -72,6 +79,7 @@ public class ElementMapper implements ElementMapperInterface {
 		return list;
 	}
 
+	@Override
 	public void persist() {
 		try {
 			ElementRDG element = ElementRDG.findByID(ident);

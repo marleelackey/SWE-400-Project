@@ -67,6 +67,7 @@ public class TestCompoundMapper {
 		  rs.last();
 		  size = rs.getRow(); 
 		}
+		System.out.println(size);
 		if (size <= 3) {
 			fail();
 		}
@@ -92,13 +93,6 @@ public class TestCompoundMapper {
 	}
 	
 	public static void testPersistAdd() throws Exception {
-		CompoundMapper mapper = new CompoundMapper();
-
-		ElementMapper em = new ElementMapper();
-		em.createElement(30, "testElement", 12, 13, 10.10);
-		ElementDomainObject e = new ElementDomainObject(em);
-		mapper.getMyElements().add(new QuantifiedElement(e, 2));	
-		mapper.persist();
 		
 		Statement stmt = DatabaseManager.getSingleton().getConnection().createStatement();
 		stmt = DatabaseManager.getSingleton().getConnection().createStatement();
@@ -112,7 +106,34 @@ public class TestCompoundMapper {
 		  size = rs3.getRow(); 
 		}
 		System.out.println(size);
-		if (size <= 3) {
+		if (size > 4) {
+			fail();
+		}
+		
+		
+		CompoundMapper mapper = new CompoundMapper();
+		CompoundDomainObject compound = mapper.findByID(0);
+		DatabaseManager.getSingleton().setTesting();
+
+		ElementMapper em = new ElementMapper();
+		em.createElement(30, "testElement", 12, 13, 10.10);
+		ElementDomainObject e = new ElementDomainObject(em);
+		compound.getElements().add(new QuantifiedElement(e, 2));	
+		compound.getDataMapper().persist();
+		
+		Statement stmt2 = DatabaseManager.getSingleton().getConnection().createStatement();
+		stmt2 = DatabaseManager.getSingleton().getConnection().createStatement();
+		stmt2.executeQuery("SELECT * FROM CompoundMadeOfElement");
+		ResultSet rs = stmt.getResultSet();
+		
+		size = 0;
+		if (rs != null) 
+		{
+		  rs.last();
+		  size = rs.getRow(); 
+		}
+		System.out.println(size);
+		if (size <= 4) {
 			fail();
 		}
 		DatabaseManager.getSingleton().rollBack();
@@ -134,7 +155,6 @@ public class TestCompoundMapper {
 //			
 			
 			
-			DatabaseManager.getSingleton().rollBack();
 			
 			
 			

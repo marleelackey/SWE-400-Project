@@ -27,6 +27,7 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 	private double moles;
 	private ChemicalDomainObject cdo;
 
+	@Override
 	public ChemicalDomainObject createChemical(int ID, String name, double moles) throws Exception {
 		this.ID = ID;
 		this.name = name;
@@ -35,6 +36,7 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		return new ChemicalDomainObject(this);
 	}
 
+	@Override
 	public void persist() {
 		ElementRDG element = ElementRDG.findByID(ID);
 		CompoundRDG compound = CompoundRDG.findByIDConcrete(ID);
@@ -61,6 +63,7 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		}
 	}
 
+	@Override
 	public ChemicalDomainObject findByID(int chemicalID) throws Exception {
 		ElementRDG element = ElementRDG.findByID(chemicalID);
 		CompoundRDG compound = CompoundRDG.findByIDConcrete(chemicalID);
@@ -92,6 +95,7 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 	 * @return da chem
 	 * @throws Exception da error
 	 */
+	@Override
 	public ChemicalDomainObject findByName(String name) throws Exception {
 		ElementRDG element = ElementRDG.findByName(name);
 		CompoundRDG compound = CompoundRDG.findByNameConcrete(name);
@@ -114,6 +118,7 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		return cdo;
 	}
 
+	@Override
 	public ArrayList<ChemicalDomainObject> findLowChemicals() throws Exception {
 		ArrayList<ChemicalDomainObject> lowChemicals = new ArrayList<ChemicalDomainObject>();
 

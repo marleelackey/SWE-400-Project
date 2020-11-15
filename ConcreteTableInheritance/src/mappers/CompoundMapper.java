@@ -57,13 +57,46 @@ public class CompoundMapper implements CompoundMapperInterface {
 			CompoundRDG c = new CompoundRDG(compoundID, compoundName, moles);
 			c.update();
 			// persist the relationships to its elements
-			compareElementsAndPersist();
+			
+			
+			ArrayList<ElementDTO> elementsInCompoundInDB = ElementTDG.getInstance().getElementsInCompound(compoundID);
+			
+			if (elementsInCompoundInDB.size() < myElements.size()) { //if there is something in object that is not in DB
+				
+				//do something similar to below but for adding
+				
+			} else if (elementsInCompoundInDB.size() > myElements.size()) {
+				//if elementsInCompound contains something that is not in myElements, the extra element(s)
+				//must be deleted from the database so they are consistent.
+				for (int i = 0; i <= elementsInCompoundInDB.size(); i++) {
+					int counter = 0;
+					for (int j = 0; j <= myElements.size(); j++) {
+						if (elementsInCompoundInDB.get(i).getID() != myElements.get(j).getElement().getElementID()) {
+							counter++;
+						}
+						if (counter >= myElements.size() - 1) {
+							//elementsInCompount[i] must be deleted from database
+							System.out.println(elementsInCompoundInDB.get(i).getName() + " is not in element so it will now be deleted from DB");
+//							CompoundMadeOfElementRDG r = new CompoundMadeOfElementRDG(compoundID, 
+//									elementsInCompoundInDB.get(i).getID(), 0);
+//							r.delete();
+							break;
+						}					
+					}
+				}
+			}
+			//also handle updates 
+
+			
+			
+//			compareElementsAndPersist();
 		} catch (Exception e) {
 			DatabaseException.detectError(e, "Error spotted in the CompoundMapper class, persist method");
 		}
 	}
 
-	private void compareElementsAndPersist() throws SQLException, DatabaseException {
+	@Override
+	public void compareElementsAndPersist() throws SQLException, DatabaseException {
 		// see if a relationship has been deleted from cdo
 		for (QuantifiedElement e : myElements) {
 			System.out.println(e.getElement().getElementName());
@@ -147,6 +180,7 @@ public class CompoundMapper implements CompoundMapperInterface {
 
 	}
 
+	@Override
 	public ArrayList<CompoundDomainObject> getAllCompounds() throws Exception {
 		ArrayList<CompoundDTO> cdto = CompoundTDG.getSingleton().getAllCompounds();
 		ArrayList<CompoundDomainObject> cdo = new ArrayList<CompoundDomainObject>();
@@ -178,6 +212,7 @@ public class CompoundMapper implements CompoundMapperInterface {
 	 * @return the list of compounds
 	 * @throws Exception
 	 */
+	@Override
 	public ArrayList<CompoundDomainObject> getCompoundsByElement(int elementID) throws Exception {
 		ArrayList<CompoundDTO> comps = CompoundTDG.getSingleton().getCompoundsByElement(elementID);
 		ArrayList<CompoundDomainObject> list = new ArrayList<>();

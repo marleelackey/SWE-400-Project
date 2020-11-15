@@ -34,6 +34,7 @@ public class MetalMapper implements MetalMapperInterface {
 		return new MetalDomainObject(this);
 	}
 
+	@Override
 	public MetalDomainObject findByID(int mID) throws Exception {
 		MetalRDG rdg = MetalRDG.findByID(mID);
 
@@ -48,6 +49,7 @@ public class MetalMapper implements MetalMapperInterface {
 		return new MetalDomainObject(this);
 	}
 
+	@Override
 	public ArrayList<MetalDomainObject> getAllMetals() throws Exception {
 		ArrayList<MetalDTO> metals = MetalTDG.getInstance().getAllMetals();
 		ArrayList<MetalDomainObject> list = new ArrayList<>();
@@ -58,6 +60,7 @@ public class MetalMapper implements MetalMapperInterface {
 		return list;
 	}
 
+	@Override
 	public void persist() {
 		try {
 			MetalRDG metal = MetalRDG.findByID(ident);
