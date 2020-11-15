@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,6 +13,10 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import commands.ExecuterForCommands;
+import commands.GetAllCompoundsCmd;
+import commands.GetAllElementsCmd;
 
 public class CompoundGUI implements guiInterface {
 	JPanel compoundMainPanel = new JPanel();
@@ -63,14 +68,30 @@ public class CompoundGUI implements guiInterface {
 	private void setupaddElementToCompoundAmountPanel() {
 		JPanel addElementToCompoundAmountPanel = new JPanel(new GridLayout(0, 2));
 		addElementToCompoundAmountPanel.setBackground(new Color(220, 240, 220));	
-		addElementToCompoundAmountPanel.add(new JLabel("Modify Amount"));
-		JComboBox compoundNameInput = new JComboBox(new String[] {"TwoThings", "ThreeThings", "Multiple"});
+		addElementToCompoundAmountPanel.add(new JLabel("Add Element"));
+		ArrayList<String> compNames = new ArrayList<String>();
+		GetAllCompoundsCmd compGetter = new GetAllCompoundsCmd();
+		try {
+			new ExecuterForCommands(compGetter);
+			compGetter.getCdo().forEach(n -> compNames.add(n.getCompoundName()));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		JComboBox compoundNameInput = new JComboBox(compNames.toArray());
 		addElementToCompoundAmountPanel.add(compoundNameInput);
 		// Commmand stuff to get list of elements in the compound
-		JComboBox elementNameInput = new JComboBox(new String[] {"Element", "Eleminty", "OLOmont"});
+		ArrayList<String> elementNames = new ArrayList<String>();
+		GetAllElementsCmd elementGetter = new GetAllElementsCmd();
+		try {
+			new ExecuterForCommands(elementGetter);
+			elementGetter.getElements().forEach(n -> elementNames.add(n.getElementName()));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		JComboBox elementNameInput = new JComboBox(elementNames.toArray());
 		addElementToCompoundAmountPanel.add(elementNameInput);
 
-		JButton addElement = new JButton("Remove");
+		JButton addElement = new JButton("Add");
 		addElement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/**
@@ -86,11 +107,27 @@ public class CompoundGUI implements guiInterface {
 	private void setupremoveElementFromCompoundAmountPanel() {
 		JPanel removeElementFromCompoundAmountPanel = new JPanel(new GridLayout(0, 2));
 		removeElementFromCompoundAmountPanel.setBackground(new Color(220, 100, 220));	
-		removeElementFromCompoundAmountPanel.add(new JLabel("Modify Amount"));
-		JComboBox compoundNameInput = new JComboBox(new String[] {"TwoThings", "ThreeThings", "Multiple"});
+		removeElementFromCompoundAmountPanel.add(new JLabel("Remove Element"));
+		ArrayList<String> compNames = new ArrayList<String>();
+		GetAllCompoundsCmd compGetter = new GetAllCompoundsCmd();
+		try {
+			new ExecuterForCommands(compGetter);
+			compGetter.getCdo().forEach(n -> compNames.add(n.getCompoundName()));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		JComboBox compoundNameInput = new JComboBox(compNames.toArray());
 		removeElementFromCompoundAmountPanel.add(compoundNameInput);
 		// Command thing for getting list of Elements
-		JComboBox elementNameInput = new JComboBox(new String[] {"Element", "Eleminty", "OLOmont"});
+		ArrayList<String> elementNames = new ArrayList<String>();
+		GetAllElementsCmd elementGetter = new GetAllElementsCmd();
+		try {
+			new ExecuterForCommands(elementGetter);
+			elementGetter.getElements().forEach(n -> elementNames.add(n.getElementName()));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		JComboBox elementNameInput = new JComboBox(elementNames.toArray());		
 		removeElementFromCompoundAmountPanel.add(elementNameInput);
 		
 		JButton removeElement = new JButton("Remove");
