@@ -1,5 +1,6 @@
 package domainObjects;
 
+import datasource.DatabaseException;
 import mappers.ChemicalMapper;
 
 /**
@@ -88,8 +89,9 @@ public class ChemicalDomainObject {
 	/**
 	 * Call the persist() method in DataMapper to persist the changes made to
 	 * chemical
+	 * @throws DatabaseException 
 	 */
-	public void persist() {
+	public void persist() throws DatabaseException {
 		dataMapper.persist();
 	}
 	

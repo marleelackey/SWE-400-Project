@@ -12,6 +12,7 @@ import datasource.BaseTDG;
 import datasource.CompoundDTO;
 import datasource.CompoundRDG;
 import datasource.CompoundTDG;
+import datasource.DatabaseException;
 import datasource.ElementDTO;
 import datasource.ElementRDG;
 import datasource.ElementTDG;
@@ -37,7 +38,7 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 	}
 
 	@Override
-	public void persist() {
+	public void persist() throws DatabaseException {
 		ElementRDG element = ElementRDG.findByID(ID);
 		CompoundRDG compound = CompoundRDG.findByIDConcrete(ID);
 		MetalRDG metal = MetalRDG.findByID(ID);

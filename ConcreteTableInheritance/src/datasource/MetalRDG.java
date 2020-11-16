@@ -54,15 +54,20 @@ public class MetalRDG {
 	 * @author Josh Kellogg
 	 * @param ID The ID to search the database for
 	 * @return A metalRDG with the correct Metal
+	 * @throws DatabaseException 
 	 */
-	public static MetalRDG findByID(int ID) {
+	public static MetalRDG findByID(int ID) throws DatabaseException {
+		cn = DatabaseManager.getSingleton().getConnection();
 		MetalRDG results = null;
 		try {
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Metal WHERE elementOrMetalID = " + ID);
-			rs.next();
-			results = new MetalRDG(rs.getInt("elementOrMetalID"), rs.getInt("metalAtomicNumber"),
-					rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"),
-					rs.getDouble("metalMoles"), rs.getDouble("molesOfAcidToDissolve"));
+			if (rs.next()) {
+				results = new MetalRDG(rs.getInt("elementOrMetalID"), rs.getInt("metalAtomicNumber"),
+						rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"),
+						rs.getDouble("metalMoles"), rs.getDouble("molesOfAcidToDissolve"));
+			} else {
+				System.out.println("Metal with this ID does not exist.");
+			}
 		} catch (SQLException s) {
 			return results;
 		} catch (Exception e) {
@@ -78,7 +83,7 @@ public class MetalRDG {
 	 * @param name
 	 * @return A metalRDG with information from the database corresponding to the
 	 *         given name
-	 * @throws DatabaseException 
+	 * @throws DatabaseException
 	 */
 	public static MetalRDG findByName(String name) throws DatabaseException {
 		MetalRDG results = null;

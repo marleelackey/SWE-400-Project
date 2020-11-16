@@ -68,6 +68,7 @@ public class MetalMapper implements MetalMapperInterface {
 				MetalRDG rdg = new MetalRDG(ident, atomicNumber, dissolvedBy, atomicMass, name, moles,
 						molesOfAcidToDissolve);
 				rdg.insert();
+				System.out.println("Metal created with ID " + ident);
 			} else {
 				atomicMass = this.getMetal().getMetalAtomicMass();
 				atomicNumber = this.getMetal().getMetalAtomicNumber();

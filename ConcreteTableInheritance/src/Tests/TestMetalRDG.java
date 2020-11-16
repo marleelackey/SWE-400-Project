@@ -32,9 +32,10 @@ public class TestMetalRDG {
 
 	/**
 	 * Tests the findByID method
+	 * @throws DatabaseException 
 	 */
 	@Test
-	public static void testFindByID() {
+	public static void testFindByID() throws DatabaseException {
 		MetalRDG m = MetalRDG.findByID(20);
 		assertEquals(m.getAtomicMass(), 21.0, 0.01);
 		assertEquals(m.getAtomicNumber(), 21);
@@ -61,9 +62,10 @@ public class TestMetalRDG {
 
 	/**
 	 * Tests to make sure our update method successfully updates the database
+	 * @throws DatabaseException 
 	 */
 	@Test
-	public static void testUpdate() {
+	public static void testUpdate() throws DatabaseException {
 		MetalRDG m = MetalRDG.findByID(20);
 		assertEquals(m.getAtomicMass(), 21.0, 0.01);
 		m.setAtomicMass(450.0);

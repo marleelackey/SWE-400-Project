@@ -116,11 +116,19 @@ public class ElementGUI implements guiInterface {
 					ee.printStackTrace();
 				}
 				try {
-					new ExecuterForCommands(
-							new AddElementCmd(547, nameInput.getText(), Integer.parseInt(atomicNumberInput.getText()),
-									Double.parseDouble(atomicMassInput.getText()), isMetalInput.isSelected(),
-									goo.getAcidID(), Double.parseDouble(molesInput.getText()),
-									Double.parseDouble(molesToDissolveInput.getText())));
+					if (isMetalInput.isSelected()) {
+						new ExecuterForCommands(new AddElementCmd(547, nameInput.getText(),
+								Integer.parseInt(atomicNumberInput.getText()),
+								Double.parseDouble(atomicMassInput.getText()), true, goo.getAcidID(),
+								Double.parseDouble(molesInput.getText()),
+								Double.parseDouble(molesToDissolveInput.getText())));
+					} else {
+						new ExecuterForCommands(new AddElementCmd(547, nameInput.getText(),
+								Integer.parseInt(atomicNumberInput.getText()),
+								Double.parseDouble(atomicMassInput.getText()), false, 0,
+								Double.parseDouble(molesInput.getText()), 0));
+					}
+
 				} catch (NumberFormatException e1) {
 					System.out.println("number probaddelementfail");
 					e1.printStackTrace();
@@ -272,13 +280,14 @@ public class ElementGUI implements guiInterface {
 				try {
 					new ExecuterForCommands(finder);
 					System.out.println(finder.getID());
-					ModifyElementAtomicNumberCmd newNum = new ModifyElementAtomicNumberCmd(finder.getID(), Integer.parseInt(newNumInput.getText()));
+					ModifyElementAtomicNumberCmd newNum = new ModifyElementAtomicNumberCmd(finder.getID(),
+							Integer.parseInt(newNumInput.getText()));
 					System.out.println(newNumInput.getText());
 					new ExecuterForCommands(newNum);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
+
 			}
 		});
 		modifyElementPanel.add(changeNum);

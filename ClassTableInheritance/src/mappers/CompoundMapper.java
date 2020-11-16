@@ -68,7 +68,7 @@ public class CompoundMapper implements CompoundMapperInterface {
 		}
 	}	
 
-	private void compareElementsAndPersist() throws SQLException, DatabaseException {
+	public void compareElementsAndPersist() throws SQLException, DatabaseException {
 		// see if a relationship has been deleted from cdo
 		for (QuantifiedElement e : myElements) {
 			if (!cdo.getElements().contains(e)) {
