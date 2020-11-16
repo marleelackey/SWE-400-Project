@@ -28,7 +28,8 @@ public class GetAcidIDByNameCmd implements CommandInterface {
 	 */
 	@Override
 	public void execute() throws Exception {
-		AcidDomainObject ado = AcidMapper.findByName(acidName);
+		AcidMapper am = new AcidMapper();
+		AcidDomainObject ado = am.findByName(acidName);
 		acidID = ado.getAcidID();
 	}
 

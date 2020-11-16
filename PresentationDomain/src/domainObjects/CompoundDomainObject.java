@@ -27,7 +27,8 @@ public class CompoundDomainObject {
 		setCompoundID(dataMapper.getCompoundID());
 		setCompoundName(dataMapper.getCompoundName());
 		setCompoundMoles(dataMapper.getMoles());
-		setCompoundElements(dataMapper.getMyElements());
+		ArrayList<QuantifiedElement> copy = (ArrayList<QuantifiedElement>) dataMapper.getMyElements().clone();
+		setCompoundElements(copy);
 		dataMapper.setCdo(this);
 	}
 	
