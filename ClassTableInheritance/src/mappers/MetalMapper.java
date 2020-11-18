@@ -1,10 +1,14 @@
 package mappers;
 
+import java.util.ArrayList;
+
 import Interfaces.MetalMapperInterface;
 import datasource.ChemicalRDG;
 import datasource.DatabaseException;
 import datasource.ElementRDG;
+import datasource.MetalDTO;
 import datasource.MetalRDG;
+import datasource.MetalTDG;
 import domainObjects.MetalDomainObject;
 
 public class MetalMapper implements MetalMapperInterface {
@@ -32,35 +36,75 @@ public class MetalMapper implements MetalMapperInterface {
 		return new MetalDomainObject(this);
 	}
 
+	@Override
 	public MetalDomainObject findByID(int mID) throws Exception {
-		MetalRDG rdg = MetalRDG.findByID(mID);
+		MetalRDG m = MetalRDG.findByID(mID);
+		ElementRDG e = ElementRDG.findByID(mID);
+		ChemicalRDG c = ChemicalRDG.findByID(mID);
 
 		ident = mID;
-		dissolvedBy = rdg.getDissolvedBy();
-		molesOfAcidToDissolve = rdg.getMolesOfAcidToDissolve();
+		name = c.getChemicalName();
+		atomicNumber = e.getAtomicNumber();
+		atomicMass = e.getAtomicMass();
+		dissolvedBy = m.getDissolvedBy();
+		moles = c.getChemicalMoles();
+		molesOfAcidToDissolve = m.getMolesOfAcidToDissolve();
 
 		return new MetalDomainObject(this);
 	}
 
+	@Override
+	public ArrayList<MetalDomainObject> getAllMetals() throws Exception {
+		ArrayList<MetalDTO> metals = MetalTDG.getSingleton().getAllMetals();
+		ArrayList<MetalDomainObject> list = new ArrayList<>();
+		for (MetalDTO m : metals) {
+			ChemicalRDG c = ChemicalRDG.findByID(m.getID());
+			ElementRDG e = ElementRDG.findByID(m.getID());
+			list.add(createMetal(m.getID(), c.getChemicalName(), e.getAtomicNumber(), e.getAtomicMass(),
+					m.getDissolvedBy(), c.getChemicalMoles(), m.getMolesOfAcidToDissolve()));
+		}
+		return list;
+	}
+
+	@Override
 	public void persist() {
 		try {
-			MetalRDG metal = MetalRDG.findByID(ident);
-			if (metal.equals(null)) {
-				MetalRDG rdg = new MetalRDG(ident, dissolvedBy, molesOfAcidToDissolve);
-				rdg.insert();
-			} else {
-				metal.setDissolvedBy(dissolvedBy);
-				metal.setMolesOfAcidToDissolve(molesOfAcidToDissolve);
-				metal.update();
-			}
-			ElementRDG e = ElementRDG.findByID(ident);
+			MetalRDG m = MetalRDG.findByID(ident);
 			ChemicalRDG c = ChemicalRDG.findByID(ident);
-			ElementMapper em = new ElementMapper();
-			em.createElement(ident, c.getChemicalName(), e.getAtomicNumber(), e.getAtomicMass(), c.getChemicalMoles());
-			em.persist();
+			ElementRDG e = ElementRDG.findByID(ident);
+			if (m == null && c == null && e == null) {
+				c = new ChemicalRDG(ident, name, moles);
+				e = new ElementRDG(ident, atomicNumber, atomicMass);
+				m = new MetalRDG(ident, dissolvedBy, molesOfAcidToDissolve);
+				c.insert();
+				e.insert();
+				m.insert();
+				System.out.println("Metal created with ID " + ident);
+			} else {
+				atomicMass = mdo.getMetalAtomicMass();
+				atomicNumber = mdo.getMetalAtomicNumber();
+				dissolvedBy = mdo.getDissolvedBy();
+				moles = mdo.getMoles();
+				molesOfAcidToDissolve = mdo.getMolesOfAcidToDissolve();
+				name = mdo.getMetalName();
+
+				e.setAtomicMass(atomicMass);
+				e.setAtomicNumber(atomicNumber);
+				m.setDissolvedBy(dissolvedBy);
+				c.setChemicalMoles(moles);
+				m.setMolesOfAcidToDissolve(molesOfAcidToDissolve);
+				c.setName(name);
+				c.update();
+				e.update();
+				m.update();
+			}
 		} catch (Exception e) {
 			DatabaseException.detectError(e, "Error spotted in the MetalMapper class, Persist method");
 		}
+	}
+
+	public void setIdent(int ident) {
+		this.ident = ident;
 	}
 
 	public void setName(String name) {

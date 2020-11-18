@@ -130,4 +130,13 @@ public class ChemicalRDG {
 		}
 	}
 
+	/**
+	 * setter lol
+	 * 
+	 * @param name da name
+	 */
+	public void setName(String name) {
+		chemicalName = name;
+	}
+
 }

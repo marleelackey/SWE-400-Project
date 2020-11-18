@@ -10,6 +10,7 @@ import datasource.BaseTDG;
 import datasource.ChemicalRDG;
 import datasource.CompoundDTO;
 import datasource.CompoundTDG;
+import datasource.DatabaseException;
 import datasource.ElementDTO;
 import datasource.ElementRDG;
 import datasource.ElementTDG;
@@ -17,6 +18,11 @@ import datasource.MetalDTO;
 import datasource.MetalTDG;
 import domainObjects.ChemicalDomainObject;
 
+/**
+ * 
+ * @author Mad&Ad
+ *
+ */
 public class ChemicalMapper implements ChemicalMapperInterface {
 
 	private int ID;
@@ -24,6 +30,7 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 	private double moles;
 	private ChemicalDomainObject cdo;
 
+	@Override
 	public ChemicalDomainObject createChemical(int ID, String name, double moles) throws Exception {
 		this.ID = ID;
 		this.name = name;
@@ -32,34 +39,54 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		return new ChemicalDomainObject(this);
 	}
 
-	public void persist() {
-		ChemicalRDG rdg = ChemicalRDG.findByID(ID);
-		if (rdg.equals(null)) {
-			rdg = new ChemicalRDG(ID, name, moles);
-			rdg.insert();
-		} else {
-			rdg.setChemicalMoles(moles);
-			rdg.update();
-		}
+	@Override
+	public void persist() throws DatabaseException {
+		ChemicalRDG chem = ChemicalRDG.findByID(ID);
+
+		moles = cdo.getChemicalMoles();
+		chem.setChemicalMoles(moles);
+		chem.update();
 	}
 
+	@Override
 	public ChemicalDomainObject findByID(int chemicalID) throws Exception {
-		ChemicalRDG rdg = ChemicalRDG.findByID(chemicalID);
+		ChemicalRDG chem = ChemicalRDG.findByID(chemicalID);
 
-		return createChemical(chemicalID, rdg.getChemicalName(), rdg.getChemicalMoles());
+		ChemicalDomainObject cdo = createChemical(chem.getChemicalID(), chem.getChemicalName(),
+				chem.getChemicalMoles());
+
+		return cdo;
 	}
 
+	/**
+	 * Find a chemical from its name
+	 * 
+	 * @author mad&ad
+	 * 
+	 * @param name da name
+	 * @return da chem
+	 * @throws Exception da error
+	 */
+	@Override
+	public ChemicalDomainObject findByName(String name) throws Exception {
+		ChemicalRDG chem = ChemicalRDG.findByName(name);
+
+		ChemicalDomainObject cdo = createChemical(chem.getChemicalID(), chem.getChemicalName(),
+				chem.getChemicalMoles());
+
+		return cdo;
+	}
+
+	@Override
 	public ArrayList<ChemicalDomainObject> findLowChemicals() throws Exception {
 		ArrayList<ChemicalDomainObject> lowChemicals = new ArrayList<ChemicalDomainObject>();
 
 		// elements that have less than 20 moles
 		ArrayList<ElementDTO> elements = ElementTDG.getInstance().getAllElements();
 		for (ElementDTO e : elements) {
-			ChemicalRDG cForElements1 = ChemicalRDG.findByID(e.getID());
-			if (cForElements1.getChemicalMoles() < 20) {
-				lowChemicals.add(
-						createChemical(e.getID(), cForElements1.getChemicalName(), cForElements1.getChemicalMoles()));
-				elements.remove(e);
+			ChemicalRDG chemrdg = ChemicalRDG.findByID(e.getID());
+			if (chemrdg.getChemicalMoles() < 20) {
+				lowChemicals.add(createChemical(e.getID(), chemrdg.getChemicalName(), chemrdg.getChemicalMoles()));
 			}
 		}
 
@@ -75,14 +102,14 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 					numAtoms += ElementRDG.findQuantityInCompound(containedElement.getID(), c.getCompoundID());
 				}
 				int thisElement = ElementRDG.findQuantityInCompound(e.getID(), c.getCompoundID());
+
 				// calculate percentage that the element makes up of total number of moles
-				ChemicalRDG cForCompound = ChemicalRDG.findByID(c.getCompoundID());
-				totalToReplenish += thisElement / numAtoms * cForCompound.getChemicalMoles();
+				ChemicalRDG c_chemrdg = ChemicalRDG.findByID(c.getCompoundID());
+				totalToReplenish += thisElement / numAtoms * c_chemrdg.getChemicalMoles();
 			}
-			ChemicalRDG cForElement2 = ChemicalRDG.findByID(e.getID());
-			if (cForElement2.getChemicalMoles() < totalToReplenish) {
-				lowChemicals.add(
-						createChemical(e.getID(), cForElement2.getChemicalName(), cForElement2.getChemicalMoles()));
+			ChemicalRDG e_chemrdg = ChemicalRDG.findByID(e.getID());
+			if (e_chemrdg.getChemicalMoles() < totalToReplenish) {
+				lowChemicals.add(createChemical(e.getID(), e_chemrdg.getChemicalName(), e_chemrdg.getChemicalMoles()));
 			}
 		}
 
@@ -95,19 +122,18 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 			for (MetalDTO m : metals) {
 				totalToDissolve += m.getMolesOfAcidToDissolve();
 			}
-			ChemicalRDG cForAcids = ChemicalRDG.findByID(a.getAcidID());
-			if (cForAcids.getChemicalMoles() < totalToDissolve) {
-				lowChemicals
-						.add(createChemical(a.getAcidID(), cForAcids.getChemicalName(), cForAcids.getChemicalMoles()));
+			ChemicalRDG chemrdg = ChemicalRDG.findByID(a.getAcidID());
+			if (chemrdg.getChemicalMoles() < totalToDissolve) {
+				lowChemicals.add(createChemical(a.getAcidID(), chemrdg.getChemicalName(), chemrdg.getChemicalMoles()));
 			}
 		}
 
 		// bases that have less than 40 moles
 		ArrayList<BaseDTO> bases = BaseTDG.getAllBases();
 		for (BaseDTO b : bases) {
-			ChemicalRDG cForBases = ChemicalRDG.findByID(b.getID());
-			if (cForBases.getChemicalMoles() < 40) {
-				lowChemicals.add(createChemical(b.getID(), cForBases.getChemicalName(), cForBases.getChemicalMoles()));
+			ChemicalRDG chemrdg = ChemicalRDG.findByID(b.getID());
+			if (chemrdg.getChemicalMoles() < 40) {
+				lowChemicals.add(createChemical(b.getID(), chemrdg.getChemicalName(), chemrdg.getChemicalMoles()));
 			}
 		}
 
@@ -116,6 +142,10 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 
 	public int getID() {
 		return ID;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public double getMoles() {
@@ -128,19 +158,6 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 
 	public void setCdo(ChemicalDomainObject cdo) {
 		this.cdo = cdo;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setMoles(double moles) {
-		this.moles = moles;
-	}
-
-	@Override
-	public String getName() {
-		return this.name;
 	}
 
 }

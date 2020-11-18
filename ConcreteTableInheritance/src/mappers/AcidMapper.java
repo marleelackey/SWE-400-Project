@@ -90,7 +90,7 @@ public class AcidMapper implements AcidMapperInterface {
 		mapper.ident = rdg.getAcidID();
 		mapper.name = rdg.getAcidName();
 		mapper.moles = rdg.getAcidMoles();
-		mapper.ident = rdg.getAcidSolute();
+		mapper.solute = rdg.getAcidSolute();
 
 		return mapper.createAcid(rdg.getAcidID(), rdg.getAcidName(), rdg.getAcidMoles(), rdg.getAcidSolute());
 	}
