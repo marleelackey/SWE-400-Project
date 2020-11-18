@@ -146,4 +146,39 @@ public class ChemicalTDG {
 		return data;
 	}
 	
+	public ArrayList<ChemicalDTO> getAllAcids() {
+		ArrayList<ChemicalDTO> data = new ArrayList<ChemicalDTO>();
+		ResultSet rs;
+		
+		try {
+			Connection cn = DatabaseManager.getSingleton().getConnection();
+			rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE chemicalType = 2");
+			while(rs.next()) {
+				data.add(new ChemicalDTO(rs.getInt("chemicalID"), rs.getInt("chemicalType"), rs.getString("chemicalName"),
+						rs.getInt("chemicalAcidSolute"), rs.getDouble("chemicalMoles")));
+			}
+		} catch (Exception e){
+			DatabaseException.detectError(e);
+		}
+		return data;
+	}
+
+	public ArrayList<ChemicalDTO> getAllMetals() {
+		ArrayList<ChemicalDTO> data = new ArrayList<ChemicalDTO>();
+		ResultSet rs;
+		try {
+			DatabaseManager db = DatabaseManager.getSingleton();
+			Connection cn = db.getConnection();
+			rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE ID =  4");
+			while (rs.next()) {
+				data.add(new ChemicalDTO(rs.getInt("elementOrMetalID"), rs.getInt("type"), rs.getInt("metalAtomicNumber"),
+						rs.getInt("metalDissolvedBy"), rs.getDouble("metalAtomicMass"), rs.getString("metalName"),
+						rs.getDouble("metalMoles"), rs.getDouble("molesOfAcidToDissolve")));
+			}
+		} catch (Exception e) {
+			DatabaseException.detectError(e);
+		}
+		return data;
+	}
+	
 }

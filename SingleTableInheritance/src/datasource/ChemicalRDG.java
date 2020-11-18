@@ -99,6 +99,24 @@ public class ChemicalRDG {
 
 	}
 
+	public ChemicalRDG(int ident, String name, int atomicNumber, double atomicMass, double moles) {
+		this.ID = ident;
+		this.type = 3;
+		this.name = name;
+		this.atomicNumber = atomicNumber;
+		this.atomicMass = atomicMass;
+		this.moles = moles;
+
+		// connection to the DB
+		try {
+			connection = DatabaseManager.getSingleton().getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+			DatabaseException.detectError(e, "exception in ChemicalRDG constructor");
+		}
+
+	}
+
 	/**
 	 * Setter for id
 	 * 

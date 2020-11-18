@@ -47,6 +47,32 @@ public class ChemicalDTO {
 	}
 
 	/**
+	 * constructor for acid
+	 * @param ID
+	 * @param type
+	 * @param name
+	 * @param soluteA
+	 * @param moles
+	 */
+	public ChemicalDTO(int ID, int type, String name, int soluteA, double moles) {
+		chemicalID = ID;
+		chemicalType = type;
+		chemicalName = name;
+		chemicalSoluteA = soluteA;
+		chemicalMoles = moles;
+	}
+
+	public ChemicalDTO(int ID, int type, int atomicNumber, int dissolvedBy, double atomicMass, String name, double moles, double molesOfAcidToDissolve) {
+		chemicalID = ID;
+		chemicalType = type;
+		chemicalName = name;
+		chemicalAtomicNumber = atomicNumber;
+		chemicalAtomicMass = atomicMass;
+		chemicalDissolvedBy = dissolvedBy;
+		chemicalMoles = moles;
+	}
+
+	/**
 	 * Getters methods for ChemicalDTO instance variables
 	 */
 
