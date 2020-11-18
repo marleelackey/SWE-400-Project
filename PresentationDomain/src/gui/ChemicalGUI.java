@@ -50,6 +50,16 @@ public class ChemicalGUI implements guiInterface {
 
 	private void setuplistOfChemicalsPanel() {
 		listOfChemicalsPanel.add(new JLabel("Chemical"));
+		JButton generateListButton = new JButton("List of Chemicals");
+		generateListButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * HOOPLA
+				 */
+			}
+		});
+		
+		listOfChemicalsPanel.add(generateListButton);
 	}
 
 	private void setupupdateChemicalPanel() {

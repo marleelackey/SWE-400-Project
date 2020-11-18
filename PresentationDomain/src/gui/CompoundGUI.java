@@ -19,6 +19,7 @@ import commands.DeleteElementFromCompoundCmd;
 import commands.ExecuterForCommands;
 import commands.FindElementByNameCmd;
 import commands.FindIDByNameCmd;
+import commands.GetAllAcidsCmd;
 import commands.GetAllCompoundsCmd;
 import commands.GetAllElementsCmd;
 
@@ -44,6 +45,23 @@ public class CompoundGUI implements guiInterface {
 
 	private void setuplistOfCompoundPanel() {
 		listOfCompoundPanel.add(new JLabel("Compound"));
+		JButton generateListButton = new JButton("List of Compuounds");
+		generateListButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * HOOPLA
+				 */
+				try {
+					GetAllCompoundsCmd compoundGetter = new GetAllCompoundsCmd();
+					new ExecuterForCommands(compoundGetter);
+					compoundGetter.getCdo().forEach(n -> System.out.println(n));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		listOfCompoundPanel.add(generateListButton);
 	}
 
 	private void setupupdateCompoundPanel() {

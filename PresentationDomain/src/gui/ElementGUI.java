@@ -62,6 +62,23 @@ public class ElementGUI implements guiInterface {
 
 	private void setuplistOfElementsPanel() {
 		listOfElementsPanel.add(new JLabel("Element"));
+		JButton generateListButton = new JButton("List of Elements");
+		generateListButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * HOOPLA
+				 */
+				try {
+					GetAllElementsCmd elementGetter = new GetAllElementsCmd();
+					new ExecuterForCommands(elementGetter);
+					elementGetter.getElements().forEach(n -> System.out.println(n));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		listOfElementsPanel.add(generateListButton);
 	}
 
 	private void setupAddElementPanel() {

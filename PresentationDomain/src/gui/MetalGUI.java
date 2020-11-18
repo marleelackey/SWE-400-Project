@@ -42,6 +42,23 @@ public class MetalGUI implements guiInterface {
 	
 	private void setuplistOfMetalsPanel() {
 		listOfMetalsPanel.add(new JLabel("Metal"));
+		JButton generateListButton = new JButton("List of Metals");
+		generateListButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * HOOPLA
+				 */
+				try {
+					GetAllMetalsCmd metalGetter = new GetAllMetalsCmd();
+					new ExecuterForCommands(metalGetter);
+					metalGetter.getMetals().forEach(n -> System.out.println(n.toString()));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		listOfMetalsPanel.add(generateListButton);
 	}
 
 	private void setupupdateMetalPanel() {

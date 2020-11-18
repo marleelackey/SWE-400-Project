@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import commands.ExecuterForCommands;
+import commands.GetAllAcidsCmd;
+import commands.GetAllBasesCmd;
+
 public class BaseGUI implements guiInterface {
 	JPanel baseMainPanel = new JPanel();
 	JPanel listOfBasesPanel = new JPanel();
@@ -33,6 +37,23 @@ public class BaseGUI implements guiInterface {
 
 	private void setuplistOfBasesPanel() {
 		listOfBasesPanel.add(new JLabel("Bases"));
+		JButton generateListButton = new JButton("List of Bases");
+		generateListButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * HOOPLA
+				 */
+				try {
+					GetAllBasesCmd baseGetter = new GetAllBasesCmd();
+					new ExecuterForCommands(baseGetter);
+					baseGetter.getBases().forEach(n -> System.out.println(n));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		listOfBasesPanel.add(generateListButton);
 	}
 
 	private void setupupdateBasePanel() {

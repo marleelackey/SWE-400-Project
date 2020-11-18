@@ -13,6 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import commands.ExecuterForCommands;
+import commands.GetAllAcidsCmd;
+
 public class AcidGUI implements guiInterface {
 	JPanel acidMainPanel = new JPanel();
 	JPanel listOfAcidsPanel = new JPanel();
@@ -33,6 +36,24 @@ public class AcidGUI implements guiInterface {
 
 	private void setuplistOfAcidsPanel() {
 		listOfAcidsPanel.add(new JLabel("Acids"));
+		JButton generateListButton = new JButton("List of Acids");
+		generateListButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * Dan do your thing
+				 */
+				try {
+					GetAllAcidsCmd acidGetter = new GetAllAcidsCmd();
+					new ExecuterForCommands(acidGetter);
+					acidGetter.getAcids().forEach(n -> System.out.println(n));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		listOfAcidsPanel.add(generateListButton);
+		
 	}
 
 	private void setupupdateAcidPanel() {

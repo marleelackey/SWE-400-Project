@@ -175,6 +175,11 @@ public class MetalDomainObject {
 		this.dissolvedBy = dissolvedBy;
 	}
 
+	public String toString() {
+		return "Metal: " + metalName + ", atomic mass " + metalAtomicMass + ", metalAtomicNumber "
+				+ metalAtomicNumber + ", " + moles + " moles in inventory";
+	}
+	
 	/**
 	 * Call the persist() method in DataMapper to persist the changes made to
 	 * element
