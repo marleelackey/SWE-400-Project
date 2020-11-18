@@ -26,6 +26,7 @@ import commands.GetAllCompoundsCmd;
 import commands.GetAllElementsCmd;
 import commands.GetAllMetalsCmd;
 import commands.ModifyChemicalAmountCmd;
+import commands.PrintAllChemicalsCmd;
 
 public class ChemicalGUI implements guiInterface {
 	JPanel chemicalMainPanel = new JPanel();
@@ -56,6 +57,14 @@ public class ChemicalGUI implements guiInterface {
 				/*
 				 * HOOPLA
 				 */
+				try {
+					PrintAllChemicalsCmd chemGetter = new PrintAllChemicalsCmd();
+					new ExecuterForCommands(chemGetter);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				
+				
 			}
 		});
 		
