@@ -17,6 +17,7 @@ public class ChemicalDTO {
 	private int chemicalSoluteA;
 	private int chemicalSoluteB;
 	private double chemicalMoles;
+	private double chemicalMolesToDissolveMetal;
 
 	/**
 	 * Constructor for ChemicalDTO
@@ -32,9 +33,10 @@ public class ChemicalDTO {
 	 * @param soluteB      the Chemical ID that is the solute of a Base
 	 * @param moles        the number of moles of the chemical that we have in
 	 *                     inventory
+	 * @param number       of moles to dissolve metals
 	 */
 	public ChemicalDTO(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy, int soluteA,
-			int soluteB, double moles) {
+			int soluteB, double moles, double dissolveMoles) {
 		chemicalID = ID;
 		chemicalType = type;
 		chemicalName = name;
@@ -44,31 +46,85 @@ public class ChemicalDTO {
 		chemicalSoluteA = soluteA;
 		chemicalSoluteB = soluteB;
 		chemicalMoles = moles;
+		chemicalMolesToDissolveMetal = dissolveMoles;
 	}
 
 	/**
-	 * constructor for acid
+	 * constructor for acid or base
+	 * 
 	 * @param ID
 	 * @param type
 	 * @param name
-	 * @param soluteA
+	 * @param solute
 	 * @param moles
 	 */
-	public ChemicalDTO(int ID, int type, String name, int soluteA, double moles) {
+	public ChemicalDTO(int ID, int type, String name, int solute, double moles) {
 		chemicalID = ID;
 		chemicalType = type;
 		chemicalName = name;
-		chemicalSoluteA = soluteA;
+		if (type == 1) {
+			chemicalSoluteB = solute;
+		} else if (type == 2) {
+			chemicalSoluteA = solute;
+		}
 		chemicalMoles = moles;
 	}
 
-	public ChemicalDTO(int ID, int type, int atomicNumber, int dissolvedBy, double atomicMass, String name, double moles, double molesOfAcidToDissolve) {
+	/**
+	 * constructor for metal
+	 * 
+	 * @param ID
+	 * @param type
+	 * @param atomicNumber
+	 * @param dissolvedBy
+	 * @param atomicMass
+	 * @param name
+	 * @param moles
+	 * @param molesOfAcidToDissolve
+	 */
+	public ChemicalDTO(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy,
+			double moles, double molesOfAcidToDissolve) {
 		chemicalID = ID;
 		chemicalType = type;
 		chemicalName = name;
 		chemicalAtomicNumber = atomicNumber;
 		chemicalAtomicMass = atomicMass;
 		chemicalDissolvedBy = dissolvedBy;
+		chemicalMoles = moles;
+		chemicalMolesToDissolveMetal = molesOfAcidToDissolve;
+	}
+
+	/**
+	 * constructor for element
+	 * 
+	 * @param ID
+	 * @param type
+	 * @param name
+	 * @param atomicNumber
+	 * @param atomicMass
+	 * @param moles
+	 */
+	public ChemicalDTO(int ID, int type, String name, int atomicNumber, double atomicMass, double moles) {
+		chemicalID = ID;
+		chemicalType = type;
+		chemicalName = name;
+		chemicalAtomicNumber = atomicNumber;
+		chemicalAtomicMass = atomicMass;
+		chemicalMoles = moles;
+	}
+
+	/**
+	 * constructor for compound
+	 * 
+	 * @param ID
+	 * @param type
+	 * @param name
+	 * @param moles
+	 */
+	public ChemicalDTO(int ID, int type, String name, double moles) {
+		chemicalID = ID;
+		chemicalType = type;
+		chemicalName = name;
 		chemicalMoles = moles;
 	}
 
@@ -110,6 +166,10 @@ public class ChemicalDTO {
 
 	public double getChemicalMoles() {
 		return chemicalMoles;
+	}
+
+	public double getChemicalMolesToDissolveMetal() {
+		return chemicalMolesToDissolveMetal;
 	}
 
 }

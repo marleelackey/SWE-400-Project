@@ -4,14 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import mappers.ChemicalMapper;
-import mappers.CompoundMapper;
-import mappers.MetalMapper;
 import datasource.DatabaseException;
 import datasource.DatabaseManager;
 import datasource.MetalRDG;
-import domainObjects.ChemicalDomainObject;
 import domainObjects.MetalDomainObject;
+import mappers.MetalMapper;
 
 public class TestMetalMapper {
 	

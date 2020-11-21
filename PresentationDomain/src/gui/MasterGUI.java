@@ -1,11 +1,6 @@
 package gui;
-import java.awt.*;
-import javax.swing.*;
-
-import commands.AddElementCmd;
-import commands.ExecuterForCommands;
-
-import java.awt.event.*;
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
 
 /**
  * This here be the gui

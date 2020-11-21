@@ -1,20 +1,15 @@
 package Tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 import org.junit.Test;
 
-import datasource.CompoundMadeOfElementRDG;
 import datasource.CompoundRDG;
 import datasource.DatabaseException;
 import datasource.DatabaseManager;
-import datasource.ElementRDG;
 import domainObjects.CompoundDomainObject;
 import domainObjects.ElementDomainObject;
 import mappers.CompoundMapper;

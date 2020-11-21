@@ -21,7 +21,6 @@ public class TestEVERYTHING {
 		TestCompoundMadeOfElement.runAllTheTests();
 		TestElementMapper.runAllTheTests();
 		TestMetalMapper.runAllTheTests();
-
 	}
 
 }

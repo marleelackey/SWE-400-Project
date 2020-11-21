@@ -7,12 +7,13 @@ import java.util.ArrayList;
 
 import Interfaces.AcidMapperInterface;
 import datasource.ChemicalDTO;
+import datasource.ChemicalRDG;
 import datasource.ChemicalTDG;
 import domainObjects.MetalDomainObject;
 import domainObjects.AcidDomainObject;
 
 /**
- * @author Josh B. , Ace W.
+ * @author Josh B. , Ace W.  & mad :))))))
  *
  */
 public class AcidMapper implements AcidMapperInterface {
@@ -50,7 +51,7 @@ public class AcidMapper implements AcidMapperInterface {
 				return Doa;
 	}
 	
-	@Override//---------------------------------------------------------------------------------------
+	@Override
 	public ArrayList<MetalDomainObject> getChemicalsDissolvedByAcid(int id) throws Exception {
 		ArrayList<MetalDomainObject> metals = new ArrayList<MetalDomainObject>();
 		
@@ -65,31 +66,18 @@ public class AcidMapper implements AcidMapperInterface {
 		
 		return metals;
 	}
-
-//	@Override
-//	public static domainObjects.AcidDomainObject findByName(String acidName) throws Exception {
-//		AcidMapper mapper = new AcidMapper();
-//		ChemicalRDG rdg = ChemicalRDG.findByName(acidName);
-//		
-//		mapper.ident = rdg.getAcidID();
-//		mapper.name = rdg.getAcidName();
-//		mapper.moles = rdg.getAcidMoles();
-//		mapper.ident = rdg.getAcidSolute();
-//
-//		return mapper.createAcid(rdg.getAcidID(), rdg.getAcidName(), rdg.getAcidMoles(), rdg.getAcidSolute());
-//	}
 	
 	@Override
 	public AcidDomainObject findByName(String acidName) throws Exception {
 		AcidMapper mapper = new AcidMapper();
 		ChemicalRDG rdg = ChemicalRDG.findByName(acidName);
 		
-		mapper.ident = rdg.getAcidID();
-		mapper.name = rdg.getAcidName();
-		mapper.moles = rdg.getAcidMoles();
-		mapper.solute = rdg.getAcidSolute();
+		mapper.ident = rdg.getID();
+		mapper.name = rdg.getName();
+		mapper.moles = rdg.getMoles();
+		mapper.solute = rdg.getSoluteA();
 
-		return mapper.createAcid(rdg.getAcidID(), rdg.getAcidName(), rdg.getAcidMoles(), rdg.getAcidSolute());
+		return mapper.createAcid(rdg.getID(), rdg.getName(), rdg.getMoles(), rdg.getSoluteA());
 	}
 	
 	@Override

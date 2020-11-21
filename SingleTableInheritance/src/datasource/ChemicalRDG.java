@@ -46,22 +46,25 @@ public class ChemicalRDG {
 			DatabaseException.detectError(e, "ChemicalRDG - single");
 		}
 	}
-	
+
 	/**
-	 * Constructor for Element
+	 * constructor for acid or base
 	 * 
 	 * @param ID
-	 * @throws DatabaseException
+	 * @param type
+	 * @param name
+	 * @param solute
+	 * @param moles
 	 */
-	public ChemicalRDG(int ID, int type, String name, int atomicNum, double atomicMass, double moles) {
+	public ChemicalRDG(int ID, int type, String name, int solute, double moles) {
 		this.ID = ID;
 		this.type = type;
 		this.name = name;
-		this.atomicNumber = atomicNum;
-		this.atomicMass = atomicMass;
-//		this.dissolvedBy = dissolvedBy;
-//		this.soluteA = soluteA;
-//		this.soluteB = soluteB;
+		if (type == 1) {
+			this.soluteB = solute;
+		} else if (type == 2) {
+			this.soluteA = solute;
+		}
 		this.moles = moles;
 
 		// connection to the DB
@@ -70,20 +73,26 @@ public class ChemicalRDG {
 		} catch (DatabaseException e) {
 			DatabaseException.detectError(e, "ChemicalRDG - single");
 		}
-
 	}
-	
+
 	/**
-	 * Constructor for Metal
+	 * constructor for metal
 	 * 
 	 * @param ID
-	 * @throws DatabaseException
+	 * @param type
+	 * @param atomicNumber
+	 * @param dissolvedBy
+	 * @param atomicMass
+	 * @param name
+	 * @param moles
+	 * @param molesOfAcidToDissolve
 	 */
-	public ChemicalRDG(int ID, int type, String name, int atomicNum, double atomicMass, int dissolvedBy, double moles, double molesOfAcidToDissolve) {
+	public ChemicalRDG(int ID, int type, String name, int atomicNumber, double atomicMass, int dissolvedBy,
+			double moles, double molesOfAcidToDissolve) {
 		this.ID = ID;
 		this.type = type;
 		this.name = name;
-		this.atomicNumber = atomicNum;
+		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
 		this.dissolvedBy = dissolvedBy;
 		this.moles = moles;
@@ -92,16 +101,24 @@ public class ChemicalRDG {
 		// connection to the DB
 		try {
 			connection = DatabaseManager.getSingleton().getConnection();
-		} catch (Exception e) {
-			e.printStackTrace();
-			DatabaseException.detectError(e, "exception in ChemicalRDG constructor");
+		} catch (DatabaseException e) {
+			DatabaseException.detectError(e, "ChemicalRDG - single");
 		}
-
 	}
 
-	public ChemicalRDG(int ident, String name, int atomicNumber, double atomicMass, double moles) {
-		this.ID = ident;
-		this.type = 3;
+	/**
+	 * constructor for element
+	 * 
+	 * @param ID
+	 * @param type
+	 * @param name
+	 * @param atomicNumber
+	 * @param atomicMass
+	 * @param moles
+	 */
+	public ChemicalRDG(int ID, int type, String name, int atomicNumber, double atomicMass, double moles) {
+		this.ID = ID;
+		this.type = type;
 		this.name = name;
 		this.atomicNumber = atomicNumber;
 		this.atomicMass = atomicMass;
@@ -110,11 +127,31 @@ public class ChemicalRDG {
 		// connection to the DB
 		try {
 			connection = DatabaseManager.getSingleton().getConnection();
-		} catch (Exception e) {
-			e.printStackTrace();
-			DatabaseException.detectError(e, "exception in ChemicalRDG constructor");
+		} catch (DatabaseException e) {
+			DatabaseException.detectError(e, "ChemicalRDG - single");
 		}
+	}
 
+	/**
+	 * constructor for compound
+	 * 
+	 * @param ID
+	 * @param type
+	 * @param name
+	 * @param moles
+	 */
+	public ChemicalRDG(int ID, int type, String name, double moles) {
+		this.ID = ID;
+		this.type = type;
+		this.name = name;
+		this.moles = moles;
+
+		// connection to the DB
+		try {
+			connection = DatabaseManager.getSingleton().getConnection();
+		} catch (DatabaseException e) {
+			DatabaseException.detectError(e, "ChemicalRDG - single");
+		}
 	}
 
 	/**
@@ -418,39 +455,39 @@ public class ChemicalRDG {
 		return chem;
 
 	}
-	
+
 	public void insert() {
 		PreparedStatement stmt;
 		try {
-			switch(type) {
+			switch (type) {
 			case 1:
-				//Base
-				stmt = connection.prepareStatement(
-						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, ?, ?, null)");
+				// Base
+				stmt = connection
+						.prepareStatement("INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, ?, ?, null)");
 				stmt.setInt(1, ID);
 				stmt.setInt(2, type);
 				stmt.setString(3, name);
 				stmt.setInt(4, soluteB);
 				stmt.setDouble(5, moles);
 
-				stmt.executeUpdate();		
+				stmt.executeUpdate();
 				break;
 			case 2:
-				//Acid
-				stmt = connection.prepareStatement(
-						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, ?, null, ?, null)");
+				// Acid
+				stmt = connection
+						.prepareStatement("INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, ?, null, ?, null)");
 				stmt.setInt(1, ID);
 				stmt.setInt(2, type);
 				stmt.setString(3, name);
 				stmt.setInt(4, soluteA);
 				stmt.setDouble(5, moles);
 
-				stmt.executeUpdate();		
+				stmt.executeUpdate();
 				break;
 			case 3:
-				//Element
-				stmt = connection.prepareStatement(
-						"INSERT INTO Chemical VALUES (?, ?, ?, ?, ?, null, null, null, ?, null)");
+				// Element
+				stmt = connection
+						.prepareStatement("INSERT INTO Chemical VALUES (?, ?, ?, ?, ?, null, null, null, ?, null)");
 				stmt.setInt(1, ID);
 				stmt.setInt(2, type);
 				stmt.setString(3, name);
@@ -458,12 +495,11 @@ public class ChemicalRDG {
 				stmt.setDouble(5, atomicMass);
 				stmt.setDouble(6, moles);
 
-				stmt.executeUpdate();		
+				stmt.executeUpdate();
 				break;
 			case 4:
-				//Metal
-				stmt = connection.prepareStatement(
-						"INSERT INTO Chemical VALUES (?, ?, ?, ?, ?, ?, null, null, ?, ?)");
+				// Metal
+				stmt = connection.prepareStatement("INSERT INTO Chemical VALUES (?, ?, ?, ?, ?, ?, null, null, ?, ?)");
 				stmt.setInt(1, ID);
 				stmt.setInt(2, type);
 				stmt.setString(3, name);
@@ -473,11 +509,10 @@ public class ChemicalRDG {
 				stmt.setDouble(7, moles);
 				stmt.setDouble(8, molesOfAcidToDissolve);
 
-
-				stmt.executeUpdate();		
+				stmt.executeUpdate();
 				break;
 			case 5:
-				//Compound
+				// Compound
 				stmt = connection.prepareStatement(
 						"INSERT INTO Chemical VALUES (?, ?, ?, null, null, null, null, null, ?, null)");
 				stmt.setInt(1, ID);
@@ -488,10 +523,9 @@ public class ChemicalRDG {
 				stmt.setInt(6, dissolvedBy);
 				stmt.setDouble(7, moles);
 
-				stmt.executeUpdate();		
+				stmt.executeUpdate();
 				break;
 			}
-
 
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);

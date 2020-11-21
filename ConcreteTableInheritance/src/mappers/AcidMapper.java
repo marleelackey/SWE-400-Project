@@ -9,11 +9,10 @@ import Interfaces.AcidMapperInterface;
 import datasource.AcidDTO;
 import datasource.AcidRDG;
 import datasource.AcidTDG;
-import datasource.ElementRDG;
 import datasource.MetalDTO;
 import datasource.MetalTDG;
-import domainObjects.MetalDomainObject;
 import domainObjects.AcidDomainObject;
+import domainObjects.MetalDomainObject;
 
 /**
  * @author Josh B. , Ace W.

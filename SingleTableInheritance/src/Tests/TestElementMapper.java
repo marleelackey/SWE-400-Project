@@ -1,14 +1,5 @@
 package Tests;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import datasource.ChemicalRDG;
-import datasource.DatabaseException;
-import datasource.DatabaseManager;
-import mappers.ElementMapper;
-
 public class TestElementMapper {
 	
 //	@Test

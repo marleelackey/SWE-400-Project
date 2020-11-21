@@ -11,8 +11,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import commands.AddElementCmd;
@@ -27,11 +27,8 @@ import commands.GetAllAcidsCmd;
 import commands.GetAllElementsCmd;
 import commands.GetCompoundsByElementCmd;
 import commands.GetElementIDByNameCmd;
-import commands.ModifyChemicalAmountCmd;
 import commands.ModifyElementAtomicNumberCmd;
 import domainObjects.ElementDomainObject;
-import mappers.AcidMapper;
-import mappers.MetalMapper;
 
 public class ElementGUI implements guiInterface {
 	JPanel elementMainPanel = new JPanel();
