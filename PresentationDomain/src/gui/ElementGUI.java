@@ -35,6 +35,8 @@ public class ElementGUI implements guiInterface {
 	JPanel listOfElementsPanel = new JPanel();
 	JPanel elementControlPanel = new JPanel();
 
+	JComboBox elementNameInput;
+
 	public ElementGUI() {
 		listOfElementsPanel
 				.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .2), FRAME_SIZE.height));
@@ -74,7 +76,7 @@ public class ElementGUI implements guiInterface {
 				}
 			}
 		});
-		
+
 		listOfElementsPanel.add(generateListButton);
 	}
 
@@ -136,11 +138,15 @@ public class ElementGUI implements guiInterface {
 								Double.parseDouble(atomicMassInput.getText()), true, goo.getAcidID(),
 								Double.parseDouble(molesInput.getText()),
 								Double.parseDouble(molesToDissolveInput.getText())));
+						System.out.println("Adding metal " + nameInput.getText());
+						updateElementList();
 					} else {
 						new ExecuterForCommands(new AddElementCmd(547, nameInput.getText(),
 								Integer.parseInt(atomicNumberInput.getText()),
 								Double.parseDouble(atomicMassInput.getText()), false, 0,
 								Double.parseDouble(molesInput.getText()), 0));
+						System.out.println("Adding element " + nameInput.getText());
+						updateElementList();
 					}
 
 				} catch (NumberFormatException e1) {
@@ -183,8 +189,12 @@ public class ElementGUI implements guiInterface {
 				}
 
 				ArrayList<ElementDomainObject> loo = doo.getElementArrayList();
-				for (ElementDomainObject thingamabob : loo) {
-					System.out.println(thingamabob.toString());
+				if (loo.size() == 0) {
+					System.out.println("No elements in range.");
+				} else {
+					for (ElementDomainObject thingamabob : loo) {
+						System.out.println(thingamabob.toString());
+					}
 				}
 			}
 		});
@@ -259,7 +269,11 @@ public class ElementGUI implements guiInterface {
 					GetCompoundsByElementCmd compID = new GetCompoundsByElementCmd(nameID.getElementID());
 					new ExecuterForCommands(compID);
 					compID.getCompounds().forEach(n -> compoundNames.add(n.getCompoundName()));
-					compoundNames.forEach(n -> System.out.println(n));
+					if (compoundNames.size() == 0) {
+						System.out.println("No compounds contain this element.");
+					} else {
+						compoundNames.forEach(n -> System.out.println(n));
+					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -282,7 +296,7 @@ public class ElementGUI implements guiInterface {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		JComboBox elementNameInput = new JComboBox(eNames.toArray());
+		elementNameInput = new JComboBox(eNames.toArray());
 		modifyElementPanel.add(elementNameInput);
 		modifyElementPanel.add(new JLabel("New Atomic Number:"));
 		JTextField newNumInput = new JTextField();
@@ -293,11 +307,10 @@ public class ElementGUI implements guiInterface {
 				FindIDByNameCmd finder = new FindIDByNameCmd(elementNameInput.getSelectedItem().toString());
 				try {
 					new ExecuterForCommands(finder);
-					System.out.println(finder.getID());
 					ModifyElementAtomicNumberCmd newNum = new ModifyElementAtomicNumberCmd(finder.getID(),
 							Integer.parseInt(newNumInput.getText()));
-					System.out.println(newNumInput.getText());
 					new ExecuterForCommands(newNum);
+					System.out.println("Modifying element " + elementNameInput.getSelectedItem());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -306,5 +319,20 @@ public class ElementGUI implements guiInterface {
 		});
 		modifyElementPanel.add(changeNum);
 		elementControlPanel.add(modifyElementPanel);
+	}
+
+	public void updateElementList() {
+		elementNameInput.removeAllItems();
+
+		GetAllElementsCmd elementGrabber = new GetAllElementsCmd();
+//		ArrayList<String> eNames = new ArrayList<String>();
+		try {
+			new ExecuterForCommands(elementGrabber);
+			elementGrabber.getElements().forEach(n -> elementNameInput.addItem(n.getElementName()));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+
+//		elementNameInput.addItem(eNames.toArray());
 	}
 }

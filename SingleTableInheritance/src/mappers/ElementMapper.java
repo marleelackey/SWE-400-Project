@@ -107,4 +107,52 @@ public class ElementMapper implements ElementMapperInterface {
 			DatabaseException.detectError(e, "Error spotted in the ElementMapper class, Persist method");
 		}
 	}
+
+	public int getIdent() {
+		return ident;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getAtomicNumber() {
+		return atomicNumber;
+	}
+
+	public double getAtomicMass() {
+		return atomicMass;
+	}
+
+	public double getMoles() {
+		return moles;
+	}
+
+	public ElementDomainObject getElement() {
+		return edo;
+	}
+
+	public void setIdent(int ident) {
+		this.ident = ident;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAtomicNumber(int atomicNumber) {
+		this.atomicNumber = atomicNumber;
+	}
+
+	public void setAtomicMass(double atomicMass) {
+		this.atomicMass = atomicMass;
+	}
+
+	public void setMoles(double moles) {
+		this.moles = moles;
+	}
+
+	public void setElement(ElementDomainObject edo) {
+		this.edo = edo;
+	}
 }

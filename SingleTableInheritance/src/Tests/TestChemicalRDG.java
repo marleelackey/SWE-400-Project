@@ -39,9 +39,10 @@ public class TestChemicalRDG {
 
 	/**
 	 * Test that the finders all work properly
+	 * @throws DatabaseException 
 	 */
 	@Test
-	public static void findersTest() {
+	public static void findersTest() throws DatabaseException {
 		ChemicalRDG chem = ChemicalRDG.findByIDSingle(3);
 		assertEquals(chem.getID(), 3);
 		assertEquals(chem.getType(), 0);
@@ -157,8 +158,9 @@ public class TestChemicalRDG {
 
 	/**
 	 * Allows for our tests to be run in TestEverything()
+	 * @throws DatabaseException 
 	 */
-	public static void runAllTheTests() {
+	public static void runAllTheTests() throws DatabaseException {
 		constructor1Test();
 		findersTest();
 		updateTest();

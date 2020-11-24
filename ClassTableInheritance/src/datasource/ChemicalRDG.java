@@ -41,8 +41,9 @@ public class ChemicalRDG {
 		try {
 			cn = DatabaseManager.getSingleton().getConnection();
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Chemical WHERE chemicalID = " + ID);
-			rs.next();
-			data = new ChemicalRDG(rs.getInt(1), rs.getString(2), rs.getDouble(3));
+			if (rs.next()) {
+				data = new ChemicalRDG(rs.getInt(1), rs.getString(2), rs.getDouble(3));
+			}
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}

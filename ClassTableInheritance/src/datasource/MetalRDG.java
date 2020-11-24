@@ -47,9 +47,10 @@ public class MetalRDG {
 		MetalRDG data = null;
 		try {
 			ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM Metal WHERE metalID = " + ID);
-			rs.next();
-			data = new MetalRDG(rs.getInt("metalID"), rs.getInt("metalDissolvedBy"),
-					rs.getDouble("molesOfAcidToDissolve"));
+			if (rs.next()) {
+				data = new MetalRDG(rs.getInt("metalID"), rs.getInt("metalDissolvedBy"),
+						rs.getDouble("molesOfAcidToDissolve"));
+			}
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
@@ -72,20 +73,19 @@ public class MetalRDG {
 			DatabaseException.detectError(e);
 		}
 	}
-	
+
 	public void insert() {
 		PreparedStatement stmt;
 		try {
 			Connection connection = DatabaseManager.getSingleton().getConnection();
 
-			stmt = connection.prepareStatement(
-					"INSERT INTO Metal VALUES (?, ?, ?)");
+			stmt = connection.prepareStatement("INSERT INTO Metal VALUES (?, ?, ?)");
 			stmt.setInt(1, ID);
 			stmt.setInt(2, dissolvedBy);
 			stmt.setDouble(3, molesOfAcidToDissolve);
 
-			stmt.executeUpdate();		
-		
+			stmt.executeUpdate();
+
 		} catch (Exception e) {
 			DatabaseException.detectError(e);
 

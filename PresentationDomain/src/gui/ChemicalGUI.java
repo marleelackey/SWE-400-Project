@@ -32,20 +32,20 @@ public class ChemicalGUI implements guiInterface {
 	JPanel chemicalControlPanel = new JPanel();
 
 	public ChemicalGUI() {
-		listOfChemicalsPanel.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .2), FRAME_SIZE.height));
-		chemicalControlPanel.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .8), FRAME_SIZE.height));
+		listOfChemicalsPanel
+				.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .2), FRAME_SIZE.height));
+		chemicalControlPanel
+				.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .8), FRAME_SIZE.height));
 		listOfChemicalsPanel.setBackground(new Color(235, 91, 52));
 		chemicalControlPanel.setBackground(new Color(52, 186, 235));
 		chemicalMainPanel.setLayout(new BoxLayout(chemicalMainPanel, BoxLayout.LINE_AXIS));
 		chemicalMainPanel.add(listOfChemicalsPanel);
 		chemicalMainPanel.add(chemicalControlPanel);
-		
+
 		setuplistOfChemicalsPanel();
-		setupupdateChemicalPanel();
 		setupmodifyChemicalAmountPanel();
 		setupgenerateLowChemicalReportPanel();
 	}
-
 
 	private void setuplistOfChemicalsPanel() {
 		listOfChemicalsPanel.add(new JLabel("Chemical"));
@@ -61,40 +61,16 @@ public class ChemicalGUI implements guiInterface {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
-				
+
 			}
 		});
-		
+
 		listOfChemicalsPanel.add(generateListButton);
 	}
 
-	private void setupupdateChemicalPanel() {
-		JButton updateChemicalButton = new JButton("Update");
-		JPanel updateChemicalPanel = new JPanel(new GridLayout(0,2));
-		updateChemicalPanel.add(new JLabel("Weight: "));
-		JTextField weightInput = new JTextField();
-		updateChemicalPanel.add(weightInput);
-		updateChemicalPanel.add(new JLabel("Volume: "));
-		JTextField volumeInput = new JTextField();
-		updateChemicalPanel.add(volumeInput);
-		updateChemicalPanel.add(updateChemicalButton);
-		
-		updateChemicalButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Command stuff goes here
-				 * 
-				 */
-			}
-		});
-		
-		chemicalControlPanel.add(updateChemicalPanel);
-	}
-	
 	private void setupmodifyChemicalAmountPanel() {
 		JPanel modifyChemicalAmountPanel = new JPanel(new GridLayout(0, 2));
-		modifyChemicalAmountPanel.setBackground(new Color(220, 200, 220));	
+		modifyChemicalAmountPanel.setBackground(new Color(220, 200, 220));
 		modifyChemicalAmountPanel.add(new JLabel("Modify Amount"));
 		GetAllAcidsCmd acids = new GetAllAcidsCmd();
 		GetAllBasesCmd bases = new GetAllBasesCmd();
@@ -127,7 +103,8 @@ public class ChemicalGUI implements guiInterface {
 				FindIDByNameCmd nameFinder = new FindIDByNameCmd(chemicalNameInput.getSelectedItem().toString());
 				try {
 					new ExecuterForCommands(nameFinder);
-					ModifyChemicalAmountCmd newMole = new ModifyChemicalAmountCmd(nameFinder.getID(), Double.parseDouble(newAmountInput.getText()));
+					ModifyChemicalAmountCmd newMole = new ModifyChemicalAmountCmd(nameFinder.getID(),
+							Double.parseDouble(newAmountInput.getText()));
 					new ExecuterForCommands(newMole);
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -137,7 +114,7 @@ public class ChemicalGUI implements guiInterface {
 		modifyChemicalAmountPanel.add(changeAmount);
 		chemicalControlPanel.add(modifyChemicalAmountPanel);
 	}
-	
+
 	private void setupgenerateLowChemicalReportPanel() {
 		JPanel chemReportPanel = new JPanel(new GridLayout(0, 2));
 		chemReportPanel.add(new JLabel("Generate Low Chemical Report"));

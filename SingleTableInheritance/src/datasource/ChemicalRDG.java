@@ -329,15 +329,18 @@ public class ChemicalRDG {
 	 * 
 	 * @param ID the id of a chemical you are looking for
 	 * @return ChemicalRDG
+	 * @throws DatabaseException
 	 */
-	public static ChemicalRDG findByIDSingle(int ID) {
+	public static ChemicalRDG findByIDSingle(int ID) throws DatabaseException {
 		ChemicalRDG chem = null;
 		try {
+			connection = DatabaseManager.getSingleton().getConnection();
 			ResultSet r = connection.createStatement()
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalID = " + ID);
-			r.next();
-			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
-					r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
+			if (r.next()) {
+				chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5),
+						r.getInt(6), r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
+			}
 		} catch (SQLException e) {
 			DatabaseException.detectError(e);
 		}

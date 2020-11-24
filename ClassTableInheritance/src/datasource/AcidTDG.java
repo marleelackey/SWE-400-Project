@@ -38,7 +38,7 @@ public class AcidTDG {
 
 		try {
 			c = DatabaseManager.getSingleton().getConnection();
-			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Acid");
+			ResultSet rs = c.createStatement().executeQuery("SELECT * FROM Chemical");
 			while (rs.next()) {
 				AcidDTO dto = new AcidDTO(rs.getInt(1), rs.getInt(2));
 				list.add(dto);
