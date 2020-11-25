@@ -4,7 +4,7 @@ import domainObjects.ElementDomainObject;
 import mappers.ElementMapper;
 
 /**
- * Command to find an element from its name
+ * Command to find an element by its name
  * 
  * @author Mad & Addddddddddddddddddddddddddddddddddddddddd
  *

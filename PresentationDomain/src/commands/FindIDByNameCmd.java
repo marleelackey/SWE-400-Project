@@ -34,7 +34,7 @@ public class FindIDByNameCmd implements CommandInterface {
 	}
 
 	/**
-	 * @return the iD
+	 * @return the id
 	 */
 	public int getID() {
 		return ID;

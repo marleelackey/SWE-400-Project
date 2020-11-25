@@ -19,7 +19,7 @@ public class GetAllCompoundsCmd implements CommandInterface {
 	private ArrayList<CompoundDomainObject> cdo;
 
 	/**
-	 * Execute the get all compounds command
+	 * Execute the get all compounds command :D
 	 */
 	@Override
 	public void execute() throws Exception {

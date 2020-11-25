@@ -34,8 +34,6 @@ public class GetAcidIDByNameCmd implements CommandInterface {
 	}
 
 	/**
-	 * Getter for ID
-	 * 
 	 * @return the acid ID
 	 */
 	public int getAcidID() {

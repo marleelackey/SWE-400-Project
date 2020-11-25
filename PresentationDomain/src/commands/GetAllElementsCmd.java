@@ -19,7 +19,7 @@ public class GetAllElementsCmd implements CommandInterface {
 	private ArrayList<ElementDomainObject> elements;
 
 	/**
-	 * Execute the get all elements command
+	 * Execute the get all elements command :)))
 	 */
 	@Override
 	public void execute() throws Exception {

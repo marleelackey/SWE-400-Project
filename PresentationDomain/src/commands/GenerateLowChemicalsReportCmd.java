@@ -15,7 +15,7 @@ import mappers.ChemicalMapper;
  * @author Madeline and Adam
  *
  */
-public class GenerateLowChemicalsReportCmd implements CommandInterface{
+public class GenerateLowChemicalsReportCmd implements CommandInterface {
 
 	private File outputFile;
 	private FileWriter fw;
@@ -24,7 +24,7 @@ public class GenerateLowChemicalsReportCmd implements CommandInterface{
 	 * Constructor
 	 * 
 	 * @param f the file to write the report to
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public GenerateLowChemicalsReportCmd(File f) throws IOException {
 		outputFile = f;
@@ -32,7 +32,8 @@ public class GenerateLowChemicalsReportCmd implements CommandInterface{
 
 	/**
 	 * Execute method to invoke the generate low chemicals report command
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	public void execute() throws Exception {
 		fw = new FileWriter(outputFile);
@@ -44,6 +45,9 @@ public class GenerateLowChemicalsReportCmd implements CommandInterface{
 		fw.close();
 	}
 
+	/**
+	 * @return the report
+	 */
 	public File getOutputFile() {
 		return outputFile;
 	}

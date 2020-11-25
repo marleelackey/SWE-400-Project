@@ -28,7 +28,8 @@ public class DeleteElementFromCompoundCmd implements CommandInterface {
 
 	/**
 	 * We deleting elements from compounds out here
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Override
 	public void execute() throws Exception {
@@ -39,13 +40,15 @@ public class DeleteElementFromCompoundCmd implements CommandInterface {
 	}
 
 	/**
-	 * Getters
-	 * 
+	 * @return the element ID
 	 */
 	public int getElementID() {
 		return elementID;
 	}
 
+	/**
+	 * @return the compound ID
+	 */
 	public int getCompoundID() {
 		return compoundID;
 	}

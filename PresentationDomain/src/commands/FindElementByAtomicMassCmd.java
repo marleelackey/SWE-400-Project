@@ -15,7 +15,7 @@ public class FindElementByAtomicMassCmd implements CommandInterface {
 	private ElementDomainObject edo;
 
 	/**
-	 * Constructor
+	 * Constructorrr
 	 * 
 	 * @param a_mass the atomic mass of the element we need
 	 */
@@ -33,8 +33,6 @@ public class FindElementByAtomicMassCmd implements CommandInterface {
 	}
 
 	/**
-	 * Getter for domain object
-	 * 
 	 * @return the element domain object
 	 */
 	public ElementDomainObject getEdo() {

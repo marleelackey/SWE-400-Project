@@ -53,14 +53,15 @@ public class AddElementCmd implements CommandInterface {
 
 	/**
 	 * Execute the AddElementCmd by creating a mapper and receiving a domain object
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Override
 	public void execute() throws Exception {
 		if (isMetal()) {
 			MetalMapper mm = new MetalMapper();
-			MetalDomainObject mdo = mm.createMetal(elementID, elementName, elementAtomicNumber, elementAtomicMass, acidID,
-					elementMoles, elementMolesOfAcidToDissolve);
+			MetalDomainObject mdo = mm.createMetal(elementID, elementName, elementAtomicNumber, elementAtomicMass,
+					acidID, elementMoles, elementMolesOfAcidToDissolve);
 			mdo.persist();
 		} else {
 			ElementMapper em = new ElementMapper();
@@ -71,34 +72,58 @@ public class AddElementCmd implements CommandInterface {
 		// BOO!!!
 	}
 
+	/**
+	 * @return e's ID
+	 */
 	public int getElementID() {
 		return elementID;
 	}
 
+	/**
+	 * @return e's name
+	 */
 	public String getElementName() {
 		return elementName;
 	}
 
+	/**
+	 * @return e's atomic num
+	 */
 	public int getElementAtomicNumber() {
 		return elementAtomicNumber;
 	}
 
+	/**
+	 * @return e's atomic mass
+	 */
 	public double getElementAtomicMass() {
 		return elementAtomicMass;
 	}
 
+	/**
+	 * @return if e is a metal
+	 */
 	public boolean isMetal() {
 		return isMetal;
 	}
 
+	/**
+	 * @return the acid that dissolves e
+	 */
 	public int getAcidID() {
 		return acidID;
 	}
 
+	/**
+	 * @return the number of moles we have of e in inventory
+	 */
 	public double getElementMoles() {
 		return elementMoles;
 	}
 
+	/**
+	 * @return the number of moles of acid it takes to dissolve a mole of e
+	 */
 	public double getElementMolesOfAcidToDissolve() {
 		return elementMolesOfAcidToDissolve;
 	}

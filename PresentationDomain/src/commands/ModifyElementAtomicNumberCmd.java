@@ -27,7 +27,8 @@ public class ModifyElementAtomicNumberCmd implements CommandInterface {
 
 	/**
 	 * Execute method to invoke the modify element atomic number command
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Override
 	public void execute() throws Exception {
@@ -37,10 +38,16 @@ public class ModifyElementAtomicNumberCmd implements CommandInterface {
 		edo.persist();
 	}
 
+	/**
+	 * @return the elementID
+	 */
 	public int getElementID() {
 		return elementID;
 	}
 
+	/**
+	 * @return the newElementAtomicNumber
+	 */
 	public int getNewElementAtomicNumber() {
 		return newElementAtomicNumber;
 	}

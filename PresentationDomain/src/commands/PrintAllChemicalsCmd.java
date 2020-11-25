@@ -12,7 +12,7 @@ import mappers.ElementMapper;
 import mappers.MetalMapper;
 
 /**
- * Command to get all the metals
+ * Command to print all the chemicals in the database
  * 
  * @author Ad&Mad
  *
@@ -29,7 +29,7 @@ public class PrintAllChemicalsCmd implements CommandInterface {
 		BaseMapper bm = new BaseMapper();
 		CompoundMapper cm = new CompoundMapper();
 		ElementMapper em = new ElementMapper();
-		
+
 		printThingies(mm.getAllMetals());
 		printThingies(am.getAllAcids());
 		printThingies(bm.getAllBases());

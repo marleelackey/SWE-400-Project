@@ -25,8 +25,6 @@ public class GetAllAcidsCmd implements CommandInterface {
 	}
 
 	/**
-	 * Getter for the list of acids
-	 * 
 	 * @return the list of acids
 	 */
 	public ArrayList<AcidDomainObject> getAcids() {

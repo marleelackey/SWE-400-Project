@@ -31,7 +31,8 @@ public class AddElementToCompoundCmd implements CommandInterface {
 
 	/**
 	 * Execute method that invokes the add element to a compound command
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Override
 	public void execute() throws Exception {
@@ -42,17 +43,22 @@ public class AddElementToCompoundCmd implements CommandInterface {
 	}
 
 	/**
-	 * Getters
-	 * 
+	 * @return the element ID
 	 */
 	public int getElementID() {
 		return elementID;
 	}
 
+	/**
+	 * @return the element quantity
+	 */
 	public int getElementQuantity() {
 		return elementQuantity;
 	}
 
+	/**
+	 * @return the compound ID
+	 */
 	public int getCompoundID() {
 		return compoundID;
 	}

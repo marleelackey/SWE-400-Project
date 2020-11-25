@@ -12,9 +12,9 @@ import mappers.CompoundMapper;
  */
 public class ModifyElementInCompoundCmd {
 
-	private int elementID;
-	private int compoundID;
-	private int newElementQuantity;
+	private int elementID; // the element ID
+	private int compoundID; // the compound ID
+	private int newElementQuantity; // the new number of atoms of element that are in the compound
 
 	/**
 	 * Constructor
@@ -31,7 +31,8 @@ public class ModifyElementInCompoundCmd {
 
 	/**
 	 * Execute method to invoke the modify element in compound command
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	public void execute() throws Exception {
 		CompoundMapper cm = new CompoundMapper();
@@ -40,14 +41,23 @@ public class ModifyElementInCompoundCmd {
 		cdo.persist();
 	}
 
+	/**
+	 * @return the ID of the element
+	 */
 	public int getElementID() {
 		return elementID;
 	}
 
+	/**
+	 * @return the ID of the compound
+	 */
 	public int getCompoundID() {
 		return compoundID;
 	}
 
+	/**
+	 * @return the new quantity of the element
+	 */
 	public int getNewElementQuantity() {
 		return newElementQuantity;
 	}

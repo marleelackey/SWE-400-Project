@@ -7,7 +7,7 @@ import mappers.CompoundMapper;
 import quantifiedElementPackage.QuantifiedElement;
 
 /**
- * command to get the elements in a compounddddddddddddddddd
+ * command to get the elements in a compoundddddddddddddddd
  * 
  * @author maddddddddddddddd & adddddddddddddddddddd
  *

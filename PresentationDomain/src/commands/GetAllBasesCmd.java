@@ -16,7 +16,7 @@ public class GetAllBasesCmd implements CommandInterface {
 	private ArrayList<BaseDomainObject> bases;
 
 	/**
-	 * Execute the get all bases command
+	 * Execute the get all bases commanddd
 	 */
 	@Override
 	public void execute() throws Exception {

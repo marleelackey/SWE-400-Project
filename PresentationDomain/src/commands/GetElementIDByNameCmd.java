@@ -24,7 +24,7 @@ public class GetElementIDByNameCmd implements CommandInterface {
 	}
 
 	/**
-	 * Execute method to invoke get element ID by name command
+	 * Execute method to invoke get element ID by name command :)
 	 */
 	@Override
 	public void execute() throws Exception {

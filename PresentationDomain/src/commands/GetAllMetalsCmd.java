@@ -16,7 +16,7 @@ import mappers.MetalMapper;
  */
 public class GetAllMetalsCmd implements CommandInterface {
 
-	private ArrayList<MetalDomainObject> metals;
+	private ArrayList<MetalDomainObject> metals; // the list that can be retrieved
 
 	/**
 	 * Execute the command

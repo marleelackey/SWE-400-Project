@@ -33,8 +33,6 @@ public class FindElementByAtomicNumberCmd implements CommandInterface {
 	}
 
 	/**
-	 * Getter for domain object
-	 * 
 	 * @return the element domain object
 	 */
 	public ElementDomainObject getEdo() {

@@ -27,7 +27,8 @@ public class ModifyChemicalAmountCmd implements CommandInterface {
 
 	/**
 	 * Execute method to invoke the ModifyChemicalAmountCmd
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Override
 	public void execute() throws Exception {
@@ -37,10 +38,16 @@ public class ModifyChemicalAmountCmd implements CommandInterface {
 		cdo.persist();
 	}
 
+	/**
+	 * @return the chemicalID
+	 */
 	public int getChemicalID() {
 		return chemicalID;
 	}
 
+	/**
+	 * @return the newChemicalAmount
+	 */
 	public double getNewChemicalAmount() {
 		return newChemicalAmount;
 	}

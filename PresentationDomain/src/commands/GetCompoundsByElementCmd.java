@@ -20,7 +20,7 @@ public class GetCompoundsByElementCmd implements CommandInterface {
 	private int elementID;
 
 	/**
-	 * Constructor
+	 * Constructor!
 	 * 
 	 * @param eID the ID of the element we're searching for
 	 */

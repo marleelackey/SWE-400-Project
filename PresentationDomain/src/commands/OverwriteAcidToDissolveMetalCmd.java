@@ -11,8 +11,8 @@ import mappers.MetalMapper;
  */
 public class OverwriteAcidToDissolveMetalCmd implements CommandInterface {
 
-	private int metalID;
-	private int newAcidID;
+	private int metalID; // the metal that can be dissolved
+	private int newAcidID; // the acid that can dissolve it
 
 	/**
 	 * Constructor
@@ -27,7 +27,8 @@ public class OverwriteAcidToDissolveMetalCmd implements CommandInterface {
 
 	/**
 	 * Execute method to invoke the overwrite acid to dissolve metal command
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	public void execute() throws Exception {
 		MetalMapper mm = new MetalMapper();
@@ -36,10 +37,16 @@ public class OverwriteAcidToDissolveMetalCmd implements CommandInterface {
 		mdo.persist();
 	}
 
+	/**
+	 * @return the metal ID
+	 */
 	public int getMetalID() {
 		return metalID;
 	}
 
+	/**
+	 * @return the acid ID
+	 */
 	public int getNewAcidID() {
 		return newAcidID;
 	}

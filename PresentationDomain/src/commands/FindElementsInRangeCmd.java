@@ -38,8 +38,6 @@ public class FindElementsInRangeCmd implements CommandInterface {
 	}
 
 	/**
-	 * Getter for the array list of EDOs
-	 * 
 	 * @return the list of elements in range
 	 */
 	public ArrayList<ElementDomainObject> getElementArrayList() {
