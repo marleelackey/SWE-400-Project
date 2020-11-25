@@ -4,6 +4,11 @@ import static org.junit.Assert.*;
 
 import mappers.AcidMapper;
 
+/**
+ * @author Marlee Lackey
+ * @author Taryn Whitman
+ *
+ */
 public class TestAcidDomainObject {
 
 	/**

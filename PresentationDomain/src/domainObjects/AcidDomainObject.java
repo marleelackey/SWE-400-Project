@@ -2,6 +2,11 @@ package domainObjects;
 
 import mappers.AcidMapper;
 
+/**
+ * @author Marlee Lackey
+ * @author Taryn Whitman
+ *
+ */
 public class AcidDomainObject {
 
 	private int acidID;

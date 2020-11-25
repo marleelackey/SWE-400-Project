@@ -28,9 +28,7 @@ public class TestMetalDomainObject {
 		assertEquals(e.getMetalAtomicNumber(), 123);
 		assertEquals(e.getMetalID(), 12);
 		assertEquals(e.getMetalName(), "Bobrogyn");
-		assertEquals(e.getDissolvedBy(), 2);  //acid ID is equivelant to dissolvedBy I believe?
-		
-		// TODO: Should we add dissolvedBy, molesOfAcidToDissolve, etc to DO??
+		assertEquals(e.getDissolvedBy(), 2); 
 
 		// test border cases
 		e.setMetalAtomicNumber(2500);

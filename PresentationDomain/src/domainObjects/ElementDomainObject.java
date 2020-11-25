@@ -39,6 +39,12 @@ public class ElementDomainObject {
 		em.setElement(this);
 	}
 	
+	/**
+	 *  Adds element to the compound
+	 * @param compoundID
+	 * @param elementQuantity
+	 * @throws Exception
+	 */
 	public void addToCompound(int compoundID, int elementQuantity) throws Exception {
 		CompoundMapper cm = new CompoundMapper();
 		CompoundDomainObject cdo = cm.findByID(compoundID);
