@@ -1,6 +1,3 @@
-/**
- * 
- */
 package mappers;
 
 import java.util.ArrayList;
@@ -16,7 +13,7 @@ import domainObjects.MetalDomainObject;
 
 /**
  * @author Josh B. , Ace W.
- *
+ * AcidMapper for Concrete Table Inheritance
  */
 public class AcidMapper implements AcidMapperInterface {
 	
@@ -26,7 +23,9 @@ public class AcidMapper implements AcidMapperInterface {
 	private int solute;
 	private AcidDomainObject acid;
 
-	
+	/**
+	 * Returns an Acid domain object and sets its mapper to this. Does not change the database.
+	 */
 	@Override
 	public AcidDomainObject createAcid(int ID, String name, double moles, int solute) throws Exception {
 		ident = ID;
@@ -37,6 +36,9 @@ public class AcidMapper implements AcidMapperInterface {
 		return new AcidDomainObject(this);
 	}
 
+	/**
+	 * returns an arraylist of all acids in the database as AcidDomainObjects
+	 */
 	@Override
 	public ArrayList<AcidDomainObject> getAllAcids() throws Exception {
 				ArrayList<AcidDTO> Adot = AcidTDG.getSingleton().getAllAcids();
@@ -52,6 +54,10 @@ public class AcidMapper implements AcidMapperInterface {
 				return Doa;
 	}
 	
+	/**
+	 * returns an arraylist of all metals (as MetalDomainObjects) that can by an acid with
+	 * the passed in id.
+	 */
 	@Override
 	public ArrayList<MetalDomainObject> getChemicalsDissolvedByAcid(int id) throws Exception {
 		ArrayList<MetalDomainObject> metals = new ArrayList<MetalDomainObject>();
@@ -67,20 +73,10 @@ public class AcidMapper implements AcidMapperInterface {
 		
 		return metals;
 	}
-
-//	@Override
-//	public static domainObjects.AcidDomainObject findByName(String acidName) throws Exception {
-//		AcidMapper mapper = new AcidMapper();
-//		AcidRDG rdg = AcidRDG.findByName(acidName);
-//		
-//		mapper.ident = rdg.getAcidID();
-//		mapper.name = rdg.getAcidName();
-//		mapper.moles = rdg.getAcidMoles();
-//		mapper.ident = rdg.getAcidSolute();
-//
-//		return mapper.createAcid(rdg.getAcidID(), rdg.getAcidName(), rdg.getAcidMoles(), rdg.getAcidSolute());
-//	}
 	
+	/**
+	 * returns the acid that has the name that is passed in.
+	 */
 	@Override
 	public AcidDomainObject findByName(String acidName) throws Exception {
 		AcidMapper mapper = new AcidMapper();
@@ -94,30 +90,47 @@ public class AcidMapper implements AcidMapperInterface {
 		return mapper.createAcid(rdg.getAcidID(), rdg.getAcidName(), rdg.getAcidMoles(), rdg.getAcidSolute());
 	}
 	
+	/**
+	 * required from interface. not needed yet.
+	 */
 	@Override
 	public void persist() {
-		// TODO Auto-generated method stub
+		//Auto-generated method stub
 		
 	}
 
+	/**
+	 * getter for id
+	 */
 	public int getIdent() {
 		return ident;
 	}
 
+	/**
+	 * getter for name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * getter for moles
+	 */
 	public double getMoles() {
 		return moles;
 	}
 
+	/**
+	 * getter for solute
+	 */
 	public int getSolute() {
 		return solute;
 	}
 
+	/**
+	 * getter for acid
+	 */
 	public AcidDomainObject getAcid() {
 		return acid;
 	}
-
 }

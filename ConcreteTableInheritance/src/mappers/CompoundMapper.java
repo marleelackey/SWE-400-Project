@@ -16,6 +16,10 @@ import domainObjects.CompoundDomainObject;
 import domainObjects.ElementDomainObject;
 import quantifiedElementPackage.QuantifiedElement;
 
+/**
+ * @author Josh B. , Ace W.
+ * CompoundMapper for Concrete Table Inheritance
+ */
 public class CompoundMapper implements CompoundMapperInterface {
 
 	private int compoundID;
@@ -24,6 +28,9 @@ public class CompoundMapper implements CompoundMapperInterface {
 	private ArrayList<QuantifiedElement> myElements;
 	private CompoundDomainObject cdo;
 
+	/**
+	 * returns a compound with the id passed in.
+	 */
 	@Override
 	public CompoundDomainObject findByID(int cID) throws Exception {
 		CompoundRDG rdg = CompoundRDG.findByIDConcrete(cID);
@@ -50,6 +57,10 @@ public class CompoundMapper implements CompoundMapperInterface {
 		return cdo;
 	}
 
+	/**
+	 * persists any changes to this compound to the database. updates its elements if 
+	 * they were changed as well.
+	 */
 	@Override
 	public void persist() {
 		try {
@@ -63,6 +74,10 @@ public class CompoundMapper implements CompoundMapperInterface {
 		}
 	}
 
+	/**
+	 * persists any changes that were made to the relationship between this compound and 
+	 * the elements that make it up.
+	 */
 	public void compareElementsAndPersist() throws SQLException, DatabaseException {
 		// see if a relationship has been deleted from cdo
 		for (QuantifiedElement e : myElements) {
@@ -105,44 +120,10 @@ public class CompoundMapper implements CompoundMapperInterface {
 		}
 
 	}
-
-	public int getCompoundID() {
-		return compoundID;
-	}
-
-	public String getCompoundName() {
-		return compoundName;
-	}
-
-	public double getMoles() {
-		return moles;
-	}
-
-	public ArrayList<QuantifiedElement> getMyElements() {
-		return myElements;
-	}
-
-	public void setCompoundID(int compoundID) {
-		this.compoundID = compoundID;
-	}
-
-	public void setCompoundName(String compoundName) {
-		this.compoundName = compoundName;
-	}
-
-	public void setMoles(double moles) {
-		this.moles = moles;
-	}
-
-	public void setMyElements(ArrayList<QuantifiedElement> myElements) {
-		this.myElements = myElements;
-	}
-
-	public void setCdo(CompoundDomainObject compoundDomainObject) {
-		cdo = compoundDomainObject;
-
-	}
-
+	
+	/**
+	 * returns an arraylist of all compounds in the database.
+	 */
 	@Override
 	public ArrayList<CompoundDomainObject> getAllCompounds() throws Exception {
 		ArrayList<CompoundDTO> cdto = CompoundTDG.getSingleton().getAllCompounds();
@@ -187,4 +168,67 @@ public class CompoundMapper implements CompoundMapperInterface {
 		return list;
 	}
 
+	/**
+	 * getter for id.
+	 */
+	public int getCompoundID() {
+		return compoundID;
+	}
+
+	/**
+	 * getter for name.
+	 */
+	public String getCompoundName() {
+		return compoundName;
+	}
+
+	/**
+	 * getter for moles.
+	 */
+	public double getMoles() {
+		return moles;
+	}
+
+	/**
+	 * getter for this mapper's elements.
+	 */
+	public ArrayList<QuantifiedElement> getMyElements() {
+		return myElements;
+	}
+
+	/**
+	 * setter for id.
+	 */
+	public void setCompoundID(int compoundID) {
+		this.compoundID = compoundID;
+	}
+
+	/**
+	 * setter for name.
+	 */
+	public void setCompoundName(String compoundName) {
+		this.compoundName = compoundName;
+	}
+
+	/**
+	 * setter for moles.
+	 */
+	public void setMoles(double moles) {
+		this.moles = moles;
+	}
+
+	/**
+	 * setter for elements.
+	 */
+	public void setMyElements(ArrayList<QuantifiedElement> myElements) {
+		this.myElements = myElements;
+	}
+
+	/**
+	 * setter for this mapper's domain object.
+	 */
+	public void setCdo(CompoundDomainObject compoundDomainObject) {
+		cdo = compoundDomainObject;
+
+	}
 }

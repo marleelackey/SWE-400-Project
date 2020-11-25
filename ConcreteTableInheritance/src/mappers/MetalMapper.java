@@ -9,6 +9,10 @@ import datasource.MetalRDG;
 import datasource.MetalTDG;
 import domainObjects.MetalDomainObject;
 
+/**
+ * @author Josh B. , Ace W.
+ * MetalMapper for Concrete Table Inheritance
+ */
 public class MetalMapper implements MetalMapperInterface {
 
 	private int ident;
@@ -20,6 +24,9 @@ public class MetalMapper implements MetalMapperInterface {
 	private double molesOfAcidToDissolve;
 	private MetalDomainObject mdo;
 
+	/**
+	 * Returns a metal domain object and sets its mapper to this. Does not change the database.
+	 */
 	@Override
 	public MetalDomainObject createMetal(int ID, String elementName, int atomicNumber, double atomicMass,
 			int dissolvedBy, double moles, double molesOfAcidToDissolve) throws Exception {
@@ -34,6 +41,9 @@ public class MetalMapper implements MetalMapperInterface {
 		return new MetalDomainObject(this);
 	}
 
+	/**
+	 * returns the metal that has the id that is passed in.
+	 */
 	@Override
 	public MetalDomainObject findByID(int mID) throws Exception {
 		MetalRDG rdg = MetalRDG.findByID(mID);
@@ -49,6 +59,9 @@ public class MetalMapper implements MetalMapperInterface {
 		return new MetalDomainObject(this);
 	}
 
+	/**
+	 * returns all of the metals in the database.
+	 */
 	@Override
 	public ArrayList<MetalDomainObject> getAllMetals() throws Exception {
 		ArrayList<MetalDTO> metals = MetalTDG.getInstance().getAllMetals();
@@ -60,6 +73,9 @@ public class MetalMapper implements MetalMapperInterface {
 		return list;
 	}
 
+	/**
+	 * uses an rdg to persist updates of the metal to the database.
+	 */
 	@Override
 	public void persist() {
 		try {
@@ -90,66 +106,114 @@ public class MetalMapper implements MetalMapperInterface {
 		}
 	}
 
+	/**
+	 * setter for id.
+	 */
 	public void setIdent(int ident) {
 		this.ident = ident;
 	}
 
+	/**
+	 * setter for name.
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * setter for atomic number.
+	 */
 	public void setAtomicNumber(int atomicNumber) {
 		this.atomicNumber = atomicNumber;
 	}
 
+	/**
+	 * setter for atomic mass.
+	 */
 	public void setAtomicMass(double atomicMass) {
 		this.atomicMass = atomicMass;
 	}
 
+	/**
+	 * setter for acid id that dissolves this metal.
+	 */
 	public void setDissolvedBy(int dissolvedBy) {
 		this.dissolvedBy = dissolvedBy;
 	}
 
+	/**
+	 * setter for moles.
+	 */
 	public void setMoles(double moles) {
 		this.moles = moles;
 	}
 
+	/**
+	 * setter for the moles of acid needed to dissolve this metal.
+	 */
 	public void setMolesOfAcidToDissolve(double molesOfAcidToDissolve) {
 		this.molesOfAcidToDissolve = molesOfAcidToDissolve;
 	}
 
+	/**
+	 * getter for id.
+	 */
 	public int getIdent() {
 		return ident;
 	}
 
+	/**
+	 * getter for name.
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * getter for atomic number.
+	 */
 	public int getAtomicNumber() {
 		return atomicNumber;
 	}
 
+	/**
+	 * getter for atomic mass.
+	 */
 	public double getAtomicMass() {
 		return atomicMass;
 	}
 
+	/**
+	 * getter for acid id that dissolves this metal.
+	 */
 	public int getDissolvedBy() {
 		return dissolvedBy;
 	}
 
+	/**
+	 * getter for moles.
+	 */
 	public double getMoles() {
 		return moles;
 	}
 
+	/**
+	 * getter for moles of acid required ot dissolve this metal.
+	 */
 	public double getMolesOfAcidToDissolve() {
 		return molesOfAcidToDissolve;
 	}
 
+	/**
+	 * getter for this mapper's domain object.
+	 */
 	public MetalDomainObject getMetal() {
 		return mdo;
 	}
 
+	/**
+	 * setter for this mapper's domain object.
+	 */
 	public void setMetal(MetalDomainObject mdo) {
 		this.mdo = mdo;
 	}
