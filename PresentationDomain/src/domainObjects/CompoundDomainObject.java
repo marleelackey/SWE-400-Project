@@ -32,10 +32,19 @@ public class CompoundDomainObject {
 		dataMapper.setCdo(this);
 	}
 	
+	/**
+	 * Remove element from compound
+	 * @param elementID
+	 */
 	public void removeElement(int elementID) {
 		compoundElements.removeIf(e -> (e.getElement().getElementID() == elementID));
 	}
 	
+	/** 
+	 * Modify the element quantity 
+	 * @param elementID
+	 * @param newElementQuantity
+	 */
 	public void modifyElementQuantity(int elementID, int newElementQuantity) {
 		for (QuantifiedElement e : compoundElements) {
 			if (e.getElement().getElementID() == elementID) {
@@ -152,7 +161,7 @@ public class CompoundDomainObject {
 			i++;
 		}
 		
-		return("Compound: " + compoundName + ", elements: " + elements + ", "+ compoundMoles + "moles in inventory");
+		return("Compound: " + compoundName + ", elements: " + elements + ", "+ compoundMoles + " moles in inventory");
 	}
 
 }
