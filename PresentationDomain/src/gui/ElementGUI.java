@@ -30,6 +30,12 @@ import commands.GetElementIDByNameCmd;
 import commands.ModifyElementAtomicNumberCmd;
 import domainObjects.ElementDomainObject;
 
+/**
+ * 
+ * @author Dan Holmgren & Josh Kellogg
+ * This class sets up the element panel of the GUI
+ *
+ */
 public class ElementGUI implements guiInterface {
 	JPanel elementMainPanel = new JPanel();
 	JPanel listOfElementsPanel = new JPanel();
@@ -37,6 +43,9 @@ public class ElementGUI implements guiInterface {
 
 	JComboBox elementNameInput;
 
+	/**
+	 * Constructor for the element panel
+	 */
 	public ElementGUI() {
 		listOfElementsPanel
 				.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .2), FRAME_SIZE.height));
@@ -59,6 +68,9 @@ public class ElementGUI implements guiInterface {
 		setupmodifyElementPanel();
 	}
 
+	/**
+	 * Sets up the button to list all elements
+	 */
 	private void setuplistOfElementsPanel() {
 		listOfElementsPanel.add(new JLabel("Element"));
 		JButton generateListButton = new JButton("List of Elements");
@@ -80,6 +92,9 @@ public class ElementGUI implements guiInterface {
 		listOfElementsPanel.add(generateListButton);
 	}
 
+	/**
+	 * Sets up the panel to add an element to the database
+	 */
 	private void setupAddElementPanel() {
 		JPanel addElementPanel = new JPanel(new GridLayout(0, 2));
 		addElementPanel.setBackground(new Color(52, 186, 235));
@@ -164,7 +179,11 @@ public class ElementGUI implements guiInterface {
 
 		elementControlPanel.add(addElementPanel);
 	}
-
+	
+	/**
+	 * Sets up the panel to search the database for
+	 * elements with atomic masses within the given range
+	 */
 	private void setupfindElementsInRangePanel() {
 		JPanel findElementsInRangePanel = new JPanel(new GridLayout(0, 2));
 		findElementsInRangePanel.setBackground(new Color(52, 186, 0));
@@ -202,6 +221,10 @@ public class ElementGUI implements guiInterface {
 		elementControlPanel.add(findElementsInRangePanel);
 	}
 
+	/**
+	 * Sets up the panel to find an element by atomic number,
+	 * atomic mass, or by name
+	 */
 	private void setupfindElementPanel() {
 		JPanel findElementPanel = new JPanel(new GridLayout(0, 2));
 		findElementPanel.setBackground(new Color(52, 200, 235));
@@ -251,6 +274,11 @@ public class ElementGUI implements guiInterface {
 		elementControlPanel.add(findElementPanel);
 	}
 
+	
+	/**
+	 * Sets up the panel to find all compounds that contain
+	 * the selected element
+	 */
 	private void setupgetCompoundByElementPanel() {
 		JPanel getCompoundByElementPanel = new JPanel(new GridLayout(0, 2));
 		getCompoundByElementPanel.setBackground(new Color(0, 186, 235));
@@ -284,6 +312,9 @@ public class ElementGUI implements guiInterface {
 		elementControlPanel.add(getCompoundByElementPanel);
 	}
 
+	/**
+	 * Sets up the panel to modify an element
+	 */
 	private void setupmodifyElementPanel() {
 		JPanel modifyElementPanel = new JPanel(new GridLayout(0, 2));
 		modifyElementPanel.setBackground(new Color(52, 200, 220));

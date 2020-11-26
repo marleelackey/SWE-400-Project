@@ -26,11 +26,20 @@ import commands.GetAllMetalsCmd;
 import commands.ModifyChemicalAmountCmd;
 import commands.PrintAllChemicalsCmd;
 
+/**
+ * 
+ * @author Dan Holmgren & Josh Kellogg
+ *
+ *	This class sets up the chemical panel in the GUI
+ */
 public class ChemicalGUI implements guiInterface {
 	JPanel chemicalMainPanel = new JPanel();
 	JPanel listOfChemicalsPanel = new JPanel();
 	JPanel chemicalControlPanel = new JPanel();
 
+	/**
+	 * Constructor for the chemical panel
+	 */
 	public ChemicalGUI() {
 		listOfChemicalsPanel
 				.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .2), FRAME_SIZE.height));
@@ -47,6 +56,9 @@ public class ChemicalGUI implements guiInterface {
 		setupgenerateLowChemicalReportPanel();
 	}
 
+	/**
+	 * Sets up the button to list all chemicals
+	 */
 	private void setuplistOfChemicalsPanel() {
 		listOfChemicalsPanel.add(new JLabel("Chemical"));
 		JButton generateListButton = new JButton("List of Chemicals");
@@ -68,6 +80,9 @@ public class ChemicalGUI implements guiInterface {
 		listOfChemicalsPanel.add(generateListButton);
 	}
 
+	/**
+	 * Sets up the panel to modify a chemical
+	 */
 	private void setupmodifyChemicalAmountPanel() {
 		JPanel modifyChemicalAmountPanel = new JPanel(new GridLayout(0, 2));
 		modifyChemicalAmountPanel.setBackground(new Color(220, 200, 220));
@@ -115,6 +130,10 @@ public class ChemicalGUI implements guiInterface {
 		chemicalControlPanel.add(modifyChemicalAmountPanel);
 	}
 
+	/**
+	 * Sets up the button to generate a report that lists
+	 * which chemicals are low in supply
+	 */
 	private void setupgenerateLowChemicalReportPanel() {
 		JPanel chemReportPanel = new JPanel(new GridLayout(0, 2));
 		chemReportPanel.add(new JLabel("Generate Low Chemical Report"));

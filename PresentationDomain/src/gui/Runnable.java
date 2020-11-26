@@ -6,6 +6,12 @@ import datasource.DatabaseException;
 import datasource.DatabaseManager;
 import datasource.SingleTableCreator;
 
+/**
+ * 
+ * @author Dan Holmgren & Josh Kellogg
+ * 
+ *	This class is used to run and construct the GUI
+ */
 public class Runnable {
 	public static void main(String[] args) throws DatabaseException {
 		testSingle();
