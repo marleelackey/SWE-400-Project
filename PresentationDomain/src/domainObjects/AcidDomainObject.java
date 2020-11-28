@@ -110,6 +110,6 @@ public class AcidDomainObject {
 	 * Return a readable string
 	 */
 	public String toString() {
-		return("Acid: " + acidName + ", ID of solute: " + acidSolute + ", "+ acidMoles + "moles in inventory");
+		return("Acid: " + acidName + ", ID of solute: " + acidSolute + ", "+ acidMoles + " moles in inventory");
 	}
 }

@@ -99,7 +99,7 @@ public class ChemicalDomainObject {
 	 * Return a readable string
 	 */
 	public String toString() {
-		return("Chemical: " + chemicalName + ", "+ chemicalMoles + "moles in inventory");
+		return("Chemical: " + chemicalName + ", "+ chemicalMoles + " moles in inventory");
 	}
 	
 }
