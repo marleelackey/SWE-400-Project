@@ -8,7 +8,7 @@ import datasource.SingleTableCreator;
 
 public class Runnable {
 	public static void main(String[] args) throws DatabaseException {
-		testClass();
+		testSingle();
 	}
 
 	public static void testSingle() throws DatabaseException {

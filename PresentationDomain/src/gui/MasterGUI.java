@@ -5,7 +5,7 @@ import javax.swing.JTabbedPane;
 /**
  * This here be the gui
  * 
- * @author Joshua Kellogg
+ * @author Dan Holmgren & Josh Kellogg
  *
  */
 public class MasterGUI implements guiInterface {
@@ -13,7 +13,11 @@ public class MasterGUI implements guiInterface {
 
 	JFrame mainFrame = new JFrame("SWE Rocks!");
 	JTabbedPane mainPane = new JTabbedPane();
-
+	
+	/**
+	 * Constructor for the entire GUI,
+	 * creates the main window and then adds all panels
+	 */
 	public MasterGUI() {
 
 		mainFrame.setPreferredSize(FRAME_SIZE);

@@ -21,11 +21,20 @@ import commands.FindIDByNameCmd;
 import commands.GetAllCompoundsCmd;
 import commands.GetAllElementsCmd;
 
+/**
+ * 
+ * @author Dan Holmgren & Josh Kellogg
+ *
+ * This class sets up the compound tab of the GUI
+ */
 public class CompoundGUI implements guiInterface {
 	JPanel compoundMainPanel = new JPanel();
 	JPanel listOfCompoundPanel = new JPanel();
 	JPanel compoundControlPanel = new JPanel();
-
+	
+	/**
+	 * Constructor for the compound panel
+	 */
 	public CompoundGUI() {
 		listOfCompoundPanel
 				.setPreferredSize(new Dimension((int) Math.floor(FRAME_SIZE.height * .2), FRAME_SIZE.height));
@@ -42,6 +51,9 @@ public class CompoundGUI implements guiInterface {
 		setupremoveElementFromCompoundAmountPanel();
 	}
 
+	/**
+	 * Sets up the panel to list all the compounds
+	 */
 	private void setuplistOfCompoundPanel() {
 		listOfCompoundPanel.add(new JLabel("Compound"));
 		JButton generateListButton = new JButton("List of Compuounds");
@@ -63,6 +75,10 @@ public class CompoundGUI implements guiInterface {
 		listOfCompoundPanel.add(generateListButton);
 	}
 
+	/**
+	 * Sets up the panel to add an element to a compound's
+	 * composition
+	 */
 	private void setupaddElementToCompoundAmountPanel() {
 		JPanel addElementToCompoundAmountPanel = new JPanel(new GridLayout(0, 2));
 		addElementToCompoundAmountPanel.setBackground(new Color(220, 240, 220));
@@ -113,6 +129,10 @@ public class CompoundGUI implements guiInterface {
 		compoundControlPanel.add(addElementToCompoundAmountPanel);
 	}
 
+	/**
+	 * Sets up the panel to remove an element from a compound's
+	 * composition
+	 */
 	private void setupremoveElementFromCompoundAmountPanel() {
 		JPanel removeElementFromCompoundAmountPanel = new JPanel(new GridLayout(0, 2));
 		removeElementFromCompoundAmountPanel.setBackground(new Color(220, 100, 220));

@@ -9,8 +9,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="/DBConnections/libs/mysql-connector-java-5.1.29-bin.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/DBConnections"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/MapperInterfaces"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ClassTableInheritance"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DBConnections"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SingleTableInheritance"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
