@@ -198,7 +198,7 @@ public class MetalMapper implements MetalMapperInterface {
 	}
 
 	/**
-	 * getter for moles of acid required ot dissolve this metal.
+	 * getter for moles of acid required to dissolve this metal.
 	 */
 	public double getMolesOfAcidToDissolve() {
 		return molesOfAcidToDissolve;

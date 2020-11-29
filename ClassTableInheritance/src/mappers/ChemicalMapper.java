@@ -30,6 +30,9 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 	private double moles;
 	private ChemicalDomainObject cdo;
 
+	/**
+	 * Returns a chemical domain object and sets its mapper to this. Does not change the database.
+	 */
 	@Override
 	public ChemicalDomainObject createChemical(int ID, String name, double moles) throws Exception {
 		this.ID = ID;
@@ -39,6 +42,9 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		return new ChemicalDomainObject(this);
 	}
 
+	/**
+	 * persists any changes that were made to this chemical to the database.
+	 */
 	@Override
 	public void persist() throws DatabaseException {
 		ChemicalRDG chem = ChemicalRDG.findByID(ID);
@@ -48,6 +54,9 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		chem.update();
 	}
 
+	/**
+	 * returns the chemical with the passed in id.
+	 */
 	@Override
 	public ChemicalDomainObject findByID(int chemicalID) throws Exception {
 		ChemicalRDG chem = ChemicalRDG.findByID(chemicalID);
@@ -77,6 +86,12 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		return cdo;
 	}
 
+	/**
+	 * returns all chemicals that, if the are elements, have less than 20 moles remaining or dont 
+	 * have enough remaining to replenish all compounds that contain it, or if they are acids, dont
+	 * have enough to dissolve all metals that can be dissolved by it, or if they are bases, have less
+	 * than 40 moles remaining.
+	 */
 	@Override
 	public ArrayList<ChemicalDomainObject> findLowChemicals() throws Exception {
 		ArrayList<ChemicalDomainObject> lowChemicals = new ArrayList<ChemicalDomainObject>();
@@ -140,22 +155,37 @@ public class ChemicalMapper implements ChemicalMapperInterface {
 		return lowChemicals;
 	}
 
+	/**
+	 * getter for id.
+	 */
 	public int getID() {
 		return ID;
 	}
 
+	/**
+	 * getter for name.
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * getter for moles.
+	 */
 	public double getMoles() {
 		return moles;
 	}
 
+	/**
+	 * getter for this mapper's domain object.
+	 */
 	public ChemicalDomainObject getCdo() {
 		return cdo;
 	}
 
+	/**
+	 * setter for this mapper's domain object.
+	 */
 	public void setCdo(ChemicalDomainObject cdo) {
 		this.cdo = cdo;
 	}

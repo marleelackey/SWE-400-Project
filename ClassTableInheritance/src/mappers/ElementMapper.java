@@ -24,6 +24,9 @@ public class ElementMapper implements ElementMapperInterface {
 	private double moles;
 	private ElementDomainObject edo;
 
+	/**
+	 * Returns an element domain object and sets its mapper to this. Does not change the database.
+	 */
 	@Override
 	public ElementDomainObject createElement(int ID, String elementName, int atomicNumber, double atomicMass,
 			double moles) throws Exception {
@@ -36,6 +39,9 @@ public class ElementMapper implements ElementMapperInterface {
 		return new ElementDomainObject(this);
 	}
 
+	/**
+	 * returns the element that has the id that is passed in.
+	 */
 	@Override
 	public ElementDomainObject findByID(int id) throws Exception {
 		ElementRDG element = ElementRDG.findByID(id);
@@ -44,6 +50,9 @@ public class ElementMapper implements ElementMapperInterface {
 				element.getAtomicMass(), chem.getChemicalMoles());
 	}
 
+	/**
+	 * returns the element that has the name that is passed in.
+	 */
 	@Override
 	public ElementDomainObject findByName(String name) throws Exception {
 		ChemicalRDG chem = ChemicalRDG.findByName(name);
@@ -52,6 +61,9 @@ public class ElementMapper implements ElementMapperInterface {
 				element.getAtomicMass(), chem.getChemicalMoles());
 	}
 
+	/**
+	 * returns the element that has the atomic number that is passed in.
+	 */
 	@Override
 	public ElementDomainObject findByAtomicNumber(int aNum) throws Exception {
 		ElementRDG element = ElementRDG.findByAtomicNumber(aNum);
@@ -60,6 +72,9 @@ public class ElementMapper implements ElementMapperInterface {
 				element.getAtomicMass(), chem.getChemicalMoles());
 	}
 
+	/**
+	 * returns the element that has the atomic mass that is passed in.
+	 */
 	@Override
 	public ElementDomainObject findByAtomicMass(double aMass) throws Exception {
 		ElementRDG element = ElementRDG.findByAtomicMass(aMass);
@@ -68,6 +83,9 @@ public class ElementMapper implements ElementMapperInterface {
 				element.getAtomicMass(), chem.getChemicalMoles());
 	}
 
+	/**
+	 * returns the elements that have atomic masses in the specified range.
+	 */
 	@Override
 	public ArrayList<ElementDomainObject> findElementsInRange(double highRange, double lowRange) throws Exception {
 		ElementTDG et = ElementTDG.getInstance();
@@ -81,6 +99,9 @@ public class ElementMapper implements ElementMapperInterface {
 		return edo;
 	}
 
+	/**
+	 * returns all elements in the databse.
+	 */
 	@Override
 	public ArrayList<ElementDomainObject> getAllElements() throws Exception {
 		ArrayList<ElementDTO> elements = ElementTDG.getInstance().getAllElements();
@@ -93,6 +114,9 @@ public class ElementMapper implements ElementMapperInterface {
 		return list;
 	}
 
+	/**
+	 * uses an rdg to persist updates of an element to the database.
+	 */
 	@Override
 	public void persist() {
 		try {
@@ -116,50 +140,86 @@ public class ElementMapper implements ElementMapperInterface {
 		}
 	}
 
+	/**
+	 * getter for id.
+	 */
 	public int getIdent() {
 		return ident;
 	}
 
+	/**
+	 * getter for name.
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * getter for atomic number.
+	 */
 	public int getAtomicNumber() {
 		return atomicNumber;
 	}
 
+	/**
+	 * getter for atomic mass.
+	 */
 	public double getAtomicMass() {
 		return atomicMass;
 	}
 
+	/**
+	 * getter for moles.
+	 */
 	public double getMoles() {
 		return moles;
 	}
 
+	/**
+	 * setter for id.
+	 */
 	public void setIdent(int ident) {
 		this.ident = ident;
 	}
 
+	/**
+	 * setter for name.
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * setter for atomic number.
+	 */
 	public void setAtomicNumber(int atomicNumber) {
 		this.atomicNumber = atomicNumber;
 	}
 
+	/**
+	 * setter for atomic mass.
+	 */
 	public void setAtomicMass(double atomicMass) {
 		this.atomicMass = atomicMass;
 	}
 
+	/**
+	 * setter for moles.
+	 */
 	public void setMoles(double moles) {
 		this.moles = moles;
 	}
 
+	/**
+	 * setter for element.
+	 */
 	public void setElement(ElementDomainObject elementDomainObject) {
 		edo = elementDomainObject;
 	}
 
+	/**
+	 * getter for this mapper's element.
+	 */
 	public ElementDomainObject getElement() {
 		return edo;
 	}
