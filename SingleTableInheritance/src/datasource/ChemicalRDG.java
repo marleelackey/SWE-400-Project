@@ -357,12 +357,13 @@ public class ChemicalRDG {
 	public static ChemicalRDG findByName(String name) {
 		ChemicalRDG chem = null;
 		try {
+			connection = DatabaseManager.getSingleton().getConnection();
 			ResultSet r = connection.createStatement()
 					.executeQuery("SELECT * FROM Chemical WHERE Chemical.chemicalName = '" + name + "'");
 			r.next();
 			chem = new ChemicalRDG(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getDouble(5), r.getInt(6),
 					r.getInt(7), r.getInt(8), r.getDouble(9), r.getDouble(10));
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			DatabaseException.detectError(e);
 		}
 
