@@ -16,7 +16,7 @@ public class ChemicalRDG {
 	String name;
 	int atomicNumber;
 	double atomicMass;
-	int dissolvedBy; // is the ID of the Acid it is dissolved by -- should it be int[]?????
+	int dissolvedBy; // is the ID of the Acid it is dissolved by 
 	Array madeOf; // list of IDs
 	int soluteA;
 	int soluteB;
@@ -39,15 +39,13 @@ public class ChemicalRDG {
 		
 		// connection to the DB
 		connection = DatabaseManager.getSingleton().getConnection();		
-
-		
 	}
+	
 	// setters
 	public void setID(int id) {
 		ID = id;
 	}
-	
-	
+
 	// getters
 	public int getID() {
 		return ID;
@@ -92,6 +90,7 @@ public class ChemicalRDG {
 	
 
 	// finders
+	
 	public ChemicalDTO findByIDSingle(int ID) throws DatabaseException {
 		
 		String query = "SELECT * FROM CHEMICAL WHERE CHEMICAL.id = ?";
